@@ -1,8 +1,11 @@
 var html = require('choo/html')
 var css = require('sheetify')
 
+var anime = require('animejs')
+
 var composer = require('./compose')
 var display = require('./display')
+var button = require('../button')
 
 module.exports = function view (state, emit, reviews) {
   return html`
@@ -16,39 +19,36 @@ module.exports = function view (state, emit, reviews) {
   `
 }
 
-var collapsed = css`
-
-:host {
-  height: 0;
-}
-
-`
-
-var expanded = css`
-
-:host {
-  height: auto;
-}
-
-`
-
 function addreview (state, emit) {
+  if (!state.user) {
+    var login = button(state, emit, { label: 'login to review this preprint' })
+    login.onclick = () => { window.location = '/login' }
+    return html`<div class="flex flex-row w-100 justify-end items-end">${login}</div>`
+  }
   var s = state.style.classes
 
-  var collapser = html`
-  
-  <div class="w-100"></div>
-  
-  `
+  var collapser = button(state, emit, { label: 'review this preprint' })
 
   var collapsee = html`
-  
-  <div class="w-100 ${collapsed}"></div>
-  
+    <div class="w-100" style="height: 0;">
+
+    </div>
   `
 
+  var collapsed = true
+
   collapser.onclick = () => {
-    collapsee.classNames = collapsee.classNames
+    if (collapsed) {
+      collapsed = false
+
+      anime({
+        targets: collapsee,
+        css: {
+          height: 'auto',
+        },
+        easing: 'easeInOutExpo'
+      });
+    }
   }
 
   return html`

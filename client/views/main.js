@@ -5,7 +5,7 @@ var header = require('../components/home/header')
 var filterbox = require('../components/home/filterbox')
 var preprintlist = require('../components/home/preprintlist')
 
-var TITLE = 'PREreview 2 demo'
+var TITLE = 'PREreview2 | home'
 
 module.exports = view
 

@@ -2,13 +2,11 @@ var html = require('choo/html')
 
 var nav = require('../components/nav')
 var userSummary = require('../components/cards/profile')
-var button = require('../components/button')
-var input = require('../components/form/input')
-var preprint = require('../components/cards/preprint')
 
-var sortBy = require('lodash/sortBy')
+var filterbox = require('../components/profile/filterbox')
+var preprintlist = require('../components/profile/preprintlist')
 
-var TITLE = 'PREreview profile'
+var TITLE = 'PREreview2 | profile'
 
 module.exports = view
 
@@ -40,45 +38,10 @@ function view (state, emit) {
             ${filterbox(state, emit)}
           </div>
           <div class="articles">
-            ${preprints(state, emit)}
+            ${preprintlist(state, emit)}
           </div>
         </div>
       </div>
     </body>
   `
-}
-
-function filterbox (state, emit) {
-  var btn_date = button(state, emit, { label: 'most recent', classes: 'ml1', secondary: true })
-  btn_date.onclick = () => emit('sort', { scope: 'main', sort: 'date' })
-
-  var btn_reviews = button(state, emit, { label: 'most reviews', classes: 'ml1', secondary: true })
-  btn_date.onclick = () => emit('sort', { scope: 'reviews', sort: 'date' })
-
-  var search = input(state, emit, { type: 'search', placeholder: 'filter' })
-  search.onsubmit = () => { console.log('search submit', search.value)}
-
-  return html`
-  
-  <div class="flex flex-row tc justify-end items-center">
-    Sort by: ${btn_date} ${btn_reviews}
-    <div class="ml1">
-    ${search}
-    </div>
-  </div>
-  
-  `
-}
-
-function sortByDate (p) { return p.pubDate }
-
-function sortByReviews (p) { return p.reviews ? p.reviews.length : 0 }
-
-function preprints (state, emit) {
-  var preprints = state.getpreprints(state.filters.main.filter)
-
-  var sortFn = state.filters.main.sort === 'date' ? sortByDate : sortByReviews
-  var sorted = sortBy(preprints, sortFn)
-
-  return sorted.map(p => preprint(state, emit, p))
 }
