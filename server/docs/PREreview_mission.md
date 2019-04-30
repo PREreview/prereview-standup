@@ -67,5 +67,5 @@ We are implementing live-streamed preprint journal clubs, topic-centered, intera
 live-streamed via videoconference. These events are designed to be inclusive of all researchers by allowing structured and 
 constructive discussions around preprints and encouraging diverse methods of participation. Researchers from all over the world 
 can join to build their network, meet globally-renowned experts, and collaborate on improving a preprint. Learn more about this program 
-[here](XXX).
+[here](https://github.com/fathomlabs/prereview-standup/blob/master/server/docs/LivePREJC.md).
 
