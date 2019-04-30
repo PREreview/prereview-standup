@@ -3,6 +3,16 @@ var html = require('choo/html')
 module.exports = preprint
 
 function preprint (state, emit, p) {
+  var showreviews = html`
+    <div class="mr2">${p.reviews} Reviews</div>
+  `
+  showreviews.onclick = () => emit('pushState', `/reviews/${p.doi}`)
+
+  var addreview = html`
+    <div class="ml2">Review this preprint</div>
+  `
+  addreview.onclick = () => emit('pushState', `/reviews/${p.doi}`)
+
   return html`
   
   <div class="article w-100 bb b--black-10 pa2 pb3 mb3">
@@ -21,9 +31,9 @@ function preprint (state, emit, p) {
       <div class="left i">
         Submitted by anon on 18 Jan, 2019
       </div>
-      <div class="right"> 
-        <a class="" href="/reviews/${p.doi}">${p.reviews} Reviews</a> |
-        <a class="ml2" href="/reviews/${p.doi}">Review this preprint</a>
+      <div class="flex flex-row right"> 
+        ${showreviews} |
+        ${addreview}
       </div>
     </div>
   </div>
