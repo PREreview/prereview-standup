@@ -15,7 +15,7 @@ module.exports = view
 function view (state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
 
-  if (!state.user.loggedIn) {
+  if (!state.user) {
     return html`
       <body class="flex flex-column w-100 justify-center items-center space-around">
         ${nav(state, emit)}

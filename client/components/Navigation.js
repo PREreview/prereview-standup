@@ -13,7 +13,7 @@ var barstyle = css`
 module.exports = function(state, emit, opts) {
   var s = state.style.classes
 
-  var notlogged = html`
+  var notlogged = () => html`
 
   <div class="flex flex-row">
     <a class="white" href="/login">Log in / register</a>
@@ -21,13 +21,13 @@ module.exports = function(state, emit, opts) {
   
   `
 
-  var logged = html`
+  var logged = () => html`
   
   <a class="white" href="/profile">${state.user.name}</a>
   
   `
 
-  var userpart = state.user && state.user.loggedIn ? logged : notlogged
+  var userpart = state.user && state.user.loggedIn ? logged() : notlogged()
 
   return html`
   
