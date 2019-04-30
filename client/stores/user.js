@@ -9,6 +9,7 @@ module.exports = async (state, emitter) => {
   try {
     var userdata = await fetch('/userdata')
     state.user = await userdata.json()
+    emitter.emit('render')
   } catch (e) {
     console.log('there is no user')
   }
