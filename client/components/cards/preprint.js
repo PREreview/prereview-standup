@@ -3,27 +3,28 @@ var html = require('choo/html')
 module.exports = preprint
 
 function preprint (state, emit, p) {
+  var d = p.data
   var showreviews = html`
-    <div class="mr2">${p.reviews} Reviews</div>
+    <div class="mr2" style="cursor: pointer;">${d.reviews} Reviews</div>
   `
-  showreviews.onclick = () => emit('pushState', `/reviews/${p.doi}`)
+  showreviews.onclick = () => emit('pushState', `/reviews/${d.doi}`)
 
   var addreview = html`
-    <div class="ml2">Review this preprint</div>
+    <div class="ml2" style="cursor: pointer;">Review this preprint</div>
   `
-  addreview.onclick = () => emit('pushState', `/reviews/${p.doi}`)
+  addreview.onclick = () => emit('pushState', `/reviews/${d.doi}`)
 
   return html`
   
   <div class="article w-100 bb b--black-10 pa2 pb3 mb3">
     <div class="topic w-100 pv1">
-      ${p.tags && p.tags.join(', ')}
+      ${d.tags && d.tags.join(', ')}
     </div>
 
     <div class="title w-100" >
-      <h3><a href="/reviews/${p.doi}">${p.title}</a></h3>
+      <h3><a href="/reviews/${d.doi}">${d.title}</a></h3>
       <p class="">
-        ${p.authors.map(a => `${a.firstName} ${a.lastName}`).join(', ')}
+        ${d.authors.map(a => `${a.firstName} ${a.lastName}`).join(', ')}
       </p>
     </div>
     

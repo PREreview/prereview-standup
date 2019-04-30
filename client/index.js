@@ -18,6 +18,7 @@ app.use(require('./stores/user'))
 app.use(require('./stores/app'))
 app.use(require('./stores/styles'))
 app.use(require('./stores/devdata'))
+app.use(require('./stores/search'))
 
 app.route('/', require('./views/main'))
 app.route('/profile', require('./views/profile'))

@@ -3,7 +3,7 @@ var html = require('choo/html')
 var nav = require('../components/Navigation')
 var header = require('../components/home/header')
 var button = require('../components/button')
-var input = require('../components/form/input')
+var input = require('../components/form/typeahead')
 var preprint = require('../components/cards/preprint')
 
 var sample = require('lodash/sample')
@@ -39,17 +39,25 @@ function view (state, emit) {
 }
 
 function filterbox (state, emit) {
-  var btn_date = button(state, emit, { label: 'most recent', classes: 'ml1', secondary: true })
+  var btn_date = button(state, emit, { label: 'most recent', classes: 'ml1 f6', secondary: true })
   btn_date.onclick = () => emit('sort', { scope: 'main', sort: 'date' })
 
-  var btn_reviews = button(state, emit, { label: 'most reviews', classes: 'ml1', secondary: true })
+  var btn_reviews = button(state, emit, { label: 'most reviews', classes: 'ml1 f6', secondary: true })
   btn_reviews.onclick = () => emit('sort', { scope: 'main', sort: 'reviews' })
 
-  var search = input(state, emit, { type: 'search', placeholder: 'search for preprints...' })
-  search.onsubmit = () => {
-    console.log('search submit', search.value)
-    emit('sort', { scope: 'main', filter: search.value.toLowerCase().trim() })
+  var searchopts = {
+    id: 'main-search-input',
+    entries: Object.values(state.preprints),
+    container: {
+      class: 'bg-white dark-gray'
+    },
+    input: {
+      class: 'bg-white dark-gray b--dark-gray ba pa2',
+      placeholder: 'filter preprints'
+    },
+    onresults: results => emit('preprint-search:results', results)
   }
+  var search = input(state, emit, searchopts)
 
   return html`
   
@@ -68,7 +76,7 @@ function sortByDate (p) { return p.pubDate }
 function sortByReviews (p) { return p.reviews }
 
 function preprints (state, emit) {
-  var preprints = state.getpreprints(state.filters.main.filter).map(p => {
+  var preprints = state.searchResults.map(p => {
     p.reviews = sample([1, 2, 3, 4, 5])
     return p
   })
