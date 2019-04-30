@@ -11,14 +11,14 @@ module.exports = function (opts) {
 
     var btn_date = button(state, emit, {
       label: 'most recent',
-      classes: `ml1 f6 ${filterbydate ? 'bg-light-green' : 'bg-white'}`,
+      classes: `ml1 f6 ${filterbydate ? 'bg-light-red' : 'bg-mid-gray'} white`,
       secondary: true
     })
     btn_date.onclick = () => emit('sort', { scope: 'main', sort: 'date' })
 
     var btn_reviews = button(state, emit, {
       label: 'most reviews',
-      classes: `ml1 f6 ${!filterbydate ? 'bg-light-green' : 'bg-white'}`,
+      classes: `ml2 f6 ${!filterbydate ? 'bg-light-red' : 'bg-mid-gray'} white`,
       secondary: true
     })
     btn_reviews.onclick = () => emit('sort', { scope: 'main', sort: 'reviews' })
@@ -38,11 +38,11 @@ module.exports = function (opts) {
     var search = input(state, emit, searchopts)
 
     return html`
-      <div class="flex flex-row tc justify-end items-center">
-        Sort by: ${btn_date} ${btn_reviews}
-        <div class="ml3">
-        ${search}
+      <div class="flex flex-row tc justify-between items-center">
+        <div class="flex flex-row mh3" style="flex-grow: 1;">
+          ${search}
         </div>
+        Sort by: ${btn_date} ${btn_reviews}
       </div>
     `
   }
