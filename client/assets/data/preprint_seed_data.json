@@ -1,0 +1,772 @@
+[
+  {
+    "authors": [
+      {
+        "firstName": "Ross-William",
+        "lastName": "Hendron",
+        "orcid": null
+      },
+      {
+        "firstName": "Steven",
+        "lastName": "Kelly",
+        "orcid": "0000-0001-8583-5362"
+      }
+    ],
+    "doi": "10.1101/465872",
+    "pubDate": "2018-11-08",
+    "title": "Subdivision of light signalling networks contributes to cellular partitioning of C4 photosynthesis in maize",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    },
+    "tags": ["Plant Biology"]
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Ming-Ju Amy",
+        "lastName": "Lyu",
+        "orcid": null
+      },
+      {
+        "firstName": "Udo",
+        "lastName": "Gowik",
+        "orcid": "0000-0002-8986-7318"
+      },
+      {
+        "firstName": "Peter",
+        "lastName": "Westhoff",
+        "orcid": null
+      },
+      {
+        "firstName": "Yimin",
+        "lastName": "Tao",
+        "orcid": null
+      },
+      {
+        "firstName": "Steven",
+        "lastName": "Kelly",
+        "orcid": null
+      },
+      {
+        "firstName": "Sarah",
+        "lastName": "Covshoff",
+        "orcid": null
+      },
+      {
+        "firstName": "Harmony",
+        "lastName": "Clayton",
+        "orcid": null
+      },
+      {
+        "firstName": "Julian",
+        "lastName": "Hibberd",
+        "orcid": null
+      },
+      {
+        "firstName": "Rowan",
+        "lastName": "Sage",
+        "orcid": null
+      },
+      {
+        "firstName": "Martha",
+        "lastName": "Ludwig",
+        "orcid": null
+      },
+      {
+        "firstName": "Gane Ka-Shu Wong",
+        "lastName": "Wong",
+        "orcid": null
+      },
+      {
+        "firstName": "Xin-Guang",
+        "lastName": "Zhu",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/460287",
+    "pubDate": "2018-11-02",
+    "title": "The Coordination and Jumps along C4 Photosynthesis Evolution in the Genus Flaveria",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    },
+    "tags": ["Plant Biology"]
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Andrea",
+        "lastName": "Brautigam",
+        "orcid": "0000-0002-5309-0527"
+      },
+      {
+        "firstName": "Urte",
+        "lastName": "Schluter",
+        "orcid": null
+      },
+      {
+        "firstName": "Marjorie",
+        "lastName": "Lundgren",
+        "orcid": null
+      },
+      {
+        "firstName": "Samantha",
+        "lastName": "Flachbart",
+        "orcid": null
+      },
+      {
+        "firstName": "Oliver",
+        "lastName": "Ebenhoh",
+        "orcid": null
+      },
+      {
+        "firstName": "Gerald",
+        "lastName": "Schonknecht",
+        "orcid": null
+      },
+      {
+        "firstName": "Pascal-Antoine",
+        "lastName": "Christin",
+        "orcid": null
+      },
+      {
+        "firstName": "Stefan",
+        "lastName": "Bleuler",
+        "orcid": null
+      },
+      {
+        "firstName": "Jean-Marie",
+        "lastName": "Droz",
+        "orcid": null
+      },
+      {
+        "firstName": "Colin",
+        "lastName": "Osborne",
+        "orcid": null
+      },
+      {
+        "firstName": "Andreas",
+        "lastName": "Weber",
+        "orcid": null
+      },
+      {
+        "firstName": "Udo",
+        "lastName": "Gowik",
+        "orcid": "0000-0002-8986-7318"
+      }
+    ],
+    "doi": "10.1101/387431",
+    "pubDate": "2018-08-09",
+    "title": "Biochemical mechanisms driving rapid fluxes in C4 photosynthesis",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    },
+    "tags": ["Plant Biology"]
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Gregory",
+        "lastName": "Reeves",
+        "orcid": null
+      },
+      {
+        "firstName": "Pallavi",
+        "lastName": "Singh",
+        "orcid": null
+      },
+      {
+        "firstName": "Timo",
+        "lastName": "Rossberg",
+        "orcid": null
+      },
+      {
+        "firstName": "Deedi",
+        "lastName": "Sogbohossou",
+        "orcid": null
+      },
+      {
+        "firstName": "Eric",
+        "lastName": "Schranz",
+        "orcid": "0000-0001-6777-6565"
+      },
+      {
+        "firstName": "Julian",
+        "lastName": "Hibberd",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/253211",
+    "pubDate": "2018-01-25",
+    "title": "Quantitative variation within a species for traits underpinning C4 photosynthesis",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    },
+    "tags": ["Plant Biology"]
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Esther",
+        "lastName": "Sundermann",
+        "orcid": null
+      },
+      {
+        "firstName": "Martin",
+        "lastName": "Lercher",
+        "orcid": "0000-0003-3940-1621"
+      },
+      {
+        "firstName": "David",
+        "lastName": "Heckmann",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/371096",
+    "pubDate": "2018-07-18",
+    "title": "Modeling Cellular Resource Allocation Reveals Low Phenotypic Plasticity of C4 Plants and Infers Environments of C4 Photosynthesis Evolution",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    },
+    "tags": ["Plant Biology"]
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Steven",
+        "lastName": "Kelly",
+        "orcid": "0000-0001-8583-5362"
+      },
+      {
+        "firstName": "Sarah",
+        "lastName": "Covshoff",
+        "orcid": null
+      },
+      {
+        "firstName": "Samart",
+        "lastName": "Wanchana",
+        "orcid": null
+      },
+      {
+        "firstName": "Vivek",
+        "lastName": "Thakur",
+        "orcid": null
+      },
+      {
+        "firstName": "Paul",
+        "lastName": "Quick",
+        "orcid": null
+      },
+      {
+        "firstName": "Yu",
+        "lastName": "Wang",
+        "orcid": null
+      },
+      {
+        "firstName": "Martha",
+        "lastName": "Ludwig",
+        "orcid": null
+      },
+      {
+        "firstName": "Richard",
+        "lastName": "Bruskiewich",
+        "orcid": null
+      },
+      {
+        "firstName": "Alisdair",
+        "lastName": "Fernie",
+        "orcid": null
+      },
+      {
+        "firstName": "Rowan",
+        "lastName": "Sage",
+        "orcid": null
+      },
+      {
+        "firstName": "Zhijian",
+        "lastName": "Tian",
+        "orcid": null
+      },
+      {
+        "firstName": "Zixian",
+        "lastName": "Yan",
+        "orcid": null
+      },
+      {
+        "firstName": "Jun",
+        "lastName": "Wang",
+        "orcid": null
+      },
+      {
+        "firstName": "Yong",
+        "lastName": "Zhang",
+        "orcid": null
+      },
+      {
+        "firstName": "Xin-Guang",
+        "lastName": "Zhu",
+        "orcid": null
+      },
+      {
+        "firstName": "Gane",
+        "lastName": "Ka-Shu Wong",
+        "orcid": null
+      },
+      {
+        "firstName": "Julian",
+        "lastName": "Hibberd",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/163097",
+    "pubDate": "2017-07-13",
+    "title": "Wide sampling of natural diversity identifies novel molecular signatures of C4 photosynthesis",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    },
+    "tags": ["Plant Biology"]
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Haoran",
+        "lastName": "Zhou",
+        "orcid": null
+      },
+      {
+        "firstName": "Erol",
+        "lastName": "Akcay",
+        "orcid": null
+      },
+      {
+        "firstName": "Brent",
+        "lastName": "Helliker",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/153072",
+    "pubDate": "2017-06-21",
+    "title": "Deriving C4 photosynthesis parameters by fitting intensive A/Ci curves",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    },
+    "tags": ["Plant Biology"]
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Ana Rita",
+        "lastName": "Borba",
+        "orcid": null
+      },
+      {
+        "firstName": "Tania",
+        "lastName": "Serra",
+        "orcid": null
+      },
+      {
+        "firstName": "Alicja",
+        "lastName": "Gorska",
+        "orcid": null
+      },
+      {
+        "firstName": "Paulo",
+        "lastName": "Gouveia",
+        "orcid": null
+      },
+      {
+        "firstName": "Andre",
+        "lastName": "Cordeiro",
+        "orcid": null
+      },
+      {
+        "firstName": "Ivan",
+        "lastName": "Reyna-Llorens",
+        "orcid": null
+      },
+      {
+        "firstName": "Jana",
+        "lastName": "Knerova",
+        "orcid": null
+      },
+      {
+        "firstName": "Pedro",
+        "lastName": "Barros",
+        "orcid": null
+      },
+      {
+        "firstName": "Isabel",
+        "lastName": "Abreu",
+        "orcid": null
+      },
+      {
+        "firstName": "Margarida Oliveira",
+        "lastName": "Oliveira",
+        "orcid": null
+      },
+      {
+        "firstName": "Julian",
+        "lastName": "Hibberd",
+        "orcid": null
+      },
+      {
+        "firstName": "Nelson J.M.",
+        "lastName": "Saibo",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/230136",
+    "pubDate": "2018-01-19",
+    "title": "Synergistic binding of bHLH transcription factors to the promoter of the maize NADP-ME gene used in C4 photosynthesis is based on an ancient code found in the ancestral C3 state",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    },
+    "tags": ["Plant Biology"]
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Haoran",
+        "lastName": "Zhou",
+        "orcid": null
+      },
+      {
+        "firstName": "Brent",
+        "lastName": "Helliker",
+        "orcid": null
+      },
+      {
+        "firstName": "Erol",
+        "lastName": "Akcay",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/048900",
+    "pubDate": "2016-04-15",
+    "title": "C4 photosynthesis and climate through the lens of optimality",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    },
+    "tags": ["Plant Biology"]
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Ivan",
+        "lastName": "Jurić",
+        "orcid": null
+      },
+      {
+        "firstName": "Julian",
+        "lastName": "Hibberd",
+        "orcid": null
+      },
+      {
+        "firstName": "Mike",
+        "lastName": "Blatt",
+        "orcid": null
+      },
+      {
+        "firstName": "Nigel",
+        "lastName": "Burroughs",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/274845",
+    "pubDate": "2018-03-02",
+    "title": "Spatial photosynthesis modelling sets guidelines to constructing a viable single-cell cytoplasm-to-stroma C4 cycle",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    },
+    "tags": ["Plant Biology"]
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Steven",
+        "lastName": "Burgess",
+        "orcid": "0000-0003-2353-7794"
+      },
+      {
+        "firstName": "Ivan",
+        "lastName": "Reyna-Llorens",
+        "orcid": null
+      },
+      {
+        "firstName": "Katja",
+        "lastName": "Jaeger",
+        "orcid": null
+      },
+      {
+        "firstName": "Julian",
+        "lastName": "Hibberd",
+        "orcid": "0000-0003-0662-7958"
+      }
+    ],
+    "doi": "10.1101/165787",
+    "pubDate": "2017-07-24",
+    "title": "A transcription factor binding atlas for photosynthesis in cereals identifies a key role for coding sequence in the regulation of gene expression",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    },
+    "tags": ["Plant Biology"]
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Abigail",
+        "lastName": "Moore",
+        "orcid": null
+      },
+      {
+        "firstName": "Jurriaan",
+        "lastName": "de Vos",
+        "orcid": null
+      },
+      {
+        "firstName": "Lillian",
+        "lastName": "Hancock",
+        "orcid": null
+      },
+      {
+        "firstName": "Eric",
+        "lastName": "Goolsby",
+        "orcid": null
+      },
+      {
+        "firstName": "Erika",
+        "lastName": "Edwards",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/145995",
+    "pubDate": "2017-06-04",
+    "title": "Targeted Enrichment of Large Gene Families for Phylogenetic Inference: Phylogeny and Molecular Evolution of Photosynthesis Genes in the Portullugo (Caryophyllales)",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    },
+    "tags": ["Plant Biology"]
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Thien Vun",
+        "lastName": "Yee",
+        "orcid": null
+      },
+      {
+        "firstName": "Kenneth Francis",
+        "lastName": "Rodrigues",
+        "orcid": null
+      },
+      {
+        "firstName": "Wilson Yong",
+        "lastName": "Thau Lym",
+        "orcid": null
+      },
+      {
+        "firstName": "Clemente Michael",
+        "lastName": "Wong Vui Ling",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/188250",
+    "pubDate": "2017-09-13",
+    "title": "Comparison of gene expression patterns ofKappaphycus alvarezii(Rhodophyta, Solieriaceae) under different light wavelengths and CO2enrichment",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    }
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Britta MC",
+        "lastName": "Kumpers",
+        "orcid": null
+      },
+      {
+        "firstName": "Steven",
+        "lastName": "Burgess",
+        "orcid": null
+      },
+      {
+        "firstName": "Ivan",
+        "lastName": "Reyna-Llorens",
+        "orcid": null
+      },
+      {
+        "firstName": "Richard",
+        "lastName": "Smith-Unna",
+        "orcid": null
+      },
+      {
+        "firstName": "Chris",
+        "lastName": "Boursnell",
+        "orcid": null
+      },
+      {
+        "firstName": "Julian",
+        "lastName": "Hibberd",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/088153",
+    "pubDate": "2016-11-16",
+    "title": "Shared characteristics underpinning C4 leaf maturation derived from analysis of multiple C3 and C4 species of Flaveria",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    }
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Ivan",
+        "lastName": "Reyna-Llorens",
+        "orcid": null
+      },
+      {
+        "firstName": "Steven",
+        "lastName": "Burgess",
+        "orcid": "0000-0003-2353-7794"
+      },
+      {
+        "firstName": "Ben",
+        "lastName": "Williams",
+        "orcid": null
+      },
+      {
+        "firstName": "Susan",
+        "lastName": "Stanley",
+        "orcid": null
+      },
+      {
+        "firstName": "Chris",
+        "lastName": "Boursnell",
+        "orcid": null
+      },
+      {
+        "firstName": "Julian",
+        "lastName": "Hibberd",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/085795",
+    "pubDate": "2016-11-23",
+    "title": "Ancient coding sequences underpin the spatial patterning of gene expression in C4 leaves",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    }
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Craig",
+        "lastName": "Yendrek",
+        "orcid": null
+      },
+      {
+        "firstName": "Gorka",
+        "lastName": "Erice",
+        "orcid": null
+      },
+      {
+        "firstName": "Christopher",
+        "lastName": "Montes",
+        "orcid": null
+      },
+      {
+        "firstName": "Tiago",
+        "lastName": "Tomaz",
+        "orcid": null
+      },
+      {
+        "firstName": "Crystal",
+        "lastName": "Sorgini",
+        "orcid": null
+      },
+      {
+        "firstName": "Patrick",
+        "lastName": "Brown",
+        "orcid": null
+      },
+      {
+        "firstName": "Lauren",
+        "lastName": "McIntyre",
+        "orcid": null
+      },
+      {
+        "firstName": "Andrew",
+        "lastName": "Leakey",
+        "orcid": null
+      },
+      {
+        "firstName": "Elizabeth",
+        "lastName": "Ainsworth",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/154104",
+    "pubDate": "2017-06-23",
+    "title": "Elevated ozone reduces photosynthetic carbon gain by accelerating leaf senescence of inbred and hybrid maize in a genotype-specific manner",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    }
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Kevin",
+        "lastName": "Simonin",
+        "orcid": null
+      },
+      {
+        "firstName": "Adam",
+        "lastName": "Roddy",
+        "orcid": "0000-0002-4423-8729"
+      }
+    ],
+    "doi": "10.1101/174615",
+    "pubDate": "2017-08-10",
+    "title": "Genome downsizing, physiological novelty, and the global dominance of flowering plants",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    }
+  },
+  {
+    "authors": [
+      {
+        "firstName": "Sahar",
+        "lastName": "Parto",
+        "orcid": null
+      },
+      {
+        "firstName": "Nicolas",
+        "lastName": "Lartillot",
+        "orcid": null
+      }
+    ],
+    "doi": "10.1101/073684",
+    "pubDate": "2016-09-06",
+    "title": "Molecular adaptation in Rubisco: discriminating between convergent evolution and positive selection using mechanistic and classical codon models",
+    "sources": {
+      "metadata": "eupmc",
+      "publisher": "bioRxiv"
+    }
+  }
+]

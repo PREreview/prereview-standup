@@ -1,0 +1,58 @@
+{
+  "ops": [
+    {
+      "attributes": {
+        "header": 1
+      },
+      "insert": "Before you write\n"
+    },
+    {
+      "insert": "\nPlease take the time to read our "
+    },
+    {
+      "attributes": {
+        "link": "https://prereview.org"
+      },
+      "insert": "community guidelines"
+    },
+    {
+      "insert": ".\n\nIf this is your first time here, we recommend you look at our "
+    },
+    {
+      "attributes": {
+        "link": "https://prereview.org"
+      },
+      "insert": "guide to constructive reviewing."
+    },
+    {
+      "insert": "\n\n"
+    },
+    {
+      "attributes": {
+        "header": 1
+      },
+      "insert": "Summary\n"
+    },
+    {
+      "insert": "\nTry to summarize your review in a single paragraph.\n\n"
+    },
+    {
+      "attributes": {
+        "header": 1
+      },
+      "insert": "Validity, rigor, correctness and methodology\n"
+    },
+    {
+      "insert": "\nSome things you might consider:\n\n- Are the claims valid?\n- Are the methods appropriate and were they used correctly and documented well?\n- Are the results consistent and free from artifacts that might suggest errors?\n\n"
+    },
+    {
+      "attributes": {
+        "header": 1
+      },
+      "insert": "Importance and impact\n"
+    },
+    {
+      "insert": "\nThese things are silly.\n"
+    }
+  ]
+}

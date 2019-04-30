@@ -1,0 +1,23 @@
+{
+  "name": "prereview-demo",
+  "version": "2.0.0-alpha0",
+  "description": "PREreview2 demo for development, user testing etc.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "got": "^9.6.0",
+    "passport": "^0.4.0",
+    "passport-orcid": "0.0.3"
+  },
+  "devDependencies": {
+    "bankai": "^9.15.0"
+  }
+}

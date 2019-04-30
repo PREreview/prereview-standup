@@ -1,0 +1,1764 @@
+[
+  {
+    "id": " ",
+    "source": "PPR",
+    "doi": "10.1101/465872",
+    "title": "Subdivision of light signalling networks contributes to cellular partitioning of C4 photosynthesis in maize",
+    "authorString": "Hendron R, Kelly S.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Hendron R",
+          "firstName": "Ross-William",
+          "lastName": "Hendron",
+          "initials": "R"
+        },
+        {
+          "fullName": "Kelly S",
+          "firstName": "Steven",
+          "lastName": "Kelly",
+          "initials": "S",
+          "authorId": {
+            "type": "ORCID",
+            "value": "0000-0001-8583-5362"
+          }
+        }
+      ]
+    },
+    "authorIdList": {
+      "authorId": [
+        {
+          "type": "ORCID",
+          "value": "0000-0001-8583-5362"
+        }
+      ]
+    },
+    "pubYear": "2018",
+    "abstractText": "Plants coordinate the expression of genes required to conduct photosynthesis in response to growth and environmental changes. In species that conduct two-cell C4 photosynthesis, the expression of photosynthesis genes is partitioned such that leaf mesophyll and vascular sheath cells accumulate different components of the photosynthetic pathway. The identity of the regulatory networks that facilitate this partitioning are unknown. Here we show that differences in light perception between mesophyll and bundle sheath cells facilitate differential regulation and accumulation of photosynthesis genes in the C4 crop Zea mays (maize). We show that transcripts encoding photoreceptors differentially accumulate in mesophyll and bundle sheath cells in a manner that is consistent with biophysical light filtration. We further show the blue light (but not red) is necessary and sufficient to activate photosystem II assembly in etiolated maize mesophyll cells, while both red and blue produce the same effect in C3 Hordeum vulgare (barley). Finally, we demonstrate that changes in abundance of >20% of genes that differentially accumulate between mesophyll and bundle sheath cells can be recapitulated by spectrum specific de-etiolation of maize seedlings. These findings provide evidence that subdivision of light signalling networks is a key component of cellular partitioning of C4 photosynthesis in maize.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2018
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/465872"
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-11-10",
+    "firstPublicationDate": "2018-11-08"
+  },
+  {
+    "id": "PPR60770",
+    "source": "PPR",
+    "doi": "10.1101/460287",
+    "title": "The Coordination and Jumps along C4 Photosynthesis Evolution in the Genus Flaveria",
+    "authorString": "Lyu MA, Gowik U, Westhoff P, Tao Y, Kelly S, Covshoff S, Clayton H, Hibberd JM, Sage RF, Ludwig M, Wong GKW, Zhu X.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Lyu MA",
+          "firstName": "Ming-Ju Amy",
+          "lastName": "Lyu",
+          "initials": "MA"
+        },
+        {
+          "fullName": "Gowik U",
+          "firstName": "Udo",
+          "lastName": "Gowik",
+          "initials": "U",
+          "authorId": {
+            "type": "ORCID",
+            "value": "0000-0002-8986-7318"
+          }
+        },
+        {
+          "fullName": "Westhoff P",
+          "firstName": "Peter",
+          "lastName": "Westhoff",
+          "initials": "P"
+        },
+        {
+          "fullName": "Tao Y",
+          "firstName": "Yimin",
+          "lastName": "Tao",
+          "initials": "Y"
+        },
+        {
+          "fullName": "Kelly S",
+          "firstName": "Steven",
+          "lastName": "Kelly",
+          "initials": "S"
+        },
+        {
+          "fullName": "Covshoff S",
+          "firstName": "Sarah",
+          "lastName": "Covshoff",
+          "initials": "S"
+        },
+        {
+          "fullName": "Clayton H",
+          "firstName": "Harmony",
+          "lastName": "Clayton",
+          "initials": "H"
+        },
+        {
+          "fullName": "Hibberd JM",
+          "firstName": "Julian",
+          "lastName": "Hibberd",
+          "initials": "JM"
+        },
+        {
+          "fullName": "Sage RF",
+          "firstName": "Rowan",
+          "lastName": "Sage",
+          "initials": "RF"
+        },
+        {
+          "fullName": "Ludwig M",
+          "firstName": "Martha",
+          "lastName": "Ludwig",
+          "initials": "M"
+        },
+        {
+          "fullName": "Wong GKW",
+          "firstName": "Gane Ka-Shu Wong",
+          "lastName": "Wong",
+          "initials": "GKW"
+        },
+        {
+          "fullName": "Zhu X",
+          "firstName": "Xin-Guang",
+          "lastName": "Zhu",
+          "initials": "X"
+        }
+      ]
+    },
+    "authorIdList": {
+      "authorId": [
+        {
+          "type": "ORCID",
+          "value": "0000-0002-8986-7318"
+        }
+      ]
+    },
+    "pubYear": "2018",
+    "abstractText": "Background: C4 photosynthesis is a remarkable complex trait, elucidations of the evolutionary trajectory of C4 photosynthesis from its ancestral C3 pathway can help us to better understand the generic principles of complex trait evolution and guide engineering of C3 crops for higher yields. We used the genus Flaveria that contains C3, C3-C4, C4-like and C4 species as a system to study the evolution of C4 photosynthesis. Results: We mapped transcript abundance, protein sequence, and morphological features to the phylogenetic tree of the genus Flaveria, and calculated the evolutionary correlation of different features. Besides, we predicted the relative changes of ancestral nodes of those features to illustrate the key stages during the evolution of C4 photosynthesis. Gene expression and protein sequence showed consistent modification pattern along the phylogenetic tree. High correlation coefficients ranging from 0.46 to 0.9 among gene expression, protein sequence and morphology were observed, and the greatest modification of those different features consistently occurred at the transition between C3-C4 species and C4-like species. Conclusions: Our data shows highly coordinated changes in gene expression, protein sequence and morphological features. Besides, our results support an obviously evolutionary jump during the evolution of C4 metabolism.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2018
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/460287"
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-11-03",
+    "firstPublicationDate": "2018-11-02"
+  },
+  {
+    "id": "PPR46743",
+    "source": "PPR",
+    "doi": "10.1101/387431",
+    "title": "Biochemical mechanisms driving rapid fluxes in C4 photosynthesis",
+    "authorString": "Brautigam A, Schluter U, Lundgren MR, Flachbart S, Ebenhoh O, Schonknecht G, Christin P, Bleuler S, Droz J, Osborne C, Weber A, Gowik U.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Brautigam A",
+          "firstName": "Andrea",
+          "lastName": "Brautigam",
+          "initials": "A",
+          "authorId": {
+            "type": "ORCID",
+            "value": "0000-0002-5309-0527"
+          }
+        },
+        {
+          "fullName": "Schluter U",
+          "firstName": "Urte",
+          "lastName": "Schluter",
+          "initials": "U"
+        },
+        {
+          "fullName": "Lundgren MR",
+          "firstName": "Marjorie",
+          "lastName": "Lundgren",
+          "initials": "MR"
+        },
+        {
+          "fullName": "Flachbart S",
+          "firstName": "Samantha",
+          "lastName": "Flachbart",
+          "initials": "S"
+        },
+        {
+          "fullName": "Ebenhoh O",
+          "firstName": "Oliver",
+          "lastName": "Ebenhoh",
+          "initials": "O"
+        },
+        {
+          "fullName": "Schonknecht G",
+          "firstName": "Gerald",
+          "lastName": "Schonknecht",
+          "initials": "G"
+        },
+        {
+          "fullName": "Christin P",
+          "firstName": "Pascal-Antoine",
+          "lastName": "Christin",
+          "initials": "P"
+        },
+        {
+          "fullName": "Bleuler S",
+          "firstName": "Stefan",
+          "lastName": "Bleuler",
+          "initials": "S"
+        },
+        {
+          "fullName": "Droz J",
+          "firstName": "Jean-Marie",
+          "lastName": "Droz",
+          "initials": "J"
+        },
+        {
+          "fullName": "Osborne C",
+          "firstName": "Colin",
+          "lastName": "Osborne",
+          "initials": "C"
+        },
+        {
+          "fullName": "Weber A",
+          "firstName": "Andreas",
+          "lastName": "Weber",
+          "initials": "A"
+        },
+        {
+          "fullName": "Gowik U",
+          "firstName": "Udo",
+          "lastName": "Gowik",
+          "initials": "U",
+          "authorId": {
+            "type": "ORCID",
+            "value": "0000-0002-8986-7318"
+          }
+        }
+      ]
+    },
+    "authorIdList": {
+      "authorId": [
+        {
+          "type": "ORCID",
+          "value": "0000-0002-8986-7318"
+        },
+        {
+          "type": "ORCID",
+          "value": "0000-0002-5309-0527"
+        }
+      ]
+    },
+    "pubYear": "2018",
+    "abstractText": "Sufficient flux through pathways is critical to their function within the metabolic network. A high flux cycle called C4 photosynthesis evolved in some plants to combat the slow speed and low specificity of the plants carbon fixation enzyme Rubisco. In these plants, flux through the C4 photosynthetic cycle eclipses flux through Rubisco making it the highest flux in planta. Engineering efforts are underway to transfer this high flux pathway to crops using the ancestral C3 photosynthetic type, such as rice, to improve yield and increase water and nitrogen use efficiencies. Most of the enzymatic and transport steps of the C4 cycle have been characterized. However, well-established features, including altered chloroplast structure, diversity in transfer acids, and the underlying mechanisms driving high flux through this biochemical CO2 pump remain unexplained. We identify three drivers of high fluxes through alternative decarboxylation subsystems in C4 plants: For NAD- and NADP-based malic enzymes, kinetic modeling demonstrates that the oxidation state of mitochondria and chloroplasts, respectively, drive rapid decarboxylation. For phosphoenolpyruvate carboxykinase, RNA-seq and enzyme activity measurements suggest the presence of a new C4 cycle enzyme driving fast decarboxylation. These observations not only suggest a hitherto unknown C4 cycle but also provide mechanistic explanations for decades-old anatomical and biochemical observations.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2018
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/387431"
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-08-10",
+    "firstPublicationDate": "2018-08-09"
+  },
+  {
+    "id": "PPR19488",
+    "source": "PPR",
+    "doi": "10.1101/253211",
+    "title": "Quantitative variation within a species for traits underpinning C4 photosynthesis",
+    "authorString": "Reeves G, Singh P, Rossberg TA, Sogbohossou D, Schranz E, Hibberd J.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Reeves G",
+          "firstName": "Gregory",
+          "lastName": "Reeves",
+          "initials": "G"
+        },
+        {
+          "fullName": "Singh P",
+          "firstName": "Pallavi",
+          "lastName": "Singh",
+          "initials": "P"
+        },
+        {
+          "fullName": "Rossberg TA",
+          "firstName": "Timo",
+          "lastName": "Rossberg",
+          "initials": "TA"
+        },
+        {
+          "fullName": "Sogbohossou D",
+          "firstName": "Deedi",
+          "lastName": "Sogbohossou",
+          "initials": "D"
+        },
+        {
+          "fullName": "Schranz E",
+          "firstName": "Eric",
+          "lastName": "Schranz",
+          "initials": "E",
+          "authorId": {
+            "type": "ORCID",
+            "value": "0000-0001-6777-6565"
+          }
+        },
+        {
+          "fullName": "Hibberd J",
+          "firstName": "Julian",
+          "lastName": "Hibberd",
+          "initials": "J"
+        }
+      ]
+    },
+    "authorIdList": {
+      "authorId": [
+        {
+          "type": "ORCID",
+          "value": "0000-0001-6777-6565"
+        }
+      ]
+    },
+    "pubYear": "2018",
+    "abstractText": "Engineering C4 photosynthesis into C3 crops such as rice or wheat could substantially increase their yield by alleviating photorespiratory losses1,2. This objective is challenging because the C4 pathway involves complex modifications to the biochemistry, cell biology and anatomy of leaves3. Forward genetics has provided limited insight into the mechanistic basis of these characteristics and there have been no reports of significant quantitative intra-specific variation of C4 attributes that would allow trait-mapping4,5. Here we show that accessions of C4 Gynandropsis gynandra collected from locations across Africa and Asia exhibit natural variation in key characteristics of C4 photosynthesis. Variable traits include bundle sheath size and vein density, gas exchange parameters and carbon-isotope discrimination associated with the C4 state, but also abundance of transcripts encoding core enzymes of the C4 cycle. Traits relating to water use showed more quantitative variation than those associated with carbon assimilation. We propose variation in these traits likely adapted the hydraulic system for increased water use efficiency rather than improving carbon fixation, indicating that selection pressure may drive C4 diversity in G. gynandra by acting to modify water use rather than photosynthesis. As these accessions can be easily crossed and produce fertile offspring, our findings indicate that natural variation within a C4 species is sufficiently large to allow genetic-mapping of key anatomical C4 traits and regulators.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2018
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/253211"
+        }
+      ]
+    },
+    "commentCorrectionList": {
+      "commentCorrection": [
+        {
+          "id": "29678862",
+          "source": "MED",
+          "reference": "Plant physiology. 2018 Jun;177(2):504-512",
+          "type": "Preprint of",
+          "note": "CrossRef Pre-print loader",
+          "orderIn": 10001
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2018-01-25"
+  },
+  {
+    "id": "PPR45294",
+    "source": "PPR",
+    "doi": "10.1101/371096",
+    "title": "Modeling Cellular Resource Allocation Reveals Low Phenotypic Plasticity of C4 Plants and Infers Environments of C4 Photosynthesis Evolution",
+    "authorString": "Sundermann E, Lercher M, Heckmann D.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Sundermann E",
+          "firstName": "Esther",
+          "lastName": "Sundermann",
+          "initials": "E"
+        },
+        {
+          "fullName": "Lercher M",
+          "firstName": "Martin",
+          "lastName": "Lercher",
+          "initials": "M",
+          "authorId": {
+            "type": "ORCID",
+            "value": "0000-0003-3940-1621"
+          }
+        },
+        {
+          "fullName": "Heckmann D",
+          "firstName": "David",
+          "lastName": "Heckmann",
+          "initials": "D"
+        }
+      ]
+    },
+    "authorIdList": {
+      "authorId": [
+        {
+          "type": "ORCID",
+          "value": "0000-0003-3940-1621"
+        }
+      ]
+    },
+    "pubYear": "2018",
+    "abstractText": "- The regulation of resource allocation in biological systems observed today is the cumulative result of natural selection in ancestral and recent environments. To what extent are observed resource allocation patterns in different photosynthetic types optimally adapted to current conditions, and to what extend do they reflect ancestral environments? Here, we explore these questions for C3, C4, and C3-C4 intermediate plants of the model genus Flaveria. - We developed a detailed mathematical model of carbon fixation, which accounts for various environmental parameters and for energy and nitrogen partitioning across photosynthetic components. This allows us to assess environment-dependent plant physiology and performance as a function of resource allocation patterns. - To achieve maximal CO  2 fixation rates under growth conditions differing from those experienced during their evolution, C4 species need to re-allocate significantly more nitrogen between photosynthetic components than their C3 relatives. As this is linked to a limited phenotypic plasticity, observed resource distributions in C4 plants still reflect optimality in ancestral environments, allowing their quantitative inference. - Our work allows us to quantify environmental effects on resource allocation and performance of photosynthetic organisms. This understanding paves the way for interpreting present photosynthetic physiology in the light of evolutionary history.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2018
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/371096"
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-19",
+    "firstPublicationDate": "2018-07-18"
+  },
+  {
+    "id": "PPR27490",
+    "source": "PPR",
+    "doi": "10.1101/163097",
+    "title": "Wide sampling of natural diversity identifies novel molecular signatures of C4 photosynthesis",
+    "authorString": "Kelly S, Covshoff S, Wanchana S, Thakur V, Quick P, Wang Y, Ludwig M, Bruskiewich R, Fernie A, Sage R, Tian Z, Yan Z, Wang J, Zhang Y, Zhu X, Ka-Shu Wong G, Hibberd J.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Kelly S",
+          "firstName": "Steven",
+          "lastName": "Kelly",
+          "initials": "S",
+          "authorId": {
+            "type": "ORCID",
+            "value": "0000-0001-8583-5362"
+          }
+        },
+        {
+          "fullName": "Covshoff S",
+          "firstName": "Sarah",
+          "lastName": "Covshoff",
+          "initials": "S"
+        },
+        {
+          "fullName": "Wanchana S",
+          "firstName": "Samart",
+          "lastName": "Wanchana",
+          "initials": "S"
+        },
+        {
+          "fullName": "Thakur V",
+          "firstName": "Vivek",
+          "lastName": "Thakur",
+          "initials": "V"
+        },
+        {
+          "fullName": "Quick P",
+          "firstName": "Paul",
+          "lastName": "Quick",
+          "initials": "P"
+        },
+        {
+          "fullName": "Wang Y",
+          "firstName": "Yu",
+          "lastName": "Wang",
+          "initials": "Y"
+        },
+        {
+          "fullName": "Ludwig M",
+          "firstName": "Martha",
+          "lastName": "Ludwig",
+          "initials": "M"
+        },
+        {
+          "fullName": "Bruskiewich R",
+          "firstName": "Richard",
+          "lastName": "Bruskiewich",
+          "initials": "R"
+        },
+        {
+          "fullName": "Fernie A",
+          "firstName": "Alisdair",
+          "lastName": "Fernie",
+          "initials": "A"
+        },
+        {
+          "fullName": "Sage R",
+          "firstName": "Rowan",
+          "lastName": "Sage",
+          "initials": "R"
+        },
+        {
+          "fullName": "Tian Z",
+          "firstName": "Zhijian",
+          "lastName": "Tian",
+          "initials": "Z"
+        },
+        {
+          "fullName": "Yan Z",
+          "firstName": "Zixian",
+          "lastName": "Yan",
+          "initials": "Z"
+        },
+        {
+          "fullName": "Wang J",
+          "firstName": "Jun",
+          "lastName": "Wang",
+          "initials": "J"
+        },
+        {
+          "fullName": "Zhang Y",
+          "firstName": "Yong",
+          "lastName": "Zhang",
+          "initials": "Y"
+        },
+        {
+          "fullName": "Zhu X",
+          "firstName": "Xin-Guang",
+          "lastName": "Zhu",
+          "initials": "X"
+        },
+        {
+          "fullName": "Ka-Shu Wong G",
+          "firstName": "Gane",
+          "lastName": "Ka-Shu Wong",
+          "initials": "G"
+        },
+        {
+          "fullName": "Hibberd J",
+          "firstName": "Julian",
+          "lastName": "Hibberd",
+          "initials": "J"
+        }
+      ]
+    },
+    "authorIdList": {
+      "authorId": [
+        {
+          "type": "ORCID",
+          "value": "0000-0001-8583-5362"
+        }
+      ]
+    },
+    "pubYear": "2017",
+    "abstractText": "Much of biology is associated with convergent traits, and it is challenging to determine the extent to which underlying molecular mechanisms are shared across phylogeny. By analyzing plants representing eighteen independent origins of C4 photosynthesis, we quantified the extent to which this convergent trait utilises identical molecular mechanisms. We demonstrate that biochemical changes that characterise C4 species are recovered by this process, and expand the paradigm by four metabolic pathways not previously associated with C4 photosynthesis. Furthermore, we show that expression of many genes that distinguish C3 and C4 species respond to low CO2, providing molecular evidence that reduction in atmospheric CO2 was a driver for C4 evolution. Thus the origin and architecture of complex traits can be derived from transcriptome comparisons across natural diversity.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2017
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/163097"
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2017-07-13"
+  },
+  {
+    "id": "PPR27892",
+    "source": "PPR",
+    "doi": "10.1101/153072",
+    "title": "Deriving C4 photosynthesis parameters by fitting intensive A/Ci curves",
+    "authorString": "Zhou H, Akcay E, Helliker B.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Zhou H",
+          "firstName": "Haoran",
+          "lastName": "Zhou",
+          "initials": "H"
+        },
+        {
+          "fullName": "Akcay E",
+          "firstName": "Erol",
+          "lastName": "Akcay",
+          "initials": "E"
+        },
+        {
+          "fullName": "Helliker B",
+          "firstName": "Brent",
+          "lastName": "Helliker",
+          "initials": "B"
+        }
+      ]
+    },
+    "pubYear": "2017",
+    "abstractText": "Measurements of photosynthetic assimilation rate as a function of intercellular CO 2 (A/C i curves) are widely used to estimate photosynthetic parameters for C 3 species, yet few parameters have been reported for C 4 plants, because of a lack of estimation methods. Here, we extend the framework of widely-used estimation methods for C 3 plants to build estimation tools by exclusively fitting intensive A/C i curves) curves (6-8 more sampling points) for C 4 using three versions of photosynthesis models with different assumptions about carbonic anhydrase processes and ATP distribution. We use simulation-analysis, out-of-sample tests, existing in vitro measurements and chlorophyll-fluorescence-measurements to validate the new estimation methods. Of the five/six photosynthetic parameters obtained, sensitivity analyses show that maximal-Rubisco-carboxylation-rate, electron-transport-rate, maximal-PEP-carboxylation-rate and carbonic-anhydrase were robust to variation in the input parameters, while day-respiration and mesophyll-conductance varied. Our method provides a way to estimate carbonic anhydrase activity, a new parameter, from A/C i curves, yet also shows that models that do not explicitly consider carbonic anhydrase yield approximate results. The two photosynthesis models, differing in whether ATP could freely transport between RuBP and PEP regeneration processes yielded consistent results under high light, but they may diverge under low light intensities. Modeling results show selection for Rubisco of low specificity and high catalytic rate, low leakage of bundle sheath and high PEPC affinity, which may further increase C 4 efficiency.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2017
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/153072"
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2017-06-21"
+  },
+  {
+    "id": "PPR12190",
+    "source": "PPR",
+    "doi": "10.1101/230136",
+    "title": "Synergistic binding of bHLH transcription factors to the promoter of the maize NADP-ME gene used in C4 photosynthesis is based on an ancient code found in the ancestral C3 state",
+    "authorString": "Borba AR, Serra TS, Gorska A, Gouveia P, Cordeiro AM, Reyna-Llorens I, Knerova J, Barros PM, Abreu IA, Oliveira MMO, Hibberd JM, Saibo NJ.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Borba AR",
+          "firstName": "Ana Rita",
+          "lastName": "Borba",
+          "initials": "AR"
+        },
+        {
+          "fullName": "Serra TS",
+          "firstName": "Tania",
+          "lastName": "Serra",
+          "initials": "TS"
+        },
+        {
+          "fullName": "Gorska A",
+          "firstName": "Alicja",
+          "lastName": "Gorska",
+          "initials": "A"
+        },
+        {
+          "fullName": "Gouveia P",
+          "firstName": "Paulo",
+          "lastName": "Gouveia",
+          "initials": "P"
+        },
+        {
+          "fullName": "Cordeiro AM",
+          "firstName": "Andre",
+          "lastName": "Cordeiro",
+          "initials": "AM"
+        },
+        {
+          "fullName": "Reyna-Llorens I",
+          "firstName": "Ivan",
+          "lastName": "Reyna-Llorens",
+          "initials": "I"
+        },
+        {
+          "fullName": "Knerova J",
+          "firstName": "Jana",
+          "lastName": "Knerova",
+          "initials": "J"
+        },
+        {
+          "fullName": "Barros PM",
+          "firstName": "Pedro",
+          "lastName": "Barros",
+          "initials": "PM"
+        },
+        {
+          "fullName": "Abreu IA",
+          "firstName": "Isabel",
+          "lastName": "Abreu",
+          "initials": "IA"
+        },
+        {
+          "fullName": "Oliveira MMO",
+          "firstName": "Margarida Oliveira",
+          "lastName": "Oliveira",
+          "initials": "MMO"
+        },
+        {
+          "fullName": "Hibberd JM",
+          "firstName": "Julian",
+          "lastName": "Hibberd",
+          "initials": "JM"
+        },
+        {
+          "fullName": "Saibo NJ",
+          "firstName": "Nelson J.M.",
+          "lastName": "Saibo",
+          "initials": "NJ"
+        }
+      ]
+    },
+    "pubYear": "2018",
+    "abstractText": "C4 photosynthesis has evolved repeatedly from the ancestral C3 state to generate a carbon concentrating mechanism that increases photosynthetic efficiency. This specialised form of photosynthesis is particularly common in the PACMAD clade of grasses, and is used by many of the world's most productive crops. The C4 cycle is accomplished through cell-type specific accumulation of enzymes but cis-elements and transcription factors controlling C4 photosynthesis remain largely unknown. Using the NADP-Malic Enzyme (NADP-ME) gene as a model we aimed to better understand molecular mechanisms associated with the evolution of C4 photosynthesis. Two basic Helix-Loop-Helix (bHLH) transcription factors, ZmbHLH128 and ZmbHLH129, were shown to bind the C4 NADP-ME promoter from maize. These proteins form heterodimers and ZmbHLH129 impairs trans-activation by ZmbHLH128. Electrophoretic mobility shift assays indicate that a pair of cis-elements separated by a seven base pair spacer synergistically bind either ZmbHLH128 or ZmbHLH129. This pair of cis-elements is found in both C3 and C4 species of the PACMAD clade. Our analysis is consistent with this cis-element pair originating from a single motif present in the ancestral C3 state. We conclude that C4 photosynthesis has co-opted an ancient C3 regulatory code built on G-box recognition by bHLH to regulate the NADP-ME gene. More broadly, our findings also contribute to the understanding of gene regulatory networks controlling C4 photosynthesis.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2018
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/230136"
+        }
+      ]
+    },
+    "commentCorrectionList": {
+      "commentCorrection": [
+        {
+          "id": "29659975",
+          "source": "MED",
+          "reference": "Molecular biology and evolution. 2018 Jul;35(7):1690-1705",
+          "type": "Preprint of",
+          "note": "CrossRef Pre-print loader",
+          "orderIn": 10001
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2018-01-19"
+  },
+  {
+    "id": "PPR34716",
+    "source": "PPR",
+    "doi": "10.1101/048900",
+    "title": "C4 photosynthesis and climate through the lens of optimality",
+    "authorString": "Zhou H, Helliker B, Akcay E.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Zhou H",
+          "firstName": "Haoran",
+          "lastName": "Zhou",
+          "initials": "H"
+        },
+        {
+          "fullName": "Helliker B",
+          "firstName": "Brent",
+          "lastName": "Helliker",
+          "initials": "B"
+        },
+        {
+          "fullName": "Akcay E",
+          "firstName": "Erol",
+          "lastName": "Akcay",
+          "initials": "E"
+        }
+      ]
+    },
+    "pubYear": "2016",
+    "abstractText": "CO 2 , temperature, water availability and light intensity were all potential selective pressures to propel the initial evolution and global expansion of C 4 photosynthesis over the last 30 million years. To tease apart how the primary selective pressures varied along this evolutionary trajectory, we coupled photosynthesis and hydraulics models while optimizing photosynthesis over stomatal resistance and leaf/fine-root allocation. We further examined the importance of resource (e.g. nitrogen) reallocation from the dark to the light reactions during and after the initial formation of C 4 syndrome. We show here that the primary selective pressures − all acting upon photorespiration in C 3 progenitors − changed through the course of C 4 evolution. The higher stomatal resistance and leaf-to-root allocation ratio enabled by the C 4 carbon-concentrating mechanism led to a C 4 advantage without any change in hydraulic properties, but selection on nitrogen reallocation varied. Water limitation was the primary driver for the initial evolution of C 4 25-32 million years ago, and could positively select for C 4 evolution with atmospheric CO 2 as high as 600 ppm. Under these high CO 2 conditions, nitrogen reallocation was necessary. Low CO 2 and light intensity, but not nitrogen reallocation, were the primary drivers during the global radiation of C 4 5-10 MYA. Finally, our results suggest that identifying the predominate selective pressures at the time C 4 first evolved within a lineage should help explain current biogeographical distributions.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2016
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/048900"
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2016-04-15"
+  },
+  {
+    "id": "PPR18045",
+    "source": "PPR",
+    "doi": "10.1101/274845",
+    "title": "Spatial photosynthesis modelling sets guidelines to constructing a viable single-cell cytoplasm-to-stroma C4 cycle",
+    "authorString": "Jurić I, Hibberd JM, Blatt M, Burroughs NJ.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Jurić I",
+          "firstName": "Ivan",
+          "lastName": "Jurić",
+          "initials": "I"
+        },
+        {
+          "fullName": "Hibberd JM",
+          "firstName": "Julian",
+          "lastName": "Hibberd",
+          "initials": "JM"
+        },
+        {
+          "fullName": "Blatt M",
+          "firstName": "Mike",
+          "lastName": "Blatt",
+          "initials": "M"
+        },
+        {
+          "fullName": "Burroughs NJ",
+          "firstName": "Nigel",
+          "lastName": "Burroughs",
+          "initials": "NJ"
+        }
+      ]
+    },
+    "pubYear": "2018",
+    "abstractText": "It has been proposed that introducing C4 photosynthesis into C3 crops would increase yield. The simplest scheme involves concentrating carbon originating from the cytosol in the chloroplast stroma of mesophyll cells without altering leaf or cell anatomy. Photosynthetic efficiency would then strongly depend on the chloroplast envelope permeability to CO2. We examine the performance of this C4 cycle with a spatial model of carbon assimilation in C3 mesophyll cell geometry, conducting a thorough exploration of parameter space relevant to C4 photosynthesis. For envelope permeabilities below 300 μm/s C4 photosynthesis has a higher quantum efficiency than C3. However, even when envelope permeability is above this threshold, the C4 pathway can provide a substantial boost to carbon assimilation with only a moderate decrease in efficiency. Depending on the available light-harvesting capacity of plastids, C4 photosynthesis could boost carbon assimilation anywhere from 20% to 100%. Gains are even more prominent under CO2 deprivation, and can be achieved in conjunction with lower investment in plastids if chloroplast surface coverage is also altered. A C4 pathway operating within individual mesophyll cells of C3 plants could hence lead to higher growth rates and better drought resistance in dry, high-sunlight climates.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2018
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/274845"
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2018-03-02"
+  },
+  {
+    "id": "PPR26327",
+    "source": "PPR",
+    "doi": "10.1101/165787",
+    "title": "A transcription factor binding atlas for photosynthesis in cereals identifies a key role for coding sequence in the regulation of gene expression",
+    "authorString": "Burgess SJ, Reyna-Llorens I, Jaeger K, Hibberd JM.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Burgess SJ",
+          "firstName": "Steven",
+          "lastName": "Burgess",
+          "initials": "SJ",
+          "authorId": {
+            "type": "ORCID",
+            "value": "0000-0003-2353-7794"
+          }
+        },
+        {
+          "fullName": "Reyna-Llorens I",
+          "firstName": "Ivan",
+          "lastName": "Reyna-Llorens",
+          "initials": "I"
+        },
+        {
+          "fullName": "Jaeger K",
+          "firstName": "Katja",
+          "lastName": "Jaeger",
+          "initials": "K"
+        },
+        {
+          "fullName": "Hibberd JM",
+          "firstName": "Julian",
+          "lastName": "Hibberd",
+          "initials": "JM",
+          "authorId": {
+            "type": "ORCID",
+            "value": "0000-0003-0662-7958"
+          }
+        }
+      ]
+    },
+    "authorIdList": {
+      "authorId": [
+        {
+          "type": "ORCID",
+          "value": "0000-0003-0662-7958"
+        },
+        {
+          "type": "ORCID",
+          "value": "0000-0003-2353-7794"
+        }
+      ]
+    },
+    "pubYear": "2017",
+    "abstractText": "The gene regulatory architecture associated with photosynthesis is poorly understood. Most plants use the ancestral C3 pathway, but our most productive cereal crops use C4 photosynthesis. In these C4 cereals, large-scale alterations to gene expression allow photosynthesis to be partitioned between cell types of the leaf. Here we provide a genome-wide transcription factor binding atlas for grasses that operate either C3 or C4 photosynthesis. Most of the >950,000 sites bound by transcription factors are preferentially located in genic sequence rather than promoter regions, and specific families of transcription factors preferentially bind coding sequence. Cell specific patterning of gene expression in C4 leaves is associated with combinatorial modifications to transcription factor binding despite broadly similar patterns of DNA accessibility between cell types. A small number of DNA motifs bound by transcription factors are conserved across 60 million years of grass evolution, and C4 evolution has repeatedly co-opted at least one of these hyper-conserved cis-elements. The grass cistrome is highly divergent from that of the model plant Arabidopsis thaliana.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2017
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/165787"
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2017-07-24"
+  },
+  {
+    "id": "PPR22236",
+    "source": "PPR",
+    "doi": "10.1101/145995",
+    "title": "Targeted Enrichment of Large Gene Families for Phylogenetic Inference: Phylogeny and Molecular Evolution of Photosynthesis Genes in the Portullugo (Caryophyllales)",
+    "authorString": "Moore A, de Vos JM, Hancock LP, Goolsby E, Edwards EJ.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Moore A",
+          "firstName": "Abigail",
+          "lastName": "Moore",
+          "initials": "A"
+        },
+        {
+          "fullName": "de Vos JM",
+          "firstName": "Jurriaan",
+          "lastName": "de Vos",
+          "initials": "JM"
+        },
+        {
+          "fullName": "Hancock LP",
+          "firstName": "Lillian",
+          "lastName": "Hancock",
+          "initials": "LP"
+        },
+        {
+          "fullName": "Goolsby E",
+          "firstName": "Eric",
+          "lastName": "Goolsby",
+          "initials": "E"
+        },
+        {
+          "fullName": "Edwards EJ",
+          "firstName": "Erika",
+          "lastName": "Edwards",
+          "initials": "EJ"
+        }
+      ]
+    },
+    "pubYear": "2017",
+    "abstractText": "Hybrid enrichment is an increasingly popular approach for obtaining hundreds of loci for phylogenetic analysis across many taxa quickly and cheaply. The genes targeted for sequencing are typically single-copy loci, which facilitate a more straightforward sequence assembly and homology assignment process. However, single copy loci are relatively uncommon elements of most genomes, and as such may provide a biased evolutionary history. Furthermore, this approach limits the inclusion of most genes of functional interest, which often belong to multi-gene families. Here we demonstrate the feasibility of including large gene families in hybrid enrichment protocols for phylogeny reconstruction and subsequent analyses of molecular evolution, using a new set of bait sequences designed for the portullugo (Caryophyllales), a moderately sized lineage of flowering plants (ca. 2200 species) that includes the cacti and harbors many evolutionary transitions to C4 and CAM photosynthesis. Including multi-gene families allowed us to simultaneously infer a robust phylogeny and construct a dense sampling of sequences for a major enzyme of C4 and CAM photosynthesis, which revealed the accumulation of adaptive amino acid substitutions associated with C4 and CAM origins in particular paralogs. Our final set of matrices for phylogenetic analyses included 75-218 loci across 74 taxa, with ca. 50% matrix completeness across datasets. Phylogenetic resolution was greatly improved across the tree, at both shallow and deep levels. Concatenation and coalescent-based approaches both resolve with strong support the sister lineage of the cacti: Anacampserotaceae and Portulacaceae, two lineages of mostly diminutive succulent herbs of warm, arid regions. In spite of this congruence, BUCKy concordance analyses demonstrated strong and conflicting signals across gene trees for the resolution of the sister group of the cacti. Our results add to the growing number of examples illustrating the complexity of phylogenetic signals in genomic-scale data.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2017
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/145995"
+        }
+      ]
+    },
+    "commentCorrectionList": {
+      "commentCorrection": [
+        {
+          "id": "29029339",
+          "source": "MED",
+          "reference": "Systematic biology. 2018 May;67(3):367-383",
+          "type": "Preprint of",
+          "note": "CrossRef Pre-print loader",
+          "orderIn": 10001
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2017-06-04"
+  },
+  {
+    "id": "PPR25193",
+    "source": "PPR",
+    "doi": "10.1101/188250",
+    "title": "Comparison of gene expression patterns ofKappaphycus alvarezii(Rhodophyta, Solieriaceae) under different light wavelengths and CO2enrichment",
+    "authorString": "Yee TV, Rodrigues KF, Thau Lym WY, Wong Vui Ling CM.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Yee TV",
+          "firstName": "Thien Vun",
+          "lastName": "Yee",
+          "initials": "TV"
+        },
+        {
+          "fullName": "Rodrigues KF",
+          "firstName": "Kenneth Francis",
+          "lastName": "Rodrigues",
+          "initials": "KF"
+        },
+        {
+          "fullName": "Thau Lym WY",
+          "firstName": "Wilson Yong",
+          "lastName": "Thau Lym",
+          "initials": "WY"
+        },
+        {
+          "fullName": "Wong Vui Ling CM",
+          "firstName": "Clemente Michael",
+          "lastName": "Wong Vui Ling",
+          "initials": "CM"
+        }
+      ]
+    },
+    "pubYear": "2017",
+    "abstractText": "Transcriptomes associated with the process of photosynthesis and carbon fixation have offered insights into the mechanism of gene regulation in terrestrial plants, however limited information is available as far as macroalgae are concerned. Intertidal red alga, Kappaphycus alvarezii is exposed to different wavelengths of light in their lives as light quantity and quality changes at different depths in seawater. This investigation aims to study the underlying mechanisms associated with photosynthesis and carbon fixation under specific light qualities and CO2 enrichment. Light regulation of gene expression has not been previously described for red algae. By using next generation sequencing, transcriptome profiling of K. alvarezii generated 76,871 qualified transcripts with a mean length of 979bp and a N50 length of 1,707bp and 55.83% transcripts were annotated on the basis of function. Blue, green and red light all have demonstrated roles in modulating light responses, such as changes in gene expression. Here we analysed the effects of light regulation on four selected photosynthesis aspects (light-harvesting complex, phycobilisomes, photosystems and photoreceptors). We observed that light-regulated gene expression in this species is not a single light response and different light qualities are transduced to regulate the same metabolic pattern. The carbon fixation pathway was analysed and key genes encoding enzymes involved in the carbon fixation pathway such as ppc, pepc, prk, pgk, ppdk, provided that unequivocal molecular evidence that most of the C3 and C4 pathway genes were actively transcribed in K. alvarezii. In addition to this the CO2 induced transcriptome suggested the possibility of shifting carbon metabolism pathway after acclimation to increased level of CO2. Impact of CO2 enrichment on the cultures has provided new insight into the response to rising CO2.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2017
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/188250"
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2017-09-13"
+  },
+  {
+    "id": "PPR29480",
+    "source": "PPR",
+    "doi": "10.1101/088153",
+    "title": "Shared characteristics underpinning C4 leaf maturation derived from analysis of multiple C3 and C4 species of Flaveria",
+    "authorString": "Kumpers BM, Burgess SJ, Reyna-Llorens I, Smith-Unna R, Boursnell C, Hibberd JM.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Kumpers BM",
+          "firstName": "Britta MC",
+          "lastName": "Kumpers",
+          "initials": "BM"
+        },
+        {
+          "fullName": "Burgess SJ",
+          "firstName": "Steven",
+          "lastName": "Burgess",
+          "initials": "SJ"
+        },
+        {
+          "fullName": "Reyna-Llorens I",
+          "firstName": "Ivan",
+          "lastName": "Reyna-Llorens",
+          "initials": "I"
+        },
+        {
+          "fullName": "Smith-Unna R",
+          "firstName": "Richard",
+          "lastName": "Smith-Unna",
+          "initials": "R"
+        },
+        {
+          "fullName": "Boursnell C",
+          "firstName": "Chris",
+          "lastName": "Boursnell",
+          "initials": "C"
+        },
+        {
+          "fullName": "Hibberd JM",
+          "firstName": "Julian",
+          "lastName": "Hibberd",
+          "initials": "JM"
+        }
+      ]
+    },
+    "pubYear": "2016",
+    "abstractText": "Most terrestrial plants use C3 photosynthesis to fix carbon. In multiple plant lineages a modified system known as C4 photosynthesis has evolved. To better understand the molecular patterns associated with induction of C4 photosynthesis the genus Flaveria that contains C3 and C4 species was used. A base to tip maturation gradient of leaf anatomy was defined, and RNA sequencing was undertaken along this gradient for two C3 and two C4 Flaveria species. Key C4 traits including vein density, mesophyll and bundle sheath cross-sectional area, chloroplast ultrastructure, and abundance of transcripts encoding proteins of C4 photosynthesis were quantified. Candidate genes underlying each of these C4 characteristics were identified. Principal Components Analysis indicated that leaf maturation and then photosynthetic pathway were responsible for the greatest amount of variation in transcript abundance. Photosynthesis genes were over-represented for a prolonged period in the C4 species. Through comparison with publically available datasets we identify a small number of transcriptional regulators that have been up-regulated in diverse C4 species. The analysis identifies similar patterns of expression in independent C4 lineages and so indicates that the complex C4 pathway is associated with parallel as well as convergent evolution.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2016
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/088153"
+        }
+      ]
+    },
+    "commentCorrectionList": {
+      "commentCorrection": [
+        {
+          "id": "28062590",
+          "source": "MED",
+          "reference": "Journal of experimental botany. 2017 Jan;68(2):177-189",
+          "type": "Preprint of",
+          "note": "CrossRef Pre-print loader",
+          "orderIn": 10001
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2016-11-16"
+  },
+  {
+    "id": "PPR33779",
+    "source": "PPR",
+    "doi": "10.1101/085795",
+    "title": "Ancient coding sequences underpin the spatial patterning of gene expression in C4 leaves",
+    "authorString": "Reyna-Llorens I, Burgess SJ, Williams BP, Stanley S, Boursnell C, Hibberd JM.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Reyna-Llorens I",
+          "firstName": "Ivan",
+          "lastName": "Reyna-Llorens",
+          "initials": "I"
+        },
+        {
+          "fullName": "Burgess SJ",
+          "firstName": "Steven",
+          "lastName": "Burgess",
+          "initials": "SJ",
+          "authorId": {
+            "type": "ORCID",
+            "value": "0000-0003-2353-7794"
+          }
+        },
+        {
+          "fullName": "Williams BP",
+          "firstName": "Ben",
+          "lastName": "Williams",
+          "initials": "BP"
+        },
+        {
+          "fullName": "Stanley S",
+          "firstName": "Susan",
+          "lastName": "Stanley",
+          "initials": "S"
+        },
+        {
+          "fullName": "Boursnell C",
+          "firstName": "Chris",
+          "lastName": "Boursnell",
+          "initials": "C"
+        },
+        {
+          "fullName": "Hibberd JM",
+          "firstName": "Julian",
+          "lastName": "Hibberd",
+          "initials": "JM"
+        }
+      ]
+    },
+    "authorIdList": {
+      "authorId": [
+        {
+          "type": "ORCID",
+          "value": "0000-0003-2353-7794"
+        }
+      ]
+    },
+    "pubYear": "2016",
+    "abstractText": "Photosynthesis is compromised in most plants because an enzymatic side-reaction fixes O2 instead of CO2. The energetic cost of oxygenation led to the evolution of C4 photosynthesis. In almost all C4 leaves compartmentation of photosynthesis between cells reduces oxygenation and so increases photosynthetic efficiency. Here we report that spatial expression of most C4 genes is controlled by intragenic cis-elements rather than promoter sequence. Two DNA motifs that co-operatively specify the patterning of genes required for C4 photosynthesis are identified. They are conserved in plants and algae that use the ancestral C3 pathway. As these motifs are located in exons they represent duons determining both gene expression and amino acid sequence. Our findings provide functional evidence for the importance of transcription factors recognising coding sequence as previously defined by genome-wide binding studies. Furthermore, they indicate that C4 evolution is based on ancient DNA motifs found in exonic sequence.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2016
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/085795"
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2016-11-23"
+  },
+  {
+    "id": "PPR22261",
+    "source": "PPR",
+    "doi": "10.1101/154104",
+    "title": "Elevated ozone reduces photosynthetic carbon gain by accelerating leaf senescence of inbred and hybrid maize in a genotype-specific manner",
+    "authorString": "Yendrek CR, Erice G, Montes CM, Tomaz T, Sorgini CA, Brown PJ, McIntyre LM, Leakey ADB, Ainsworth EA.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Yendrek CR",
+          "firstName": "Craig",
+          "lastName": "Yendrek",
+          "initials": "CR"
+        },
+        {
+          "fullName": "Erice G",
+          "firstName": "Gorka",
+          "lastName": "Erice",
+          "initials": "G"
+        },
+        {
+          "fullName": "Montes CM",
+          "firstName": "Christopher",
+          "lastName": "Montes",
+          "initials": "CM"
+        },
+        {
+          "fullName": "Tomaz T",
+          "firstName": "Tiago",
+          "lastName": "Tomaz",
+          "initials": "T"
+        },
+        {
+          "fullName": "Sorgini CA",
+          "firstName": "Crystal",
+          "lastName": "Sorgini",
+          "initials": "CA"
+        },
+        {
+          "fullName": "Brown PJ",
+          "firstName": "Patrick",
+          "lastName": "Brown",
+          "initials": "PJ"
+        },
+        {
+          "fullName": "McIntyre LM",
+          "firstName": "Lauren",
+          "lastName": "McIntyre",
+          "initials": "LM"
+        },
+        {
+          "fullName": "Leakey ADB",
+          "firstName": "Andrew",
+          "lastName": "Leakey",
+          "initials": "ADB"
+        },
+        {
+          "fullName": "Ainsworth EA",
+          "firstName": "Elizabeth",
+          "lastName": "Ainsworth",
+          "initials": "EA"
+        }
+      ]
+    },
+    "pubYear": "2017",
+    "abstractText": "Exposure to elevated tropospheric ozone concentration ([O3]) accelerates leaf senescence in many C3 crops. However, the effects of elevated [O3] on C4 crops including maize (Zea mays L.) are poorly understood in terms of physiological mechanism and genetic variation in sensitivity. Using Free Air gas Concentration Enrichment (FACE), we investigated the photosynthetic response of 18 diverse maize inbred and hybrid lines to season-long exposure to elevated [O3] (~100 nL L-1) in the field. Gas exchange was measured on the leaf subtending the ear throughout the grain filling period. On average over the lifetime of the leaf, elevated [O3] led to reductions in photosynthetic CO2 assimilation of both inbred (-22%) and hybrid (-33%) genotypes. There was significant variation among both inbred and hybrid lines in the sensitivity of photosynthesis to elevated [O3], with some lines showing no change in photosynthesis at elevated [O3]. Based on analysis of inbred line B73, the reduced CO2 assimilation at elevated [O3] was associated with accelerated senescence decreasing photosynthetic capacity, and not altered stomatal limitation. These findings across diverse maize genotypes could advance the development of more ozone tolerant maize, and provide experimental data for parameterization and validation of studies modeling how O3 impacts crop performance.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2017
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/154104"
+        }
+      ]
+    },
+    "commentCorrectionList": {
+      "commentCorrection": [
+        {
+          "id": "29044553",
+          "source": "MED",
+          "reference": "Plant, cell & environment. 2017 Dec;40(12):3088-3100",
+          "type": "Preprint of",
+          "note": "CrossRef Pre-print loader",
+          "orderIn": 10001
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2017-06-23"
+  },
+  {
+    "id": "PPR16484",
+    "source": "PPR",
+    "doi": "10.1101/174615",
+    "title": "Genome downsizing, physiological novelty, and the global dominance of flowering plants",
+    "authorString": "Simonin KA, Roddy AB.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Simonin KA",
+          "firstName": "Kevin",
+          "lastName": "Simonin",
+          "initials": "KA"
+        },
+        {
+          "fullName": "Roddy AB",
+          "firstName": "Adam",
+          "lastName": "Roddy",
+          "initials": "AB",
+          "authorId": {
+            "type": "ORCID",
+            "value": "0000-0002-4423-8729"
+          }
+        }
+      ]
+    },
+    "authorIdList": {
+      "authorId": [
+        {
+          "type": "ORCID",
+          "value": "0000-0002-4423-8729"
+        }
+      ]
+    },
+    "pubYear": "2017",
+    "abstractText": "During the Cretaceous (145-66 Ma), early angiosperms rapidly diversified, eventually outcompeting the ferns and gymnosperms previously dominating most ecosystems. Heightened competitive abilities of angiosperms are often attributed to higher rates of transpiration facilitating faster growth. This hypothesis does not explain how angiosperms were able to develop leaves with smaller, but densely packed stomata and highly branched venation networks needed to support increased gas exchange rates. Although genome duplication and reorganization have likely facilitated angiosperm diversification, here we show that genome downsizing facilitated reductions in cell size necessary to construct leaves with a high density stomata and veins. Rapid genome downsizing during the early Cretaceous allowed angiosperms to push the frontiers of anatomical trait space. In contrast, during the same time period ferns and gymnosperms exhibited no such changes in genome size, stomatal size, or vein density. Further reinforcing the effect of genome downsizing on increased gas exchange rates, we found that species employing water-loss limiting crassulacean acid metabolism (CAM) photosynthesis, have significantly larger genomes than C3 and C4 species. By directly affecting cell size and gas exchange capacity, genome downsizing brought actual primary productivity closer to its maximum potential. These results suggest species with small genomes, exhibiting a larger range of final cell size, can more finely tune their leaf physiology to environmental conditions and inhabit a broader range of habitats.",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2017
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/174615"
+        }
+      ]
+    },
+    "commentCorrectionList": {
+      "commentCorrection": [
+        {
+          "id": "29324757",
+          "source": "MED",
+          "reference": "PLoS biology. 2018 Jan;16(1):e2003706",
+          "type": "Preprint of",
+          "note": "CrossRef Pre-print loader",
+          "orderIn": 10001
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2017-08-10"
+  },
+  {
+    "id": "PPR16067",
+    "source": "PPR",
+    "doi": "10.1101/073684",
+    "title": "Molecular adaptation in Rubisco: discriminating between convergent evolution and positive selection using mechanistic and classical codon models",
+    "authorString": "Parto S, Lartillot N.",
+    "authorList": {
+      "author": [
+        {
+          "fullName": "Parto S",
+          "firstName": "Sahar",
+          "lastName": "Parto",
+          "initials": "S"
+        },
+        {
+          "fullName": "Lartillot N",
+          "firstName": "Nicolas",
+          "lastName": "Lartillot",
+          "initials": "N"
+        }
+      ]
+    },
+    "pubYear": "2016",
+    "abstractText": "Abstract Rubisco (Ribulose-1, 5-biphosphate carboxylase/oxygenase) is the most important enzyme on earth, catalyzing the first step of CO2 fixation in photosynthesis. Its molecular adaptation to C4 photosynthetic pathway has attracted a lot of attention. C4 plants, which comprise less than 5% of land plants, have evolved more efficient photosynthesis compared to C3 plants. Interestingly, a large number of independent transitions from C3 to C4 phenotype have occurred. Each time, the Rubisco enzyme has been subject to similar changes in selective pressure, thus providing an excellent model for convergent evolution at the molecular level. Molecular adaptation is often identified with positive selection and is typically characterized by an elevated ratio of non-synonymous over synonymous substitution rates (dN/dS). However, convergent adaptation is expected to leave a different molecular signature, taking the form of repeated transitions toward identical or similar amino acids. Here, we use a previously introduced codon-based differential selection model to detect and quantify consistent patterns of convergent adaptation in Rubisco in Amaranthaceae. We further contrast the results thus obtained with those obtained under classical codon models based on the estimation of dN/dS. We find that the two classes of models tend to select distinct, although overlapping, sets of positions. This discrepancy in the results illustrates the conceptual difference between these models, while emphasizing the need to better discriminate between qualitatively different selective regimes, by using a broader class of codon models than those currently considered in molecular evolutionary studies. Keywords: Rubisco, C4 plants, convergent evolution, positive selection, codon models",
+    "pubTypeList": {
+      "pubType": [
+        "Preprint"
+      ]
+    },
+    "bookOrReportDetails": {
+      "publisher": "bioRxiv",
+      "yearOfPublication": 2016
+    },
+    "fullTextUrlList": {
+      "fullTextUrl": [
+        {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/073684"
+        }
+      ]
+    },
+    "commentCorrectionList": {
+      "commentCorrection": [
+        {
+          "id": "29432438",
+          "source": "MED",
+          "reference": "PloS one. 2018 ;13(2):e0192697",
+          "type": "Preprint of",
+          "note": "CrossRef Pre-print loader",
+          "orderIn": 10001
+        }
+      ]
+    },
+    "isOpenAccess": "N",
+    "inEPMC": "N",
+    "inPMC": "N",
+    "hasPDF": "N",
+    "hasBook": "N",
+    "citedByCount": 0,
+    "hasReferences": "N",
+    "hasTextMinedTerms": "N",
+    "hasDbCrossReferences": "N",
+    "hasLabsLinks": "Y",
+    "authMan": "N",
+    "epmcAuthMan": "N",
+    "nihAuthMan": "N",
+    "hasTMAccessionNumbers": "N",
+    "dateOfCreation": "2018-07-10",
+    "firstPublicationDate": "2016-09-06"
+  }
+]

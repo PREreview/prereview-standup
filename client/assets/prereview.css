@@ -1,0 +1,52 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 18px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.header {
+  position: relative;
+  border: 0;
+  margin: 0;
+  background-image: url(../images/background.png);
+  background-color: 	#A0522D;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  min-height: 300px;
+}
+
+.button {
+  font-size: 0.7em;
+}
+
+.articles .footer a,
+.reviews .see-more,
+.reviews .add {
+  color: #f00;
+  text-decoration: none;
+}
+
+.scroll {
+  overflow: scroll;
+}
+
+.reviewcnt {
+  margin-left: 105px;
+}
+
+.review .actions .thanks {
+  background-image: url(../images/thumb-up.svg);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  padding-left: 30px;
+}
+
+.block {
+  height:300px;
+  background: url(../images/home.png);
+  background-size: cover;
+}
