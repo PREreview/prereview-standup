@@ -3,7 +3,7 @@ var html = require('choo/html')
 module.exports = preprint
 
 function preprint (state, emit, p) {
-  var d = p.data
+  var d = p.data || p
 
   var gotoreviews = () => emit('pushState', `/reviews/${d.doi}`)
 
@@ -11,12 +11,12 @@ function preprint (state, emit, p) {
   title.onclick = gotoreviews
 
   var showreviews = html`
-    <div class="mr2" style="cursor: pointer;">${d.reviews} Reviews</div>
+    <div class="mr2 red" style="cursor: pointer;">${p.reviews} reviews</div>
   `
   showreviews.onclick = gotoreviews
 
   var addreview = html`
-    <div class="ml2" style="cursor: pointer;">Review this preprint</div>
+    <div class="ml2 red" style="cursor: pointer;">Review this preprint</div>
   `
   addreview.onclick = gotoreviews
 
