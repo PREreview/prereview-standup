@@ -30,7 +30,7 @@ module.exports = function(state, emit, opts) {
   var userpart = state.user ? logged() : notlogged()
 
   var logo = html`
-    <div class="${s.col} ${s.center}" style="cursor: pointer;">
+    <div class="${s.col} ${s.center} ml3" style="cursor: pointer;">
       <img class="ma0 pa0" src="/assets/images/logo@2x.png" style="height: 40px;">
     </div>
   `
@@ -39,7 +39,7 @@ module.exports = function(state, emit, opts) {
 
   return html`
   
-  <div class="h3 fl w-100 bg-mid-gray bb flex flex-row justify-between ph2 ${barstyle}">
+  <div class="h3 fl w-100 bg-dark-gray bb flex flex-row justify-between ph2 ${barstyle}">
     ${logo}
     <div class="login pa3 fr white flex ${s.center}">
       ${userpart}
