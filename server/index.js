@@ -12,11 +12,11 @@ app.use(require('./auth/sessions'))
 // setup orcid authentication
 require('./auth/orcid')(app)
 
-// register client-side app
-app.get('/*', require('./routes/root'))
-
 // serve user data
 require('./routes/userdata')(app)
+
+// register client-side app
+app.get('/*', require('./routes/root'))
 
 // register static file serves
 app.use('../client/assets', express.static('assets'))

@@ -1,5 +1,3 @@
-var checkAuth = require('../auth/checkAuth')
-
-module.exports = app => app.get('/userdata', checkAuth, function (req, res) {
+module.exports = app => app.get('/userdata', function (req, res) {
   res.json(req.user)
 })
