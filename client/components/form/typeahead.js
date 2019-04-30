@@ -54,7 +54,7 @@ class TypeAhead extends Nanocomponent {
     var opts = this.opts.input || {}
 
     this.input = html`
-      <input type="text" ${opts}></input>
+      <input class="mw-70 bg-white bw1 b--mid-gray pa2 dark-gray" type="text" ${opts}></input>
     `
 
     this.input.addEventListener('input', inputValueUpdated)
