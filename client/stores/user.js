@@ -1,14 +1,22 @@
 module.exports = async (state, emitter) => {
+  state.contentloaded = false
   try {
     var userdata = await fetch('/userdata')
     state.user = await userdata.json()
-    emitter.emit('user:loggedin')
+    if (state.contentloaded) {
+      emitter.emit('render')
+    } else {
+      state.renderonload = true
+    }
   } catch (e) {
     console.log('there is no user')
   }
 
   emitter.on('DOMContentLoaded', function () {
-    if (state.user) emitter.emit('render')
-    emitter.on('user:loggedin', () => emitter.emit('render'))
+    state.contentloaded = true
+    if (state.user && state.renderonload) {
+      emitter.emit('render')
+      state.renderonload = false
+    }
   })
 }
