@@ -18,8 +18,8 @@ function view (state, emit) {
       <body class="flex flex-column w-100 justify-center items-center space-around">
         ${nav(state, emit)}
         <div class="w-60 flex flex-row">
-          <div class="w-100 ${state.style.classes.col} ${state.style.classes.center}">
-            <h2>Oops! You must <a href="/login" class="link dim dark-red">log in</a> to view your profile.</h2>
+          <div class="w-100 h8 justify-center items-center pa6 ${state.style.classes.col} ${state.style.classes.center}">
+            <h4>Oops! You must <a href="/login" class="link dim dark-red">log in</a> to view your profile.</h4>
           </div>
         </div>
       </body>
@@ -44,17 +44,6 @@ function view (state, emit) {
             </div>
             <p>We don't know about any preprints authored by you.</p>
             <p>Works added to <a href="https://orcid.org/my-orcid" class="link dim dark-red">your ORCiD record</a> will show here.</p>
-          </div>
-        </div>
-        <div class="flex flex-column content fl w-100 pa2 mt4 f7 lh-copy">
-          <div class="actions flex justify-between pv3">
-            <div class="ttu tracked">
-              Your preprints
-            </div>
-            ${filterbox(state, emit)}
-          </div>
-          <div class="articles">
-            ${preprintlist(state, emit)}
           </div>
         </div>
       </div>

@@ -22,8 +22,25 @@ module.exports = function(state, emit, opts) {
   `
 
   var logged = () => {
-  var el = html`<div class="flex flex-row white" style="cursor: pointer;">${state.user.name}</div>`
-    el.onclick = () => emit('pushState', '/profile')
+    var logout = html`<div class="link dim white-90 tc flex flex-row items-center justify-center">log out</div>`
+    logout.onclick = () => emit('pushState', '/logout')
+
+    var name = html`
+      <div class="ml4 link dim white-90 tc flex flex-row items-center justify-center">
+        <img src="/assets/images/profile.png" class="mr2 h2" />
+        ${state.user.name}
+      </div>
+    `
+    name.onclick = () => emit('pushState', '/profile')  
+
+    var el = html`
+    <div class="flex flex-row white" style="cursor: pointer;">
+      ${logout}
+      ${name}
+    </div>
+  `
+
+
     return el
   }
 
