@@ -55,8 +55,7 @@ peer review. How will we achieve this goal?
 We are developing a cohort-based peer-review mentorship program based on the successful 
 [Mozilla Open Leaders](https://foundation.mozilla.org/en/opportunity/mozilla-open-leaders/). Researchers with little to no experience 
 in peer review will be paired with more experienced reviewers and invited to engage in community calls, webinars, and one-to-one calls. 
-The curriculum includes critical evaluation of preprints, strategies to help researchers provide constructive feedback, and training in 
-unconscious bias, licensing, and leadership. 
+The curriculum includes critical evaluation of preprints, strategies to help researchers provide constructive feedback, and training in unconscious bias, licensing, and leadership. 
 
   We are currently working with our community to learn how this program can support researchers from under-represented groups. If you are 
   interested in learning more, be considered as a mentor or a mentee in our first cohort, or give us suggestions on how to best achieve our
