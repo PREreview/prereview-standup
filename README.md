@@ -17,7 +17,7 @@ Some environment variables are required for the app to run:
 - `ORCID_CLIENT_ID`
 - `ORCID_CLIENT_SECRET`
 
-If you place them in a `.env` file in top-level directory will be auto-loaded, e.g.:
+If you place them in a `.env` file in top-level directory they will be auto-loaded, e.g.:
 
 **.env**
 
