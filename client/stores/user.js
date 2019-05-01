@@ -1,5 +1,14 @@
 module.exports = async (state, emitter) => {
   state.contentloaded = false
+  
+  emitter.on('DOMContentLoaded', function () {
+    state.contentloaded = true
+    if (state.user && state.renderonload) {
+      emitter.emit('render')
+      state.renderonload = false
+    }
+  })
+
   try {
     var userdata = await fetch('/userdata')
     state.user = await userdata.json()
@@ -11,12 +20,4 @@ module.exports = async (state, emitter) => {
   } catch (e) {
     console.log('there is no user')
   }
-
-  emitter.on('DOMContentLoaded', function () {
-    state.contentloaded = true
-    if (state.user && state.renderonload) {
-      emitter.emit('render')
-      state.renderonload = false
-    }
-  })
 }
