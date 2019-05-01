@@ -1,7 +1,7 @@
 var html = require('choo/html')
 var css = require('sheetify')
 
-var Nav = require('../components/Navigation')
+var nav = require('../components/nav')
 
 var Quill = require('quill')
 
@@ -25,7 +25,7 @@ module.exports = function view (state, emit) {
   return html`
   
   <body>
-    ${require('../components/Navigation')(state, emit)}
+    ${nav(state, emit)}
     <div class="w-100 flex flex-row ${mainstyle}">
       <div class="flex-column w-50">${require('../components/preprint/viewer')(state, emit, examplePDF)}</div>
       <div class="flex flex-column w-50">${require('../components/review/pane')(state, emit, reviews)}</div>

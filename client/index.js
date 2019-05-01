@@ -19,10 +19,10 @@ app.use(require('./stores/app'))
 app.use(require('./stores/styles'))
 app.use(require('./stores/devdata'))
 app.use(require('./stores/search'))
+app.use(require('./stores/sort'))
 
 app.route('/', require('./views/main'))
 app.route('/profile', require('./views/profile'))
 app.route('/reviews/*', require('./views/review'))
-app.route('/components', require('./views/showcase'))
 
 module.exports = app.mount('body')

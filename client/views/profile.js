@@ -1,6 +1,6 @@
 var html = require('choo/html')
 
-var nav = require('../components/Navigation')
+var nav = require('../components/nav')
 var userSummary = require('../components/cards/profile')
 var button = require('../components/button')
 var input = require('../components/form/input')
