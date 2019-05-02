@@ -28,7 +28,7 @@ module.exports = function(state, emit, opts) {
 
     var name = html`
       <div class="ml4 link dim white-90 tc flex flex-row items-center justify-center">
-        <img src="/assets/images/profile.png" class="mr2 h2" />
+        <img src="${state.user.picture.thumbnail}" class="br-100 h2 w2 dib mr2" title="your profile picture">
         ${state.user.name}
       </div>
     `
