@@ -11,8 +11,9 @@ module.exports = header
 
 function header (state, emit) {
   var top = state.user ? null : html`
-    <button class="mb5 flex justify-center content-center items-center v-mid bn ph3 white h3 f4 bg-light-red link dim br1 outline-0">join the community</button>
+    <a href="/login" class="mb5 flex justify-center content-center items-center v-mid bn ph3 white h3 f4 bg-light-red link dim br1 outline-0">join the community</button>
   `
+
   var searchopts = {
     id: 'main-search-input',
     entries: Object.values(state.preprints),
@@ -32,6 +33,7 @@ function header (state, emit) {
   return html`
   
   <div class="header w-100 ${s.col} ${s.center} flex flex-column pa5 pb2 justify-center items-center dark-gray">
+    <h2 class="lh-title fw4 mb5">PREreview: help us change the <i>who</i>, <i>how</i>, and <i>when</i> of peer review.</h2>
     ${top}
     ${search}
   </div>
