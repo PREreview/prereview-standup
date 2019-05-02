@@ -22,7 +22,12 @@ app.use(require('./stores/search'))
 app.use(require('./stores/sort'))
 
 app.route('/', require('./views/main'))
+app.route('/find', require('./views/main'))
 app.route('/profile', require('./views/profile'))
-app.route('/reviews/*', require('./views/review'))
+
+// /reviews/doi -> read
+// /reviews/doi/new -> write
+// /reviews/doi/request -> request
+app.route('/reviews/doi/*', require('./views/review'))
 
 module.exports = app.mount('body')
