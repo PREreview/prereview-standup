@@ -20,8 +20,8 @@ var section = css`
 
 function styles (state, emitter) {
   var opts = state.styleOpts = {
-    primary: 'dark-red',
-    secondary: 'light-gray'
+    primary: 'red',
+    secondary: 'gray'
   }
 
   state.style = {
@@ -46,7 +46,7 @@ function styles (state, emitter) {
         button: `flex flex-row justify-center content-center items-center v-mid bn ph3 white h3 f4 bg-${opts.primary} link dim br1 outline-0`,
         navbutton: `border-box dib bn pa1 white bg-${opts.primary} link dim`,
         secondary: `bg-${opts.secondary} dark-gray`,
-        secondaryButton: `flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-${opts.secondary} dark-gray link dim outline-0`
+        secondaryButton: `flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-${opts.secondary} white link dim outline-0`
       }
     }
   }
