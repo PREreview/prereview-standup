@@ -24,11 +24,11 @@ var examplePDF = 'https://www.biorxiv.org/content/biorxiv/early/2018/11/08/46587
 module.exports = function view (state, emit) {
   return html`
   
-  <body>
+  <body class="vh-100 w-100 overflow-hidden">
     ${nav(state, emit)}
     <div class="w-100 flex flex-row ${mainstyle}">
       <div class="flex-column w-50">${require('../components/preprint/viewer')(state, emit, examplePDF)}</div>
-      <div class="flex flex-column w-50">${require('../components/review/pane')(state, emit, reviews)}</div>
+      <div class="flex flex-column w-50">${require('../components/review/pane')(state, emit, { reviews, requests: [] })}</div>
     </div>
   </body>
   
