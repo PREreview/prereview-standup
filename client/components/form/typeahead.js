@@ -53,9 +53,9 @@ class TypeAhead extends Nanocomponent {
   getHelp () {
     var examples = [
       'rapid flux',
-      '+photosynhesis -maize',
-      'tag:Neuroscience',
-      'author:Kelly',
+      '+photosynthesis -maize',
+      'tags:Neuroscience',
+      'authors:Kelly',
       'title:neuro*'
     ].map(eg => {
       var el = html`
@@ -65,6 +65,13 @@ class TypeAhead extends Nanocomponent {
       `
       el.onclick = () => {
         this.input.value = eg
+
+        var event = new Event('input', {
+          'bubbles': true,
+          'cancelable': false
+        })
+
+        this.input.dispatchEvent(event)
       }
 
       return el
