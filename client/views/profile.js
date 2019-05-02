@@ -29,22 +29,24 @@ function view (state, emit) {
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around">
       ${nav(state, emit)}
-      <div class="w-60 flex flex-column">
-        <div class="flex flex-row justify-around items-around content fl w-100 pa2 mt4 f7 lh-copy">
-          <div class="pa3">
-            <div class="ttu tracked">
-              <h2>Your reviews</h2>
-            </div>
-            <p>You don't have any reviews yet.</p>
-            <p>Get started by reading <a href="/docs/reviewing-guide" class="link dim dark-red">our reviewing guide</a>, or <a href="/" class="link dim dark-red">find a preprint</a> to review.</p>
+      <div class="w-80 flex flex-column justify-center items-center mt4 f4">
+        <h2 class="mb1 fw4">${state.user.name}</h2>
+        <h3 class="mt1 code f5 fw3">ORCiD: <a class="link dim dark-red" href="https://orcid.org/${state.user.orcid}">${state.user.orcid}</a></h3>
+      </div>
+      <div class="w-80 flex flex-row justify-center">
+        <div class="content fl mt4 f6 lh-copy w-40 pa3 ma3 ba">
+          <div class="ttu tracked">
+            <h2 class="mt0">Your reviews</h2>
           </div>
-          <div class="pa3">
-            <div class="ttu tracked">
-              <h2>Your preprints</h2>
-            </div>
-            <p>We don't know about any preprints authored by you.</p>
-            <p>Works added to <a href="https://orcid.org/my-orcid" class="link dim dark-red">your ORCiD record</a> will show here.</p>
+          <p>You don't have any reviews yet.</p>
+          <p>Get started by reading <a href="/docs/reviewing-guide" class="link dim dark-red">our reviewing guide</a>, or <a href="/find" class="link dim dark-red">find a preprint</a> to review.</p>
+        </div>
+        <div class="content fl mt4 f6 lh-copy w-40 pa3 ma3 ba">
+          <div class="ttu tracked">
+            <h2 class="mt0">Your preprints</h2>
           </div>
+          <p>We don't know about any preprints authored by you.</p>
+          <p>Works added to <a href="https://orcid.org/my-orcid" class="link dim dark-red">your ORCiD record</a> will show here.</p>
         </div>
       </div>
     </body>
