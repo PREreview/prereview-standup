@@ -4,15 +4,21 @@ module.exports = preprint
 
 function preprint (state, emit, p) {
   var d = p.data
+
+  var gotoreviews = () => emit('pushState', `/reviews/${d.doi}`)
+
+  var title = html`<div style="cursor: pointer;">${d.title}</div>`
+  title.onclick = gotoreviews
+
   var showreviews = html`
     <div class="mr2" style="cursor: pointer;">${d.reviews} Reviews</div>
   `
-  showreviews.onclick = () => emit('pushState', `/reviews/${d.doi}`)
+  showreviews.onclick = gotoreviews
 
   var addreview = html`
     <div class="ml2" style="cursor: pointer;">Review this preprint</div>
   `
-  addreview.onclick = () => emit('pushState', `/reviews/${d.doi}`)
+  addreview.onclick = gotoreviews
 
   return html`
   
@@ -22,7 +28,7 @@ function preprint (state, emit, p) {
     </div>
 
     <div class="title w-100" >
-      <h3><a href="/reviews/${d.doi}">${d.title}</a></h3>
+      <h3>${title}</h3>
       <p class="">
         ${d.authors.map(a => `${a.firstName} ${a.lastName}`).join(', ')}
       </p>
