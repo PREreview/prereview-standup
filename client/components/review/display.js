@@ -27,7 +27,7 @@ module.exports = function view (state, emit, review) {
   <div class="flex flex-column w-100 pv3 ph4 f4 mid-gray lh-copy">
     <div class="flex flex-row w-100 mb4">
       <div class="flex flex-column">
-        <div class="b dark-gray">${review.author.firstName} ${review.author.lastName}</div>
+        <div class="b dark-gray fw5">${review.author.firstName} ${review.author.lastName}</div>
         <div>${review.created.toDateString()}</div>
       </div>
     </div>
