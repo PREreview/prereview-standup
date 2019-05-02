@@ -28,6 +28,6 @@ app.route('/profile', require('./views/profile'))
 // /reviews/doi -> read
 // /reviews/doi/new -> write
 // /reviews/doi/request -> request
-app.route('/reviews/doi/*', require('./views/review'))
+app.route('/reviews/*', require('./views/review'))
 
 module.exports = app.mount('body')
