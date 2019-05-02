@@ -18,12 +18,12 @@ function preprint (state, emit, p) {
   var addreview = html`
     <div class="ml2 red link dim" style="cursor: pointer;">write a PREreview</div>
   `
-  addreview.onclick = gotoreviews
+  addreview.onclick = () => emit('pushState', `/reviews/${d.doi}/new`)
 
   var reqreview = html`
   <div class="ml2 mr2 red link dim" style="cursor: pointer;">request feedback</div>
 `
-  reqreview.onclick = gotoreviews
+  reqreview.onclick = () => emit('pushState', `/reviews/${d.doi}/request`)
 
   return html`
   
@@ -39,8 +39,8 @@ function preprint (state, emit, p) {
 
     <div class="flex flex-column items-start w-100">
       <div>
-        <h3 class="fw5 f5 ma0 lh-copy measure-wide pb1 tl">${title}</h3>
-        <div class="f6 fw3 i lh-copy measure-wide tl">
+        <h3 class="fw5 f5 ma0 lh-copy pb1 tl">${title}</h3>
+        <div class="f6 fw3 i lh-copy tl">
           ${d.authors.map(a => `${a.firstName} ${a.lastName}`).join(', ')}
         </div>
       </div>
@@ -48,7 +48,7 @@ function preprint (state, emit, p) {
     
     <div class="footer flex justify-between mv3">
       <div class="left f6 fw3">
-        Submitted by anon on 18 Jan, 2019
+        Preprint published 7th December, 2018. First reviewed on 18 Jan, 2019
       </div>
       <div class="flex flex-row right f6 fw3"> 
         ${showreviews} | ${reqreview} | ${addreview}
