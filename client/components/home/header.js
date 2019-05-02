@@ -33,7 +33,7 @@ function header (state, emit) {
   return html`
   
   <div class="header w-100 ${s.col} ${s.center} flex flex-column pa5 pb2 justify-center items-center dark-gray">
-    <h2 class="lh-title fw4 mb5">PREreview: help us change the <i>who</i>, <i>how</i>, and <i>when</i> of peer review.</h2>
+    <h2 class="lh-title f2 fw4 mb5">PREreview: help us change the <i>who</i>, <i>when</i>, and <i>how</i> of peer review.</h2>
     ${top}
     ${search}
   </div>
