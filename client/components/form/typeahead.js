@@ -38,15 +38,46 @@ class TypeAhead extends Nanocomponent {
   }
 
   createElement (state) {
-    var divopts = this.opts.container || ''
+    var divopts = this.opts.container || {}
 
     var container = html`
       <div ${divopts}>
         ${this.getInput(state)}
+        ${this.getHelp()}
       </div>
     `
 
     return container
+  }
+
+  getHelp () {
+    var examples = [
+      'rapid flux',
+      '+photosynhesis -maize',
+      'tag:Neuroscience',
+      'author:Kelly',
+      'title:neuro*'
+    ].map(eg => {
+      var el = html`
+        <div class="flex-row nowrap pa2 bg-light-gray br1 ba0 code ma1 link dim pointer">
+          ${eg}
+        </div>
+      `
+      el.onclick = () => {
+        this.input.value = eg
+      }
+
+      return el
+    })
+
+    return html`
+      <div class="flex flex-row flex-wrap pa3 tc">
+        <div class="flex-row nowrap pa2 br1 ba0 ma1">
+          try:
+        </div>
+        ${examples}
+      </div>
+    `
   }
 
   getInput (state) {
@@ -54,7 +85,7 @@ class TypeAhead extends Nanocomponent {
     var opts = this.opts.input || {}
 
     this.input = html`
-      <input class="mw-70 bg-white bw1 b--mid-gray pa2 dark-gray" type="text" ${opts}></input>
+      <input type="text" autofocus="autofocus" ${opts}></input>
     `
 
     this.input.addEventListener('input', inputValueUpdated)
