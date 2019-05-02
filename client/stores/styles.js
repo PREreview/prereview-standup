@@ -20,7 +20,7 @@ var section = css`
 
 function styles (state, emitter) {
   var opts = state.styleOpts = {
-    primary: 'red',
+    primary: 'dark-red',
     secondary: 'light-gray'
   }
 
