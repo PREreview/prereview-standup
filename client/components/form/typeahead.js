@@ -80,7 +80,7 @@ class TypeAhead extends Nanocomponent {
     return html`
       <div class="flex flex-row flex-wrap pa3 tc">
         <div class="flex-row nowrap pa2 br1 ba0 ma1">
-          try:
+          example searches:
         </div>
         ${examples}
       </div>
