@@ -15,15 +15,16 @@ module.exports = function(state, emit, opts) {
 
   var notlogged = () => html`
 
-  <div class="flex flex-row">
-    <a class="white" href="/login">Log in / register</a>
-  </div>
+  <a class="link dim white-90 tc" href="/login">Log in / register</a>
   
   `
 
   var logged = () => {
-    var logout = html`<div class="link dim white-90 tc flex flex-row items-center justify-center">log out</div>`
-    logout.onclick = () => emit('pushState', '/logout')
+    var logout = html`
+      <a href="/logout" class="link dim white-90 tc flex flex-row items-center justify-center">
+        Log out
+      </div>
+    `
 
     var name = html`
       <div class="ml4 link dim white-90 tc flex flex-row items-center justify-center">
