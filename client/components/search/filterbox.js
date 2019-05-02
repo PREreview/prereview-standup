@@ -17,7 +17,7 @@ module.exports = function (opts) {
 
     var btn_reviews = button(state, emit, {
       label: 'most reviews',
-      classes: `ml2 f6 ${!filterbydate ? 'bg-light-red' : 'bgdark-gray'} white`,
+      classes: `ml2 f6 ${!filterbydate ? 'bg-light-red' : 'bg-dark-gray'} white`,
       secondary: true
     })
     btn_reviews.onclick = () => emit('sort', { scope: 'main', sort: 'reviews' })
