@@ -16,11 +16,11 @@ function view (state, emit) {
   var resultstr = nresults ? `${nresults} results` : 'no results'
 
   return html`
-    <body class="flex flex-column w-100 justify-center items-center space-around">
+    <body class="flex flex-column w-100 justify-center items-center space-around dark-gray">
       ${nav(state, emit)}
       ${header(state, emit)}
       <div class="w-60 flex flex-row">
-        <div class="content fl w-100 pa2 mt4 f7 lh-copy">
+        <div class="content fl w-100 pa2 f7 lh-copy">
           <div class="actions flex justify-between pv3">
             <div class="ttu tracked">
               ${resultstr}
