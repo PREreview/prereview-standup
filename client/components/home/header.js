@@ -1,6 +1,5 @@
 var html = require('choo/html')
-
-// var button = require('../button')
+var input = require('../form/typeahead')
 
 module.exports = header
 
@@ -11,12 +10,30 @@ module.exports = header
 // </div>
 
 function header (state, emit) {
+  var top = state.user ? null : html`
+    <button class="mb5 flex justify-center content-center items-center v-mid bn ph3 white h3 f4 bg-light-red link dim br1 outline-0">join the community</button>
+  `
+  var searchopts = {
+    id: 'main-search-input',
+    entries: Object.values(state.preprints),
+    container: {
+      class: 'flex flex-column bg-white dark-gray w-50'
+    },
+    input: {
+      class: 'flex bg-white dark-gray b--dark-gray ba br-pill pa3 pl4 w-100',
+      placeholder: 'search preprints by DOI, URL, title authors...'
+    },
+    onresults: results => emit('preprint-search:results', results)
+  }
+  
   var s = state.style.classes
+  var search = input(state, emit, searchopts)
 
   return html`
   
-  <div class="header w-100 ${s.col} ${s.center} white pa5 flex flex-row justify-center items-center dark-gray">
-    <p class="dark-gray">something goes in here</p>
+  <div class="header w-100 ${s.col} ${s.center} flex flex-column pa5 pb2 justify-center items-center dark-gray">
+    ${top}
+    ${search}
   </div>
   
   `
