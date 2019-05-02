@@ -1,58 +1,28 @@
 {
   "ops": [
     {
+      "insert": "Key questions\n\n",
       "attributes": {
-        "header": 1
-      },
-      "insert": "Before you write\n"
+        "header": 2
+      }
     },
     {
-      "insert": "\nPlease take the time to read our "
-    },
-    {
+      "insert": "What is the main question the study attempts to answer?\nWhat are the hypotheses?\nWhat techniques do the researchers adopt to test their hypotheses?\nWhy is this study relevant?\n",
       "attributes": {
-        "link": "https://prereview.org"
-      },
-      "insert": "community guidelines"
+        "list": "bullet"
+      }
     },
     {
-      "insert": ".\n\nIf this is your first time here, we recommend you look at our "
-    },
-    {
+      "insert": "\nYour perspective\n\n",
       "attributes": {
-        "link": "https://prereview.org"
-      },
-      "insert": "guide to constructive reviewing."
+        "header": 2
+      }
     },
     {
-      "insert": "\n\n"
-    },
-    {
+      "insert": "General comments you might have about the research approach.\nSpecific comment you might have about experimental approaches and methods used in the study.\nSpecific comment/note about figures in the paper (this could be related to the way data are displayed and your ability to understand the results just by looking at the figures).\nAdditional comment you might have (this includes minor concerns such as typos and structure of the manuscript).\n",
       "attributes": {
-        "header": 1
-      },
-      "insert": "Summary\n"
-    },
-    {
-      "insert": "\nTry to summarize your review in a single paragraph.\n\n"
-    },
-    {
-      "attributes": {
-        "header": 1
-      },
-      "insert": "Validity, rigor, correctness and methodology\n"
-    },
-    {
-      "insert": "\nSome things you might consider:\n\n- Are the claims valid?\n- Are the methods appropriate and were they used correctly and documented well?\n- Are the results consistent and free from artifacts that might suggest errors?\n\n"
-    },
-    {
-      "attributes": {
-        "header": 1
-      },
-      "insert": "Importance and impact\n"
-    },
-    {
-      "insert": "\nThese things are silly.\n"
+        "list": "bullet"
+      }
     }
   ]
 }
