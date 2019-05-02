@@ -27,7 +27,14 @@ function addreview (state, emit) {
   }
   var s = state.style.classes
 
-  var collapser = button(state, emit, { label: 'review this preprint' })
+  var collapser = button(state, emit, {
+    label: 'write a prereview',
+    class: 'ml2'
+  })
+  var requester = button(state, emit, {
+    label: 'request feedback',
+    class: 'ml2'
+  })
 
   var collapsee = html`
     <div class="w-100" style="height: 0;">
@@ -53,8 +60,8 @@ function addreview (state, emit) {
 
   return html`
   
-  <div class="w-100 ${s.col}">
-    ${collapser}
+  <div class="w-100 ${s.col} items-end">
+    <div class="flex flex-row">${requester}${collapser}</div>
     ${collapsee}
   </div>
   
