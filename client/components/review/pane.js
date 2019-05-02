@@ -7,63 +7,95 @@ var composer = require('./compose')
 var display = require('./display')
 var button = require('../button')
 
-module.exports = function view (state, emit, reviews) {
+module.exports = function view (state, emit, opts) {
+  console.log(state.href)
+
+  return subroute(state, emit, opts)
+}
+
+function subroute (state, emit, opts) {
+  if (state.href.endsWith('/new')) {
+    // composing
+    return writereview(state, emit, opts)
+  } else if (state.href.endsWith('/request')) {
+    // requesting
+    return requestreview(state, emit, opts)
+  } else if (state.href.endsWith('/submitted')) {
+    return submitted(state, emit, opts)
+  } else {
+    // reading
+    return readreviews(state, emit, opts)
+  }
+}
+
+function submitted (state, emit, opts) {
+  return html`
+    <div class="flex flex-column w-100 h-100 pa4 items-center overflow-y-scroll overflow-x-hidden justify-center f4 tc">
+      <p class="b">
+        Thank you for PREreviewing!
+      </p>
+      <p>
+        We're issuing your review a DOI. As soon as that's done, your review will be published.
+      </p>
+      <p>
+        Head <a href="/" class="link dim mid-gray"> home</a> to find more preprints to review.
+      </p>
+    </div>
+  `
+}
+
+function writereview (state, emit, opts) {
+  return composer(state, emit, opts)
+}
+
+function requestreview () {
+  return html`
+    <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
+      <h2 class="ph4 fw5">Request a review</h2>
+      <p class="lh-copy">Please confirm you want to request a review of this preprint:/p>
+      <button>confirm request</button>
+    </div>
+  `
+}
+
+function readreviews (state, emit, opts) {
   return html`
   
   <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
-    ${addreview(state, emit)}
-    <h2 class="ph4">${reviews.length} reviews</h2>
-    ${reviews.map(r => require('./display')(state, emit, r))}
+    ${addreview(state, emit, opts)}
+    <div class="flex flex-row items-between mv4">
+      <div class="ph4 f4 fw5">${opts.reviews.length} reviews</h2>
+      <div class="ph4 f4 fw5">${opts.requests.length} review requests</h2>
+    </div>
+    ${opts.reviews.map(r => require('./display')(state, emit, r))}
   </div>
   
   `
 }
 
-function addreview (state, emit) {
+function addreview (state, emit, opts) {
   if (!state.user) {
-    var login = button(state, emit, { label: 'login to review this preprint' })
+    var login = button(state, emit, { label: 'log in to review this preprint' })
     login.onclick = () => { window.location = '/login' }
-    return html`<div class="flex flex-row w-100 justify-end items-end">${login}</div>`
+    return html`<div class="flex flex-row w-100 justify-end">${login}</div>`
   }
   var s = state.style.classes
 
-  var collapser = button(state, emit, {
+  var write = button(state, emit, {
     label: 'write a prereview',
-    class: 'ml2'
+    classes: 'ml2 bg-red white'
   })
-  var requester = button(state, emit, {
+  write.onclick = () => emit('pushState', './new')
+
+  var request = button(state, emit, {
     label: 'request feedback',
-    class: 'ml2'
+    classes: 'ml2 bg-red white'
   })
-
-  var collapsee = html`
-    <div class="w-100" style="height: 0;">
-
-    </div>
-  `
-
-  var collapsed = true
-
-  collapser.onclick = () => {
-    if (collapsed) {
-      collapsed = false
-
-      anime({
-        targets: collapsee,
-        css: {
-          height: 'auto',
-        },
-        easing: 'easeInOutExpo'
-      });
-    }
-  }
+  request.onclick = () => emit('pushState', './request')
 
   return html`
-  
-  <div class="w-100 ${s.col} items-end">
-    <div class="flex flex-row">${requester}${collapser}</div>
-    ${collapsee}
-  </div>
-  
+    <div class="w-100 ${s.col} items-end">
+      <div class="flex flex-row">${request}${write}</div>
+    </div>
   `
 }
