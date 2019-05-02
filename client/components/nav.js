@@ -21,9 +21,9 @@ module.exports = function(state, emit, opts) {
 
   var logged = () => {
     var logout = html`
-      <a href="/logout" class="link dim white-90 tc flex flex-row items-center justify-center">
+      <a href="/logout" class="link dim white-90 tc flex flex-row items-center justify-center ml4">
         Log out
-      </div>
+      </a>
     `
 
     var name = html`
@@ -36,8 +36,17 @@ module.exports = function(state, emit, opts) {
 
     var el = html`
     <div class="flex flex-row white" style="cursor: pointer;">
-      ${logout}
+      <a href="/docs/code_of_conduct" class="link dim white-90 tc flex flex-row items-center justify-center ml4">
+        Code of Conduct
+      </a>
+      <a href="/docs/team" class="link dim white-90 tc flex flex-row items-center justify-center ml4">
+        Team 
+      </a>
+      <a href="/docs/about" class="link dim white-90 tc flex flex-row items-center justify-center ml4 mr4">
+        About
+      </a>
       ${name}
+      ${logout}
     </div>
   `
 
