@@ -1,7 +1,7 @@
 # Leadership Team 
 
 ### Daniela Saderi, Ph.D. – Co-founder, Project and Fundraising Lead  
-<img src="https://github.com/fathomlabs/prereview-standup/blob/master/server/docs/pictures/daniela.jpg" width="200">
+<img src="images/daniela.jpg" width="200">
 
 Daniela is a Mozilla Fellow for Science 2018/2019. At PREreview she leads the development of the platform and is 
 responsible for fundraising and the sustainability of the project. Daniela has recently earned a Ph.D. in neuroscience at 
@@ -12,7 +12,7 @@ biographies and up-lifting books with her two black cats on her lap.
 
 
 ### Samantha Hindle, Ph.D. – Co-founder, Peer Review Training and Parterships Lead  
-<img src="https://github.com/fathomlabs/prereview-standup/blob/master/server/docs/pictures/sam2.jpg" width="200">
+<img src="images/sam2.jpg" width="200">
 
 
 Sam is content lead at the leading preprint server for the life sciences, [bioRxiv](https://www.biorxiv.org/). At PREreview she leads the
