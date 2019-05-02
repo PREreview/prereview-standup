@@ -1,5 +1,7 @@
 var html = require('choo/html')
 
+var loaded = false
+
 module.exports = function (state, emit, pdfurl) {
   var loading = html`
     <div class="flex flex-column w-100 h-100 bg-white justify-center items-center">
@@ -35,7 +37,8 @@ module.exports = function (state, emit, pdfurl) {
   
   `
 
-  setTimeout(loadingdone, 3000)
+  setTimeout(loadingdone, loaded ? 1 : 3000)
+  loaded = true
 
   return container
 }
