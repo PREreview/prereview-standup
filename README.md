@@ -1,5 +1,3 @@
-# PREreview 2
-
 ![PREreview logo](https://github.com/PREreview/prereview-standup/raw/master/assets/logo.png)
 
 <p align="center">
