@@ -6,6 +6,9 @@ var express = require('express')
 
 var app = express()
 
+// gzip compress where possible
+app.use(require('compression'))
+
 // setup user sessions
 app.use(require('./auth/sessions'))
 
