@@ -6,9 +6,6 @@ var express = require('express')
 
 var app = express()
 
-// gzip compress where possible
-app.use(require('compression'))
-
 // setup user sessions
 app.use(require('./auth/sessions'))
 
@@ -26,7 +23,7 @@ app.use('../client/assets', express.static('assets'))
 app.use('/docs', express.static('docs'))
 app.use('/data', express.static('mockdata'))
 
-app.listen(5000, function (err) {
+app.listen(80, function (err) {
   if (err) return console.log(err)
-  console.log('Listening at http://localhost:5000/')
+  console.log('Listening at http://localhost:80/')
 })

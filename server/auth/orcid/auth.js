@@ -18,7 +18,7 @@ passport.use(new OrcidStrategy({
   state: true, // remove this if not using sessions
   clientID: process.env.ORCID_CLIENT_ID,
   clientSecret: process.env.ORCID_CLIENT_SECRET,
-  callbackURL: 'http://localhost:5000/orcid-callback'
+  callbackURL: `http://${process.env.APP_ROOT_URI}/orcid-callback`
 }, function (accessToken, refreshToken, params, profile, done) {
   // `profile` is empty as ORCID has no generic profile URL,
   // so populate the profile object from the params instead
