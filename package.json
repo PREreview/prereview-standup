@@ -37,6 +37,7 @@
     "keyfinder": "^1.0.0",
     "lorem-ipsum": "^2.0.1",
     "lunr": "^2.3.6",
+    "morgan": "^1.9.1",
     "nano": "^8.1.0",
     "nanocomponent": "^6.5.2",
     "passport": "^0.4.0",
