@@ -4,6 +4,9 @@
   "description": "PREreview2 demo for development, user testing etc.",
   "main": "index.js",
   "scripts": {
+    "test": "xo",
+    "lint": "xo",
+    "format": "xo --fix",
     "dev": "ENVIRONMENT=dev node index.js",
     "start": "ENVIRONMENT=prod pm2 start index.js --name prereview",
     "stop": "pm2 stop prereview",
@@ -45,6 +48,7 @@
     "bankai": "^9.15.0",
     "dotenv": "^7.0.0",
     "markdown-folder-to-html": "^2.1.2",
-    "pm2": "^3.5.1"
+    "pm2": "^3.5.1",
+    "xo": "^0.24.0"
   }
 }
