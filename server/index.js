@@ -1,5 +1,4 @@
-// load environment variables
-require('dotenv').config()
+require('../config')
 
 // create server
 var express = require('express')
@@ -23,7 +22,8 @@ app.use('../client/assets', express.static('assets'))
 app.use('/docs', express.static('docs'))
 app.use('/data', express.static('mockdata'))
 
-app.listen(80, function (err) {
+var listenport = process.env.PREREVIEW_PORT
+app.listen(listenport, function (err) {
   if (err) return console.log(err)
-  console.log('Listening at http://localhost:80/')
+  console.log(`Listening at http://localhost:${listenport}/`)
 })
