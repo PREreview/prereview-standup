@@ -31,6 +31,7 @@
     "fast-xml-parser": "^3.12.17",
     "got": "^9.6.0",
     "he": "^1.2.0",
+    "helmet": "^3.20.0",
     "hyphenate-style-name": "^1.0.3",
     "joi": "^14.3.1",
     "keyfinder": "^1.0.0",

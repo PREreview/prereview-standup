@@ -5,6 +5,9 @@ var express = require('express')
 
 var app = express()
 
+// security first https://github.com/helmetjs/helmet#how-it-works
+app.use(require('helmet'))
+
 // setup user sessions
 app.use(require('./auth/sessions'))
 
