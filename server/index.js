@@ -11,6 +11,9 @@ app.use(require('helmet'))
 // let's keep notes
 app.use(require('morgan')('short'))
 
+// it's OK to ask if we're OK
+app.get('/health', (req, res) => res.sendStatus(200))
+
 // setup user sessions
 app.use(require('./auth/sessions'))
 
