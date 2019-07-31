@@ -1,2 +1,6 @@
-var nano = require('nano')(`http://localhost:5984`)
-nano.db.create('books')
+const {Pool} = require('pg')
+
+module.exports = new Pool({
+  max: 10,
+  connectionString: process.env.DATABASE_URL
+})
