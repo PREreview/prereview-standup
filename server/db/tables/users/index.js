@@ -1,6 +1,8 @@
-module.exports = users
+module.exports = {
+	createTable, addUser, getUser, createOrUpdateUser
+}
 
-var db = require('../')
+var db = require('../..')
 
 function createTable () {
 	return db.schema.dropTableIfExists('users')
