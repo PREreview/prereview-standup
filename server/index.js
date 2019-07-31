@@ -6,7 +6,7 @@ var express = require('express')
 var app = express()
 
 // security first https://github.com/helmetjs/helmet#how-it-works
-app.use(require('helmet'))
+app.use(require('helmet')())
 
 // let's keep notes
 app.use(require('morgan')('short'))
