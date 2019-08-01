@@ -12,8 +12,11 @@ module.exports = async (state, emitter) => {
   try {
     var userdata = await fetch('/userdata')
     state.user = await userdata.json()
-    var randompic = await fetch('https://randomuser.me/api/?gender=male&inc=picture&noinfo')
-    state.user.picture = (await randompic.json()).results[0].picture
+
+    if (!state.user.picture) {
+      state.user.picture = '/assets/illustrations/Illustrations_Transparent_Default_Avatar.png'
+    } 
+
     if (state.contentloaded) {
       emitter.emit('render')
     } else {
