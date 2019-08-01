@@ -5,6 +5,14 @@ var choo = require('choo')
 
 css('tachyons')
 
+css`
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+`
+
 var app = choo({
   href: false
 })
@@ -21,7 +29,7 @@ app.use(require('./stores/devdata'))
 app.use(require('./stores/search'))
 app.use(require('./stores/sort'))
 
-app.route('/', require('./views/main'))
+app.route('/', require('./views/landing'))
 app.route('/find', require('./views/main'))
 app.route('/profile', require('./views/profile'))
 

@@ -43,11 +43,31 @@ class TypeAhead extends Nanocomponent {
     var container = html`
       <div ${divopts}>
         ${this.getInput(state)}
+        ${this.getAdvancedButton()}
         ${this.getHelp()}
       </div>
     `
 
     return container
+  }
+
+  getAdvancedButton () {
+    var btn = html`
+    
+    <div class="ph3 h3 nowrap dim bg-red br3 mv4 flex flex-row items-center">
+      <p class="ma0 pa0 link white dtc v-mid b">Advanced search</p>
+    </div>
+
+    `
+
+    btn.onclick = () => {
+      this.help.classList.remove('dn')
+      this.help.classList.add('flex')
+      btn.classList.remove('flex')
+      btn.classList.add('dn')
+    }
+
+    return btn
   }
 
   getHelp () {
@@ -77,14 +97,15 @@ class TypeAhead extends Nanocomponent {
       return el
     })
 
-    return html`
-      <div class="flex flex-row flex-wrap pa3 tc">
+    this.help = html`
+      <div class="dn flex-row flex-wrap pa3 tc">
         <div class="flex-row nowrap pa2 br1 ba0 ma1">
           example searches:
         </div>
         ${examples}
       </div>
     `
+    return this.help
   }
 
   getInput (state) {
