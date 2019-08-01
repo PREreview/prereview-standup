@@ -14,6 +14,11 @@ app.use(require('morgan')('combined'))
 // it's OK to ask if we're OK
 app.get('/health', (req, res) => res.sendStatus(200))
 
+// favicons
+var favicon = require('serve-favicon')
+var path = require('path')
+app.use(favicon(path.join(__dirname, '..', 'assets', 'favicons', 'favicon.ico')))
+
 // setup user sessions
 app.use(require('./auth/sessions'))
 
@@ -36,7 +41,6 @@ app.use('/loginsuccess', (err, req, res, next) => {
 })
 
 app.use(function (err, req, res, next) {
-  console.log('THERE WAS A FUCKING ERROR')
   console.error(err)
   res.status(500).send(err.message)
 })

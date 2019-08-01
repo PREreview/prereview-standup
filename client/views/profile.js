@@ -41,7 +41,7 @@ function profilecard (state, emit) {
   return html`
     <div class="w-100 center bg-white br3 pa3 pa4-ns mv3">
       <div class="tc">
-        <img src="${state.user.picture.large}" class="br-100 h4 w4 dib" title="Photo of a kitty staring at you">
+        <img src="${state.user.picture}" class="br-100 h4 w4 dib" title="your picture">
         <h2 class="mb1 fw4">${state.user.name}</h2>
         <h3 class="mt1 f5 fw3">ORCiD: <a class="link dim dark-red code" href="https://orcid.org/${state.user.orcid}" target="_blank">${state.user.orcid}</a></h3>
       </div>
