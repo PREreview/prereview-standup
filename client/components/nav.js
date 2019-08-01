@@ -49,16 +49,16 @@ module.exports = function(state, emit, opts) {
   var rightpart = html`
   
   <div class="flex flex-row justify-end items-center fr fw1 content-stretch">
-    <a href="/docs/code_of_conduct" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
+    <a href="/docs/about" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
       About
     </a>
-    <a href="/docs/team" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
+    <a href="/find" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
       Browse 
     </a>
-    <a href="/docs/about" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
+    <a href="https://blog.prereview.org" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
       Blog
     </a>
-      <a href="/docs/about" class="link dim black-90 tc flex flex-row items-center justify-center ml4 mr4">
+      <a href="#" class="link dim black-90 tc flex flex-row items-center justify-center ml4 mr4">
       Community
     </a>
     ${userpart}
