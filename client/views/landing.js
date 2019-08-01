@@ -12,7 +12,7 @@ var abovefold = css`
 
 :host {
   height: calc(100vh - 150px);
-  background-image: url(/assets/illustrations/PREreview_Illustrations_Landing_Page.png);
+  background-image: url(/assets/illustrations/landing.png);
   background-size: 100% auto;
   background-position: bottom right;
   background-repeat: no-repeat;
@@ -44,7 +44,7 @@ function view (state, emit) {
       </div>
       <div class="w-100 flex flex-row pa5">
         <div class="flex flex-column items-center content lh-copy w-third">
-          <img class="w-70" src="/assets/illustrations/PREreview_Illustrations_Transparent_Illustration_A.png" />
+          <img class="w-70" src="/assets/illustrations/a.png" />
           <h1 class="mv1 pt0">Post.</h1>
           <h2 class="mv1 mb2 w-70 tc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
           <div class="mt2 ph4 pv3 nowrap dim dt bg-red br3 mr3">
@@ -52,7 +52,7 @@ function view (state, emit) {
           </div>
         </div>
         <div class="flex flex-column items-center content lh-copy w-third">
-          <img class="w-70" src="/assets/illustrations/PREreview_Illustrations_Transparent_Illustration_B.png" />
+          <img class="w-70" src="/assets/illustrations/b.png" />
           <h1 class="mv1 pt0">Read.</h1>
           <h2 class="mv1 mb2 w-70 tc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
           <div class="mt2 ph4 pv3 nowrap dim dt bg-red br3 mr3">
@@ -60,7 +60,7 @@ function view (state, emit) {
           </div>
         </div>
         <div class="flex flex-column items-center content lh-copy w-third">
-          <img class="w-70" src="/assets/illustrations/PREreview_Illustrations_Transparent_Illustration_C.png" />
+          <img class="w-70" src="/assets/illustrations/c.png" />
           <h1 class="mv1 pt0">Engage.</h1>
           <h2 class="mv1 mb2 w-70 tc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
           <div class="mt2 ph4 pv3 nowrap dim dt bg-red br3 mr3">
