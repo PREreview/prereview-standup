@@ -10,6 +10,10 @@ css`
   --theme-gray: #4b4949;
 }
 
+a {
+  outline: 0;
+}
+
 .red {
   color: var(--theme-red);
 }

@@ -9,7 +9,7 @@ var app = express()
 app.use(require('helmet')())
 
 // let's keep notes
-app.use(require('morgan')('short'))
+app.use(require('morgan')('combined'))
 
 // it's OK to ask if we're OK
 app.get('/health', (req, res) => res.sendStatus(200))
@@ -30,6 +30,16 @@ app.get('/*', require('./routes/root'))
 app.use('../client/assets', express.static('assets'))
 app.use('/docs', express.static('docs'))
 app.use('/data', express.static('mockdata'))
+
+app.use('/loginsuccess', (err, req, res, next) => {
+  res.redirect(`/profile`)
+})
+
+app.use(function (err, req, res, next) {
+  console.log('THERE WAS A FUCKING ERROR')
+  console.error(err)
+  res.status(500).send(err.message)
+})
 
 var listenport = process.env.PREREVIEW_PORT
 app.listen(listenport, function (err) {

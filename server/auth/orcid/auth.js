@@ -6,11 +6,11 @@ var getWorks = require('./works')
 
 // these are needed for storing the user in the session
 passport.serializeUser(function (user, done) {
-  done(null, user)
+  done(null, user.orcid)
 })
 
-passport.deserializeUser(function (user, done) {
-  users.getUser(user).then(done)
+passport.deserializeUser(function (orcid, done) {
+  users.getUser({ orcid }).then(user => done(null, user)).catch(done)
 })
 
 // add the ORCID authentication strategy
@@ -30,20 +30,20 @@ passport.use(new OrcidStrategy({
       access_token: params.access_token || accessToken,
       token_type: params.token_type,
       expires_in: params.expires_in
-    }
+    },
+    profile: {}
   }
   
-  // now we get the list of works for the user from the ORCID api
-  // and add it to their profile data
-  getWorks(profile).then(
-    users.createOrUpdateUser
-  ).catch(
-    err => {
-      console.log('failed to retrieve works list from ORCID API')
-      done(null, profile)
-    }
-  )
+  // // now we get the list of works for the user from the ORCID api
+  // // and add it to their profile data
+  // var works = getWorks(profile).catch(
+  //   err => {
+  //     console.log('failed to retrieve works list from ORCID API')
+  //     done(null, profile)
+  //   }
+  // )
 
+  users.getOrAddUser(profile).then(userdata => done(null, profile)).catch(done)
 }))
 
 module.exports = app => {

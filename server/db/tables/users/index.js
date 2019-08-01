@@ -1,25 +1,15 @@
 module.exports = {
-	createTable, addUser, getUser, createOrUpdateUser
+	addUser, getUser, getOrAddUser
 }
 
 var db = require('../..')
 
-function createTable () {
-	return db.schema.dropTableIfExists('users')
-	  .then(() => {
-			return db.schema.createTable('users', table => {
-				table.increments()
-				table.timestamps()
-				table.json('data').nullable()
-		  })
-	  })
-}
-
 function addUser (user) {
 	return db('users').insert({
-		data: JSON.stringify(user),
-		created_at : new Date(),
-		updated_at: new Date()
+		orcid: user.orcid,
+		name: user.name,
+		profile: JSON.stringify(user.profile),
+		token: JSON.stringify(user.token)
 	})
 }
 
@@ -29,7 +19,7 @@ function getUser (user) {
 		.first()
 }
 
-function createOrUpdateUser (user) {
+function getOrAddUser (user) {
 	return db('users')
     .where({ orcid: user.orcid })
     .then(results => {
