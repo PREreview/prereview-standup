@@ -23,8 +23,9 @@ function header (state, emit) {
   return html`
   
   <div class="header w-100 ${s.col} ${s.center} flex flex-column pa5 justify-center items-center dark-gray">
-    <h2 class="lh-title">Search preprints to read or review.</h2>
+    <h2>Search preprints to read or review.</h2>
     ${search}
+    <div class="mt6 w-100 bb"></div>
   </div>
   
   `

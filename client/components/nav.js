@@ -14,7 +14,7 @@ module.exports = function(state, emit, opts) {
 
   var notlogged = () => html`
 
-  <div class="ph4 h3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3">
+  <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3">
    <a class="link white dib v-mid b" href="/login">Sign in </a>
   </div>
   `

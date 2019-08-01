@@ -21,11 +21,11 @@ function view (state, emit) {
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray">
       ${nav(state, emit)}
       ${header(state, emit)}
-      <div class="w-60 flex flex-row">
+      <div class="w-70 flex flex-row">
         <div class="content fl w-100 pa2 f7 lh-copy">
           <div class="actions flex justify-between pv3">
-            <div class="flex items-center ttu tracked f6">
-              showing: ${resultstr}
+            <div class="flex items-center ttu red tracked f6">
+              ${resultstr}
             </div>
             ${filterbox(state, emit)}
           </div>

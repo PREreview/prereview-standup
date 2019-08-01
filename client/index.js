@@ -5,13 +5,7 @@ var choo = require('choo')
 
 css('tachyons')
 
-css`
-
-* {
-  font-family: 'Open Sans', sans-serif;
-}
-
-`
+require('./theme')
 
 var app = choo({
   href: false

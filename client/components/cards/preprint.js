@@ -11,47 +11,41 @@ function preprint (state, emit, p) {
   title.onclick = gotoreviews
 
   var showreviews = html`
-    <div class="mr2 dark-gray link dim" style="cursor: pointer;">${p.reviews} reviews</div>
+    <div class="mr2 dark-gray link dim f6" style="cursor: pointer;">${p.reviews} reviews</div>
   `
   showreviews.onclick = gotoreviews
 
   var addreview = html`
-    <div class="ml2 red link dim" style="cursor: pointer;">write a PREreview</div>
+    <div class="ph3 pv2 nowrap dim bg-dark-gray br3 flex flex-row items-center">
+      <p class="ma0 pa0 link white dtc v-mid b f6">Write a PREreview</p>
+    </div>
   `
   addreview.onclick = () => emit('pushState', `/reviews/${d.doi}/new`)
-
-  var reqreview = html`
-  <div class="ml2 mr2 red link dim" style="cursor: pointer;">request feedback</div>
-`
-  reqreview.onclick = () => emit('pushState', `/reviews/${d.doi}/request`)
 
   return html`
   
   <div class="flex flex-column article w-100 bb b--black-10 pa2 pb3 mb3 lh-copy">
     <div class="flex flex-row w-100 justify-between mv3">
-      <div class="topic">
+      <div class="red ttu">
         ${d.tags && d.tags.join(', ')}
-      </div>
-      <div class="topic">
-        doi:<a class="link dim dark-gray" href="https://doi.org/${d.doi}">${d.doi}</doi>
       </div>
     </div>
 
     <div class="flex flex-column items-start w-100">
       <div>
-        <h3 class="fw5 f5 ma0 lh-copy pb1 tl">${title}</h3>
-        <div class="f6 fw3 i lh-copy tl">
+        <h3 class="fw6 f4 ma0 lh-copy pb1 tl">${title}</h3>
+        <div class="f5 fw1 i">
           ${d.authors.map(a => `${a.firstName} ${a.lastName}`).join(', ')}
         </div>
       </div>
     </div>
     
     <div class="footer flex justify-between mv3">
-      <div class="left f6 fw3">
+      <div class="flex flex-row items-center flex-wrap left f6 fw3">
         Preprint published 7th December, 2018. First reviewed on 18 Jan, 2019
       </div>
-      <div class="flex flex-row right f6 fw3"> 
-        ${showreviews} | ${reqreview} | ${addreview}
+      <div class="flex flex-row items-center flex-nowrap right f6 fw3"> 
+        ${showreviews} ${addreview}
       </div>
     </div>
   </div>
