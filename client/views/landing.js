@@ -47,24 +47,24 @@ function view (state, emit) {
           <img class="w-70" src="/assets/illustrations/PREreview_Illustrations_Transparent_Illustration_A.png" />
           <h1 class="mv1 pt0">Post.</h1>
           <h2 class="mv1 mb2 w-70 tc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-          <div class="mt2 ph3 pv3 nowrap dim dt bg-red br3 mr3">
-            <a class="link white dtc v-mid b" href="/login">Create an account</a>
+          <div class="mt2 ph4 pv3 nowrap dim dt bg-red br3 mr3">
+            <a class="link white dtc v-mid b f6" href="/login">Create an account</a>
           </div>
         </div>
         <div class="flex flex-column items-center content lh-copy w-third">
           <img class="w-70" src="/assets/illustrations/PREreview_Illustrations_Transparent_Illustration_B.png" />
           <h1 class="mv1 pt0">Read.</h1>
           <h2 class="mv1 mb2 w-70 tc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-          <div class="mt2 ph3 pv3 nowrap dim dt bg-red br3 mr3">
-            <a class="link white dtc v-mid b" href="/find">Browse preprints</a>
+          <div class="mt2 ph4 pv3 nowrap dim dt bg-red br3 mr3">
+            <a class="link white dtc v-mid b f6" href="/find">Browse preprints</a>
           </div>
         </div>
         <div class="flex flex-column items-center content lh-copy w-third">
           <img class="w-70" src="/assets/illustrations/PREreview_Illustrations_Transparent_Illustration_C.png" />
           <h1 class="mv1 pt0">Engage.</h1>
           <h2 class="mv1 mb2 w-70 tc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-          <div class="mt2 ph3 pv3 nowrap dim dt bg-red br3 mr3">
-            <a class="link white dtc v-mid b" href="/login">Get involved</a>
+          <div class="mt2 ph4 pv3 nowrap dim dt bg-red br3 mr3">
+            <a class="link white dtc v-mid b f6" href="/login">Get involved</a>
           </div>
         </div>
       </div>
