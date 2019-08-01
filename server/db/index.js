@@ -1,6 +1,3 @@
-const {Pool} = require('pg')
+var config = require('../../config/db')[process.env.ENVIRONMENT || 'development']
 
-module.exports = new Pool({
-  max: 10,
-  connectionString: process.env.DATABASE_URL
-})
+module.exports = require('knex')(config)
