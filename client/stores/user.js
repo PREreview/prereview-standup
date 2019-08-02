@@ -13,9 +13,13 @@ module.exports = async (state, emitter) => {
     var userdata = await fetch('/userdata')
     state.user = await userdata.json()
 
+    // if we get here, the user is logged in and we have their data
+
     if (!state.user.picture) {
-      state.user.picture = '/assets/illustrations/Illustrations_Transparent_Default_Avatar.png'
-    } 
+      state.user.picture = '/assets/illustrations/avatar.png'
+    }
+
+    if (state.route === '/') return (window.location = '/find')
 
     if (state.contentloaded) {
       emitter.emit('render')

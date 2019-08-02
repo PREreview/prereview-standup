@@ -12,32 +12,32 @@ var barstyle = css`
 module.exports = function(state, emit, opts) {
   var s = state.style.classes
 
-  var notlogged = () => html`
+  var notlogged = () => {
 
-  <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3">
-   <a class="link white dib v-mid b" href="/login">Sign in </a>
-  </div>
-  `
+    var login = html`
+
+    <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3">
+      <p class="ma0 pa0 link white dib v-mid b">Sign in</p>
+    </div>
+
+    `
+    login.onclick = () => window.location = '/login'  
+
+    return login
+  }
+
 
   var logged = () => {
-    var logout = html`
-      <a href="/logout" class="link dim white-90 tc flex flex-row items-center justify-center ml4">
-        Log out
-      </a>
-    `
-
-    var name = html`
-      <div class="ml4 link dim white-90 tc flex flex-row items-center justify-center">
-        <img src="${state.user.picture.thumbnail}" class="br-100 h2 w2 dib mr2" title="your profile picture">
-        ${state.user.name}
+    var profile = html`
+      <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3">
+      <p class="ma0 pa0 link white dib v-mid b">Profile</ap>
       </div>
     `
-    name.onclick = () => emit('pushState', '/profile')  
+    profile.onclick = () => emit('pushState', '/profile')  
 
     var el = html`
     <div class="flex flex-row items-center justify-center white" style="cursor: pointer;">
-      ${name}
-      ${logout}
+      ${profile}
     </div>
   `
 
