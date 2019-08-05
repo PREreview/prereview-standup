@@ -1,3 +1,5 @@
+const ORCID = require('orcid-utils')
+
 module.exports = async (state, emitter) => {
   state.contentloaded = false
   
@@ -10,7 +12,7 @@ module.exports = async (state, emitter) => {
   })
 
   try {
-    var userdata = await fetch('/userdata')
+    var userdata = await fetch('/data/user')
     state.user = await userdata.json()
 
     // if we get here, the user is logged in and we have their data

@@ -27,9 +27,9 @@ app.route('/', require('./views/landing'))
 app.route('/find', require('./views/main'))
 app.route('/profile', require('./views/profile'))
 
-// /reviews/doi -> read
-// /reviews/doi/new -> write
-// /reviews/doi/request -> request
-app.route('/reviews/*', require('./views/review'))
+// /prereviews/doi -> read
+// /prereviews/doi/new -> write
+// /prereviews/doi/request -> request
+app.route('/prereviews/*', require('./views/review'))
 
 module.exports = app.mount('body')

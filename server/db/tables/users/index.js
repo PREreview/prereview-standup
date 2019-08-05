@@ -1,5 +1,5 @@
 module.exports = {
-	addUser, getUser, getOrAddUser
+	addUser, getUser, getUserById, getOrAddUser
 }
 
 var db = require('../..')
@@ -19,13 +19,24 @@ function getUser (user) {
 		.first()
 }
 
+function getUserById (userid) {
+	return db('users')
+		.where({ id: userid })
+		.first()
+}
+
 function getOrAddUser (user) {
 	return db('users')
     .where({ orcid: user.orcid })
     .then(results => {
       if (results.length < 1) {
         // create new user
-				return addUser(user)
+				return addUser(user).then(
+					user => {
+						user.firstvisit = true
+						return user
+					}
+				)
       } else {
         return results[0]
       }
