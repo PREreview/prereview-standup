@@ -1,9 +1,10 @@
-// serves the current user's own data to the client app
-// only works if the user is logged in - otherwise req.user is null
-module.exports = app => app.get('/data/prereviews/*', function (req, res) {
-  console.log(res, )
+var express = require('express')
+var router = express.Router()
+
+// serves PREreviews by DOI, or by ID, or by the DOI of the preprint they
+// are related to
+router.get('/prereviews/doi/*', function (req, res) {
+  // TODO
 })
 
-module.exports = app => app.post('/data/prereviews/*', function (req, res) {
-  console.log(res, )
-})
+module.exports = router
