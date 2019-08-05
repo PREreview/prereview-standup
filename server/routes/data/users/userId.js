@@ -1,5 +1,5 @@
 var orcid = require('orcid-utils')
-var user = require('../../db/tables/users')
+var user = require('../../../db/tables/users')
 
 var express = require('express')
 var router = express.Router()

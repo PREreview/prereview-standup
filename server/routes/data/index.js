@@ -6,3 +6,5 @@ var preprints = require('./preprints')
 var prereviews = require('./prereviews')
 
 router.use('/data', [users, preprints, prereviews])
+
+module.exports = router
