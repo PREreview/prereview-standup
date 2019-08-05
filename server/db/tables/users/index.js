@@ -1,5 +1,5 @@
 module.exports = {
-	addUser, getUser, getUserById, getOrAddUser
+	addUser, getUser, getUserById, getOrAddUser, makeUserPrivate, makeUserPublic
 }
 
 var db = require('../..')
