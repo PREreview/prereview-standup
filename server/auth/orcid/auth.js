@@ -57,7 +57,7 @@ module.exports = app => {
     'logout',
   ]
 
-  routes.forEach(route => require(`../../routes/${route}`)(app, passport))
+  app.use('/', routes.map(route => require(`./routes/${route}`)))
 
   return passport
 }

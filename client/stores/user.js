@@ -15,6 +15,8 @@ module.exports = async (state, emitter) => {
     var userdata = await fetch('/data/users/me')
     state.user = await userdata.json()
 
+    if (!state.user || !state.user.orcid) throw new Error('user is not logged in with ORCID')
+
     // if we get here, the user is logged in and we have their data
 
     if (!state.user.picture) {

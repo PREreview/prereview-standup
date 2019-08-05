@@ -27,11 +27,11 @@ app.use(require('./auth/sessions'))
 // setup orcid authentication
 require('./auth/orcid')(app)
 
-// register client-side app
-app.get('/*', require('./routes/root'))
-
 // register server routers
 app.use('/', require('./routes'))
+
+// register client-side app
+app.get('/*', require('./routes/root'))
 
 // register static file serves
 app.use('../client/assets', express.static('assets'))

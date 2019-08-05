@@ -1,1 +1,0 @@
-module.exports = app => app.get('/logout', require('../auth/logout'))
