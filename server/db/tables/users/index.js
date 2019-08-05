@@ -42,3 +42,21 @@ function getOrAddUser (user) {
       }
     })
 }
+
+function makeUserPrivate (user) {
+	return db('users')
+		.where({ orcid: user.orcid })
+		.first()
+		.update({
+			is_private: true,
+		})
+}
+
+function makeUserPublic (user) {
+	return db('users')
+		.where({ orcid: user.orcid })
+		.first()
+		.update({
+			is_private: false,
+		})
+}
