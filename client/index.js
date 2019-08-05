@@ -26,6 +26,7 @@ app.use(require('./stores/sort'))
 app.route('/', require('./views/landing'))
 app.route('/find', require('./views/main'))
 app.route('/profile', require('./views/profile'))
+app.route('/users/*', require('./views/profile'))
 
 // /prereviews/doi -> read
 // /prereviews/doi/new -> write

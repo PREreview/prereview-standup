@@ -17,7 +17,9 @@ app.get('/health', (req, res) => res.sendStatus(200))
 // favicons
 var favicon = require('serve-favicon')
 var path = require('path')
-app.use(favicon(path.join(__dirname, '..', 'assets', 'favicons', 'favicon.ico')))
+app.use(
+  favicon(path.join(__dirname, '..', 'assets', 'favicons', 'favicon.ico'))
+)
 
 // setup user sessions
 app.use(require('./auth/sessions'))
@@ -31,10 +33,12 @@ require('./routes/data/users')(app)
 // register client-side app
 app.get('/*', require('./routes/root'))
 
+// register server routers
+app.use(require('./routes'))
+
 // register static file serves
 app.use('../client/assets', express.static('assets'))
 app.use('/docs', express.static('docs'))
-app.use('/data', express.static('mockdata'))
 
 app.use('/loginsuccess', (err, req, res, next) => {
   res.redirect(`/profile`)
