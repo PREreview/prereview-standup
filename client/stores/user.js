@@ -12,7 +12,7 @@ module.exports = async (state, emitter) => {
   })
 
   try {
-    var userdata = await fetch('/data/user')
+    var userdata = await fetch('/data/users/me')
     state.user = await userdata.json()
 
     // if we get here, the user is logged in and we have their data

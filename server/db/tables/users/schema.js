@@ -10,8 +10,10 @@ function createTable () {
 				table.timestamp('created_at').defaultTo(db.fn.now())
 				table.json('profile').nullable()
 				table.json('token').nullable()
-				table.string('orcid').unique().comment('Only one account per ORCiD')
-				table.string('name')
+				table.string('orcid').unique().comment('Only one account per ORCID')
+				table.string('name').comment('User real name taken from ORCID record')
+				table.boolean('is_admin').defaultTo(false)
+				table.boolean('is_private').defaultTo(false)
 			})
 		// }
 	})

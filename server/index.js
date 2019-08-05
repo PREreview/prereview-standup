@@ -26,7 +26,7 @@ app.use(require('./auth/sessions'))
 require('./auth/orcid')(app)
 
 // serve user data
-require('./routes/data/user')(app)
+require('./routes/data/users')(app)
 
 // register client-side app
 app.get('/*', require('./routes/root'))
