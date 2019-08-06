@@ -17,7 +17,7 @@ module.exports = function(state, emit, opts) {
     var login = html`
 
     <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3">
-      <p class="ma0 pa0 link white dib v-mid b">Sign in</p>
+      <p class="ma0 pa0 link white dib v-mid b">Log in</p>
     </div>
 
     `
@@ -48,18 +48,18 @@ module.exports = function(state, emit, opts) {
 
   var rightpart = html`
   
-  <div class="flex flex-row justify-end items-center fr fw1 content-stretch">
+  <div class="flex flex-row justify-end items-center fr fw1 content-stretch nowrap">
     <a href="/docs/about" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
       About
     </a>
-    <a href="/find" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
-      Browse 
+    <a href="/docs/code_of_conduct" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
+      Code of Conduct 
     </a>
-    <a href="https://blog.prereview.org" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
+    <a href="https://blog.prereview.org" target="_blank" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
       Blog
     </a>
-      <a href="#" class="link dim black-90 tc flex flex-row items-center justify-center ml4 mr4">
-      Community
+      <a href="/docs/resources" class="link dim black-90 tc flex flex-row items-center justify-center ml4 mr4">
+      Resources
     </a>
     ${userpart}
   </div>
