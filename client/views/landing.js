@@ -20,6 +20,36 @@ var abovefold = css`
 
 `
 
+var callstoaction = [
+  {
+    title: 'Post',
+    img: 'a',
+    description: 'Find a preprint and share your constructive feedback on PREreview.',
+    button: {
+      text: 'Browse preprints',
+      href: '/find'
+    }
+  },
+  {
+    title: 'Read',
+    img: 'b',
+    description: 'Find an preprint and its PREreviews, thank the PREreviewers and share your comments.',
+    button: {
+      text: 'Browse PREreviews',
+      href: '/find'
+    }
+  },
+  {
+    title: 'Engage',
+    img: 'c',
+    description: 'Join the peer review training program, leave a LivePREJC, and connect with community members.',
+    button: {
+      text: 'Get involved',
+      href: '/find'
+    }
+  }
+]
+
 module.exports = view
 
 function view (state, emit) {
@@ -43,31 +73,23 @@ function view (state, emit) {
         </div>
       </div>
       <div class="w-100 flex flex-row pa5">
-        <div class="flex flex-column items-center content lh-copy w-third">
-          <img class="w-70" src="/assets/illustrations/a.png" />
-          <h1 class="mv1 pt0">Post.</h1>
-          <h2 class="mv1 mb2 w-70 tc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-          <div class="mt2 ph4 pv3 nowrap dim dt bg-red br3 mr3">
-            <a class="link white dtc v-mid b f6" href="/login">Create an account</a>
-          </div>
-        </div>
-        <div class="flex flex-column items-center content lh-copy w-third">
-          <img class="w-70" src="/assets/illustrations/b.png" />
-          <h1 class="mv1 pt0">Read.</h1>
-          <h2 class="mv1 mb2 w-70 tc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-          <div class="mt2 ph4 pv3 nowrap dim dt bg-red br3 mr3">
-            <a class="link white dtc v-mid b f6" href="/find">Browse preprints</a>
-          </div>
-        </div>
-        <div class="flex flex-column items-center content lh-copy w-third">
-          <img class="w-70" src="/assets/illustrations/c.png" />
-          <h1 class="mv1 pt0">Engage.</h1>
-          <h2 class="mv1 mb2 w-70 tc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-          <div class="mt2 ph4 pv3 nowrap dim dt bg-red br3 mr3">
-            <a class="link white dtc v-mid b f6" href="/login">Get involved</a>
-          </div>
-        </div>
+        ${callstoaction.map(minicard)}
       </div>
     </body>
   `
+}
+
+function minicard (data) {
+  return html`
+  
+  <div class="flex flex-column items-center content lh-copy w-third">
+    <img class="w-70" src="/assets/illustrations/${data.img}.png" />
+    <h1 class="mv1 pt0">${data.title}</h1>
+    <h2 class="mv1 mb2 w-70 tc">${data.description}</h2>
+    <div class="mt2 ph4 pv3 nowrap dim dt bg-red br3 mr3">
+      <a class="link white dtc v-mid b f6" href="${data.button.href}">${data.button.text}</a>
+    </div>
+  </div>
+  
+  `  
 }
