@@ -19,7 +19,12 @@ class TypeAhead extends Nanocomponent {
 
   createIndex (opts) {
     var self = this
-    self.entriesbyid = {}
+    self.entriesbyid = opts.entriesbyid || {}
+
+    if (opts.index) {
+      self.index = opts.index
+      return
+    }
 
     self.index = lunr(function () {
       this.field('doi')
