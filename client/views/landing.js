@@ -65,10 +65,10 @@ function view (state, emit) {
       ${nav(state, emit)}
       <div class="w-100 flex flex-row ${abovefold}" />
         <div class="content lh-copy w-50 pa7">
-          <h1>Changing the who, when and how of scientific peer review.</h1>
+          <h1>Changing the <em>who</em>, <em>when</em> and <em>how</em> of scientific peer review.</h1>
           <h2 class="fw2">Share, read, and review preprints</h2>
           <div class="ph5 pv3 nowrap dim dt bg-red br3 mr3">
-            <a class="link white dtc v-mid b" href="/login">Sign up</a>
+            <a class="link white dtc v-mid b" href="/login">Join the community</a>
           </div>
         </div>
       </div>
