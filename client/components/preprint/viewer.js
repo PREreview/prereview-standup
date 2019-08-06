@@ -4,7 +4,7 @@ var loaded = false
 
 module.exports = function (state, emit, pdfurl) {
   var loading = html`
-    <div class="flex flex-column w-100 h-100 bg-white justify-center items-center">
+    <div class="flex flex-column w-100 h-100 bg-white justify-center items-center" style="z-index: 9999;">
       <p>
         loading preprint...
       </p>

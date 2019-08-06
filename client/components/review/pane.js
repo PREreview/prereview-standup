@@ -75,27 +75,21 @@ function readreviews (state, emit, opts) {
 
 function addreview (state, emit, opts) {
   if (!state.user) {
-    var login = button(state, emit, { label: 'log in to review this preprint' })
+    var login = button(state, emit, { label: 'Log in to review this preprint' })
     login.onclick = () => { window.location = '/login' }
     return html`<div class="flex flex-row w-100 justify-end">${login}</div>`
   }
   var s = state.style.classes
 
   var write = button(state, emit, {
-    label: 'write a prereview',
+    label: 'Review this preprint',
     classes: 'ml2 bg-red white'
   })
   write.onclick = () => emit('pushState', './new')
 
-  var request = button(state, emit, {
-    label: 'request feedback',
-    classes: 'ml2 bg-red white'
-  })
-  request.onclick = () => emit('pushState', './request')
-
   return html`
     <div class="w-100 ${s.col} items-end">
-      <div class="flex flex-row">${request}${write}</div>
+      <div class="flex flex-row">${write}</div>
     </div>
   `
 }

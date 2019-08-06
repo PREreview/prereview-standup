@@ -1,13 +1,26 @@
 // var debounce = require('lodash/debounce')
 var lunr = require('lunr')
 
-module.exports = async function (state, emitter) {
+module.exports = function (state, emitter) {
   state.searched = false
   state.searchResults = Object.values(state.preprints).slice(0, 22)
-  state.search = {
-    idx: await loadlunr(),
-    entriesbyid: await loadentries()
-  }
+  state.search = {}
+
+  fetch('/assets/idx.json').then(
+    res => res.json()
+  ).then(
+    data => { state.search.idx = lunr.Index.load(data) }
+  ).catch(e => {
+    console.error('lunr index loading failed', e)
+  })
+
+  fetch('/assets/alldata.json').then(
+    res => res.json()
+  ).then(
+    data => { state.search.lookup = data }
+  ).catch(e => {
+    console.error('lunr index loading failed', e)
+  })
 
   emitter.on('DOMContentLoaded', async function () {
     emitter.on('preprint-search:results', results => {
@@ -16,16 +29,4 @@ module.exports = async function (state, emitter) {
       emitter.emit('render')
     })
   })
-}
-
-async function loadlunr () {
-  var rawdata = await fetch('/assets/idx.json.gz')
-  var data = await rawdata.json()
-  return lunr.Index.load(data)
-}
-
-async function loadentries () {
-  var rawdata = await fetch('/assets/alldata.json.gz')
-  var data = await rawdata.json()
-  return
 }
