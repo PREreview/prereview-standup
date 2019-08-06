@@ -16,7 +16,7 @@ function preprint (state, emit, p) {
   showreviews.onclick = gotoreviews
 
   var addreview = html`
-    <div class="ph3 pv2 nowrap dim bg-dark-gray br3 flex flex-row items-center">
+    <div class="ph3 pv2 nowrap dim bg-red br3 flex flex-row items-center">
       <p class="ma0 pa0 link white dtc v-mid b f6">Write a PREreview</p>
     </div>
   `
