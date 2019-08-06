@@ -25,9 +25,12 @@ function preprint (state, emit, p) {
   return html`
   
   <div class="flex flex-column article w-100 bb b--black-10 pa2 pb3 mb3 lh-copy">
-    <div class="flex flex-row w-100 justify-between mv3">
+    <div class="flex flex-row w-100 justify-start mv3 fw6">
+      <div class="red i">
+        ${d.sources.publisher}
+      </div>
       <div class="red ttu">
-        ${d.tags && d.tags.join(', ')}
+        ${d.tags && `: ${d.tags.join(', ')}`}
       </div>
     </div>
 
