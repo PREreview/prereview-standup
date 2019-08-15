@@ -12,6 +12,8 @@ css`
 
 a {
   outline: 0;
+  color: var(--theme-red);
+  text-decoration: none;
 }
 
 .red {

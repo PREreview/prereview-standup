@@ -52,16 +52,16 @@ function view (state, emit) {
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray sans-serif">
       ${nav(state, emit)}
       <div class="w-100 flex flex-row ${abovefold}" />
-        <div class="content lh-copy w-50 pa7">
+        <div class="content lh-copy w-50 pa5">
           <h1>Changing the <em>who</em>, <em>when</em> and <em>how</em> of scientific peer review.</h1>
           <h2 class="fw2">Share, read, and review preprints</h2>
-          <div class="ph5 pv3 nowrap dim dt bg-red br3 mr3">
-            <a class="link white dtc v-mid b" href="/login">Join the community</a>
+          <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3">
+            <a class="link white dtc v-mid b" href="/login-redirect">Join the community</a>
           </div>
         </div>
       </div>
-      <div>
-        <h2>WHAT WE DO</h2>
+      <div class="mt3">
+        <h1>WHAT WE DO</h1>
       </div>
       <div class="w-100 flex flex-row pa5">
         ${callstoaction.map(minicard)}

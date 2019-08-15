@@ -21,7 +21,7 @@ module.exports = function(state, emit, opts) {
     </div>
 
     `
-    login.onclick = () => window.location = '/login'  
+    login.onclick = () => window.location = '/login-redirect'  
 
     return login
   }
