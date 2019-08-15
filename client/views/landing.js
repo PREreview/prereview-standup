@@ -22,31 +22,19 @@ var abovefold = css`
 
 var callstoaction = [
   {
-    title: 'Post',
+    title: 'Train',
     img: 'a',
-    description: 'Find a preprint and share your constructive feedback on PREreview.',
-    button: {
-      text: 'Browse preprints',
-      href: '/find'
-    }
+    description: 'Through our PREreview mentorship program, we invite researchers to learn about the peer review process and how to write constructive reivews.'
   },
   {
-    title: 'Read',
+    title: 'Empower',
     img: 'b',
-    description: 'Find an preprint and its PREreviews, thank the PREreviewers and share your comments.',
-    button: {
-      text: 'Browse PREreviews',
-      href: '/find'
-    }
+    description: 'By encouraging respectful behaviour and by recognizing each contribution, we empower new voices to enter the peer review process.'
   },
   {
-    title: 'Engage',
+    title: 'Connect',
     img: 'c',
-    description: 'Join the peer review training program, leave a LivePREJC, and connect with community members.',
-    button: {
-      text: 'Get involved',
-      href: '/find'
-    }
+    description: 'By interacting on PREreview and participating in PREreview live-streamed journal clubs, we enable you to collaborate and connect across research communities.'
   }
 ]
 
@@ -72,6 +60,9 @@ function view (state, emit) {
           </div>
         </div>
       </div>
+      <div>
+        <h2>WHAT WE DO</h2>
+      </div>
       <div class="w-100 flex flex-row pa5">
         ${callstoaction.map(minicard)}
       </div>
@@ -86,9 +77,6 @@ function minicard (data) {
     <img class="w-70" src="/assets/illustrations/${data.img}.png" />
     <h1 class="mv1 pt0">${data.title}</h1>
     <h2 class="mv1 mb2 w-70 tc">${data.description}</h2>
-    <div class="mt2 ph4 pv3 nowrap dim dt bg-red br3 mr3">
-      <a class="link white dtc v-mid b f6" href="${data.button.href}">${data.button.text}</a>
-    </div>
   </div>
   
   `  
