@@ -20,14 +20,10 @@ function view (state, emit) {
       ${nav(state, emit)}
       <div class="w-100 flex flex-column items-center" />
         <div class="flex flex-column items-center w-70">
+          <img class="w-20" src="/assets/images/loader.svg" />
           <h1>We're redirecting you to ORCID to log in.</h1>
           <h2 class="fw2">ORCID is the identity service for academics.</h2>
-          <img class="" src="/assets/images/loader.png" />
-          <div class="lh-copy">
-            <p>You will be redirected to ORCID in a few seconds.</p>
-            <p>If you already have an ORCID account, just log in and you'll be redirected back to PREreview.</p>
-            <p>If you don't yet have an ORCID, you'll need to create an account there. Once you've created the account you should be redirected back to PREreview.</p>
-          </div>
+          <h2 class="fw2">Sign up for an ORCID account if you don't have one yet, or log in if you do. You'll be brought right back to PREreview.</h2>
         </div>
       </div>
     </body>
