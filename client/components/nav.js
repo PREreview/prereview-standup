@@ -30,13 +30,16 @@ module.exports = function(state, emit, opts) {
   var logged = () => {
     var profile = html`
       <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3">
-      <p class="ma0 pa0 link white dib v-mid b">Profile</ap>
+        <p class="ma0 pa0 link white dib v-mid b">${state.user.name}</p>
       </div>
     `
     profile.onclick = () => emit('pushState', '/profile')  
 
     var el = html`
     <div class="flex flex-row items-center justify-center white" style="cursor: pointer;">
+      <a href="/logout" class="link dim black-90 tc flex flex-row items-center justify-center mr4">
+        Log out
+      </a>
       ${profile}
     </div>
   `
@@ -58,7 +61,7 @@ module.exports = function(state, emit, opts) {
     <a href="https://blog.prereview.org" target="_blank" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
       Blog
     </a>
-      <a href="/docs/resources" class="link dim black-90 tc flex flex-row items-center justify-center ml4 mr4">
+    <a href="/docs/resources" class="link dim black-90 tc flex flex-row items-center justify-center ml4 mr4">
       Resources
     </a>
     ${userpart}
