@@ -9,6 +9,8 @@
     "format": "xo --fix",
     "initdb:dev": "ENVIRONMENT=dev node scripts/initdb.js",
     "initdb:prod": "ENVIRONMENT=prod node scripts/initdb.js",
+    "seeddb:dev": "ENVIRONMENT=dev node scripts/seeddb.js",
+    "seeddb:prod": "ENVIRONMENT=prod node scripts/seeddb.js",
     "dev": "NODE_ENV=dev ENVIRONMENT=dev node index.js",
     "start": "ENVIRONMENT=prod pm2 start index.js --name prereview",
     "stop": "pm2 stop prereview",
