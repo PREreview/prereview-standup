@@ -17,7 +17,7 @@ function createTable () {
 				table.date('date_published')
 				table.date('date_indexed')
 				table.text('authorstring')
-				table.index(['doi'], 'doiindex')
+				table.index('doi', 'doiindex')
 			})
 		// 	}
 	})
