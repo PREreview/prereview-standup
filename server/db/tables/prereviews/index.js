@@ -5,11 +5,7 @@ module.exports = {
 var db = require('../..')
 
 function addPrereview (prereview) {
-	return db('prereviews').insert({
-		data: JSON.stringify(prereview),
-		created_at : new Date(),
-		updated_at: new Date()
-	})
+	return db('prereviews').insert(prereview)
 }
 
 function getPrereview (prereview) {

@@ -1,5 +1,3 @@
-// Handles user data
-
 var express = require('express')
 var router = express.Router()
 
