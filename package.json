@@ -29,6 +29,7 @@
     "choo-service-worker": "^2.4.0",
     "deep_find": "^1.0.1",
     "deepdash": "^4.2.10",
+    "doi-regex": "^0.1.10",
     "express": "^4.16.4",
     "express-markdown": "0.0.6",
     "express-session": "^1.16.1",
