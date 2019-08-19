@@ -8,7 +8,8 @@
     "inspect": "bankai inspect index.js",
     "start": "bankai start --debug index.js",
     "test": "standard && npm run test-deps",
-    "test-deps": "dependency-check . && dependency-check . --extra --no-dev -i tachyons"
+    "test-deps": "dependency-check . && dependency-check . --extra --no-dev -i tachyons",
+    "bundle-pdfjs-worker": "browserify -p tinyify ./components/pdf/worker.js -o ./assets/pdf.worker.bundle.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",

@@ -1,4 +1,5 @@
 var html = require('choo/html')
+var viewer = require('../pdf')
 
 var loaded = false
 
@@ -16,28 +17,29 @@ module.exports = function (state, emit, pdfurl) {
     loading.remove()
   }
 
-  var iframe = html`
-  
-  <iframe
-    id="viewer"
-    class="w-100 h-100"
-    src="https://docs.google.com/gview?url=${pdfurl}&embedded=true"
-    frameborder="0"
-  >
-  </iframe>
-  
-  `
+  var viewercontainer = html`<div class="w-100 h-100"></div>`
+
+  function loadPDF () {
+    var viewerel = viewer({
+      pdfurl: pdfurl,
+      height: viewercontainer.height,
+      width: viewercontainer.width
+    })
+
+    viewercontainer.appendChild(viewerel)
+  }
 
   var container = html`
 
   <div class="flex flex-column w-100 h-100 justify-center items-center content-center">
     ${loading}
-    ${iframe}
+    ${viewercontainer}
   </div>
   
   `
 
   setTimeout(loadingdone, loaded ? 1 : 3000)
+  setTimeout(loadPDF, 20)
   loaded = true
 
   return container
