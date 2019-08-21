@@ -28,9 +28,9 @@ module.exports = function view (state, emit, opts) {
   `
   submit.onclick = () => emit('pushState', state.href.replace('/new', '/submitted'))
 
-  var publisher = html`<div class="red i"></div>`
+  var publisher = html`<div class="red i b"></div>`
   var title = html`<h1 class="mv1 lh-solid"></h1>`
-  var authors = html`<h2 class="mv1 i lh-title"></h2>`
+  var authors = html`<h2 class="f4 mv1 i lh-title"></h2>`
 
   var editorel = html`
   
@@ -46,8 +46,11 @@ module.exports = function view (state, emit, opts) {
     </div>
     ${editorinner}
     <div class="flex flex-row justify-between pv2">
+      <div class="flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-dark-gray white link dim outline-0 pa2 pointer br2 mr2">Choose a template</div>
       <div class="flex flex-row">
+        <div class="flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-dark-gray white link dim outline-0 pa2 pointer br2 mr2">Invite collaborators</div>
         ${submit}
+        </div>
       </div>
     </div>
   </div>
