@@ -19,6 +19,7 @@ var mainstyle = css`
 var reviews = require('../fake/reviews')(3)
 
 // const TITLE = 'PREreview - reviews'
+var exampleDOI = '10.1101/465872'
 var examplePDF = 'https://www.biorxiv.org/content/biorxiv/early/2018/11/08/465872.full.pdf'
 
 module.exports = function view (state, emit) {
@@ -28,7 +29,7 @@ module.exports = function view (state, emit) {
     ${nav(state, emit)}
     <div class="w-100 flex flex-row ${mainstyle}">
       <div class="flex flex-column w-50">${require('../components/preprint/viewer')(state, emit, examplePDF)}</div>
-      <div class="flex flex-column w-50">${require('../components/review/pane')(state, emit, { reviews, requests: [] })}</div>
+      <div class="flex flex-column w-50">${require('../components/review/pane')(state, emit, { doi: exampleDOI })}</div>
     </div>
   </body>
   
