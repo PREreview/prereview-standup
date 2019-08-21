@@ -71,12 +71,17 @@ function usercontent (state, emit) {
           </div>
         </div>
       </div>
-      <div class="content fl f6 lh-copy w-50 pa3">
+      <div class="flex flex-column content fl f6 lh-copy w-50 pa3">
         <div class="ttu tracked">
           <h2 class="mt0 tc fw4">Your PREreviews</h2>
         </div>
         <div class="pa3 lh-copy tc">
-          <p>You haven't written any PREreviews yet. Get started by <a href="/find">finding a preprint</a> to review.</p>
+          <p>You haven't written any PREreviews yet.</p>
+        </div>
+        <div class="flex flex-row justify-center">
+          <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3">
+            <a class="link white dtc v-mid b" href="/find">Start PREreviewing</a>
+          </div>
         </div>
       </div>
     </div>
