@@ -76,7 +76,7 @@ function usercontent (state, emit) {
           <h2 class="mt0 tc fw4">Your PREreviews</h2>
         </div>
         <div class="pa3 lh-copy tc">
-          <p>You haven't written any PREreviews yet. Get started by finding a preprint to review.</p>
+          <p>You haven't written any PREreviews yet. Get started by <a href="/find">finding a preprint</a> to review.</p>
         </div>
       </div>
     </div>
