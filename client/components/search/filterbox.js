@@ -54,7 +54,7 @@ module.exports = function (opts) {
 
     var select = html`
   
-    <select class="${selectstyle}">
+    <select class="fr ${selectstyle}">
       <option value="0">Sort by...</option>
       <option value="1">Most recent</option>
       <option value="2">Most popular</option>

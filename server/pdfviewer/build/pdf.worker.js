@@ -220,7 +220,6 @@ var WorkerMessageHandler = {
       var supportTransfers = data[0] === 255;
       handler.postMessageTransfers = supportTransfers;
       var xhr = new XMLHttpRequest();
-      console.log('XHR', xhr)
       var responseExists = 'response' in xhr;
 
       try {

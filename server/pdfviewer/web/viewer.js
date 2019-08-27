@@ -157,8 +157,10 @@ function getViewerConfiguration() {
       toggleButton: document.getElementById('secondaryToolbarToggle'),
       toolbarButtonContainer: document.getElementById('secondaryToolbarButtonContainer'),
       presentationModeButton: document.getElementById('secondaryPresentationMode'),
+      openFileButton: document.getElementById('secondaryOpenFile'),
       printButton: document.getElementById('secondaryPrint'),
       downloadButton: document.getElementById('secondaryDownload'),
+      viewBookmarkButton: document.getElementById('secondaryViewBookmark'),
       firstPageButton: document.getElementById('firstPage'),
       lastPageButton: document.getElementById('lastPage'),
       pageRotateCwButton: document.getElementById('pageRotateCw'),
@@ -1782,14 +1784,15 @@ var validateFileURL;
       //   return;
       // }
 
-      var _ref8 = new _pdfjsLib.URL(file, window.location.href),
-          origin = _ref8.origin,
-          protocol = _ref8.protocol;
+      return
 
-      if (origin !== viewerOrigin && protocol !== 'blob:') {
-        // we're skipping this check
-        // throw new Error('file origin does not match viewer\'s');
-      }
+      // var _ref8 = new _pdfjsLib.URL(file, window.location.href),
+      //     origin = _ref8.origin,
+      //     protocol = _ref8.protocol;
+
+      // if (origin !== viewerOrigin && protocol !== 'blob:') {
+      //   throw new Error('file origin does not match viewer\'s');
+      // }
     } catch (ex) {
       var message = ex && ex.message;
       PDFViewerApplication.l10n.get('loading_error', null, 'An error occurred while loading the PDF.').then(function (loadingErrorMessage) {

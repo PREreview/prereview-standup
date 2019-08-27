@@ -11,7 +11,7 @@ css('quill/dist/quill.snow.css')
 var mainstyle = css`
 
 :host {
-  height: calc(100vh - 150px);
+  height: calc(100vh - 127px);
 }
 
 `
@@ -20,7 +20,7 @@ var reviews = require('../fake/reviews')(3)
 
 // const TITLE = 'PREreview - reviews'
 var exampleDOI = '10.1101/465872'
-var examplePDF = 'https://www.biorxiv.org/content/biorxiv/early/2018/11/08/465872.full.pdf'
+var examplePDF = 'https://www.biorxiv.org/content/biorxiv/early/2018/11/08/465872.full-text.pdf'
 
 module.exports = function view (state, emit) {
   return html`

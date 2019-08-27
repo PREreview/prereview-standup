@@ -48,7 +48,7 @@ function writereview (state, emit, opts) {
 
 function requestreview () {
   return html`
-    <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
+    <div class="flex flex-column w-100 h-100 ph2 pv0 items-start overflow-y-scroll overflow-x-hidden">
       <h2 class="ph4 fw5">Request a review</h2>
       <p class="lh-copy">Please confirm you want to request a review of this preprint:/p>
       <button>confirm request</button>
@@ -62,7 +62,7 @@ function readreviews (state, emit, opts) {
 
   var el = html`
   
-  <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
+  <div class="flex flex-column w-100 h-100 ph2 pv0 items-start overflow-y-scroll overflow-x-hidden">
     ${addreview(state, emit, opts)}
     ${title}
     ${authors}
