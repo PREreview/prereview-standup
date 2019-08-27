@@ -5,29 +5,23 @@ var loaded = false
 
 module.exports = function (state, emit, pdfurl) {
   var loading = html`
-    <div class="flex flex-column w-100 h-100 bg-white justify-center items-center" style="z-index: 9999;">
-      <p>
-        loading preprint...
-      </p>
-      ${require('../utils/loading')()}
-    </div>
+
+  <div class="flex flex-column w-100 h-100 bg-white justify-center items-center" style="z-index: 9999;">
+    <p>
+      loading preprint...
+    </p>
+    ${require('../utils/loading')()}
+  </div>
+  
   `
 
   function loadingdone () {
     loading.remove()
   }
 
-  var viewercontainer = html`<div class="w-100 h-100"></div>`
+  var pdfURI = encodeURI(`https://cors-anywhere.herokuapp.com/${pdfurl}`)
 
-  function loadPDF () {
-    var viewerel = viewer({
-      pdfurl: pdfurl,
-      height: viewercontainer.height,
-      width: viewercontainer.width
-    })
-
-    viewercontainer.appendChild(viewerel)
-  }
+  var viewercontainer = html`<iframe class="w-100 h-100" src="/pdfviewer/web/viewer.html?file=${pdfURI}"></div>`
 
   var container = html`
 
@@ -39,7 +33,6 @@ module.exports = function (state, emit, pdfurl) {
   `
 
   setTimeout(loadingdone, loaded ? 1 : 3000)
-  setTimeout(loadPDF, 20)
   loaded = true
 
   return container

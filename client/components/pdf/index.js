@@ -1,32 +1,34 @@
-var pdfjsLib = require('pdfjs-dist')
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-'/assets/pdf.worker.bundle.js'
+module.exports = () => null
 
-module.exports = (state, emit, opts) => {
-  var viewercanvas = html`
-    <canvas id="prereview-pdf-viewer"></canvas>
-  `
+// var pdfjsLib = require('pdfjs-dist')
+// pdfjsLib.GlobalWorkerOptions.workerSrc =
+// '/assets/pdf.worker.bundle.js'
 
-  var load = pdfjsLib.getDocument(opts.pdfurl)
-  load.then(
-    pdfdoc => pdfdoc.getPage(1)
-  ).then(
-    pdfpage => {
-      var viewport = pdfPage.getViewport({ scale: 1.0 })
+// module.exports = (state, emit, opts) => {
+//   var viewercanvas = html`
+//     <canvas id="prereview-pdf-viewer"></canvas>
+//   `
 
-      viewercanvas.height = opts.height
-      viewercanvas.width = opts.width
-      var context = canvas.getContext('2d')
-      var render = pdfpage.render({
-        canvasContext: context,
-        viewport: viewport 
-      })
-    }
-  ).catch(
-    e => {
-      console.error('PDF loading failed', e)
-    }
-  )
+//   var load = pdfjsLib.getDocument(opts.pdfurl)
+//   load.then(
+//     pdfdoc => pdfdoc.getPage(1)
+//   ).then(
+//     pdfpage => {
+//       var viewport = pdfPage.getViewport({ scale: 1.0 })
 
-  return viewercanvas
-}
+//       viewercanvas.height = opts.height
+//       viewercanvas.width = opts.width
+//       var context = canvas.getContext('2d')
+//       var render = pdfpage.render({
+//         canvasContext: context,
+//         viewport: viewport 
+//       })
+//     }
+//   ).catch(
+//     e => {
+//       console.error('PDF loading failed', e)
+//     }
+//   )
+
+//   return viewercanvas
+// }

@@ -24,6 +24,20 @@ app.use(
 // setup user sessions
 app.use(require('./auth/sessions'))
 
+// register static file serves
+var path = require('path')
+app.use('/assets', express.static(path.join(__dirname, '../client/assets')))
+
+var cors = require('cors')
+app.options('/pdfviewer', cors({
+  methods: ['GET'],
+  preflightContinue: true
+}))
+app.use('/pdfviewer', cors({
+  methods: ['GET'],
+  preflightContinue: true
+}), express.static(path.join(__dirname, 'pdfviewer')))
+
 // setup orcid authentication
 require('./auth/orcid')(app)
 
@@ -32,10 +46,6 @@ app.use('/', require('./routes'))
 
 // register client-side app
 app.get('/*', require('./routes/root'))
-
-// register static file serves
-app.use('../client/assets', express.static('assets'))
-app.use('/docs', express.static('docs'))
 
 app.use('/loginsuccess', (err, req, res, next) => {
   res.redirect(`/profile`)
