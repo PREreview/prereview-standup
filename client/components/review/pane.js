@@ -8,8 +8,6 @@ var display = require('./display')
 var button = require('../button')
 
 module.exports = function view (state, emit, opts) {
-  console.log(state.href)
-
   return subroute(state, emit, opts)
 }
 
@@ -59,10 +57,15 @@ function requestreview () {
 }
 
 function readreviews (state, emit, opts) {
-  return html`
+  var title = html`<h1></h1>`
+  var authors = html`<h2></h2>`
+
+  var el = html`
   
   <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
     ${addreview(state, emit, opts)}
+    ${title}
+    ${authors}
     <div class="flex flex-row items-between mv4">
       <div class="ph4 f4 fw5">${opts.reviews.length} reviews</h2>
       <div class="ph4 f4 fw5">${opts.requests.length} review requests</h2>
@@ -71,6 +74,18 @@ function readreviews (state, emit, opts) {
   </div>
   
   `
+
+  fetch(`/data/preprints/doi/${opts.doi}`).then(
+    res => res.json()
+  ).then(
+    doidata => {
+      console.log('DOI data returned', doidata)
+      title.innerHTML = doidata.title
+      authors.innerHTML = doidata.authors.list.map(a => a.fullName).join(', ')
+    }
+  )
+
+  return el
 }
 
 function addreview (state, emit, opts) {
