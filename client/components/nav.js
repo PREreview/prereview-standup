@@ -16,7 +16,7 @@ module.exports = function(state, emit, opts) {
 
     var login = html`
 
-    <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link">
+    <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link pointer noselect">
       <p class="ma0 pa0 white dib v-mid b">Log in</p>
     </div>
 
@@ -29,14 +29,14 @@ module.exports = function(state, emit, opts) {
 
   var logged = () => {
     var profile = html`
-      <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link noselect">
+      <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link pointer noselect">
         <p class="ma0 pa0 white dib v-mid b">${state.user.name}</p>
       </div>
     `
     profile.onclick = () => emit('pushState', '/profile')  
 
     var el = html`
-    <div class="flex flex-row items-center justify-center white" style="cursor: pointer;">
+    <div class="flex flex-row items-center justify-center white">
       <a href="/logout" class="link dim black-90 tc flex flex-row items-center justify-center mr4">
         Log out
       </a>
