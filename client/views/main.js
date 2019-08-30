@@ -23,7 +23,7 @@ function view (state, emit) {
       ${header(state, emit)}
       <div class="w-70 flex flex-row">
         <div class="content fl w-100 pa2 f7 lh-copy">
-          <div class="actions flex justify-start pv3">
+          <div class="actions flex justify-between pv3">
             <div class="flex items-center ttu red tracked f6 b mr3">
               ${resultstr}
             </div>

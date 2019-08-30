@@ -8,6 +8,8 @@ css`
   --theme-black: ##00000;
   --theme-white: #ffffff;
   --theme-gray: #4b4949;
+  outline: 0;
+  -moz-outline-style: none;
 }
 
 a {
