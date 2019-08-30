@@ -16,8 +16,8 @@ module.exports = function(state, emit, opts) {
 
     var login = html`
 
-    <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3">
-      <p class="ma0 pa0 link white dib v-mid b">Log in</p>
+    <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link">
+      <p class="ma0 pa0 white dib v-mid b">Log in</p>
     </div>
 
     `
@@ -29,8 +29,8 @@ module.exports = function(state, emit, opts) {
 
   var logged = () => {
     var profile = html`
-      <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3">
-        <p class="ma0 pa0 link white dib v-mid b">${state.user.name}</p>
+      <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link noselect">
+        <p class="ma0 pa0 white dib v-mid b">${state.user.name}</p>
       </div>
     `
     profile.onclick = () => emit('pushState', '/profile')  

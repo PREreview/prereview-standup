@@ -24,7 +24,7 @@ module.exports = function view (state, emit, opts) {
   var btnstyle = state.style.classes.secondaryButton
 
   var submit = html`
-    <div class="flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-red white link dim outline-0 pa2 pointer br2 dtc v-mid b f6">Publish now</div>
+    <div class="flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-red white link dim outline-0 pa2 pointer br2 dtc v-mid b f6 noselect">Publish now</div>
   `
   submit.onclick = () => emit('pushState', state.href.replace('/new', '/submitted'))
 
@@ -46,10 +46,10 @@ module.exports = function view (state, emit, opts) {
     </div>
     ${editorinner}
     <div class="flex flex-row justify-between pv2">
-      <div class="flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-dark-gray white link dim outline-0 pa2 pointer br2 mr2 dtc v-mid b f6">Choose a template</div>
+      <div class="flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-dark-gray white link dim outline-0 pa2 pointer br2 mr2 dtc v-mid b f6 noselect">Choose a template</div>
       <div class="flex flex-row">
-        <div class="flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-dark-gray white link dim outline-0 pa2 pointer br2 mr2 dtc v-mid b f6">Invite collaborators</div>
-        ${submit}
+        <div class="flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-dark-gray white link dim outline-0 pa2 pointer br2 mr2 dtc v-mid b f6 noselect">Invite collaborators</div>
+          ${submit}
         </div>
       </div>
     </div>
@@ -77,6 +77,7 @@ module.exports = function view (state, emit, opts) {
     toolbar: editorel,
     placeholder: "Review goes here...\n\n",
     modules: {
+     
       markdownShortcuts: {}
     }
   })

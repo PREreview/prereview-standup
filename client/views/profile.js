@@ -79,8 +79,8 @@ function usercontent (state, emit) {
           <p>You haven't written any PREreviews yet.</p>
         </div>
         <div class="flex flex-row justify-center">
-          <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3">
-            <a class="link white dtc v-mid b" href="/find">Start PREreviewing</a>
+          <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3 link noselect">
+            <a class="white dtc v-mid b" href="/find">Start PREreviewing</a>
           </div>
         </div>
       </div>
