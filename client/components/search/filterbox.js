@@ -52,18 +52,26 @@ module.exports = function (opts) {
   function filterbox (state, emit) {
     var filterbydate = state.filters.main.sort === 'date'
 
+    var recent = html`
+      <option value="1">Most recent</option>
+    `
+
+    var popular = html`
+      <option value="2">Most popular</option>
+    `
+
     var select = html`
   
     <select class="fr ${selectstyle}">
       <option value="0">Sort by...</option>
-      <option value="1">Most recent</option>
-      <option value="2">Most popular</option>
+      ${recent}
+      ${popular}
     </select>
     
     `
 
-    // btn_date.onclick = () => emit('sort', { scope: 'main', sort: 'date' })
-    // btn_reviews.onclick = () => emit('sort', { scope: 'main', sort: 'reviews' })
+    recent.onclick = () => emit('sort', { scope: 'main', sort: 'date' })
+    popular.onclick = () => emit('sort', { scope: 'main', sort: 'reviews' })
 
     return select
   }
