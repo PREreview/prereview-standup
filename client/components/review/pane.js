@@ -64,7 +64,7 @@ function readreviews (state, emit, opts) {
   
   <div class="flex flex-column w-100 h-100 ph2 pv0 items-start overflow-y-scroll overflow-x-hidden">
     ${addreview(state, emit, opts)}
-    ${title}
+    <a href="https://doi.org/${opts.doi}" targe="_blank">${title}</a>
     ${authors}
     <div class="flex flex-row items-between mv4">
       <div class="ph4 f4 fw5">${opts.reviews.length} reviews</h2>
@@ -80,7 +80,7 @@ function readreviews (state, emit, opts) {
   ).then(
     doidata => {
       console.log('DOI data returned', doidata)
-      title.innerHTML = doidata.title
+      title.innerHTML = `<a href="https://doi.org/${opts.doi}">${doidata.title}</a>`
       authors.innerHTML = doidata.authors.list.map(a => a.fullName).join(', ')
     }
   )

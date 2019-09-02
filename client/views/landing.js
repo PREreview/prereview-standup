@@ -60,8 +60,13 @@ function view (state, emit) {
         <div class="content lh-copy w-50 pa5">
           <h1>Changing the <em>who</em>, <em>when</em> and <em>how</em> of scientific peer review.</h1>
           <h2 class="fw2">Share, read, and review preprints</h2>
-          <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3 link pointer">
-            <a class="white dtc v-mid b" href="/login-redirect">Join the community</a>
+          <div class="flex flex-row">
+            <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3 link pointer">
+              <a class="white dtc v-mid b" href="/login-redirect">Join the community</a>
+            </div> 
+            <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3 link pointer">
+              <a class="white dtc v-mid b" href="/find">Find preprints to review</a>
+            </div>
           </div>
         </div>
       </div>

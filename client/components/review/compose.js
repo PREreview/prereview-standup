@@ -37,7 +37,7 @@ module.exports = function view (state, emit, opts) {
   <div class="flex flex-column h-100 w-100 ph2 pv0">
     <div class="flex flex-column lh-copy pa3">
       ${publisher}
-      ${title}
+      <a class="black link" href="https://doi.org/${opts.doi}" target="_blank">${title}</a>
       ${authors}
       <p>
         <b>Before you begin:</b> please make sure you've read our <a class="link dim red" target="_blank" href="/docs/code_of_conduct">code of conduct</a>.
