@@ -46,6 +46,7 @@
     "knex": "^0.19.1",
     "lorem-ipsum": "^2.0.1",
     "lunr": "^2.3.6",
+    "markdown-string": "^0.2.0",
     "method-override": "^3.0.0",
     "morgan": "^1.9.1",
     "nano": "^8.1.0",
