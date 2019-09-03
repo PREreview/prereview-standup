@@ -13,6 +13,13 @@ function addUser (user) {
 	})
 }
 
+function updateUser (user) {
+	return db('users')
+		.where({ orcid: user.orcid })
+		.first()
+		.update(user)
+}
+
 function getUser (user) {
 	return db('users')
 		.where({ orcid: user.orcid })
@@ -38,7 +45,12 @@ function getOrAddUser (user) {
 					}
 				)
       } else {
-        return results[0]
+				return updateUser(user).then(
+					user => {
+						user.firstvisit = false
+						return user
+					}
+				)
       }
     })
 }
@@ -48,7 +60,7 @@ function makeUserPrivate (user) {
 		.where({ orcid: user.orcid })
 		.first()
 		.update({
-			is_private: true,
+			is_private: true
 		})
 }
 
@@ -57,6 +69,6 @@ function makeUserPublic (user) {
 		.where({ orcid: user.orcid })
 		.first()
 		.update({
-			is_private: false,
+			is_private: false
 		})
 }

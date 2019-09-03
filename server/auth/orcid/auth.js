@@ -2,7 +2,7 @@
 var passport = require('passport')
 var users = require('../../db/tables/users')
 var OrcidStrategy = require('passport-orcid').Strategy
-var getWorks = require('./works')
+var updateFromOrcid = require('./profile')
 
 // these are needed for storing the user in the session
 passport.serializeUser(function (user, done) {
@@ -34,16 +34,13 @@ passport.use(new OrcidStrategy({
     profile: {}
   }
   
-  // // now we get the list of works for the user from the ORCID api
-  // // and add it to their profile data
-  // var works = getWorks(profile).catch(
-  //   err => {
-  //     console.log('failed to retrieve works list from ORCID API')
-  //     done(null, profile)
-  //   }
-  // )
-
-  users.getOrAddUser(profile).then(userdata => done(null, profile)).catch(done)
+  // now we get the list of works for the user from the ORCID api
+  // and add it to their profile data
+  updateFromOrcid(profile).then(enrichedProfile => {
+    return users.getOrAddUser(enrichedProfile).then(userdata => {
+      done(null, enrichedProfile)
+    })
+  }).catch(done)
 }))
 
 module.exports = app => {

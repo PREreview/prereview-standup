@@ -57,7 +57,19 @@ app.use(function (err, req, res, next) {
 })
 
 var listenport = process.env.PREREVIEW_PORT
-app.listen(listenport, function (err) {
+
+if (listenport === 443) {
+  var https = require('https')
+  var serveropts = {
+    key: fs.readFileSync(process.env.PREREVIEW_TLS_KEY),
+    cert: fs.readFileSync(process.env.PREREVIEW_TLS_KEY)
+  }
+  https.createServer(serveropts, app).listen(listenport, listening)
+} else {
+  app.listen(listenport, listening)
+}
+
+function listening (err) {
   if (err) return console.log(err)
-  console.log(`Listening at http://localhost:${listenport}/`)
-})
+  console.log(`Listening at ${process.env.APP_ROOT_URI}`)
+}
