@@ -57,6 +57,8 @@ function requestreview () {
 }
 
 function readreviews (state, emit, opts) {
+  if (!opts.reviews) opts.reviews = []
+  if (!opts.requests) opts.requests = []
   var title = html`<h1></h1>`
   var authors = html`<h2></h2>`
 
