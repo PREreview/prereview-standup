@@ -1,5 +1,5 @@
 var html = require('choo/html')
-
+var raw = require('choo/html/raw')
 var nav = require('../components/nav')
 var userSummary = require('../components/cards/profile')
 
@@ -31,6 +31,7 @@ function view (state, emit) {
       ${nav(state, emit)}
       <div class="flex flex-column w-70">
         ${profilecard(state, emit)}
+        ${firstvisitcards(state, emit)}
         ${usercontent(state, emit)}
       </div>
     </body>
@@ -43,10 +44,27 @@ function profilecard (state, emit) {
       <div class="tc">
         <img src="${state.user.picture}" class="br-100 h4 w4 dib" title="your picture">
         <h2 class="mb1 fw4">${state.user.name}</h2>
-        <h3 class="mt1 f5 fw3">ORCiD: <a class="link dim dark-red code" href="https://orcid.org/${state.user.orcid}" target="_blank">${state.user.orcid}</a></h3>
+        <h3 class="mt1 f5 fw3">
+          ORCID <img src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" /> <a class="link dim dark-red code" href="https://orcid.org/${state.user.orcid}" target="_blank">${state.user.orcid}</a></h3>
       </div>
     </div>
   `
+}
+
+function firstvisitcards (state, emit) {
+  if (true || state.user.firstvisit) {
+    if (!state.user.profile.privacysetup) {
+      return html`
+      
+      <div class="flex flex-column justfy-center items-center">
+        ${require('../components/cards/identity-choice')(state, emit)}
+      </div>
+
+      `
+    }
+  } else {
+    return null
+  }
 }
 
 function usercontent (state, emit) {
@@ -58,8 +76,8 @@ function usercontent (state, emit) {
         </div>
         <div class="flex flex-column pa4">
           <div class="flex flex-row justify-between">
-            <div class="b">Current position</div>
-            <div class="">Unknown</div>
+            <div class="b">Biography</div>
+            <div class="ml2 pa2 lh-copy">${raw(state.user.profile.biography || 'not yet filled in')}</div>
           </div>
           <div class="flex flex-row justify-between">
             <div class="b">PREreviews</div>
