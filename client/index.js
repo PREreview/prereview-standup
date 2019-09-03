@@ -24,6 +24,7 @@ app.use(require('./stores/devdata'))
 app.use(require('./stores/search'))
 app.use(require('./stores/sort'))
 
+app.route('/styleguide', require('./views/styleguide'))
 app.route('/', require('./views/landing'))
 app.route('/login-redirect', require('./views/login-redirect'))
 app.route('/find', require('./views/main'))
