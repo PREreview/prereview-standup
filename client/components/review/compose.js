@@ -28,9 +28,9 @@ module.exports = function view (state, emit, opts) {
   `
   submit.onclick = () => emit('pushState', state.href.replace('/new', '/submitted'))
 
-  var publisher = html`<div class="red i b"></div>`
-  var title = html`<h1 class="mv1 lh-solid"></h1>`
-  var authors = html`<h2 class="f4 mv1 i lh-title"></h2>`
+  var publisher = html`<div class="red i b">${opts.publisher}</div>`
+  var title = html`<h1 class="mv1 lh-solid">${opts.title}</h1>`
+  var authors = html`<h2 class="f4 mv1 i lh-title">${opts.authors.list.map(a => a.fullName).join(', ')}</h2>`
 
   var editorel = html`
   
@@ -56,17 +56,6 @@ module.exports = function view (state, emit, opts) {
   </div>
   
   `
-
-  fetch(`/data/preprints/doi/${opts.doi}`).then(
-    res => res.json()
-  ).then(
-    doidata => {
-      console.log('DOI data returned', doidata)
-      publisher.innerHTML = doidata.publisher
-      title.innerHTML = doidata.title
-      authors.innerHTML = doidata.authors.list.map(a => a.fullName).join(', ')
-    }
-  )
 
   var MarkdownShortcuts = require('../../lib/editor/markdownShortcuts')
   Quill.register('modules/markdownShortcuts', MarkdownShortcuts)

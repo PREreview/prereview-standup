@@ -64,7 +64,7 @@ function firstvisitcards (state, emit) {
     }
     return html`
       
-    <div class="flex flex-column justfy-center items-center">
+    <div class="flex flex-column justfy-center items-center pb4 bb b--black-20">
       ${el}
     </div>
 

@@ -4,15 +4,13 @@ var css = require('sheetify')
 module.exports = (state, emit) => {
   return html`
     <div class="flex flex-column justify-start">
-      ${components.map(c => c.func(state, emit, c.opts))}
+      ${agreeButton(state, emit)}
     </div>
   `
 }
 
-function buttonSwitch (state, emit, opts) {
-  var btnclasses = 'pa3 ba br2 b--black-10 link dim'
-  var selectedclasses = 'bg-red white b'
-  var left = html`<div class="${btnclasses} ${selectedclasses}">${opts.l.content}</div>`
+function agreeButton (state, emit, opts) {
+  var left = html`<div class="pa3 ba br2 b--black-10 link dim bg-red white b">Agree</div>`
 
   left.onclick = e => {
     emit('pushState', '/agree-to-coc')
@@ -20,8 +18,7 @@ function buttonSwitch (state, emit, opts) {
 
   return html`
   <div class="flex flex-column items-center noselect measure">
-    <h1 class="pt0 mt0">Welcome to PREreview</h1>
-    <h2>Before you can use PREreview you must read and agree to abide by the community guidelines and code of conduct.</h2>
+    <h2>Before you can use PREreview you must read and agree to abide by <a href="/docs/code_of_conduct" target="_blank">code of conduct</a>.</h2>
     <div class="flex flex-row justify-start pointer mw-50">
       ${left}
     </div>

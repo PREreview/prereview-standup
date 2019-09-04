@@ -59,14 +59,13 @@ function requestreview () {
 function readreviews (state, emit, opts) {
   if (!opts.reviews) opts.reviews = []
   if (!opts.requests) opts.requests = []
-  var title = html`<h1><a href="https://doi.org/${opts.doi}">${doidata.title}</a></h1>`
-  var authors = html`<h2>${doidata.authors.list.map(a => a.fullName).join(', ')}</h2>`
+  var authors = html`<h2>${opts.authors.list.map(a => a.fullName).join(', ')}</h2>`
 
   var el = html`
   
   <div class="flex flex-column w-100 h-100 ph2 pv0 items-start overflow-y-scroll overflow-x-hidden">
     ${addreview(state, emit, opts)}
-    <a href="https://doi.org/${opts.doi}" targe="_blank">${opts.title}</a>
+    <a href="https://doi.org/${opts.doi}" target="_blank">${opts.title}</a>
     ${authors}
     <div class="flex flex-row items-between mv4">
       <div class="ph4 f4 fw5">${opts.reviews.length} reviews</h2>
@@ -92,7 +91,7 @@ function addreview (state, emit, opts) {
     label: 'Review this preprint',
     classes: 'ml2 bg-red white'
   })
-  write.onclick = () => emit('pushState', './new')
+  write.onclick = () => emit('pushState', `/prereviews/${opts.doi}/new`)
 
   return html`
     <div class="w-100 ${s.col} items-end">

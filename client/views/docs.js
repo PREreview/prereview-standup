@@ -17,7 +17,7 @@ function view (state, emit) {
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray">
       ${nav(state, emit)}
-			<div class="w-70 flex flex-column pa4 lh-copy">
+			<div class="w-70 flex flex-column pa4 lh-copy measure-wide">
 				<h1>Contents</h1>
         ${content}
       </div>
