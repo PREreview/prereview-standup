@@ -7,11 +7,11 @@ var components = [
     opts: {
       l: {
         content: 'Keep my identity private',
-        detail: html`This choice shows a pseudonym on your profile, posts and comments. Your ORCID ID <img style="margin-bottom:-3px;" src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />, real name, email address and other person details will not be connected with your profile or activity on PREreview. However, the PREreview staff will always be able to see your identity.`
+        detail: html`This choice shows a pseudonym on your profile, posts and comments. Your ORCID <img style="margin-bottom:-3px;" src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />, real name, email address and other person details will not be connected with your profile or activity on PREreview. However, the PREreview staff will always be able to see your identity.`
       },
       r: {
         content: 'Make my identity public',
-        detail: html`This choice shows your real name on your profile, posts and comments, and links them to your ORCID ID <img style="margin-bottom:-3px;" src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />. Anyone visiting PREreview will be able to see your true identity, and search engines such as Google will index your profile page and contributions.` 
+        detail: html`This choice shows your real name on your profile, posts and comments, and links them to your ORCID <img style="margin-bottom:-3px;" src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />. Anyone visiting PREreview will be able to see your true identity, and search engines such as Google will index your profile page and contributions.` 
       }
     }
   }
@@ -76,7 +76,7 @@ function buttonSwitch (state, emit, opts) {
 
   return html`
   <div class="flex flex-column items-center noselect measure">
-    <h1>Welcome to PREreview</h1>
+    <h1 class="pt0 mt0">Welcome to PREreview</h1>
     <h2>To start using PREreview you need to choose whether to publicly link your identity to your account.</h2>
     <div class="flex flex-row justify-start pointer mw-50">
       ${left}

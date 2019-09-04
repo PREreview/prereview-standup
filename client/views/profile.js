@@ -53,17 +53,24 @@ function profilecard (state, emit) {
 
 function firstvisitcards (state, emit) {
   if (true || state.user.firstvisit) {
-    if (!state.user.profile.privacysetup) {
-      return html`
-      
-      <div class="flex flex-column justfy-center items-center">
-        ${require('../components/cards/identity-choice')(state, emit)}
-      </div>
+    var el
 
-      `
+    if (!state.user.profile.cocagreed) {
+      el = require('../components/cards/signup/community')(state, emit)
+    } else if (!state.profile.privacysetup) {
+      el = require('../components/cards/signup/identity-choice')(state, emit)
+    } else {
+      el = start()
     }
+    return html`
+      
+    <div class="flex flex-column justfy-center items-center">
+      ${el}
+    </div>
+
+    `
   } else {
-    return null
+    return start()
   }
 }
 
@@ -96,12 +103,20 @@ function usercontent (state, emit) {
         <div class="pa3 lh-copy tc">
           <p>You haven't written any PREreviews yet.</p>
         </div>
-        <div class="flex flex-row justify-center">
-          <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3 link noselect">
-            <a class="white dtc v-mid b" href="/find">Start PREreviewing</a>
-          </div>
-        </div>
+        ${start()}
       </div>
     </div>
+  `
+}
+
+function start () {
+  return html`
+      
+  <div class="flex flex-row justify-center">
+    <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3 link noselect">
+      <a class="white dtc v-mid b" href="/find">Start PREreviewing</a>
+    </div>
+  </div>
+  
   `
 }
