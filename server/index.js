@@ -62,7 +62,8 @@ if (listenport === 443) {
   var https = require('https')
   var serveropts = {
     key: fs.readFileSync(process.env.PREREVIEW_TLS_KEY),
-    cert: fs.readFileSync(process.env.PREREVIEW_TLS_CERT)
+    cert: fs.readFileSync(process.env.PREREVIEW_TLS_CERT),
+    ca: fs.readFileSync(process.env.PREREVIEW_TLS_CHAIN)
   }
   https.createServer(serveropts, app).listen(listenport, listening)
 } else {
