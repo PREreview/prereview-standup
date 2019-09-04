@@ -59,14 +59,14 @@ function requestreview () {
 function readreviews (state, emit, opts) {
   if (!opts.reviews) opts.reviews = []
   if (!opts.requests) opts.requests = []
-  var title = html`<h1></h1>`
-  var authors = html`<h2></h2>`
+  var title = html`<h1><a href="https://doi.org/${opts.doi}">${doidata.title}</a></h1>`
+  var authors = html`<h2>${doidata.authors.list.map(a => a.fullName).join(', ')}</h2>`
 
   var el = html`
   
   <div class="flex flex-column w-100 h-100 ph2 pv0 items-start overflow-y-scroll overflow-x-hidden">
     ${addreview(state, emit, opts)}
-    <a href="https://doi.org/${opts.doi}" targe="_blank">${title}</a>
+    <a href="https://doi.org/${opts.doi}" targe="_blank">${opts.title}</a>
     ${authors}
     <div class="flex flex-row items-between mv4">
       <div class="ph4 f4 fw5">${opts.reviews.length} reviews</h2>
@@ -76,16 +76,6 @@ function readreviews (state, emit, opts) {
   </div>
   
   `
-
-  fetch(`/data/preprints/doi/${opts.doi}`).then(
-    res => res.json()
-  ).then(
-    doidata => {
-      console.log('DOI data returned', doidata)
-      title.innerHTML = `<a href="https://doi.org/${opts.doi}">${doidata.title}</a>`
-      authors.innerHTML = doidata.authors.list.map(a => a.fullName).join(', ')
-    }
-  )
 
   return el
 }
