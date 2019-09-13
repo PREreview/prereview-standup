@@ -1,12 +1,18 @@
 var html = require('choo/html')
 var raw = require('choo/html/raw')
-var nav = require('../components/nav')
-var userSummary = require('../components/cards/profile')
+var css = require('sheetify')
 
-var filterbox = require('../components/profile/filterbox')
-var preprintlist = require('../components/profile/preprintlist')
+var nav = require('../components/nav')
 
 var TITLE = 'PREreview2 | profile'
+
+var biostyle = css`
+
+:host > p {
+  margin: 0;
+}
+
+`
 
 module.exports = view
 
@@ -86,7 +92,7 @@ function usercontent (state, emit) {
         <div class="flex flex-column pa4">
           <div class="flex flex-row justify-between">
             <div class="b">Biography</div>
-            <div class="ml2 pa2 lh-copy">${raw(state.user.profile.biography || 'not yet filled in')}</div>
+            <div class="ml2 pl2 lh-copy ${biostyle}">${raw(state.user.profile.biography || 'not yet filled in')}</div>
           </div>
           <div class="flex flex-row justify-between">
             <div class="b">PREreviews</div>
