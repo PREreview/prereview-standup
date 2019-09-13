@@ -1,10 +1,6 @@
 var html = require('choo/html')
 var css = require('sheetify')
 
-var sample = require('lodash/sample')
-
-var getn = () => sample([1, 2, 3, 4, 5, 6, 7, 8, 9])
-
 var contentStyle = css`
 
 :host p {
@@ -21,6 +17,11 @@ var contentStyle = css`
 `
 
 module.exports = function view (state, emit, review) {
+  var comments = getComments(state, emit, review)
+  var expand = () => {
+    comments.classList.remove('dn')
+    comments.classList.add('flex')
+  }
   
   return html`
     
@@ -31,16 +32,60 @@ module.exports = function view (state, emit, review) {
         <div>${review.created.toDateString()}</div>
       </div>
     </div>
-    <div class="flex flex-column lh-copy w-100 pb2 mb2">
+    <div class="flex flex-column lhview-copy w-100 pb2 mb2">
       ${review.content}
     </div>
-    <div class="flex flex-row lh-copy w-100 pb3 bb bw2 b--light-gray justify-between">
-      <div class="flex flex-row">
-        ${require('../utils/svg')(state, emit, { size: '30px', name: 'thumbs-up', classes: 'mr2'})} ${getn()}
-      </div>
-      <div class="underline">${getn()} comments</div>
+    <div class="flex flex-row lh-copy w-100 justify-between">
+      ${plauditsBtn(state, emit, review)}
+      ${commentsBtn(state, emit, review, expand)}
     </div>
+    ${comments}
   </div>
   
+  `
+}
+
+function plauditsBtn (state, emit, review) {
+  return html`
+    <div class="flex flex-row">
+      ${review.plaudits} plaudits
+    </div>
+  `
+}
+
+function commentsBtn (state, emit, review, expand) {
+  var el = html`
+    <div class="b">
+      ${review.comments.length} comments
+    </div>
+  `
+
+  if (state.user || review.comments.length > 1) {
+    el.classList.add('link', 'dim', 'pointer')
+    el.onclick = () => expand
+  }
+
+  return el
+}
+
+function getComments (state, emit, review) {
+  return html`
+    <div class="flex flex-column lh-copy w-100 bt bl bw1 b--light-gray justify-between dn">
+      ${review.comments.map(c => comment(state, emit, c))}
+    </div>
+  `
+}
+
+function comment (state, emit, c) {
+  return html`
+    <div class="flex-column w-100 pa3 f4 mid-gray lh-copy">
+      <div class="flex flex-row justify-between w-100 mb2">
+        <div class="b dark-gray fw5">${c.author.firstName} ${c.author.lastName}</div>
+        <div>${c.created.toDateString()}</div>
+      </div>
+      <div class="flex flex-column lhview-copy w-100 pb2 mb2">
+        ${c.content}
+      </div>
+    </div>
   `
 }

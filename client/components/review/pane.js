@@ -65,9 +65,9 @@ function readreviews (state, emit, opts) {
   
   <div class="flex flex-column w-100 h-100 ph2 pv0 items-start overflow-y-scroll overflow-x-hidden">
     ${meta(state, emit, opts)}
-    ${addreview(state, emit, opts)}
-    <div class="flex flex-row items-between mv2">
+    <div class="flex flex-row justify-between items-center mv2">
       <div class="ph2 f4 fw5">${opts.reviews.length} reviews</h2>
+      ${addreview(state, emit, opts)}
     </div>
     ${opts.reviews.map(r => require('./display')(state, emit, r))}
   </div>

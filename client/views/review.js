@@ -16,7 +16,7 @@ var mainstyle = css`
 
 `
 
-var reviews = require('../fake/reviews')(3)
+var reviews = require('../fake/reviews')
 
 module.exports = function view (state, emit) {
   var doiparts = state.href.split('/preprints/doi/')[1].split('/').slice(0, 2)
@@ -42,6 +42,7 @@ module.exports = function view (state, emit) {
   ).then(
     doidata => {
       console.log('DOI data returned', doidata)
+      doidata.reviews = reviews()
       left.appendChild(require('../components/preprint/viewer')(state, emit, doidata))
       right.appendChild(require('../components/review/pane')(state, emit, doidata))
     }
