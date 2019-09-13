@@ -43,11 +43,6 @@ module.exports = view
 function view (state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
 
-  if (state.user && state.user.orcid) {
-    window.location = '/find'
-    return html`<body></body>`
-  }
-
   var nresults = state.searchResults.length
   var resultstr = state.searched ?
     (nresults ? `${nresults} results` : 'no results') :
