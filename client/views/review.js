@@ -19,7 +19,7 @@ var mainstyle = css`
 var reviews = require('../fake/reviews')(3)
 
 module.exports = function view (state, emit) {
-  var doiparts = state.href.split('/prereviews/')[1].split('/').slice(0, 2)
+  var doiparts = state.href.split('/preprints/doi/')[1].split('/').slice(0, 2)
   var doi = `${doiparts[0]}/${doiparts[1]}`
 
   var left = html`<div class="flex flex-column w-50"></div>`

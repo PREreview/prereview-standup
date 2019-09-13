@@ -5,7 +5,7 @@ module.exports = preprint
 function preprint (state, emit, p) {
   var d = p.data || p
 
-  var gotoreviews = () => emit('pushState', `/prereviews/${d.doi}`)
+  var gotoreviews = () => emit('pushState', `/preprints/doi/${d.doi}`)
 
   var title = html`<div class="link dim" style="cursor: pointer;">${d.title}</div>`
   title.onclick = gotoreviews
@@ -20,7 +20,7 @@ function preprint (state, emit, p) {
       <p class="ma0 pa0 white dtc v-mid b f6">Write a PREreview</p>
     </div>
   `
-  addreview.onclick = () => emit('pushState', `/prereviews/${d.doi}/new`)
+  addreview.onclick = () => emit('pushState', `/preprints/doi/${d.doi}/new`)
 
   return html`
   

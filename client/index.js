@@ -32,9 +32,9 @@ app.route('/profile', require('./views/profile'))
 app.route('/users/*', require('./views/profile'))
 app.route('/docs/*', require('./views/docs'))
 
-// /prereviews/doi -> read
-// /prereviews/doi/new -> write
-// /prereviews/doi/request -> request
-app.route('/prereviews/*', require('./views/review'))
+// /preprints/doi -> read
+// /preprints/doi/new -> write
+// /preprints/doi/request -> request
+app.route('/preprints/*', require('./views/review'))
 
 module.exports = app.mount('body')
