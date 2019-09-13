@@ -44,10 +44,6 @@ module.exports = async (state, emitter) => {
       }
   
       // if we get here, the user is logged in and we have their data
-      if (!state.user.picture) {
-        state.user.picture = '/assets/illustrations/avatar.png'
-      }
-  
       if (state.route === '/') return (window.location = '/find')
   
       if (state.contentloaded) {

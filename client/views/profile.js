@@ -39,13 +39,19 @@ function view (state, emit) {
 }
 
 function profilecard (state, emit) {
+  var gravatartxt = state.user.profile.pic ?
+    null :
+    html`You can choose your profile picture by registering your email on <a href="https://gravatar.com">Gravatar</a>.`
+
   return html`
     <div class="w-100 center bg-white br3 pa3 pa4-ns mv3">
       <div class="tc">
-        <img src="${state.user.picture}" class="br-100 h4 w4 dib" title="your picture">
+        <img src="${state.user.profile.pic + '&s=128' || '/assets/illustrations/avatar.png'}" class="br-100 h4 w4 dib" title="your picture">
+        ${gravatartxt}
         <h2 class="mb1 fw4">${state.user.name}</h2>
         <h3 class="mt1 f5 fw3">
-          ORCID <img src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" /> <a class="link dim dark-red code" href="https://orcid.org/${state.user.orcid}" target="_blank">${state.user.orcid}</a></h3>
+          ORCID <img src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" /> <a class="link dim dark-red code" href="https://orcid.org/${state.user.orcid}" target="_blank">${state.user.orcid}</a>
+        </h3>
       </div>
     </div>
   `
