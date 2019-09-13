@@ -52,26 +52,22 @@ function profilecard (state, emit) {
 }
 
 function firstvisitcards (state, emit) {
-  if (true || state.user.firstvisit) {
-    var el
+  var el
 
-    if (!state.user.profile.cocagreed) {
-      el = require('../components/cards/signup/community')(state, emit)
-    } else if (!state.profile.privacysetup) {
-      el = require('../components/cards/signup/identity-choice')(state, emit)
-    } else {
-      el = start()
-    }
-    return html`
-      
-    <div class="flex flex-column justfy-center items-center pb4 bb b--black-20">
-      ${el}
-    </div>
-
-    `
+  if (!state.user.coc_agreed) {
+    el = require('../components/cards/signup/code-of-conduct')(state, emit)
+  } else if (!state.user.privacy_setup) {
+    el = require('../components/cards/signup/identity-choice')(state, emit)
   } else {
-    return start()
+    el = start(state)
   }
+  return html`
+    
+  <div class="flex flex-column justfy-center items-center pb4 bb b--black-20">
+    ${el}
+  </div>
+
+  `
 }
 
 function usercontent (state, emit) {
@@ -103,13 +99,18 @@ function usercontent (state, emit) {
         <div class="pa3 lh-copy tc">
           <p>You haven't written any PREreviews yet.</p>
         </div>
-        ${start()}
+        ${start(state)}
       </div>
     </div>
   `
 }
 
-function start () {
+function start (state) {
+  if (!state.user.coc_agreed || !state.user.privacy_setup) return html`
+  <div class="flex flex-row justify-center">
+    <p>Once you have completed your signup you can start PREreviewing</p>
+  </div>
+  `
   return html`
       
   <div class="flex flex-row justify-center">

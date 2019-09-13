@@ -2,6 +2,27 @@ const ORCID = require('orcid-utils')
 
 module.exports = async (state, emitter) => {
   state.contentloaded = false
+  state.user = null
+
+  var userDo = verb => fetch(`/data/users/me/${verb}`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ accept: true })
+  }).then(
+    getCurrentUser()
+  )
+
+  var acceptCoC = () => userDo('accept_coc')
+  emitter.on('user:accept-coc', acceptCoC)
+
+  var becomePrivate = () => userDo('become_private')
+  emitter.on('user:become-private', becomePrivate)
+
+  var becomePublic = () => userDo('become_public')
+  emitter.on('user:become-public', becomePublic)
   
   emitter.on('DOMContentLoaded', function () {
     state.contentloaded = true
@@ -11,26 +32,33 @@ module.exports = async (state, emitter) => {
     }
   })
 
-  try {
-    var userdata = await fetch('/data/users/me')
-    state.user = await userdata.json()
-
-    if (!state.user || !state.user.orcid) throw new Error('user is not logged in with ORCID')
-
-    // if we get here, the user is logged in and we have their data
-
-    if (!state.user.picture) {
-      state.user.picture = '/assets/illustrations/avatar.png'
+  async function getCurrentUser () {
+    try {
+      var userdata = await fetch('/data/users/me')
+      state.user = await userdata.json()
+  
+      if (!state.user || !state.user.orcid) {
+        state.user = null
+        emitter.emit('render')
+        return null
+      }
+  
+      // if we get here, the user is logged in and we have their data
+      if (!state.user.picture) {
+        state.user.picture = '/assets/illustrations/avatar.png'
+      }
+  
+      if (state.route === '/') return (window.location = '/find')
+  
+      if (state.contentloaded) {
+        emitter.emit('render')
+      } else {
+        state.renderonload = true
+      }
+    } catch (e) {
+      state.user = null
     }
-
-    if (state.route === '/') return (window.location = '/find')
-
-    if (state.contentloaded) {
-      emitter.emit('render')
-    } else {
-      state.renderonload = true
-    }
-  } catch (e) {
-    console.log('there is no user', e)
   }
+
+  getCurrentUser()
 }

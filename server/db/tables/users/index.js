@@ -60,7 +60,8 @@ function makeUserPrivate (user) {
 		.where({ orcid: user.orcid })
 		.first()
 		.update({
-			is_private: true
+			is_private: true,
+			privacy_setup: true
 		})
 }
 
@@ -69,6 +70,16 @@ function makeUserPublic (user) {
 		.where({ orcid: user.orcid })
 		.first()
 		.update({
-			is_private: false
+			is_private: false,
+			privacy_setup: true
+		})
+}
+
+function acceptCoC (user) {
+	return db('users')
+		.where({ orcid: user.orcid })
+		.first()
+		.update({
+		  coc_accepted: true
 		})
 }

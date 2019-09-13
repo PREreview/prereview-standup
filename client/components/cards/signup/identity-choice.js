@@ -7,11 +7,13 @@ var components = [
     opts: {
       l: {
         content: 'Keep my identity private',
-        detail: html`This choice shows a pseudonym on your profile, posts and comments. Your ORCID <img style="margin-bottom:-3px;" src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />, real name, email address and other person details will not be connected with your profile or activity on PREreview. However, the PREreview staff will always be able to see your identity.`
+        detail: html`This choice shows a pseudonym on your profile, posts and comments. Your ORCID <img style="margin-bottom:-3px;" src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />, real name, email address and other person details will not be connected with your profile or activity on PREreview. However, the PREreview staff will always be able to see your identity.`,
+        choice: 'private'
       },
       r: {
         content: 'Make my identity public',
-        detail: html`This choice shows your real name on your profile, posts and comments, and links them to your ORCID <img style="margin-bottom:-3px;" src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />. Anyone visiting PREreview will be able to see your true identity, and search engines such as Google will index your profile page and contributions.` 
+        detail: html`This choice shows your real name on your profile, posts and comments, and links them to your ORCID <img style="margin-bottom:-3px;" src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />. Anyone visiting PREreview will be able to see your true identity, and search engines such as Google will index your profile page and contributions.`,
+        choice: 'public'
       }
     }
   }
@@ -60,11 +62,14 @@ function buttonSwitch (state, emit, opts) {
   </div>
   `
 
+  var choice = 'private'
+
   left.onclick = e => {
     left.className = `${btnclasses} ${leftclasses} ${selectedclasses}`
     right.className = `${btnclasses} ${rightclasses} ${unselectedclasses}`
     lefthead.innerHTML = `<h3>${opts.l.content}</h3><span class="ttu small f7 red ba br1 b--red h1 r pa1">selected</span>`
     righthead.innerHTML = `<h3>${opts.r.content}</h3>`
+    choice = opts.l.choice
   }
 
   right.onclick = e => {
@@ -72,6 +77,12 @@ function buttonSwitch (state, emit, opts) {
     right.className = `${btnclasses} ${rightclasses} ${selectedclasses}`
     righthead.innerHTML = `<h3>${opts.r.content}</h3><span class="ttu small f7 red ba br1 b--red h1 r pa1">selected</span>`
     lefthead.innerHTML = `<h3>${opts.l.content}</h3>`
+    choice = opts.r.choice
+  }
+
+  var submit = html`<div class="${btnclasses} ${selectedclasses}">Confirm your choice</div>`
+  submit.onclick = e => {
+    emit(`user:become-${choice}`)
   }
 
   return html`
@@ -84,10 +95,11 @@ function buttonSwitch (state, emit, opts) {
     </div>
     <div class="flex flex-column lh-copy dark-gray mw-50 measure">
       <h2>What does this mean?</h2>
-      <detail>
         ${leftexplan}
         ${rightexplan}
-      </detail>
+    </div>
+    <div class="flex flex-column lh-copy dark-gray mw-50 measure">
+      ${submit}
     </div>
   </div>
   `

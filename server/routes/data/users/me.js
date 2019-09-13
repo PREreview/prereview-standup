@@ -15,7 +15,7 @@ router.get('/me', function (req, res) {
 	}
 })
 
-// Allows the current user to switch their account to private
+// Current user sets their account to private
 // so that their real name and ORCID are hidden
 router.post('/me/become_private', function (req, res) {
 	if (req.user) {
@@ -26,7 +26,7 @@ router.post('/me/become_private', function (req, res) {
 	}
 })
 
-// Allows the current user to switch their account to public
+// Current user sets their account to public
 // so that their real name and ORCID are shown
 router.post('/me/become_public', function (req, res) {
 	if (req.user) {
@@ -36,5 +36,17 @@ router.post('/me/become_public', function (req, res) {
 		res.json({})
 	}
 })
+
+// Current user accepts the Code of Conduct -
+// without this the user is not allowed to create content
+router.post('/me/accept_coc', function (req, res) {
+	if (req.user) {
+		user.acceptCoC(req.user).then(res.json(req.user))
+	} else {
+		res.status(401)
+		res.json({})
+	}
+})
+
 
 module.exports = router
