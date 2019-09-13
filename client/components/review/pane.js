@@ -89,7 +89,7 @@ function addreview (state, emit, opts) {
     label: 'Review this preprint',
     classes: 'ml2 bg-red white'
   })
-  write.onclick = () => emit('pushState', `/prereviews/${opts.doi}/new`)
+  write.onclick = () => emit('pushState', `/preprints/doi/${opts.doi}/new`)
 
   return write
 }
