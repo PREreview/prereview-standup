@@ -12,6 +12,38 @@ var barstyle = css`
 module.exports = function(state, emit, opts) {
   var s = state.style.classes
 
+  var logo = html`
+    <div class="justify-start ml3" style="cursor: pointer;">
+      <img class="h-100 ma0 pa0" style="max-height: 200px;" src="/assets/images/logo_horizontal_tx.png">
+    </div>
+  `
+
+  logo.onclick = () => emit('pushState', '/')
+
+  var findbtn = () => {
+    if (state.href === '/find') {
+      return null
+    }
+
+    var find = html`
+      <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link pointer noselect">
+        <p class="ma0 pa0 white dib v-mid">Find preprints to review</p>
+      </div>
+    `
+    find.onclick = () => emit('pushState', '/find')
+
+    return find
+  }
+
+  var leftpart = html`
+
+  <div class="flex flex-row justify-start items-center fl fw1 nowrap">
+    ${logo}
+    ${findbtn()}
+  </div>
+
+  `
+
   var notlogged = () => {
 
     var login = html`
@@ -69,19 +101,10 @@ module.exports = function(state, emit, opts) {
 
   `
 
-
-  var logo = html`
-    <div class="justify-start ml3" style="cursor: pointer;">
-      <img class="h-100 ma0 pa0" style="max-height: 200px;" src="/assets/images/logo_horizontal_tx.png">
-    </div>
-  `
-
-  logo.onclick = () => emit('pushState', '/')
-
   return html`
   
   <div class="h4 fl w-100 bg-white bb flex flex-row justify-between sans-serif ${barstyle}">
-    ${logo}
+    ${leftpart}
     ${rightpart}
   </div>
   

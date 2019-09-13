@@ -23,12 +23,12 @@ var abovefold = css`
 var callstoaction = [
   {
     title: 'Train',
-    img: 'a',
+    img: 'c',
     description: 'Through our PREreview mentorship program, we invite researchers to learn about the peer review process and how to write constructive reivews.'
   },
   {
     title: 'Empower',
-    img: 'b',
+    img: 'e',
     description: 'By encouraging respectful behaviour and by recognizing each contribution, we empower new voices to enter the peer review process.'
   },
   {
@@ -56,7 +56,7 @@ function view (state, emit) {
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray sans-serif">
       ${nav(state, emit)}
-      <div class="w-100 flex flex-row ${abovefold}" />
+      <div class="w-100 flex flex-row ${abovefold}">
         <div class="content lh-copy w-50 pa5">
           <h1>Changing the <em>who</em>, <em>when</em> and <em>how</em> of scientific peer review.</h1>
           <h2 class="fw2">Share, read, and review preprints</h2>
@@ -64,9 +64,6 @@ function view (state, emit) {
             <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3 link pointer">
               <a class="white dtc v-mid b" href="/login-redirect">Join the community</a>
             </div> 
-            <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3 link pointer">
-              <a class="white dtc v-mid b" href="/find">Find preprints to review</a>
-            </div>
           </div>
         </div>
       </div>
