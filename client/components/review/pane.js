@@ -64,12 +64,10 @@ function readreviews (state, emit, opts) {
   var el = html`
   
   <div class="flex flex-column w-100 h-100 ph2 pv0 items-start overflow-y-scroll overflow-x-hidden">
+    ${meta(state, emit, opts)}
     ${addreview(state, emit, opts)}
-    <a href="https://doi.org/${opts.doi}" target="_blank">${opts.title}</a>
-    ${authors}
-    <div class="flex flex-row items-between mv4">
-      <div class="ph4 f4 fw5">${opts.reviews.length} reviews</h2>
-      <div class="ph4 f4 fw5">${opts.requests.length} review requests</h2>
+    <div class="flex flex-row items-between mv2">
+      <div class="ph2 f4 fw5">${opts.reviews.length} reviews</h2>
     </div>
     ${opts.reviews.map(r => require('./display')(state, emit, r))}
   </div>
@@ -96,6 +94,20 @@ function addreview (state, emit, opts) {
   return html`
     <div class="w-100 ${s.col} items-end">
       <div class="flex flex-row">${write}</div>
+    </div>
+  `
+}
+
+function meta (state, emit, opts) {
+  var publisher = html`<div class="red i b">${opts.publisher}</div>`
+  var title = html`<h1 class="mv1 lh-solid">${opts.title}</h1>`
+  var authors = html`<h2 class="f4 mv1 i lh-title">${opts.authors.list.map(a => a.fullName).join(', ')}</h2>`
+
+  return html`
+    <div class="flex flex-column lh-copy pa3">
+      ${publisher}
+      <a class="black link" href="https://doi.org/${opts.doi}" target="_blank">${title}</a>
+      ${authors}
     </div>
   `
 }
