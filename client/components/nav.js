@@ -1,5 +1,6 @@
 var html = require('choo/html')
 var css = require('sheetify')
+var icon = require('./utils/icon')
 
 var barstyle = css`
 
@@ -27,7 +28,8 @@ module.exports = function(state, emit, opts) {
 
     var find = html`
       <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link pointer noselect">
-        <p class="ma0 pa0 white dib v-mid">Find preprints to review</p>
+        ${icon('search', { backgroundColor: 'white' })}
+        <div class="ma0 ml2 pa0 white dib v-mid">Find preprints to review</div>
       </div>
     `
     find.onclick = () => emit('pushState', '/find')
