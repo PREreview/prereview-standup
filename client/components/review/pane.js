@@ -63,10 +63,10 @@ function readreviews (state, emit, opts) {
 
   var el = html`
   
-  <div class="flex flex-column w-100 h-100 ph2 pv0 items-start overflow-y-scroll overflow-x-hidden">
+  <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
     ${meta(state, emit, opts)}
-    <div class="flex flex-row justify-between items-center mv2">
-      <div class="ph2 f4 fw5">${opts.reviews.length} reviews</h2>
+    <div class="flex flex-row w-100 justify-between items-center pa3">
+      <div class="pr2 f4 fw5 nowrap">${opts.reviews.length} reviews</h2>
       ${addreview(state, emit, opts)}
     </div>
     ${opts.reviews.map(r => require('./display')(state, emit, r))}
@@ -91,11 +91,7 @@ function addreview (state, emit, opts) {
   })
   write.onclick = () => emit('pushState', `/prereviews/${opts.doi}/new`)
 
-  return html`
-    <div class="w-100 ${s.col} items-end">
-      <div class="flex flex-row">${write}</div>
-    </div>
-  `
+  return write
 }
 
 function meta (state, emit, opts) {

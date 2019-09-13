@@ -56,7 +56,7 @@ h3 {
 }
 
 h4 {
-  font-size: 10pt;
+  font-size: 13pt;
   font-weight: 600;
   letter-spacing: 0.4em;
   text-transform: uppercase;
@@ -64,7 +64,7 @@ h4 {
 }
 
 p {
-  font-size: 10pt;
+  font-size: 12pt;
 }
 
 .noselect {
