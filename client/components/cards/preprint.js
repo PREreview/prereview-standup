@@ -64,7 +64,8 @@ function preprint (state, emit, p) {
         ${reviewdate}
       </div>
       <div class="flex flex-row items-center flex-nowrap right f6 fw3"> 
-        ${showreviews} ${addreview}
+        ${showreviews}
+        ${addreview}
       </div>
     </div>
   </div>
