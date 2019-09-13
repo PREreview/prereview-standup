@@ -1,26 +1,41 @@
 var html = require('choo/html')
+var fakereviews = require('../../fake/reviews')
 
 module.exports = preprint
 
 function preprint (state, emit, p) {
   var d = p.data || p
 
+  // TODO remove
+  d.date_published = new Date(d.pubDate)
+  d.reviews = fakereviews()
+
   var gotoreviews = () => emit('pushState', `/preprints/doi/${d.doi}`)
 
   var title = html`<div class="link dim" style="cursor: pointer;">${d.title}</div>`
   title.onclick = gotoreviews
 
+  var nreviews = d.reviews.length === 0 ? 'No PREreviews yet' : `${d.reviews.length} PREreviews`
   var showreviews = html`
-    <div class="mr2 dark-gray link dim f6" style="cursor: pointer;">${p.reviews} reviews</div>
+    <div class="mr2 dark-gray link dim f6" style="cursor: pointer;">${nreviews}</div>
   `
   showreviews.onclick = gotoreviews
 
-  var addreview = html`
-    <div class="ph3 pv2 nowrap dim bg-red br3 flex flex-row items-center link noselect pointer">
-      <p class="ma0 pa0 white dtc v-mid b f6">Write a PREreview</p>
-    </div>
-  `
-  addreview.onclick = () => emit('pushState', `/preprints/doi/${d.doi}/new`)
+  var addreview = null
+
+  if (state.user) {
+    addreview = html`
+      <div class="ph3 pv2 nowrap dim bg-red br3 flex flex-row items-center link noselect pointer">
+        <p class="ma0 pa0 white dtc v-mid b f6">Write a PREreview</p>
+      </div>
+    `
+    addreview.onclick = () => emit('pushState', `/preprints/doi/${d.doi}/new`)
+  }
+
+  var pubdate = `Preprint published ${d.date_published.toLocaleDateString({ dateStyle: 'full' })}.`
+  var reviewdate = d.reviews.length > 0 ?
+    `First reviewed on ${d.reviews[0].created.toLocaleDateString({ dateStyle: 'full' })}.` :
+    null
 
   return html`
   
@@ -45,7 +60,8 @@ function preprint (state, emit, p) {
     
     <div class="footer flex justify-between mv3">
       <div class="flex flex-row items-center flex-wrap left f6 fw3">
-        Preprint published 7th December, 2018. First reviewed on 18 Jan, 2019
+        ${pubdate}
+        ${reviewdate}
       </div>
       <div class="flex flex-row items-center flex-nowrap right f6 fw3"> 
         ${showreviews} ${addreview}
