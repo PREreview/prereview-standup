@@ -5,17 +5,14 @@ var header = require('../components/home/header')
 var filterbox = require('../components/home/filterbox')
 var preprintlist = require('../components/home/preprintlist')
 
-var TITLE = 'PREreview2 | home'
+var TITLE = 'PREreview2 | find'
 
 module.exports = view
 
 function view (state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
 
-  var nresults = state.searchResults.length
-  var resultstr = state.searched ?
-    (nresults ? `${nresults} results` : 'no results') :
-    (`20 most recentely reviewed`)
+  var resultstr = getResultString(state)
 
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray">
@@ -36,4 +33,23 @@ function view (state, emit) {
       </div>
     </body>
   `
+}
+
+function getResultString (state) {
+  if (state.searchQuery) {
+    // the results are from a user search
+    if (state.searchResults.total === 0) {
+      return 'No results found'
+    }
+
+    var currentPage = state.searchResults.currentpage
+    var totalPages = state.searchResults.totalpages
+    var showingResults = state.searchResults.results.length
+    var totalResults = state.searchResults.total
+
+    return `Page ${currentPage} of ${totalPages} (${showingResults} of ${totalResults} total results)`
+  } else {
+    // the results are the default view
+    return '20 most recently published'
+  }
 }

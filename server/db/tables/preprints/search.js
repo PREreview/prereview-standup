@@ -4,7 +4,12 @@ var PAGESIZE = 20
 
 module.exports = searchPreprints
 
+// if query is null, the result is the most recently
+// indexed preprints
 function searchPreprints (query) {
+  query = query || {}
+  var currentpage = (query.page || 1)
+
   var chain = db('preprints')
 
   if (query.string) {
@@ -14,12 +19,24 @@ function searchPreprints (query) {
     )
   }
 
+  var total = chain.clone().clearSelect().count('* as total').first()
+
   var chain = chain
     .orderBy('date_published', 'desc')
     .limit(PAGESIZE)
-    .offset((query.page || 0) * PAGESIZE)
-  
-  console.log(chain.toSQL())
+    .offset((currentpage - 1) * PAGESIZE)
 
-  return chain
+  return Promise.all([
+    total, chain
+  ]).then(
+    ([totalResult, chainResult]) => {
+      return Promise.resolve({
+        query: query,
+        total: totalResult.total,
+        results: chainResult,
+        currentpage: currentpage,
+        totalpages: Math.ceil(totalResult.total / PAGESIZE)
+      })
+    }
+  )
 }
