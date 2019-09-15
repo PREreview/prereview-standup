@@ -8,6 +8,9 @@ var app = express()
 // security first https://github.com/helmetjs/helmet#how-it-works
 app.use(require('helmet')())
 
+// parse JSON body to req.body
+app.use(express.json())
+
 // let's keep notes
 app.use(require('morgan')('combined'))
 
