@@ -10,46 +10,49 @@ css('quill/dist/quill.snow.css')
 
 var editorstyle = css`
 
-.ql-editor {
+:host .ql-editor {
   height: 500px !important;
   width: 100%;
 }
 
 `
 
-module.exports = function view (state, emit, opts) {
+var btnclasses = "flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-red white link dim outline-0 pa2 pointer br2 dtc v-mid b f6 noselect"
 
+module.exports = function view (state, emit, preprint) {
+
+  var toolbar = html`<div id="toolbar" class="flex flex-row"></div>`
   var editorinner = html`<div id="editor" class="flex ${editorstyle}"></div>`
 
   var btnstyle = state.style.classes.secondaryButton
 
   var submit = html`
-    <div class="flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-red white link dim outline-0 pa2 pointer br2 dtc v-mid b f6 noselect">Publish now</div>
+    <div class="${btnclasses}">Publish now</div>
   `
-  submit.onclick = () => emit('pushState', state.href.replace('/new', '/submitted'))
 
-  var publisher = html`<div class="red i b">${opts.publisher}</div>`
-  var title = html`<h1 class="mv1 lh-solid">${opts.title}</h1>`
-  var authors = html`<h2 class="f4 mv1 i lh-title">${opts.authors.list.map(a => a.fullName).join(', ')}</h2>`
+  var publisher = html`<div class="red i b">${preprint.publisher}</div>`
+  var title = html`<h1 class="mv1 lh-solid">${preprint.title}</h1>`
+  var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.map(a => a.fullName).join(', ')}</h2>`
 
   var editorel = html`
   
   <div class="flex flex-column h-100 w-100 ph2 pv0">
     <div class="flex flex-column lh-copy pa3">
       ${publisher}
-      <a class="black link" href="https://doi.org/${opts.doi}" target="_blank">${title}</a>
+      <a class="black link" href="https://doi.org/${preprint.doi}" target="_blank">${title}</a>
       ${authors}
       <p>
         <b>Before you begin:</b> please make sure you've read our <a class="link dim red" target="_blank" href="/docs/code_of_conduct">code of conduct</a>.
         You might also find our <a class="link dim red" target="_blank" href="/docs/resources">PREreview guidelines</a> useful.
       </p>
     </div>
+    ${toolbar}
     ${editorinner}
     <div class="flex flex-row justify-between pv2">
-      <div class="flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-dark-gray white link dim outline-0 pa2 pointer br2 mr2 dtc v-mid b f6 noselect">Choose a template</div>
+      <div class="${btnclasses}">Choose a template</div>
       <div class="flex flex-row">
-        <div class="flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-dark-gray white link dim outline-0 pa2 pointer br2 mr2 dtc v-mid b f6 noselect">Invite collaborators</div>
-          ${submit}
+        <div class="${btnclasses} mr2">Invite collaborators</div>
+        ${submit}
         </div>
       </div>
     </div>
@@ -57,25 +60,28 @@ module.exports = function view (state, emit, opts) {
   
   `
 
-  var MarkdownShortcuts = require('../../lib/editor/markdownShortcuts')
-  Quill.register('modules/markdownShortcuts', MarkdownShortcuts)
-
   var quill = new Quill(editorinner, {
     theme: 'snow',
     bounds: editorel,
-    toolbar: editorel,
-    placeholder: "Review goes here...\n\n",
-    modules: {
-     
-      markdownShortcuts: {}
-    }
+    toolbar: toolbar,
+    placeholder: "PREreview goes here...\n\n"
   })
 
-  // set contents to markdown template
-  quill.updateContents(template)
+  submit.onclick = () => emit('prereview:start-submission', {
+    type: 'prereview',
+    status: 'submitting',
+    preprint: preprint,
+    review: quill.getContents(),
+    author: state.user
+  })
 
-  // focus cursor inside editor
-  setTimeout(() => quill.focus(), 300)
+  setTimeout(() => {
+    // set contents to markdown template
+    quill.updateContents(template)
+  
+    // focus cursor inside editor
+    // quill.focus()
+  }, 300)
 
   return editorel
 }

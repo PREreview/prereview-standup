@@ -3,11 +3,6 @@ var css = require('sheetify')
 
 var nav = require('../components/nav')
 
-var Quill = require('quill')
-
-css('quill/dist/quill.core.css')
-css('quill/dist/quill.snow.css')
-
 var mainstyle = css`
 
 :host {
@@ -36,17 +31,21 @@ module.exports = function view (state, emit) {
   </body>
   
   `
-  
+
+  fetchAndLoad(state, emit, doi, left, right)
+
+  return el
+}
+
+async function fetchAndLoad (state, emit, doi, left, right) {
   fetch(`/data/preprints/doi/${doi}`).then(
     res => res.json()
   ).then(
     doidata => {
-      console.log('DOI data returned', doidata)
+      // console.log('DOI data returned', doidata)
       doidata.reviews = reviews()
       left.appendChild(require('../components/preprint/viewer')(state, emit, doidata))
       right.appendChild(require('../components/review/pane')(state, emit, doidata))
     }
   )
-
-  return el
 }

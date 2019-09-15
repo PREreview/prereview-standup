@@ -19,8 +19,8 @@ if (process.env.NODE_ENV !== 'production') {
 app.use(require('./stores/user'))
 app.use(require('./stores/app'))
 app.use(require('./stores/docs'))
+app.use(require('./stores/prereviews'))
 app.use(require('./stores/styles'))
-app.use(require('./stores/devdata'))
 app.use(require('./stores/search'))
 app.use(require('./stores/sort'))
 
@@ -29,6 +29,9 @@ app.route('/', require('./views/landing'))
 app.route('/login-redirect', require('./views/login-redirect'))
 app.route('/find', require('./views/find'))
 app.route('/profile', require('./views/profile'))
+
+app.route('/prereview-published', require('./views/prereview-published'))
+app.route('/prereview-submission-check', require('./views/prereview-submission-check'))
 app.route('/users/*', require('./views/profile'))
 app.route('/docs/*', require('./views/docs'))
 

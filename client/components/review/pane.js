@@ -4,7 +4,6 @@ var css = require('sheetify')
 var anime = require('animejs')
 
 var composer = require('./compose')
-var display = require('./display')
 var button = require('../button')
 
 module.exports = function view (state, emit, opts) {
@@ -80,7 +79,7 @@ function readreviews (state, emit, opts) {
 function addreview (state, emit, opts) {
   if (!state.user) {
     var login = button(state, emit, { label: 'Log in to review this preprint' })
-    login.onclick = () => { window.location = '/login-redirect' }
+    login.onclick = () => emit('pushSTate', '/login-redirect')
     return html`<div class="flex flex-row w-100 justify-end">${login}</div>`
   }
   var s = state.style.classes

@@ -5,8 +5,8 @@ var preprints = require('../../../db/tables/preprints')
 var express = require('express')
 var router = express.Router()
 
-// Returns data about a preprint by DOi
-router.post('/create', function (req, res, next) {
+// Submits a new PREreview
+router.post('/submit', function (req, res, next) {
   
   if (!req.user) {
     // user must be logged in
@@ -15,7 +15,7 @@ router.post('/create', function (req, res, next) {
 
   var prereview = req.body.prereview
 
-  if (req.user.id !== prereview.author_id) {
+  if (req.user.id !== prereview.author.id) {
     // user must be logged in as the same one claiming to author the PREreview
     return res.status(401, 'You cannot post a PREreview as another user')
   }
@@ -25,17 +25,13 @@ router.post('/create', function (req, res, next) {
     return res.status(500, 'preprint DOI is not valid')
   }
 
-  var getredirecturi = data => `/preprints/doi/${prereview.preprint_doi}/reviews/id/${data.id}`
-
 	prereviews.createPrereview(prereview).then(
-    data => {
-      res.redirect(getredirecturi(data))
-    }
+    data => res.json(data)
   ).catch(
     e => {
-      console.error('Error trying to create prereview with data:', JSON.stringify(prereview))
+      console.error('Error trying to create PREreview with data:', JSON.stringify(prereview))
       console.error(e)
-      res.status(500, 'Something went wrong trying to publish this review')
+      res.status(500, 'Something went wrong trying to publish this PREreview')
     }
   )
 })

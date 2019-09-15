@@ -66,7 +66,7 @@ function profilecard (state, emit) {
 function firstvisitcards (state, emit) {
   var el
 
-  if (!state.user.coc_agreed) {
+  if (!state.user.coc_accepted) {
     el = require('../components/cards/signup/code-of-conduct')(state, emit)
   } else if (!state.user.privacy_setup) {
     el = require('../components/cards/signup/identity-choice')(state, emit)
@@ -127,7 +127,7 @@ function usercontent (state, emit) {
 }
 
 function start (state) {
-  if (!state.user.coc_agreed || !state.user.privacy_setup) return html`
+  if (!state.user.coc_accepted || !state.user.privacy_setup) return html`
   <div class="flex flex-row justify-center">
     <p>Once you have completed your signup you can start PREreviewing</p>
   </div>

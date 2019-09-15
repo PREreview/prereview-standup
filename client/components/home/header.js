@@ -6,7 +6,7 @@ module.exports = header
 function header (state, emit) {
   var searchopts = {
     id: 'main-search-input',
-    entries: Object.values(state.preprints),
+    entries: [],
     container: {
       class: 'mt2 flex flex-column items-center bg-white dark-gray w-70 f4'
     },

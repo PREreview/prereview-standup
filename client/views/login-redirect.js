@@ -1,10 +1,6 @@
 var html = require('choo/html')
-var css = require('sheetify')
 
 var nav = require('../components/nav')
-var header = require('../components/home/header')
-var filterbox = require('../components/home/filterbox')
-var preprintlist = require('../components/home/preprintlist')
 
 var TITLE = 'PREreview 2 - ORCID redirect'
 
@@ -26,7 +22,7 @@ function view (state, emit) {
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray sans-serif">
       ${nav(state, emit)}
-      <div class="w-100 flex flex-column items-center" />
+      <div class="w-100 flex flex-column items-center">
         <div class="flex flex-column items-center w-70">
           <img class="w-20" style="max-width: 200px;" src="/assets/images/loader.svg" />
           <h1>To log in to PREreview you will need an ORCID ID.</h1>
