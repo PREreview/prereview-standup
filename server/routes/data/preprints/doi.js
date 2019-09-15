@@ -18,7 +18,10 @@ router.get('/doi/:doia/:doib', function (req, res, next) {
   // e.g. if it's not in our DB, check crossref
   // if we have it, check for updates now
   
-	preprints.getPreprint({ doi: doi }).then(
+	preprints.getPreprint({
+    identifiertype: 'doi',
+    identifier: doi
+  }).then(
     returnedpreprint => {
       res.json(returnedpreprint)
     }

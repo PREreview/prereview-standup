@@ -6,6 +6,8 @@ module.exports = preprint
 function preprint (state, emit, p) {
   var d = p.data || p
 
+  console.log(p, d)
+
   // TODO remove
   if (!d.date_published) d.date_published = new Date(d.pubDate)
   d.reviews = fakereviews()

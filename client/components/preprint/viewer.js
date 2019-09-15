@@ -23,7 +23,7 @@ module.exports = function (state, emit, doidata) {
   var pubyear = pubdate.getFullYear()
   var pubmonth = ("0" + (pubdate.getMonth() + 1)).slice(-2)
   var pubday = ("0" + pubdate.getDate()).slice(-2)
-  var doipart = doidata.doi.split('/')[1]
+  var doipart = doidata.identifier.split('/')[1]
   var pdfurl = `https://www.biorxiv.org/content/biorxiv/early/${pubyear}/${pubmonth}/${pubday}/${doipart}.full-text.pdf`
 
   var pdfURI = `https://preprint-proxy.prereview.org/${pdfurl}`
