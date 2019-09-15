@@ -36,10 +36,15 @@ function view (state, emit) {
 }
 
 function getResultString (state) {
+  var querystring
+  var resultstring
+
   if (state.searchQuery) {
+    querystring = state.searchResults.query.string
+
     // the results are from a user search
     if (state.searchResults.total === 0) {
-      return 'No results found'
+      resultstring = 'No results found'
     }
 
     var currentPage = state.searchResults.currentpage
@@ -47,9 +52,20 @@ function getResultString (state) {
     var showingResults = state.searchResults.results.length
     var totalResults = state.searchResults.total
 
-    return `Page ${currentPage} of ${totalPages} (${showingResults} of ${totalResults} total results)`
+    resultstring = `Page ${currentPage} of ${totalPages} (${showingResults} of ${totalResults} total results)`
   } else {
     // the results are the default view
-    return '20 most recently published'
+    resultstring = '20 most recently published'
   }
+
+  var querydiv = querystring ?
+    html`<div class="flex flex-row">Query: "<span class="ttn">${querystring}</span>"</div>` :
+    null
+
+  return html`
+  <div class="flex flex-column">
+    ${querydiv}
+    <div class="flex flex-row">${resultstring}</div>
+  </div>
+  `
 }
