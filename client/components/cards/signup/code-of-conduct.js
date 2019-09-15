@@ -13,7 +13,7 @@ function agreeButton (state, emit, opts) {
   var left = html`<div class="pa3 ba br2 b--black-10 link dim bg-red white b">Agree</div>`
 
   left.onclick = e => {
-    emit('pushState', 'user:accept-coc')
+    emit('user:accept-coc')
   }
 
   return html`
