@@ -59,10 +59,11 @@ app.use(function (err, req, res, next) {
   res.status(500).send(err.message)
 })
 
-var listenport = process.env.PREREVIEW_PORT
+var listenport = parseInt(process.env.PREREVIEW_PORT)
 
 if (listenport === 443) {
   var https = require('https')
+  var fs = require('fs')
   var serveropts = {
     key: fs.readFileSync(process.env.PREREVIEW_TLS_KEY),
     cert: fs.readFileSync(process.env.PREREVIEW_TLS_CERT),
