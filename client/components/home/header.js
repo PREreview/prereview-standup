@@ -14,6 +14,7 @@ function header (state, emit) {
       class: 'flex bg-white dark-gray b--dark-gray ba br-pill pa3 pl4 w-100',
       placeholder: 'Search by title, DOI, author, etc...'
     },
+    onsearch: val => emit('preprint-search:query', val),
     onresults: results => emit('preprint-search:results', results)
   }
   

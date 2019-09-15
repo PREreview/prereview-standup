@@ -118,7 +118,7 @@ class TypeAhead extends Nanocomponent {
     var opts = this.opts.input || {}
 
     this.input = html`
-      <input type="text" autofocus="autofocus" ${opts}></input>
+      <input type="text" autofocus="autofocus" ${opts} />
     `
 
     this.input.addEventListener('input', inputValueUpdated)
@@ -127,7 +127,12 @@ class TypeAhead extends Nanocomponent {
 
     function inputValueUpdated (e) {
       var val = e.srcElement.value.trim()
-      search(val)
+
+      if (self.opts.onsearch) {
+        self.opts.onsearch(val)
+      } else {
+        search(val)
+      }
     }
 
     function runsearch (query) {
