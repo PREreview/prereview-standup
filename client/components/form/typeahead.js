@@ -57,6 +57,7 @@ class TypeAhead extends Nanocomponent {
   }
 
   getAdvancedButton () {
+    return null
     var btn = html`
     
     <div class="ph4 h3 nowrap dim bg-dark-gray br4 mv4 flex flex-row items-center link pointer">
@@ -76,6 +77,7 @@ class TypeAhead extends Nanocomponent {
   }
 
   getHelp () {
+    return null
     var examples = [
       'rapid flux',
       '+photosynthesis -maize',
