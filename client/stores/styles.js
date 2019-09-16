@@ -43,7 +43,7 @@ function styles (state, emitter) {
         tab: `w-third pa3 h-100 tc white b f2 link dim`,
         icon: `white`,
         label: `f4 tc normal mt1`,
-        button: `flex flex-row justify-center content-center br3 b items-center v-mid bn mt2 ph4 pv3 nowrap dim dt bg-red link white dtc v-mid pointer`,
+        button: `flex flex-row justify-center content-center br3 b items-center v-mid bn ph4 pv3 nowrap dim dt bg-red link white dtc v-mid pointer`,
         navbutton: `border-box dib bn pa1 white bg-${opts.primary} link dim`,
         secondary: `bg-${opts.secondary} dark-gray`,
         secondaryButton: `flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-${opts.secondary} white link dim outline-0 br3 pointer`
