@@ -1,6 +1,5 @@
-var isdoi = require('doi-regex')
 var prereviews = require('../../../db/tables/prereviews')
-var preprints = require('../../../db/tables/preprints')
+var convertDelta = require('../../../../client/lib/editor/convert')
 
 var express = require('express')
 var router = express.Router()
@@ -13,19 +12,25 @@ router.post('/submit', function (req, res, next) {
     return res.status(401)
   }
 
-  var prereview = req.body.prereview
+  console.log(req.body)
 
-  if (req.user.id !== prereview.author.id) {
+  if (req.user.id !== req.body.author.id) {
     // user must be logged in as the same one claiming to author the PREreview
     return res.status(401, 'You cannot post a PREreview as another user')
   }
 
-  if (!isdoi({ exact: true }).test(prereview.preprint_doi)) {
-    // preprint doi must be valid
-    return res.status(500, 'preprint DOI is not valid')
+  // if (!isdoi({ exact: true }).test(prereview.preprint_doi)) {
+  //   // preprint doi must be valid
+  //   return res.status(500, 'preprint DOI is not valid')
+  // }
+
+  var prereview = {
+    preprint_id: req.body.preprint.id,
+    author_id: req.body.author.id,
+    content: convertDelta.toHTML(req.body.content)
   }
 
-	prereviews.createPrereview(prereview).then(
+	prereviews.addPrereview(prereview).then(
     data => res.json(data)
   ).catch(
     e => {

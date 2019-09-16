@@ -78,3 +78,5 @@ function listening (err) {
   if (err) return console.log(err)
   console.log(`Listening at ${process.env.APP_ROOT_URI}`)
 }
+
+console.log(require('express-list-endpoints')(app))

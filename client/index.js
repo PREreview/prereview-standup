@@ -40,4 +40,6 @@ app.route('/docs/*', require('./views/docs'))
 // /preprints/doi/request -> request
 app.route('/preprints/*', require('./views/review'))
 
-module.exports = app.mount('body')
+module.exports = (function () {
+  if (typeof window !== 'undefined') app.mount('body')
+})()

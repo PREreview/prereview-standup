@@ -56,5 +56,5 @@ module.exports = async (state, emitter) => {
     }
   }
 
-  getCurrentUser()
+  if (typeof window !== 'undefined') getCurrentUser()
 }

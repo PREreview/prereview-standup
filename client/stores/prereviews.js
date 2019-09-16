@@ -1,3 +1,4 @@
+
 module.exports = async (state, emitter) => {
   state.prereviews = {
     currentSubmission: null,
@@ -24,14 +25,14 @@ module.exports = async (state, emitter) => {
     submit(submission)
   }
 
-  function submit () {
+  function submit (submission) {
     fetch('/data/prereviews/submit', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify()
+      body: JSON.stringify(submission)
     }).then(
       submissionSuccessful
     ).catch(
@@ -40,6 +41,7 @@ module.exports = async (state, emitter) => {
   }
 
   function submissionSuccessful (response) {
+    console.log('prereview submission successful \o/')
     var submission = state.prereviews.currentSubmission
     if (submission.preprint.identifier === response.preprint_id) {
       submission.status = 'published'

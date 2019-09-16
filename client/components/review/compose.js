@@ -71,7 +71,7 @@ module.exports = function view (state, emit, preprint) {
     type: 'prereview',
     status: 'submitting',
     preprint: preprint,
-    review: quill.getContents(),
+    prereview: quill.getContents(),
     author: state.user
   })
 

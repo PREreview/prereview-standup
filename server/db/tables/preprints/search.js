@@ -33,10 +33,15 @@ function searchPreprints (query) {
       return Promise.resolve({
         query: query,
         total: totalResult.total,
-        results: chainResult,
+        results: chainResult.map(cleanResult),
         currentpage: currentpage,
         totalpages: Math.ceil(totalResult.total / PAGESIZE)
       })
     }
   )
+}
+
+function cleanResult (r) {
+  ['document', 'authorstring'].forEach(key => { delete r[key] })
+  return r
 }

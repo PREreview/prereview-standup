@@ -13,6 +13,8 @@ var mainstyle = css`
 
 var reviews = require('../fake/reviews')
 
+var lastdoi
+
 module.exports = function view (state, emit) {
   var doiparts = state.href.split('/preprints/doi/')[1].split('/').slice(0, 2)
   var doi = `${doiparts[0]}/${doiparts[1]}`
@@ -32,20 +34,27 @@ module.exports = function view (state, emit) {
   
   `
 
-  fetchAndLoad(state, emit, doi, left, right)
+  fetchAndLoad()
+
+  function fetchAndLoad () {
+    if (lastdoi && lastdoi.doi === doi) return populatepanes(lastdoi.data)
+  
+    fetch(`/data/preprints/doi/${doi}`).then(
+      res => res.json()
+    ).then(
+      doidata => {
+        lastdoi = { doi: doi, data: doidata }
+        populatepanes(doidata)
+      }
+    )
+  }
+
+  function populatepanes (doidata) {
+    console.log('DOI data returned', doidata)
+    doidata.reviews = reviews()
+    left.appendChild(require('../components/preprint/viewer')(state, emit, doidata))
+    right.appendChild(require('../components/review/pane')(state, emit, doidata))
+  }
 
   return el
-}
-
-async function fetchAndLoad (state, emit, doi, left, right) {
-  fetch(`/data/preprints/doi/${doi}`).then(
-    res => res.json()
-  ).then(
-    doidata => {
-      // console.log('DOI data returned', doidata)
-      doidata.reviews = reviews()
-      left.appendChild(require('../components/preprint/viewer')(state, emit, doidata))
-      right.appendChild(require('../components/review/pane')(state, emit, doidata))
-    }
-  )
 }
