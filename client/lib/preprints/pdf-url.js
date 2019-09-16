@@ -1,5 +1,3 @@
-var CrossRef = require('crossref')
-
 module.exports = preprintToPdfUrl
 
 var prefixmap = {
