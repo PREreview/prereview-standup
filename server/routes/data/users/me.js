@@ -1,4 +1,5 @@
 var user = require('../../../db/tables/users')
+var { getPrereviewsForUser } = require('../../../db/tables/prereviews')
 
 var express = require('express')
 var router = express.Router()
@@ -8,7 +9,13 @@ var router = express.Router()
 // only works if the user is logged in - otherwise req.user is null
 router.get('/me', function (req, res) {
 	if (req.user) {
-		res.json(req.user)
+		getPrereviewsForUser(req.user).then(
+			prereviews => {
+				var user = Object.assign({}, req.user)
+				user.prereviews = prereviews
+				res.json(user)
+			}
+		)
 	} else {
 		res.status(401)
 		res.json({})

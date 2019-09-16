@@ -46,7 +46,7 @@ module.exports = async (state, emitter) => {
     console.log('prereview submission successful \\o/')
     var submission = state.prereviews.currentSubmission
     submission.status = 'published'
-
+    emitter.emit('user:update-me')
     emitter.emit('pushState', '/prereview-published')
   }
 

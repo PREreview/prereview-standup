@@ -3,6 +3,7 @@ var raw = require('choo/html/raw')
 var css = require('sheetify')
 
 var nav = require('../components/nav')
+var icon = require('../components/utils/icon')
 
 var TITLE = 'PREreview2 | profile'
 
@@ -96,7 +97,7 @@ function usercontent (state, emit) {
           </div>
           <div class="flex flex-row justify-between">
             <div class="b">PREreviews</div>
-            <div class="">None yet</div>
+            <div class="">${state.user.prereviews.length || 'None yet'}</div>
           </div>
           <div class="flex flex-row justify-between">
             <div class="b">Community appreciation</div>
@@ -109,9 +110,7 @@ function usercontent (state, emit) {
           <div class="ttu tracked">
             <h2 class="mt0 tc fw4">Your PREreviews</h2>
           </div>
-          <div class="pa3 lh-copy tc">
-            <p>You haven't written any PREreviews yet.</p>
-          </div>
+          ${prereviews(state, emit)}
         </div>
         <div class="flex flex-column mt3 pt4 bt b--black-20">
           <div class="ttu tracked">
@@ -123,6 +122,39 @@ function usercontent (state, emit) {
         </div>
       </div>
     </div>
+  `
+}
+
+function prereviews (state, emit) {
+  var reviews = state.user.prereviews
+
+  if (reviews && reviews.length > 0) {
+    return reviews.map(prereview)
+  } else {
+    return html`
+    <div class="pa3 lh-copy tc">
+      <p>You haven't written any PREreviews yet.</p>
+    </div>
+    `
+  }
+}
+
+function prereview (p) {
+  var revdate = (new Date(p.date_created)).toDateString()
+
+  return html`
+  <div class="flex flex-column justify-start items-start pa3 lh-copy ba b--light-gray">
+    <div class="flex flex-row mb2 items-between justify-between w-100">
+<div class="flex flex-row red">You PREreviewed on <span class="b ml2">${revdate}</span></div>
+      <div class="flex flex-row nowrap">
+        <div class="flex flex-row nowrap items-center">${icon('message-square')} 0</div>
+        <div class="flex flex-row nowrap items-center ml3">${icon('clap', { size: '30px' })} 0</div>
+      </div>
+    </div>
+    <div class="flex flex-row">
+      <a class="black f5 fw7 tl" href="/preprints/${p.identifiertype}/${p.identifier}">${p.title}</a>
+    </div>
+  </div>
   `
 }
 

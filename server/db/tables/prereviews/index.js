@@ -1,5 +1,5 @@
 module.exports = {
-	addPrereview, getPrereview
+	addPrereview, getPrereview, getPrereviewsForUser
 }
 
 var db = require('../..')
@@ -12,4 +12,10 @@ function getPrereview (prereview) {
 	return db('prereviews')
 		.where({ doi: prereview.doi })
 		.first()
+}
+
+function getPrereviewsForUser (user) {
+	return db('prereviews')
+		.join('preprints', 'prereviews.preprint_id', '=', 'preprints.id')
+		.where({ author_id: user.id })
 }

@@ -30,6 +30,8 @@ module.exports = async (state, emitter) => {
       emitter.emit('render')
       state.renderonload = false
     }
+
+    emitter.on('user:update-me', getCurrentUser)
   })
 
   async function getCurrentUser () {
