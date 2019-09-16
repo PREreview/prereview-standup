@@ -1,7 +1,5 @@
 var html = require('choo/html')
-var css = require('sheetify')
-
-var anime = require('animejs')
+var raw = require('choo/html/raw')
 
 var composer = require('./compose')
 var button = require('../button')
@@ -58,7 +56,6 @@ function requestreview () {
 function readreviews (state, emit, opts) {
   if (!opts.reviews) opts.reviews = []
   if (!opts.requests) opts.requests = []
-  var authors = html`<h2>${opts.authors.list.map(a => a.fullName).join(', ')}</h2>`
 
   var el = html`
   
@@ -82,7 +79,6 @@ function addreview (state, emit, opts) {
     login.onclick = () => emit('pushState', '/login-redirect')
     return html`<div class="flex flex-row w-100 justify-end">${login}</div>`
   }
-  var s = state.style.classes
 
   var write = button(state, emit, {
     label: 'Review this preprint',
@@ -97,12 +93,14 @@ function meta (state, emit, opts) {
   var publisher = html`<div class="red i b">${opts.publisher}</div>`
   var title = html`<h1 class="mv1 lh-solid">${opts.title}</h1>`
   var authors = html`<h2 class="f4 mv1 i lh-title">${opts.authors.list.map(a => a.fullName).join(', ')}</h2>`
-
+  var abstract = raw(`<p class="mt1">${opts.abstract}</p>`)
   return html`
     <div class="flex flex-column lh-copy pa3">
       ${publisher}
-      <a class="black link" href="https://doi.org/${opts.doi}" target="_blank">${title}</a>
+      <a class="black link" href="https://${opts.identifiertype}.org/${opts.identifier}" target="_blank">${title}</a>
       ${authors}
+      <h3 class="mb1">Abstract</h3>
+      ${abstract}
     </div>
   `
 }
