@@ -99,8 +99,6 @@ function meta (state, emit, preprint) {
       ${publisher}
       <a class="black link" href="https://${preprint.identifiertype}.org/${preprint.identifier}" target="_blank">${title}</a>
       ${authors}
-      <h3 class="mb1">Abstract</h3>
-      ${abstract}
     </div>
   `
 }
