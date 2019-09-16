@@ -14,7 +14,7 @@ function searchPreprints (query) {
 
   if (query.string) {
     chain = chain.whereRaw(
-      'document @@ to_tsquery(?)',
+      'document @@ plainto_tsquery(?)',
       query.string
     )
   }
