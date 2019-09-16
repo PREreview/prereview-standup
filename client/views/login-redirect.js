@@ -11,7 +11,7 @@ function view (state, emit) {
 
   var gotoorcid = html`
   
-  <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3 link pointer noselect">
+  <div class="ph3 pv3 nowrap dim dt bg-red br3 link pointer noselect">
     <span class="white dtc v-mid b">Sign in with ORCID</a>
   </div>
 

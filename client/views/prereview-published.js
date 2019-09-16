@@ -12,7 +12,7 @@ function view (state, emit) {
 
   var submit = html`
   
-  <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3 link pointer noselect">
+  <div class="ph3 pv3 nowrap dim dt bg-red br3 link pointer noselect">
     <span class="white dtc v-mid b">Go to your profile</a>
   </div>
 
