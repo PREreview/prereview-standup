@@ -79,7 +79,7 @@ function readreviews (state, emit, opts) {
 function addreview (state, emit, opts) {
   if (!state.user) {
     var login = button(state, emit, { label: 'Log in to review this preprint' })
-    login.onclick = () => emit('pushSTate', '/login-redirect')
+    login.onclick = () => emit('pushState', '/login-redirect')
     return html`<div class="flex flex-row w-100 justify-end">${login}</div>`
   }
   var s = state.style.classes
