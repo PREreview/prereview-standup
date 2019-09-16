@@ -7,7 +7,8 @@ var prefixmap = {
     var pubmonth = ("0" + (pubdate.getMonth() + 1)).slice(-2)
     var pubday = ("0" + pubdate.getDate()).slice(-2)
     var doipart = preprint.identifier.split('/')[1]
-    return `https://www.biorxiv.org/content/biorxiv/early/${pubyear}/${pubmonth}/${pubday}/${doipart}.full-text.pdf`
+    var site = preprint.publisher.toLowerCase()
+    return `https://www.${site}.org/content/${site}/early/${pubyear}/${pubmonth}/${pubday}/${doipart}.full-text.pdf`
   },
   '10.12688': crossrefPdfLinkUrl,
   '10.20944': async preprint => {
@@ -44,7 +45,7 @@ async function crossrefPdfLinkUrl (preprint) {
 function crossrefData (doi) {
   return fetch(`https://api.crossref.org/works/${doi}`, {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json;charset=UTF-8'
     },
     mode: 'no-cors'
   }).then(res => res.json())
