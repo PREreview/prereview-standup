@@ -25,8 +25,8 @@ function view (state, emit) {
   <body class="flex flex-column w-100 justify-center items-center space-around dark-gray sans-serif">
     ${nav(state, emit)}
     <div class="w-100 flex flex-column items-center">
-      <div class="flex flex-column items-center w-70">
-        <img class="w-20" style="max-width: 200px;" src="/assets/images/loader.svg" />
+      <div class="flex flex-column items-center w-70 tc measure">
+        <img style="width: 200px;" src="/assets/images/loader.svg" />
         <h1>Your PREreview is ready to be submitted.</h1>
         <h2 class="fw2">Once you click submit your review will be assigned a DOI and permanently published.</h2>
         ${submit}
