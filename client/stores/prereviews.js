@@ -34,6 +34,8 @@ module.exports = async (state, emitter) => {
       },
       body: JSON.stringify(submission)
     }).then(
+      res => res.json()
+    ).then(
       submissionSuccessful
     ).catch(
       submissionFailed
@@ -41,14 +43,9 @@ module.exports = async (state, emitter) => {
   }
 
   function submissionSuccessful (response) {
-    console.log('prereview submission successful \o/')
+    console.log('prereview submission successful \\o/')
     var submission = state.prereviews.currentSubmission
-    if (submission.preprint.identifier === response.preprint_id) {
-      submission.status = 'published'
-    } else {
-      console.log('conflicting submissions, submitted and published:', submission, response)
-      throw new Error('conflicting submissions')
-    }
+    submission.status = 'published'
 
     emitter.emit('pushState', '/prereview-published')
   }
