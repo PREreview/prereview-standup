@@ -19,6 +19,7 @@
     "babel-polyfill": "^6.26.0",
     "choo": "^6.13.1",
     "choo-service-worker": "^2.4.0",
+    "crossref": "^1.2.1",
     "fake-identity": "^1.0.6",
     "hyphenate-style-name": "^1.0.3",
     "lodash": "^4.17.11",

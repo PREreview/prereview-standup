@@ -21,7 +21,7 @@ module.exports = function (state, emit, preprint) {
 
   var viewercontainer = html`<iframe class="w-100 h-100 bn"></div>`
 
-  loadPreprintIntoIframe(preprint, viewercontainer)
+  loadPreprintIntoIframe(preprint, viewercontainer, loadingdone)
 
   var container = html`
 
@@ -32,21 +32,19 @@ module.exports = function (state, emit, preprint) {
   
   `
 
-  setTimeout(loadingdone, loaded ? 1 : 3000)
   loaded = true
 
   return container
 }
 
-function loadPreprintIntoIframe (preprint, container) {
+function loadPreprintIntoIframe (preprint, container, loadingdone) {
   console.log('preprint url loading')
   pdfUrl(preprint).then(
     docurl => {
       console.log('got preprint url:', docurl)
       var corsurl = `https://preprint-proxy.prereview.org/${docurl}`
       container.setAttribute('src', `/pdfviewer/web/viewer.html?file=${corsurl}`)
-      // var iframe = html`<iframe class="w-100 h-100 bn" src="/pdfviewer/web/viewer.html?file=${corsurl}"></div>`
-      // container.appendChild(iframe)
+      setTimeout(loadingdone, 3000)
     }
   )
 }

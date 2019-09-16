@@ -1,3 +1,5 @@
+var CrossRef = require('crossref')
+
 module.exports = preprintToPdfUrl
 
 var prefixmap = {
@@ -44,11 +46,20 @@ async function crossrefPdfLinkUrl (preprint) {
 
 function crossrefData (doi) {
   return fetch(`https://api.crossref.org/works/${doi}`, {
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8'
-    },
-    mode: 'no-cors'
-  }).then(res => res.json())
+    mode: 'cors'
+  }).then(
+    res => res.json()
+  ).then(
+    data => {
+      console.log(data)
+      return data.message
+    }
+  ).catch(
+    err => {
+      console.log('error retrieving crossref data')
+      console.error(err)
+    }
+  )
 }
 
 function doiToPdfMap (doi) {
