@@ -11,6 +11,11 @@ var mainstyle = css`
 
 `
 
+var blockedpublishers = [
+  'biorxiv',
+  'medrxiv'
+]
+
 var reviews = require('../fake/reviews')
 
 var lastdoi
@@ -43,6 +48,7 @@ module.exports = function view (state, emit) {
       res => res.json()
     ).then(
       doidata => {
+        doidata.pdfblocked = blockedpublishers.indexOf(doidata.publisher.toLowerCase()) > -1
         lastdoi = { doi: doi, data: doidata }
         populatepanes(doidata)
       }

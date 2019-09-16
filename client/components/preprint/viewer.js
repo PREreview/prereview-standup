@@ -1,4 +1,5 @@
 var html = require('choo/html')
+var raw = require('choo/html/raw')
 var pdfUrl = require('../../lib/preprints/pdf-url')
 
 var loaded = false
@@ -19,7 +20,10 @@ module.exports = function (state, emit, preprint) {
     loading.remove()
   }
 
-  var viewercontainer = html`<iframe class="w-100 h-100 bn"></div>`
+  var viewercontainer = preprint.pdfblocked ?
+    blockedview(preprint) :
+    html`<iframe class="w-100 h-100 bn"></div>`
+   
 
   loadPreprintIntoIframe(preprint, viewercontainer, loadingdone)
 
@@ -35,6 +39,26 @@ module.exports = function (state, emit, preprint) {
   loaded = true
 
   return container
+}
+
+function blockedview (preprint) {
+  var publisher = html`<div class="red i b">${preprint.publisher}</div>`
+  var title = html`<h1 class="mv1 lh-solid">${preprint.title}</h1>`
+  var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.map(a => a.fullName).join(', ')}</h2>`
+  var abstract = raw(`<p class="mt1">${preprint.abstract}</p>`)
+  return html`
+    <div class="flex flex-column h-100 justify-start lh-copy pa3">
+      ${publisher}
+      <a class="black link" href="https://${preprint.identifiertype}.org/${preprint.identifier}" target="_blank">${title}</a>
+      ${authors}
+      <h3 class="mb1">Abstract</h3>
+      ${abstract}
+      <h2>
+        Unfortunately we cannot display the PDF of this preprint.
+        You can access the preprint <a href="https://${preprint.identifiertype}.org/${preprint.identifier}">at the publisher's website</a>.
+      </h2>
+    </div>
+  `
 }
 
 function loadPreprintIntoIframe (preprint, container, loadingdone) {
