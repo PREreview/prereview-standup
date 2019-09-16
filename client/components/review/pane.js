@@ -57,12 +57,14 @@ function readreviews (state, emit, opts) {
   if (!opts.reviews) opts.reviews = []
   if (!opts.requests) opts.requests = []
 
+  var n = opts.reviews.length
+
   var el = html`
   
   <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
     ${opts.pdfblocked ? null : meta(state, emit, opts)}
     <div class="flex flex-row w-100 justify-between items-center pa3">
-      <div class="pr2 f4 fw5 nowrap">${opts.reviews.length} reviews</h2>
+      <div class="pr2 f4 fw5 nowrap">${n} review%${n === 1 ? '' : 's'}</h2>
       ${addreview(state, emit, opts)}
     </div>
     ${opts.reviews.map(r => require('./display')(state, emit, r))}
