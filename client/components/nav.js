@@ -29,6 +29,9 @@ module.exports = function(state, emit, opts) {
     var find = html`
       <div class="ml2-m ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link pointer noselect">
         ${icon('search', { backgroundColor: 'white' })}
+        <div class="dn-s dn-m">
+          <div class="ma0 ml2 pa0 white dib v-mid">Find preprints to review</div>
+        </div>
       </div>
     `
     find.onclick = () => emit('pushState', '/find')
