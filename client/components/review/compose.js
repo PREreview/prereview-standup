@@ -11,7 +11,7 @@ css('quill/dist/quill.snow.css')
 var editorstyle = css`
 
 :host .ql-editor {
-  height: 500px !important;
+  min-height: 250px !important;
   width: 100%;
 }
 
