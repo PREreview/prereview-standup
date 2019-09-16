@@ -15,7 +15,7 @@ module.exports = function(state, emit, opts) {
 
   var logo = html`
     <div class="justify-start" style="cursor: pointer;">
-      <img class="h-100 ma0 pa0" style="max-height: 200px;" src="/assets/images/logo_horizontal_tx.png">
+      <img class="ml2-m ma0-l pa0" style="width: auto;" src="/assets/images/logo_horizontal_tx.png">
     </div>
   `
 
@@ -27,9 +27,8 @@ module.exports = function(state, emit, opts) {
     }
 
     var find = html`
-      <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link pointer noselect">
+      <div class="ml2-m ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link pointer noselect">
         ${icon('search', { backgroundColor: 'white' })}
-        <div class="ma0 ml2 pa0 white dib v-mid">Find preprints to review</div>
       </div>
     `
     find.onclick = () => emit('pushState', '/find')
