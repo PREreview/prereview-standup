@@ -33,7 +33,7 @@ var callstoaction = [
   },
   {
     title: 'Connect',
-    img: 'c',
+    img: 'f',
     description: 'By interacting on PREreview and participating in PREreview live-streamed journal clubs, we enable you to collaborate and connect across research communities.'
   }
 ]

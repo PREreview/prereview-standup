@@ -15,10 +15,17 @@ module.exports = async (state, emitter) => {
     getCurrentUser()
   )
 
-  var acceptCoC = () => userDo('accept_coc')
+  var acceptCoC = () => {
+    state.user.coc_accepted = true
+    userDo('accept_coc')
+  }
   emitter.on('user:accept-coc', acceptCoC)
 
-  var becomePrivate = () => userDo('become_private')
+  var becomePrivate = () => {
+    state.user.privacy_setup = true
+    state.user.is_private = true
+    userDo('become_private')
+  }
   emitter.on('user:become-private', becomePrivate)
 
   var becomePublic = () => userDo('become_public')
