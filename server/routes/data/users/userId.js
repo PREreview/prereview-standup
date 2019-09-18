@@ -1,5 +1,5 @@
 var orcid = require('orcid-utils')
-var user = require('../../../db/tables/users')
+var users = require('../../../db/tables/users')
 
 var express = require('express')
 var router = express.Router()
@@ -9,37 +9,41 @@ var router = express.Router()
 // If there is an authed user, show only public information unless they request their own data
 // If there is an authed user and they are an admin, show them all data
 router.get('/:userid', function (req, res) {
-	var userid = params.userid
+	var userid = req.params.userid
 
-	var user
+	// // user is looking at their own profile
+	// if (req.user.id === userid) {
+	// 	return res.json(req.user)
+	// }
+
+	var admin = req.user && req.user.is_admin
 
 	if (orcid.isValid(userid)) {
 		// lookup user by orcid
 		users.getUser({ orcid: userid }).then(
-			returneduser => {
-				user = returneduser
-			}
+			returnuser
 		)
 	} else {
 		// lookup user by id
-		users.getUserByID(userid).then(
-			returneduser => {
-				user = returneduser
-			}
+		users.getUserById(userid).then(
+			returnuser
 		)
 	}
 
-	// Don't include the auth tokens
-	delete user.token
+	function returnuser (user) {
+		// Don't include the auth tokens
+		delete user.token
 
-	// If logged in user is not admin, and 
-	// requested user is pseudonymous, ensure real name and orcid are removed
-	if (!req.user.is_admin && user.is_private) {
-		delete user.name
-		delete user.orcid
+		// If logged in user is not admin, and 
+		// requested user is pseudonymous, ensure real name and orcid are removed
+		if (user.is_private && !admin) {
+			user.name = `PREreviewer${user.id}`
+			delete user.orcid
+			delete user.profile
+		}
+
+		res.json(user)
 	}
-
-	res.json(user)
 })
 
 module.exports = router

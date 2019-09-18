@@ -38,7 +38,7 @@ var style = css`
 
 `
 
-module.exports = function component(state, emit, opts) {
+module.exports = function component() {
   return html`
   
   <div class="lds-ripple flex"><div></div><div></div></div>

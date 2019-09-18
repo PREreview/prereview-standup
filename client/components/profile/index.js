@@ -1,7 +1,45 @@
 var html = require('choo/html')
+var loading = require('../utils/loading')
 
 module.exports = {
-  myprofilecard, firstvisitcards, usercontent
+  myprofilecard, otheruser, firstvisitcards, usercontent
+}
+
+function otheruser (state, emit, waitforuserdata) {
+  var loader = loading()
+
+  var el = html`
+    <div class="flex flex-column justify-center items-center w-100 center bg-white br3 pa3 pa4-ns">
+      ${loader}
+    </div>
+  `
+
+  waitforuserdata.then(
+    user => {
+      console.log('loaded user profile data', user)
+      var orcid = user.orcid ? html`
+        <h3 class="mt1 f5 fw3 mv0">
+          ORCID <img src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" /> <a class="link dim dark-red code" href="https://orcid.org/${user.orcid}" target="_blank">${user.orcid}</a>
+        </h3>
+      ` : null
+
+      var privateuser = user.is_private ? html`<h3>This user's profile is private.</h3>` : null
+
+      var inner = html`
+        <div class="tc">
+          <img src="${(user.profile && user.profile.pic + '&s=128') || '/assets/illustrations/avatar.png'}" class="br-100 h4 w4 dib" title="user profile picture">
+          <h2 class="mb1 fw4">${user.name}</h2>
+          ${orcid}
+          ${privateuser}
+        </div>
+      `
+
+      loader.remove()
+      el.appendChild(inner)
+    }
+  )
+
+  return el
 }
 
 function myprofilecard (state, emit) {
