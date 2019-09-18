@@ -15,7 +15,7 @@ function createTable () {
 			table.string('publisher')
 			table.json('authors')
 			table.date('date_created')
-			table.date('date_published')
+			table.date('date_published').index()
 			table.date('date_indexed')
 			table.text('authorstring')
 
