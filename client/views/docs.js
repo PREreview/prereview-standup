@@ -9,11 +9,21 @@ var TITLE = 'PREreview'
 var style = css`
 
 :host p, li {
-  font-size: 1.4em;
+  font-size: 22px;
+}
+
+:host h2 {
+  font-size: 30px;
 }
 
 :host h1 {
+  font-size: 30px;
   margin-bottom: 10px;
+}
+
+:host img {
+  display: block;
+  margin: 0px auto;
 }
 
 `
