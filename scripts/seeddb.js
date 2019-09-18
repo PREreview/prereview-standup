@@ -20,7 +20,7 @@ var to = require('flush-write-stream')
 pump(
   indb.createReadStream(),
   through.obj(convert),
-  new BatchStream({ size: 100000 }),
+  new BatchStream({ size: 1000000 }),
   to.obj(insert),
   done
 )
@@ -33,9 +33,9 @@ function convert (data, enc, next) {
     d.identifier = d.doi
     d.identifiertype = 'doi'
     delete d.doi
-  } else if (d.arvixid) {
-    d.identifier = d.arvixid
-    d.identifiertype = 'arxivid'
+  } else if (d.arxivid) {
+    d.identifier = d.arxivid
+    d.identifiertype = 'arxiv'
     delete d.arxivid
   }
 
