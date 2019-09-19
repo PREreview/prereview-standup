@@ -43,7 +43,7 @@ function otheruser (state, emit, waitforuserdata) {
         ` : null
   
         var privateuser = user.is_private ? html`<h3>This user's profile is private.</h3>` : null
-        var imgsrc = ((user.profile && user.profile.pic) + '&s=128') || '/assets/illustrations/avatar.png'
+        var profilepic = (user.profile && user.profile.pic) ? user.profile.pic + '&s=128' : '/assets/illustrations/avatar.png'
 
         inner = html`
           <div class="flex flex-column items-center tc w-50-l w-70-m w-90-s">
@@ -76,10 +76,12 @@ function myprofilecard (state, emit) {
     null :
     html`You can choose your profile picture by registering your email on <a href="https://gravatar.com">Gravatar</a>.`
 
+  var profilepic = state.user.profile.pic ? state.user.profile.pic + '&s=128' : '/assets/illustrations/avatar.png'
+
   return html`
     <div class="w-100 center bg-white br3 pa3 pa4-ns">
       <div class="tc">
-        <img src="${state.user.profile.pic + '&s=128' || '/assets/illustrations/avatar.png'}" class="br-100 h4 w4 dib" title="your picture">
+        <img src="${profilepic}" class="br-100 h4 w4 dib" title="your picture">
         ${gravatartxt}
         <h2 class="mb1 fw4">${state.user.name}</h2>
         <h3 class="mt1 f5 fw3 mv0">
