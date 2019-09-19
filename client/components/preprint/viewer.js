@@ -59,7 +59,7 @@ function blockedview (preprint) {
       ${abstract}
       <h2>
         Unfortunately we cannot display the PDF of this preprint.
-        You can access the preprint <a href="https://${site}.org/${identifier}" target="_blank">at the publisher's website</a>.
+        You can access the full text <a href="https://${site}.org/${identifier}" target="_blank">at the preprint server's website</a>.
       </h2>
     </div>
   `
