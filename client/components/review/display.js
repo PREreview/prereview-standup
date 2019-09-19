@@ -35,7 +35,8 @@ module.exports = function view (state, emit, review) {
 
   fetch(`/data/users/${review.author_id}`).then(res => res.json()).then(
     authordata => {
-      author.innerText = authordata.name
+      var authorinner = html`<a href="/users/${authordata.user_id}">${authordata.name}</a>`
+      author.appendChild(authorinner)
     }
   )
   
