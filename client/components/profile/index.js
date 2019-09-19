@@ -46,11 +46,12 @@ function otheruser (state, emit, waitforuserdata) {
         var imgsrc = (user.profile && user.profile.pic + '&s=128') || '/assets/illustrations/avatar.png'
 
         inner = html`
-          <div class="tc">
+          <div class="flex flex-column items-center tc w-50-l w-70-m w-90-s">
             <img src="${imgsrc}" class="br-100 h4 w4 dib" title="user profile picture">
-            <h2 class="mb1 fw4">${user.name}</h2>
+            <h1 class="mb1 fw4">${user.name}</h1>
             ${orcid}
             ${privateuser}
+            ${userreviews(state, emit, user)}
           </div>
         `
       } else {
@@ -172,7 +173,12 @@ function userreviews (state, emit, user) {
   var reviews = user.prereviews
 
   if (reviews && reviews.length > 0) {
-    return reviews.map(prereview)
+    return html`
+      <div class="flex flex-column pa3">
+        <h2>PREreviews</h2>
+        ${reviews.map(prereview)}
+      </div>
+    `
   } else {
     return html`
     <div class="pa3 lh-copy tc">
@@ -186,7 +192,7 @@ function prereview (p) {
   var revdate = (new Date(p.date_created)).toDateString()
 
   return html`
-  <div class="flex flex-column justify-start items-start pa3 lh-copy ba b--light-gray">
+  <div class="flex flex-column justify-start items-start pa3 lh-copy ba b--light-gray mb2">
     <div class="flex flex-row mb2 items-between justify-between w-100">
       <div class="flex flex-row red">PREreviewed on <span class="b ml2">${revdate}</span></div>
       <div class="flex flex-row nowrap">
@@ -195,7 +201,7 @@ function prereview (p) {
       </div>
     </div>
     <div class="flex flex-row">
-      <a class="black f5 fw7 tl" href="/preprints/${p.id}">${p.title}</a>
+      <a class="black f5 fw7 tl" href="/preprints/${p.id || p.preprint.id}">${p.title || p.preprint.title}</a>
     </div>
   </div>
   `

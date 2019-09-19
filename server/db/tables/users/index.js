@@ -41,7 +41,27 @@ function getUserReviews (user) {
 			.then(
 				prereviews => {
 					user.prereviews = prereviews
-					return Promise.resolve(user)
+					return Promise.all(
+						prereviews.map(addPreprintToPrereview)
+					).then(
+						() => Promise.resolve(user)
+					)
+				}
+			)
+	} else {
+		return Promise.resolve(null)
+	}
+}
+
+function addPreprintToPrereview (prereview) {
+	if (prereview && prereview.preprint_id) {
+		return db('preprints')
+			.where({ id: prereview.preprint_id })
+			.first()
+			.then(
+				preprint => {
+					prereview.preprint = preprint
+					return Promise.resolve(prereview)
 				}
 			)
 	} else {
