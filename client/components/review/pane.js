@@ -92,9 +92,10 @@ function addreview (state, emit, preprint) {
 }
 
 function meta (state, emit, preprint) {
+  console.log(preprint)
   var publisher = html`<div class="red i b">${preprint.publisher}</div>`
   var title = html`<h1 class="mv1 lh-solid">${preprint.title}</h1>`
-  var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.map(a => a.fullName).join(', ')}</h2>`
+  var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.list.map(a => a.fullName).join(', ')}</h2>`
   
   var type = preprint.id.split('/')[0]
   var isarxiv = type === 'arxiv'
