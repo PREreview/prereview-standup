@@ -29,16 +29,34 @@ function searchPreprints (query) {
   return Promise.all([
     total, chain
   ]).then(
-    ([totalResult, chainResult]) => {
-      return Promise.resolve({
+    ([totalResult, chainResult]) => Promise.all(
+      chainResult.map(getPreprintReviewCount)
+    ).then(
+      results => Promise.resolve({
         query: query,
         total: totalResult.total,
-        results: chainResult.map(cleanResult),
+        results: results.map(cleanResult),
         currentpage: currentpage,
         totalpages: Math.ceil(totalResult.total / PAGESIZE)
       })
-    }
+    )
   )
+}
+
+function getPreprintReviewCount (preprint) {
+	if (preprint && preprint.id) {
+		return db('prereviews')
+      .where({ preprint_id: preprint.id })
+      .count('* as n_prereviews')
+			.then(
+				counter => {
+					preprint.n_prereviews = parseInt(counter[0].n_prereviews)
+					return Promise.resolve(preprint)
+				}
+			)
+	} else {
+		return Promise.resolve(null)
+	}
 }
 
 function cleanResult (r) {

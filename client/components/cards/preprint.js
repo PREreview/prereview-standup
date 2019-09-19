@@ -1,5 +1,4 @@
 var html = require('choo/html')
-var fakereviews = require('../../fake/reviews')
 
 module.exports = preprint
 
@@ -8,14 +7,13 @@ function preprint (state, emit, p) {
 
   // TODO remove
   if (!d.date_published) d.date_published = new Date(d.pubDate)
-  d.reviews = fakereviews()
 
   var gotoreviews = () => emit('pushState', `/preprints/${d.id}`)
 
   var title = html`<div class="link dim" style="cursor: pointer;">${d.title}</div>`
   title.onclick = gotoreviews
 
-  var nreviews = d.reviews.length === 0 ? 'No PREreviews yet' : `${d.reviews.length} PREreviews`
+  var nreviews = d.n_prereviews === 0 ? 'No PREreviews yet' : `${d.n_prereviews} PREreviews`
   var showreviews = html`
     <div class="mr2 dark-gray link dim f6" style="cursor: pointer;">${nreviews}</div>
   `
@@ -33,9 +31,6 @@ function preprint (state, emit, p) {
   }
 
   var pubdate = `Preprint published ${d.date_published.toLocaleDateString({ dateStyle: 'full' })}.`
-  var reviewdate = d.reviews.length > 0 ?
-    `First reviewed on ${d.reviews[0].created.toLocaleDateString({ dateStyle: 'full' })}.` :
-    null
 
   return html`
   
@@ -61,7 +56,6 @@ function preprint (state, emit, p) {
     <div class="footer flex justify-between mv3">
       <div class="flex flex-row items-center flex-wrap left f6 fw3">
         ${pubdate}
-        ${reviewdate}
       </div>
       <div class="flex flex-row items-center flex-nowrap right f6 fw3"> 
         ${showreviews}
