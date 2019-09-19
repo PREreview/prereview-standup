@@ -195,7 +195,7 @@ function prereview (p) {
       </div>
     </div>
     <div class="flex flex-row">
-      <a class="black f5 fw7 tl" href="/preprints/${p.identifier_type}/${p.identifier}">${p.title}</a>
+      <a class="black f5 fw7 tl" href="/preprints/${p.id}">${p.title}</a>
     </div>
   </div>
   `
@@ -210,7 +210,7 @@ function start (state) {
 
   return html`
   <div class="flex flex-row justify-center">
-    <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3 link noselect">
+    <div class="ph3 pv3 nowrap dim dt bg-red br3 link noselect">
       <a class="white dtc v-mid b" href="/find">Start PREreviewing</a>
     </div>
   </div>
