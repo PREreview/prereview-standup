@@ -5,7 +5,7 @@ var db = require('../..')
 function createTable () {
 	return db.schema.dropTableIfExists('users').then(function(exists) {
 		return db.schema.createTable('users', table => {
-			table.increments('id').primary()
+			table.increments('user_id').primary()
 			table.timestamp('created_at').defaultTo(db.fn.now())
 			
 			// these are loaded from ORCID at first login (see /server/auth)

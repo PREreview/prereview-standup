@@ -6,9 +6,7 @@ var preprints = require('./index')
 function createTable () {
 	return db.schema.dropTableIfExists('preprints').then(function() {
 		return db.schema.createTable('preprints', table => {
-			table.increments('id').primary()
-			table.string('identifier')
-			table.string('identifiertype')
+			table.string('id').primary()
 			table.text('title')
 			table.text('abstract')
 			table.string('source')

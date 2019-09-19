@@ -13,6 +13,7 @@ function getPreprint (preprint) {
 }
 
 function indexNewPreprints () {
+	console.log('indexing new preprints')
 	var tsvectorjoin = " || '  . ' || "
 	var tsvectorfields = [
 		'title',

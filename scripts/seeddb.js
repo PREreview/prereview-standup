@@ -30,13 +30,15 @@ function convert (data, enc, next) {
   var d = data[0].value
 
   if (d.doi) {
-    d.identifier = d.doi
-    d.identifiertype = 'doi'
+    d.id = `doi/${d.doi}`
     delete d.doi
   } else if (d.arxivid) {
-    d.identifier = d.arxivid
-    d.identifiertype = 'arxiv'
+    return next()
+    d.id = `arxiv/${d.arxivid}`
     delete d.arxivid
+  } else {
+    console.log('entry has no id', d)
+    return next()
   }
 
   // Knex can't handle an array as a JSON field

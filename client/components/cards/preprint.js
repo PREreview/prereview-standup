@@ -10,7 +10,7 @@ function preprint (state, emit, p) {
   if (!d.date_published) d.date_published = new Date(d.pubDate)
   d.reviews = fakereviews()
 
-  var gotoreviews = () => emit('pushState', `/preprints/${d.identifiertype}/${d.identifier}`)
+  var gotoreviews = () => emit('pushState', `/preprints/${d.id}`)
 
   var title = html`<div class="link dim" style="cursor: pointer;">${d.title}</div>`
   title.onclick = gotoreviews
@@ -29,7 +29,7 @@ function preprint (state, emit, p) {
         <p class="ma0 pa0 white dtc v-mid b f6">Write a PREreview</p>
       </div>
     `
-    addreview.onclick = () => emit('pushState', `/preprints/${d.identifiertype}/${d.identifier}/new`)
+    addreview.onclick = () => emit('pushState', `/preprints/${d.id}/new`)
   }
 
   var pubdate = `Preprint published ${d.date_published.toLocaleDateString({ dateStyle: 'full' })}.`

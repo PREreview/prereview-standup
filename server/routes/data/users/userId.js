@@ -1,4 +1,3 @@
-var orcid = require('orcid-utils')
 var users = require('../../../db/tables/users')
 
 var express = require('express')
@@ -18,26 +17,21 @@ router.get('/:userid', function (req, res) {
 
 	var admin = req.user && req.user.is_admin
 
-	if (orcid.isValid(userid)) {
-		// lookup user by orcid
-		users.getUser({ orcid: userid }).then(
-			returnuser
-		)
-	} else {
-		// lookup user by id
-		users.getUserById(userid).then(
-			returnuser
-		)
-	}
+	// lookup user by id
+	users.getUserById(userid).then(
+		returnuser
+	)
 
 	function returnuser (user) {
+		if (!user) return res.json(null)
+
 		// Don't include the auth tokens
 		delete user.token
 
 		// If logged in user is not admin, and 
 		// requested user is pseudonymous, ensure real name and orcid are removed
 		if (user.is_private && !admin) {
-			user.name = `PREreviewer${user.id}`
+			user.name = `PREreviewer${user.user_id}`
 			delete user.orcid
 			delete user.profile
 		}

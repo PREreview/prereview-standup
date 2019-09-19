@@ -86,7 +86,7 @@ function addreview (state, emit, opts) {
     label: 'Review this preprint',
     classes: 'ml2 bg-red white'
   })
-  write.onclick = () => emit('pushState', `/preprints/${opts.identifiertype}/${opts.identifier}/new`)
+  write.onclick = () => emit('pushState', `/preprints/${opts.identifier_type}/${opts.identifier}/new`)
 
   return write
 }
@@ -95,11 +95,16 @@ function meta (state, emit, preprint) {
   var publisher = html`<div class="red i b">${preprint.publisher}</div>`
   var title = html`<h1 class="mv1 lh-solid">${preprint.title}</h1>`
   var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.map(a => a.fullName).join(', ')}</h2>`
-  var abstract = raw(`<p class="mt1">${preprint.abstract}</p>`)
+  
+  var type = preprint.identifier_type
+  var isarxiv = type === 'arxiv'
+  var maybeabs = isarxiv ? 'abs/' : ''
+  var linkout = `https://${type}.org/${maybeabs}${preprint.identifier}`
+
   return html`
     <div class="flex flex-column lh-copy pa3">
       ${publisher}
-      <a class="black link" href="https://${preprint.identifiertype}.org/${preprint.identifier}" target="_blank">${title}</a>
+      <a class="black link" href="${linkout}" target="_blank">${title}</a>
       ${authors}
     </div>
   `

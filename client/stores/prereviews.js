@@ -12,7 +12,7 @@ module.exports = async (state, emitter) => {
 
   function startSubmission (submission) {
     var preprint = submission.preprint
-    var preprintId = `${preprint.identifierType}:${preprint.identifier}`
+    var preprintId = `${preprint.identifier_type}:${preprint.identifier}`
 
     state.prereviews.inProgress[preprintId] = submission
     state.prereviews.currentSubmission = submission

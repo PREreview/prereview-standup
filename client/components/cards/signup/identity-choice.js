@@ -7,7 +7,7 @@ var components = [
     opts: {
       l: {
         content: 'Keep my identity private',
-        detail: html`This choice shows a pseudonym on your profile, posts and comments. Your ORCID <img style="margin-bottom:-3px;" src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />, real name, email address and other person details will not be connected with your profile or activity on PREreview. However, the PREreview staff will always be able to see your identity.`,
+        detail: html`This choice shows a pseudonym on your profile, posts and comments. Your ORCID <img style="margin-bottom:-3px;" src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />, real name, email address and other personal details will not be connected with your profile or activity on PREreview. However, the PREreview staff will always be able to see your identity.`,
         choice: 'private'
       },
       r: {

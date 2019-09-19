@@ -5,22 +5,18 @@ var express = require('express')
 var router = express.Router()
 
 // Returns data about a preprint by DOi
-router.get('/doi/:doia/:doib', function (req, res, next) {
-  var doi = `${req.params.doia}/${req.params.doib}`
+router.get('/arxiv/*', function (req, res, next) {
+  var arxivid = req.path.split('/arxiv/')[1]
   
-  if (!isdoi({exact: true}).test(doi)) {
-    res.status(500, 'Malformed DOI in requested URI')
+  if (!arxivid) {
+    res.status(500, 'Malformed arXiv ID in requested URI')
   }
 
   var preprint
-
-  // TODO: enrich preprint with getpreprints data
-  // e.g. if it's not in our DB, check crossref
-  // if we have it, check for updates now
   
 	preprints.getPreprint({
-    identifier_type: 'doi',
-    identifier: doi
+    identifier_type: 'arxiv',
+    identifier: arxivid
   }).then(
     returnedpreprint => {
       res.json(returnedpreprint)

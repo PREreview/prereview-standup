@@ -23,11 +23,11 @@ var prefixmap = {
 }
 
 async function preprintToPdfUrl (preprint) {
-  if (preprint.identifiertype === 'doi') {
+  if (preprint.identifier_type === 'doi') {
     var doi = preprint.identifier
     var pdffn = doiToPdfMap(doi)
     return await pdffn(preprint)
-  } else if (preprint.identifiertype === 'arxiv') {
+  } else if (preprint.identifier_type === 'arxiv') {
     return `https://arxiv.org/pdf/${preprint.identifier}`
   }
 }

@@ -17,5 +17,5 @@ function getPrereview (prereview) {
 function getPrereviewsForUser (user) {
 	return db('prereviews')
 		.join('preprints', 'prereviews.preprint_id', '=', 'preprints.id')
-		.where({ author_id: user.id })
+		.where({ author_id: user.user_id })
 }

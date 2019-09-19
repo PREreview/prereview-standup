@@ -43,7 +43,7 @@ function meta (state, emit, preprint) {
   return html`
     <div class="flex flex-column lh-copy pa3">
       ${publisher}
-      <a class="black link" href="https://${preprint.identifiertype}.org/${preprint.identifier}" target="_blank">${title}</a>
+      <a class="black link" href="https://${preprint.identifier_type}.org/${preprint.identifier}" target="_blank">${title}</a>
       ${authors}
     </div>
   `

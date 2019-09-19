@@ -24,12 +24,29 @@ function getUser (user) {
 	return db('users')
 		.where({ orcid: user.orcid })
 		.first()
+		.then(getUserReviews)
 }
 
 function getUserById (userid) {
 	return db('users')
-		.where({ id: userid })
+		.where({ user_id: userid })
 		.first()
+		.then(getUserReviews)
+}
+
+function getUserReviews (user) {
+	if (user && user.user_id) {
+		return db('prereviews')
+			.where({ author_id: user.user_id })
+			.then(
+				prereviews => {
+					user.prereviews = prereviews
+					return Promise.resolve(user)
+				}
+			)
+	} else {
+		return Promise.resolve(null)
+	}
 }
 
 function getOrAddUser (user) {

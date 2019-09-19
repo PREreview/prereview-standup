@@ -1,4 +1,16 @@
 var html = require('choo/html')
+var raw = require('choo/html/raw')
+var css = require('sheetify')
+
+var biostyle = css`
+
+:host > p {
+  margin: 0;
+}
+
+`
+
+var icon = require('../utils/icon')
 var loading = require('../utils/loading')
 
 module.exports = {
@@ -16,23 +28,39 @@ function otheruser (state, emit, waitforuserdata) {
 
   waitforuserdata.then(
     user => {
-      console.log('loaded user profile data', user)
-      var orcid = user.orcid ? html`
-        <h3 class="mt1 f5 fw3 mv0">
-          ORCID <img src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" /> <a class="link dim dark-red code" href="https://orcid.org/${user.orcid}" target="_blank">${user.orcid}</a>
-        </h3>
-      ` : null
+      var inner
+  
+      if (user) {
+        console.log('loaded user profile data', user)
+        var orcid = user.orcid ? html`
+          <h3 class="mt1 f5 fw3 mv0">
+            ORCID
+            <img src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />
+            <a class="link dim dark-red code" href="https://orcid.org/${user.orcid}" target="_blank">
+              ${user.orcid}
+            </a>
+          </h3>
+        ` : null
+  
+        var privateuser = user.is_private ? html`<h3>This user's profile is private.</h3>` : null
+        var imgsrc = (user.profile && user.profile.pic + '&s=128') || '/assets/illustrations/avatar.png'
 
-      var privateuser = user.is_private ? html`<h3>This user's profile is private.</h3>` : null
+        inner = html`
+          <div class="tc">
+            <img src="${imgsrc}" class="br-100 h4 w4 dib" title="user profile picture">
+            <h2 class="mb1 fw4">${user.name}</h2>
+            ${orcid}
+            ${privateuser}
+          </div>
+        `
+      } else {
+        inner = html`
+          <div class="tc">
+            <h2 class="mb1 fw4">No such user</h2>
+          </div>
+        `
+      }
 
-      var inner = html`
-        <div class="tc">
-          <img src="${(user.profile && user.profile.pic + '&s=128') || '/assets/illustrations/avatar.png'}" class="br-100 h4 w4 dib" title="user profile picture">
-          <h2 class="mb1 fw4">${user.name}</h2>
-          ${orcid}
-          ${privateuser}
-        </div>
-      `
 
       loader.remove()
       el.appendChild(inner)
@@ -54,7 +82,11 @@ function myprofilecard (state, emit) {
         ${gravatartxt}
         <h2 class="mb1 fw4">${state.user.name}</h2>
         <h3 class="mt1 f5 fw3 mv0">
-          ORCID <img src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" /> <a class="link dim dark-red code" href="https://orcid.org/${state.user.orcid}" target="_blank">${state.user.orcid}</a>
+          ORCID
+          <img src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />
+          <a class="link dim dark-red code" href="https://orcid.org/${state.user.orcid}" target="_blank">
+            ${state.user.orcid}
+          </a>
         </h3>
       </div>
     </div>
@@ -136,20 +168,34 @@ function prereviews (state, emit) {
   }
 }
 
+function userreviews (state, emit, user) {
+  var reviews = user.prereviews
+
+  if (reviews && reviews.length > 0) {
+    return reviews.map(prereview)
+  } else {
+    return html`
+    <div class="pa3 lh-copy tc">
+      <p>This user hasn't written any PREreviews yet.</p>
+    </div>
+    `
+  }
+}
+
 function prereview (p) {
   var revdate = (new Date(p.date_created)).toDateString()
 
   return html`
   <div class="flex flex-column justify-start items-start pa3 lh-copy ba b--light-gray">
     <div class="flex flex-row mb2 items-between justify-between w-100">
-<div class="flex flex-row red">You PREreviewed on <span class="b ml2">${revdate}</span></div>
+      <div class="flex flex-row red">PREreviewed on <span class="b ml2">${revdate}</span></div>
       <div class="flex flex-row nowrap">
         <div class="flex flex-row nowrap items-center">${icon('message-square')} 0</div>
         <div class="flex flex-row nowrap items-center ml3">${icon('clap', { size: '30px' })} 0</div>
       </div>
     </div>
     <div class="flex flex-row">
-      <a class="black f5 fw7 tl" href="/preprints/${p.identifiertype}/${p.identifier}">${p.title}</a>
+      <a class="black f5 fw7 tl" href="/preprints/${p.identifier_type}/${p.identifier}">${p.title}</a>
     </div>
   </div>
   `

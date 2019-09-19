@@ -18,11 +18,10 @@ var blockedpublishers = [
 
 var reviews = require('../fake/reviews')
 
-var lastdoi
+var lastid
 
 module.exports = function view (state, emit) {
-  var doiparts = state.href.split('/preprints/doi/')[1].split('/').slice(0, 2)
-  var doi = `${doiparts[0]}/${doiparts[1]}`
+  var id = state.href.split('/preprints/')[1]
 
   var left = html`<div class="flex flex-column w-50"></div>`
   var right = html`<div class="flex flex-column w-50"></div>`
@@ -42,24 +41,26 @@ module.exports = function view (state, emit) {
   fetchAndLoad()
 
   function fetchAndLoad () {
-    if (lastdoi && lastdoi.doi === doi) return populatepanes(lastdoi.data)
+    if (lastid && lastid.id === id) {
+      return populatepanes(lastid.data)
+    }
   
-    fetch(`/data/preprints/doi/${doi}`).then(
+    fetch(`/data/preprints/${id}`).then(
       res => res.json()
     ).then(
-      doidata => {
-        doidata.pdfblocked = blockedpublishers.indexOf(doidata.publisher.toLowerCase()) > -1
-        lastdoi = { doi: doi, data: doidata }
-        populatepanes(doidata)
+      preprint => {
+        preprint.pdfblocked = blockedpublishers.indexOf(preprint.publisher.toLowerCase()) > -1
+        lastid = { id: id, data: preprint }
+        populatepanes(preprint)
       }
     )
   }
 
-  function populatepanes (doidata) {
-    console.log('DOI data returned', doidata)
-    doidata.reviews = reviews()
-    left.appendChild(require('../components/preprint/viewer')(state, emit, doidata))
-    right.appendChild(require('../components/review/pane')(state, emit, doidata))
+  function populatepanes (preprint) {
+    console.log('DOI data returned', preprint)
+    preprint.reviews = reviews()
+    left.appendChild(require('../components/preprint/viewer')(state, emit, preprint))
+    right.appendChild(require('../components/review/pane')(state, emit, preprint))
   }
 
   return el

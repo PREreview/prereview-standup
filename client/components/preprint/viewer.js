@@ -49,13 +49,13 @@ function blockedview (preprint) {
   return html`
     <div class="flex flex-column h-100 justify-start lh-copy pa3">
       ${publisher}
-      <a class="black link" href="https://${preprint.identifiertype}.org/${preprint.identifier}" target="_blank">${title}</a>
+      <a class="black link" href="https://${preprint.identifier_type}.org/${preprint.identifier}" target="_blank">${title}</a>
       ${authors}
       <h3 class="mb1">Abstract</h3>
       ${abstract}
       <h2>
         Unfortunately we cannot display the PDF of this preprint.
-        You can access the preprint <a href="https://${preprint.identifiertype}.org/${preprint.identifier}">at the publisher's website</a>.
+        You can access the preprint <a href="https://${preprint.identifier_type}.org/${preprint.identifier}">at the publisher's website</a>.
       </h2>
     </div>
   `

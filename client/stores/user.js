@@ -18,6 +18,7 @@ module.exports = async (state, emitter) => {
   var acceptCoC = () => {
     state.user.coc_accepted = true
     userDo('accept_coc')
+    emitter.emit('render')
   }
   emitter.on('user:accept-coc', acceptCoC)
 
@@ -25,6 +26,7 @@ module.exports = async (state, emitter) => {
     state.user.privacy_setup = true
     state.user.is_private = true
     userDo('become_private')
+    emitter.emit('render')
   }
   emitter.on('user:become-private', becomePrivate)
 
@@ -49,11 +51,11 @@ module.exports = async (state, emitter) => {
       if (!state.user || !state.user.orcid) {
         state.user = null
         emitter.emit('render')
-        return null
+        return
       }
   
-      // if we get here, the user is logged in and we have their data
-      if (state.route === '/') return (window.location = '/find')
+      // // if we get here, the user is logged in and we have their data
+      // if (state.route === '/') return (window.location = '/find')
   
       if (state.contentloaded) {
         emitter.emit('render')

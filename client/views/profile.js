@@ -1,20 +1,9 @@
 var html = require('choo/html')
-var raw = require('choo/html/raw')
-var css = require('sheetify')
 
 var nav = require('../components/nav')
-var icon = require('../components/utils/icon')
 var profile = require('../components/profile')
 
 var TITLE = 'PREreview2 | profile'
-
-var biostyle = css`
-
-:host > p {
-  margin: 0;
-}
-
-`
 
 module.exports = view
 
