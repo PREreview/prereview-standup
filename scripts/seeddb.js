@@ -32,7 +32,11 @@ function convert (data, enc, next) {
   if (d.doi) {
     d.id = `doi/${d.doi}`
     delete d.doi
-  } else if (d.arxivid) {
+    if (!d.authors.list) d.authors = { list: d.authors }
+    if (d.license) {
+      d.license = d.license.length > 0 ? d.license[0] : null
+    }
+    } else if (d.arxivid) {
     return next()
     d.id = `arxiv/${d.arxivid}`
     delete d.arxivid

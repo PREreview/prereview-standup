@@ -15,6 +15,9 @@ module.exports = function view (state, emit, preprint) {
   var submit = html`
     <div class="${btnclasses} bg-red">Publish now</div>
   `
+
+  var templatebtn = gettemplatebtn(state, emit)
+
   var editorel = html`
   
   <div class="flex flex-column h-100 w-100 ph2 pv0">
@@ -29,7 +32,7 @@ module.exports = function view (state, emit, preprint) {
     </div>
     ${editor.render()}
     <div class="flex flex-row justify-between pv2">
-      <div class="${btnclasses} bg-dark-gray">Choose a template</div>
+      ${templatebtn}
       <div class="flex flex-row">
         <div class="${btnclasses} bg-dark-gray mr2">Invite collaborators</div>
         ${submit}

@@ -8,7 +8,11 @@ var TITLE = 'PREreview'
 
 var style = css`
 
-:host p, :host li {
+:host p {
+  font-size: 22px;
+}
+
+:host li {
   font-size: 22px;
 }
 
@@ -17,7 +21,9 @@ var style = css`
 }
 
 :host h1 {
-  font-size: 30px;
+  color: red;
+  text-align: center;
+  font-size: 36px;
   margin-bottom: 10px;
 }
 
@@ -46,7 +52,6 @@ function view (state, emit) {
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray">
       ${nav(state, emit)}
 			<div class="w-60-ns w-90-s flex flex-column pa4 lh-copy ${style}">
-				<h1>Contents</h1>
         ${content}
       </div>
     </body>
