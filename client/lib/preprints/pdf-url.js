@@ -6,39 +6,39 @@ var prefixmap = {
     var pubyear = pubdate.getFullYear()
     var pubmonth = ("0" + (pubdate.getMonth() + 1)).slice(-2)
     var pubday = ("0" + pubdate.getDate()).slice(-2)
-    var doipart = preprint.identifier.split('/')[1]
+    var doipart = preprint.id.split('/')[2]
     var site = preprint.publisher.toLowerCase()
     return `https://www.${site}.org/content/${site}/early/${pubyear}/${pubmonth}/${pubday}/${doipart}.full-text.pdf`
   },
   '10.12688': crossrefPdfLinkUrl,
   '10.20944': async preprint => {
-    var doipart = preprint.identifier.split('/preprints')[1].replace('.v', '/v')
+    var doipart = preprint.id.split('/preprints')[1].replace('.v', '/v')
     return `https://www.preprints.org/manuscript/${doipart}/download`
   },
   '10.26434': crossrefFirstLinkUrl,
   '10.7287': async preprint => {
-    var peerjid = preprint.identifier.split('/')[1].split('.')[2]
+    var peerjid = preprint.id.split('/')[2].split('.')[2]
     return `https://peerj.com/preprints/${peerjid}.pdf`
   }
 }
 
 async function preprintToPdfUrl (preprint) {
-  if (preprint.identifier_type === 'doi') {
-    var doi = preprint.identifier
+  if (preprint.id.startsWith('doi')) {
+    var doi = preprint.id.replace('doi/', '')
     var pdffn = doiToPdfMap(doi)
     return await pdffn(preprint)
-  } else if (preprint.identifier_type === 'arxiv') {
-    return `https://arxiv.org/pdf/${preprint.identifier}`
+  } else if (preprint.id.startsWith('arxiv')) {
+    return `https://arxiv.org/pdf/${preprint.id.replace('arxiv/', '')}`
   }
 }
 
 async function crossrefFirstLinkUrl (preprint) {
-  var cr = await crossrefData(preprint.identifier)
+  var cr = await crossrefData(preprint.id.replace('doi/', ''))
   return cr.link[0].URL
 }
 
 async function crossrefPdfLinkUrl (preprint) {
-  var cr = await crossrefData(preprint.identifier)
+  var cr = await crossrefData(preprint.id.replace('doi', ''))
   return cr.link.find(l => l['content-type'] === 'application/pdf').URL
 }
 

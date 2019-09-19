@@ -8,18 +8,18 @@ module.exports = function view (state, emit, opts) {
   return subroute(state, emit, opts)
 }
 
-function subroute (state, emit, opts) {
+function subroute (state, emit, preprint) {
   if (state.href.endsWith('/new')) {
     // composing
-    return writereview(state, emit, opts)
+    return writereview(state, emit, preprint)
   } else if (state.href.endsWith('/request')) {
     // requesting
-    return requestreview(state, emit, opts)
+    return requestreview(state, emit, preprint)
   } else if (state.href.endsWith('/submitted')) {
-    return submitted(state, emit, opts)
+    return submitted(state, emit, preprint)
   } else {
     // reading
-    return readreviews(state, emit, opts)
+    return readreviews(state, emit, preprint)
   }
 }
 
@@ -39,8 +39,8 @@ function submitted (state, emit, opts) {
   `
 }
 
-function writereview (state, emit, opts) {
-  return composer(state, emit, opts)
+function writereview (state, emit, preprint) {
+  return composer(state, emit, preprint)
 }
 
 function requestreview () {
@@ -53,21 +53,21 @@ function requestreview () {
   `
 }
 
-function readreviews (state, emit, opts) {
-  if (!opts.reviews) opts.reviews = []
-  if (!opts.requests) opts.requests = []
+function readreviews (state, emit, preprint) {
+  if (!preprint.reviews) preprint.reviews = []
+  if (!preprint.requests) preprint.requests = []
 
-  var n = opts.reviews.length
+  var n = preprint.reviews.length
 
   var el = html`
   
   <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
-    ${opts.pdfblocked ? null : meta(state, emit, opts)}
+    ${preprint.pdfblocked ? null : meta(state, emit, preprint)}
     <div class="flex flex-row w-100 justify-between items-center pa3">
       <div class="pr2 f4 fw5 nowrap">${n} review${n === 1 ? '' : 's'}</h2>
-      ${addreview(state, emit, opts)}
+      ${addreview(state, emit, preprint)}
     </div>
-    ${opts.reviews.map(r => require('./display')(state, emit, r))}
+    ${preprint.reviews.map(r => require('./display')(state, emit, r))}
   </div>
   
   `
@@ -75,7 +75,7 @@ function readreviews (state, emit, opts) {
   return el
 }
 
-function addreview (state, emit, opts) {
+function addreview (state, emit, preprint) {
   if (!state.user) {
     var login = button(state, emit, { label: 'Log in to review this preprint' })
     login.onclick = () => emit('pushState', '/login-redirect')
@@ -86,7 +86,7 @@ function addreview (state, emit, opts) {
     label: 'Review this preprint',
     classes: 'ml2 bg-red white'
   })
-  write.onclick = () => emit('pushState', `/preprints/${opts.identifier_type}/${opts.identifier}/new`)
+  write.onclick = () => emit('pushState', `/preprints/${preprint.id}/new`)
 
   return write
 }
@@ -96,10 +96,10 @@ function meta (state, emit, preprint) {
   var title = html`<h1 class="mv1 lh-solid">${preprint.title}</h1>`
   var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.map(a => a.fullName).join(', ')}</h2>`
   
-  var type = preprint.identifier_type
+  var type = preprint.id.split('/')[0]
   var isarxiv = type === 'arxiv'
   var maybeabs = isarxiv ? 'abs/' : ''
-  var linkout = `https://${type}.org/${maybeabs}${preprint.identifier}`
+  var linkout = `https://${type}.org/${maybeabs}${preprint.id.replace(type + '/', '')}`
 
   return html`
     <div class="flex flex-column lh-copy pa3">

@@ -21,7 +21,7 @@ var reviews = require('../fake/reviews')
 var lastid
 
 module.exports = function view (state, emit) {
-  var id = state.href.split('/preprints/')[1]
+  var id = state.href.split('/preprints/')[1].replace(/\/new$/, '')
 
   var left = html`<div class="flex flex-column w-50"></div>`
   var right = html`<div class="flex flex-column w-50"></div>`
@@ -57,7 +57,6 @@ module.exports = function view (state, emit) {
   }
 
   function populatepanes (preprint) {
-    console.log('DOI data returned', preprint)
     preprint.reviews = reviews()
     left.appendChild(require('../components/preprint/viewer')(state, emit, preprint))
     right.appendChild(require('../components/review/pane')(state, emit, preprint))

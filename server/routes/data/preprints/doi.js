@@ -19,8 +19,7 @@ router.get('/doi/:doia/:doib', function (req, res, next) {
   // if we have it, check for updates now
   
 	preprints.getPreprint({
-    identifier_type: 'doi',
-    identifier: doi
+    id: `doi/${doi}`
   }).then(
     returnedpreprint => {
       res.json(returnedpreprint)
