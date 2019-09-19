@@ -22,7 +22,7 @@ router.post('/submit', function (req, res, next) {
   var comment = {
     prereview_id: req.body.prereview_id,
     author_id: req.body.author.user_id,
-    content: convertDelta.toHTML(req.body.comment)
+    content: convertDelta.toHTML(req.body.comment).replace('<p><br></p>', '')
   }
 
 	prereviews.addPrereview(prereview).then(

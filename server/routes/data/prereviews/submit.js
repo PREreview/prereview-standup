@@ -27,7 +27,7 @@ router.post('/submit', function (req, res, next) {
   var prereview = {
     preprint_id: req.body.preprint.id,
     author_id: req.body.author.user_id,
-    content: convertDelta.toHTML(req.body.prereview)
+    content: convertDelta.toHTML(req.body.prereview).replace('<p><br></p>', '')
   }
 
 	prereviews.addPrereview(prereview).then(
