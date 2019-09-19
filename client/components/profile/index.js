@@ -43,7 +43,7 @@ function otheruser (state, emit, waitforuserdata) {
         ` : null
   
         var privateuser = user.is_private ? html`<h3>This user's profile is private.</h3>` : null
-        var imgsrc = (user.profile && user.profile.pic + '&s=128') || '/assets/illustrations/avatar.png'
+        var imgsrc = ((user.profile && user.profile.pic) + '&s=128') || '/assets/illustrations/avatar.png'
 
         inner = html`
           <div class="flex flex-column items-center tc w-50-l w-70-m w-90-s">
