@@ -1,28 +1,370 @@
 {
-  "ops": [
-    {
-      "insert": "Key questions\n\n",
-      "attributes": {
-        "header": 2
+  "Quick template": {
+    "ops": [
+      {
+        "attributes": {
+          "header": 1
+        },
+        "insert": "PREreview quick template\n"
+      },
+      {
+        "insert": "Below is a list of quick questions you can use to guide your reading and reviewing of the selected preprint to produce a quick review. For a more detailed template and tips, please load Template #2.\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "What is the main question the study attempts to answer?\nWhat is (are) the hypothesis(es)?\nWhat techniques/analyses do the researchers adopt to test their hypothesis(es)?\nWhy is this study relevant?\nWrite here any general comments you might have about the research approach.\nWrite here any specific comment you might have about experimental approaches and methods used in the study.\nWrite here any specific comment/note about figures in the preprint (this could be related to the way data are displayed and your ability to understand the results just by looking at the figures).\nWrite here any additional comment you might have (this includes minor concerns such as typos and structure of the manuscript).\n"
+      },
+      {
+        "insert": "You can find additional peer review tips in the "
+      },
+      {
+        "attributes": {
+          "link": "http://reviewers.plos.org/"
+        },
+        "insert": "PLOS Reviewer Center"
+      },
+      {
+        "insert": ", including their "
+      },
+      {
+        "attributes": {
+          "link": "http://reviewers.plos.org/resources/#how-to-review"
+        },
+        "insert": "How To Peer Review"
+      },
+      {
+        "insert": " page that contains "
+      },
+      {
+        "attributes": {
+          "link": "http://reviewers.plos.org/resources/10-tips-for-getting-started-as-a-reviewer/"
+        },
+        "insert": "10 Tips for getting started as a reviewer"
+      },
+      {
+        "insert": ". These resources include checklists, videos, and further information about ethical considerations etc. They also provide suggested language you can use to address common issues that can arise when reviewing a manuscript."
       }
-    },
-    {
-      "insert": "What is the main question the study attempts to answer?\nWhat are the hypotheses?\nWhat techniques do the researchers adopt to test their hypotheses?\nWhy is this study relevant?\n",
-      "attributes": {
-        "list": "bullet"
+    ]
+  },
+  "Extended guidelines": {
+    "ops": [
+      {
+        "attributes": {
+          "header": 1
+        },
+        "insert": "PREreview extended peer review guidelines\n"
+      },
+      {
+        "insert": "Below is a detailed guide to help you critically and constructively evalute the selected preprint. For a quicker version of this guide, please select Template #1.\n"
+      },
+      {
+        "attributes": {
+          "header": 2
+        },
+        "insert": "Overview and take-home message\n"
+      },
+      {
+        "insert": "Write a short (1 paragraph) summary of what the main findings of the research were and how this work has moved the field forward. This could take the following structure: “"
+      },
+      {
+        "attributes": {
+          "italic": true
+        },
+        "insert": "[First author]"
+      },
+      {
+        "insert": " et al. have made significant advances in "
+      },
+      {
+        "attributes": {
+          "italic": true
+        },
+        "insert": "[x, y and z]"
+      },
+      {
+        "insert": " by showing that… In addition, they have bridged the gap in our knowledge about how "
+      },
+      {
+        "attributes": {
+          "italic": true
+        },
+        "insert": "[process i interacts with process ii]"
+      },
+      {
+        "insert": ". Although this work is of "
+      },
+      {
+        "attributes": {
+          "italic": true
+        },
+        "insert": "[significant]"
+      },
+      {
+        "insert": " interest to the field, there are some concerns that could be addressed in the next version. These are outlined below.”\n"
+      },
+      {
+        "attributes": {
+          "header": 2
+        },
+        "insert": "Positive feedback\n"
+      },
+      {
+        "insert": "As the aim of this PREreview is to support the authors by providing constructive feedback, the PREreviewer(s) should also include positive remarks to encourage future posting of preprints. Remember, the authors are human too! To help guide you, here are a few questions you might ask yourself after reading the preprint:\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "What result did you find the most interesting and why?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "What did you learn from the study that really fascinated you?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "Did you learn anything from this preprint that you would include in your future work? Examples could be a new technique, a new way of approaching an idea, a certain way of interpreting the type of data, a good way of summarising the results, the structure of the manuscript if it is clear and logical, etc."
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "What ideas for further research are based on the preprint? [Note: this encourages preprint authors for their early sharing and promotes openness among reviewers as well.]"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "header": 2
+        },
+        "insert": "Concerns\n"
+      },
+      {
+        "insert": "Next are your concerns. Remember you are writing to another human being, so be respectful and realistic. Also, if you are unsure about something, be honest and say you are unsure. Don’t feel afraid to admit if you are not confident about your concerns, or part of the work is out of your area of expertise.\n"
+      },
+      {
+        "attributes": {
+          "header": 3
+        },
+        "insert": "Major concerns:\n"
+      },
+      {
+        "insert": "Here the reviewer(s) should list 2-3 major concerns about the research (if they exist). This may relate to:\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "Does the title accurately reflect the results?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "Experimental design: were the techniques appropriate for the hypothesis? Were suitable controls included? Were new techniques/mutants/cell lines etc. sufficiently characterised to allow the study to be replicated? Were robust statistical methods used?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "Do the results support the authors’ conclusions and, if not, what additional experiments would you suggest?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "Are there big flaws in the understanding of the current literature and interpretation of the literature that might undermine the interpretation of the current results?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "header": 3
+        },
+        "insert": "Minor concerns:\n"
+      },
+      {
+        "insert": "Here the PREreviewer(s) can mention 3-5 minor concerns that are not critical to the understanding and conclusions of the research, but would improve the overall flow or clarity of the manuscript. These concerns might include the following questions:\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "In general, was the manuscript easy to follow/did it have a logical flow? Were there a lot of typos that needed addressing?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "Does the abstract provide a concise summary of the hypotheses and main results?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "Were the methods sufficiently detailed to allow the experiments to be repeated?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n*Were the figures clear and logically arranged? Were the figure legends sufficiently detailed to allow the figures to be understood without reading the main text?\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "Are the figures representative of the data described in the results section?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "Did the authors make all their associated data openly available (e.g. sequencing data, coding)?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "Did the discussion address how their results move the field forwards?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "attributes": {
+          "list": "bullet",
+          "italic": true
+        },
+        "insert": "Were the citations thorough or were key references missing?"
+      },
+      {
+        "attributes": {
+          "list": "bullet"
+        },
+        "insert": "\n"
+      },
+      {
+        "insert": "You can find additional peer review tips in the "
+      },
+      {
+        "attributes": {
+          "link": "http://reviewers.plos.org/"
+        },
+        "insert": "PLOS Reviewer Center"
+      },
+      {
+        "insert": ", including their "
+      },
+      {
+        "attributes": {
+          "link": "http://reviewers.plos.org/resources/#how-to-review"
+        },
+        "insert": "How To Peer Review"
+      },
+      {
+        "insert": " page that contains "
+      },
+      {
+        "attributes": {
+          "link": "http://reviewers.plos.org/resources/10-tips-for-getting-started-as-a-reviewer/"
+        },
+        "insert": "10 Tips for getting started as a reviewer"
+      },
+      {
+        "insert": ". These resources include checklists, videos, and further information about ethical considerations etc. They also provide suggested language you can use to address common issues that can arise when reviewing a manuscript."
       }
-    },
-    {
-      "insert": "\nYour perspective\n\n",
-      "attributes": {
-        "header": 2
-      }
-    },
-    {
-      "insert": "General comments you might have about the research approach.\nSpecific comment you might have about experimental approaches and methods used in the study.\nSpecific comment/note about figures in the paper (this could be related to the way data are displayed and your ability to understand the results just by looking at the figures).\nAdditional comment you might have (this includes minor concerns such as typos and structure of the manuscript).\n",
-      "attributes": {
-        "list": "bullet"
-      }
-    }
-  ]
+    ]
+  }
 }

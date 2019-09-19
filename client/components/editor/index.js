@@ -12,7 +12,9 @@ css('quill/dist/quill.snow.css')
 var innerstyle = css`
 
 :host {
+  height: auto;
   overflow-y: auto;
+  padding: 10px;
 }
 
 :host .ql-editor {
@@ -28,6 +30,8 @@ var outerstyle = css`
 
 :host {
   flex-grow: 2;
+  overflow-y: auto;
+  position: relative;
 }
 
 `
@@ -40,12 +44,12 @@ module.exports = class Editor extends Nanocomponent {
   }
 
   createElement (state) {
-    var toolbar = html`<div id="toolbar" class="flex flex-row justify-between"></div>`
+    var toolbar = require('./toolbar')(state.toolbarButtons)
     var editorinner = html`<div id="editor" class="flex ${innerstyle}"></div>`
 
     var editorel = html`
 
-    <div class="flex flex-column w-100 ${outerstyle}">
+    <div id="editorouter" class="flex flex-column w-100 ${outerstyle}">
       ${toolbar}
       ${editorinner}
     </div>
@@ -56,8 +60,10 @@ module.exports = class Editor extends Nanocomponent {
       theme: 'snow',
       debug: 'error',
       bounds: editorel,
-      scrollingContainer: editorinner,
-      toolbar: toolbar
+      scrollingContainer: editorel,
+      modules: {
+        toolbar: toolbar
+      }
     })
 
     this.contents = null
@@ -70,9 +76,9 @@ module.exports = class Editor extends Nanocomponent {
   }
 
   load () {
-    // console.log('the Editor component just loaded into the DOM')
-    // set contents to markdown template
-    this.quill.updateContents(template)
+    // // console.log('the Editor component just loaded into the DOM')
+    // // set contents to markdown template
+    // this.quill.updateContents(template['Quick template'])
 
     // focus cursor inside editor
     this.quill.focus()
