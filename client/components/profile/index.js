@@ -14,7 +14,7 @@ var icon = require('../utils/icon')
 var loading = require('../utils/loading')
 
 module.exports = {
-  myprofilecard, otheruser, firstvisitcards, usercontent
+  myprofilecard, otheruser, usercontent, start
 }
 
 function otheruser (state, emit, waitforuserdata) {
@@ -91,25 +91,6 @@ function myprofilecard (state, emit) {
         </h3>
       </div>
     </div>
-  `
-}
-
-function firstvisitcards (state, emit) {
-  var el
-
-  if (!state.user.coc_accepted) {
-    el = require('../cards/signup/code-of-conduct')(state, emit)
-  } else if (!state.user.privacy_setup) {
-    el = require('../cards/signup/identity-choice')(state, emit)
-  } else {
-    el = start(state)
-  }
-  return html`
-    
-  <div class="flex flex-column justfy-center items-center pb4 bb b--black-20">
-    ${el}
-  </div>
-
   `
 }
 

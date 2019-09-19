@@ -3,6 +3,8 @@ var html = require('choo/html')
 var nav = require('../components/nav')
 var profile = require('../components/profile')
 
+var Setup = require('../components/profile/firstvisit')
+
 var TITLE = 'PREreview2 | profile'
 
 module.exports = view
@@ -41,7 +43,7 @@ function view (state, emit) {
     ${nav(state, emit)}
     <div class="flex flex-column w-70">
       ${profile.myprofilecard(state, emit)}
-      ${profile.firstvisitcards(state, emit)}
+      ${state.cache(Setup, `setup-user-${state.user.orcid}`).render(state)}
       ${profile.usercontent(state, emit)}
     </div>
   </body>
