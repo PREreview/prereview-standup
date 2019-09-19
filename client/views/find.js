@@ -12,7 +12,7 @@ module.exports = view
 function view (state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
 
-  var resultstr = getResultString(state)
+  var resultstr = getResultString(state, emit)
 
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray">
@@ -20,10 +20,11 @@ function view (state, emit) {
       ${header(state, emit)}
       <div class="w-70 flex flex-row">
         <div class="content fl w-100 pa2 f7 lh-copy">
-          <div class="actions flex justify-between pv0">
+          <div class="actions flex flex-row justify-between pv0">
             <div class="flex items-center ttu red tracked f6 b mr3">
               ${resultstr}
             </div>
+            ${pagingbuttons(state, emit)}
             ${filterbox(state, emit)}
           </div>
           <div class="articles">
@@ -35,7 +36,7 @@ function view (state, emit) {
   `
 }
 
-function getResultString (state) {
+function getResultString (state, emit) {
   var querystring
   var resultstring
 
@@ -67,5 +68,23 @@ function getResultString (state) {
     ${querydiv}
     <div class="flex flex-row">${resultstring}</div>
   </div>
+  `
+}
+
+function pagingbuttons (state, emit) {
+  var btnclasses = 'h2 pa2 ba br2 b--black-10 link dim bg-white dark-gray'
+  var leftclasses = 'br--left'
+  var rightclasses = 'br--right'
+  var left = html`<div class="${btnclasses} ${leftclasses}">Prev</div>`
+  var right = html`<div class="${btnclasses} ${rightclasses}">Next</div>`
+
+  left.onclick = () => emit('preprint-search:result-page', 'prev')
+  right.onclick = () => emit('preprint-search:result-page', 'next')
+
+  return html`
+    <div class="flex flex-row justify-start items-center pointer mw-50">
+      ${left}
+      ${right}
+    </div>
   `
 }

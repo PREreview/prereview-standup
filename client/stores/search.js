@@ -11,8 +11,6 @@ module.exports = function (state, emitter) {
   var search = debounce(runsearch, 400)
 
   emitter.on('DOMContentLoaded', async function () {
-    getLatest()
-
     emitter.on('preprint-search:query', querystring => {
       search.cancel()
       var query = {
@@ -42,8 +40,14 @@ module.exports = function (state, emitter) {
 
     emitter.on('preprint-search:latest', () => {
       clear()
+      state.searchQuery = {
+        string: null,
+        page: 1
+      }
       getLatest()
     })
+
+    emitter.emit('preprint-search:latest')
   })
 
   function clear () {
