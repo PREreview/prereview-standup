@@ -82,6 +82,6 @@ function gravatarFromEmails (emails) {
   )
 
   // TODO: this does one more gravatar request than necessary
-  if (registered) return gravatar.url(registered, { protocol: 'https'})
+  if (registered) return gravatar.url(registered, { protocol: 'https', d: 'identicon' })
   else return gravatar.url(emails[0], { protocol: 'https', d: 'identicon' })
 }
