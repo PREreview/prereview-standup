@@ -44,7 +44,7 @@ module.exports = function (state, emit, preprint) {
 function blockedview (preprint) {
   var publisher = html`<div class="red i b">${preprint.publisher}</div>`
   var title = html`<h1 class="mv1 lh-solid">${preprint.title}</h1>`
-  var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.map(a => a.fullName).join(', ')}</h2>`
+  var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.list.map(a => a.fullName).join(', ')}</h2>`
   var abstract = raw(`<p class="mt1">${preprint.abstract}</p>`)
 
   var site = preprint.id.split('/')[0]
