@@ -1,5 +1,5 @@
 var html = require('choo/html')
-var icon = require('../../../utils/icon')
+var icon = require('../../utils/icon')
 
 module.exports = function plauditsBtn (state, emit, review) {
   var n = review.plaudits
