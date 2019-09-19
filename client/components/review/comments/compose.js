@@ -15,7 +15,7 @@ var editorstyle = css`
 
 `
 
-module.exports = function view (state, emit, opts) {
+module.exports = function view (state, emit, prereview) {
 
   var editorinner = html`<div class="flex ${editorstyle}"></div>`
 
@@ -26,7 +26,6 @@ module.exports = function view (state, emit, opts) {
       Add comment
     </div>
   `
-  submit.onclick = () => emit('pushState', state.href.replace('/new', '/submitted'))
 
   var editorel = html`
   
@@ -47,6 +46,18 @@ module.exports = function view (state, emit, opts) {
     bounds: editorel,
     modules: { toolbar: false },
     placeholder: "Comment on this review...\n\n",
+  })
+
+  var contents = null
+
+  quill.on('text-change', (oldDelta, newDelta) => {
+    contents = newDelta
+  })
+  
+  submit.onclick = () => emit('comment:submit', {
+    author_id: state.user.user_id,
+    prereview_id: prereview.prereview_id,
+    comment: contents
   })
 
   return editorel

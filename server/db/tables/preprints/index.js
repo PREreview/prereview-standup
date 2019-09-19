@@ -20,7 +20,11 @@ function getPreprintReviews (preprint) {
 			.then(
 				prereviews => {
 					preprint.prereviews = prereviews
-					return Promise.resolve(preprint)
+					return Promise.all(
+						prereviews.map(getPrereviewComments)
+					).then(
+						() => Promise.resolve(preprint)
+					)
 				}
 			)
 	} else {
@@ -28,6 +32,20 @@ function getPreprintReviews (preprint) {
 	}
 }
 
+function getPrereviewComments (prereview) {
+	if (prereview && prereview.prereview_id) {
+		return db('comments')
+			.where({ prereview_id: prereview.prereview_id })
+			.then(
+				comments => {
+					prereview.comments = comments
+					return Promise.resolve(prereview)
+				}
+			)
+	} else {
+		return Promise.resolve(null)
+	}
+}
 
 function indexNewPreprints () {
 	console.log('indexing new preprints')
