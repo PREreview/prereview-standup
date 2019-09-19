@@ -20,7 +20,7 @@ function view (state, emit) {
       ${header(state, emit)}
       <div class="w-70 flex flex-row">
         <div class="content fl w-100 pa2 f7 lh-copy">
-          <div class="actions flex flex-row justify-between pv0">
+          <div class="actions flex flex-row justify-between pv0" style="position: relative;">
             <div class="flex items-center ttu red tracked f6 b mr3">
               ${resultstr}
             </div>
@@ -82,7 +82,7 @@ function pagingbuttons (state, emit) {
   right.onclick = () => emit('preprint-search:result-page', 'next')
 
   return html`
-    <div class="flex flex-row justify-start items-center pointer mw-50">
+    <div class="flex flex-row justify-center items-center pointer w-100 h2" style="position: absolute;">
       ${left}
       ${right}
     </div>
