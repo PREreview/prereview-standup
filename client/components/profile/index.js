@@ -47,7 +47,7 @@ function otheruser (state, emit, waitforuserdata) {
 
         inner = html`
           <div class="flex flex-column items-center tc w-50-l w-70-m w-90-s">
-            <img src="${imgsrc}" class="br-100 h4 w4 dib" title="user profile picture">
+            <img src="${profilepic}" class="br-100 h4 w4 dib" title="user profile picture">
             <h1 class="mb1 fw4">${user.name}</h1>
             ${orcid}
             ${privateuser}
