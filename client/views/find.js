@@ -41,7 +41,7 @@ function getResultString (state, emit) {
   var resultstring
 
   if (state.searchQuery) {
-    querystring = state.searchResults.query.string
+    querystring = state.searchResults.query && state.searchResults.query.string
 
     // the results are from a user search
     if (state.searchResults.total === 0) {
