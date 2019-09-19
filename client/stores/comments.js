@@ -16,7 +16,7 @@ module.exports = async (state, emitter) => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(submission)
+      body: JSON.stringify(comment)
     }).then(
       res => res.json()
     ).then(
