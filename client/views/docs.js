@@ -8,7 +8,7 @@ var TITLE = 'PREreview'
 
 var style = css`
 
-:host p, li {
+:host p, :host li {
   font-size: 22px;
 }
 
@@ -24,6 +24,11 @@ var style = css`
 :host img {
   display: block;
   margin: 0px auto;
+}
+
+:host sup {
+  font-weight: 700;
+  margin: 2px;
 }
 
 `
