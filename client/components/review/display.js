@@ -1,4 +1,5 @@
 var html = require('choo/html')
+var raw = require('choo/html/raw')
 var css = require('sheetify')
 
 var composeComment = require('./comments/compose')
@@ -29,18 +30,26 @@ module.exports = function view (state, emit, review) {
     comments.classList.remove('dn')
     comments.classList.add('flex')
   }
+
+  var author = html`<div class="b dark-gray fw4"></div>`
+
+  fetch(`/data/users/${review.author_id}`).then(res => res.json()).then(
+    authordata => {
+      author.innerText = authordata.name
+    }
+  )
   
   return html`
     
   <div class="flex flex-column w-100 pa4 f4 mid-gray lh-copy bt bw1 b--light-gray ">
     <div class="flex flex-row w-100 mb2">
       <div class="flex flex-row w-100 justify-between items-center">
-        <div class="b dark-gray fw4">${review.author.firstName} ${review.author.lastName}</div>
-        <div>${review.created.toLocaleString({ dateStyle: 'full', timeStyle: 'medium' })}</div>
+        ${author}
+        <div>${new Date(review.date_created).toLocaleString({ dateStyle: 'medium' })}</div>
       </div>
     </div>
     <div class="flex flex-column lhview-copy w-100 pb2 mb2">
-      ${review.content}
+      ${raw(review.content)}
     </div>
     <div class="flex flex-row lh-copy w-100 justify-between pb2 mb2">
       ${plauditsBtn(state, emit, review)}
@@ -53,6 +62,7 @@ module.exports = function view (state, emit, review) {
 }
 
 function getComments (state, emit, review) {
+  if (!review.comments) review.comments = []
   return html`
     <div class="flex-column lh-copy w-100 justify-between dn">
       ${state.user && composeComment(state, emit, review)}

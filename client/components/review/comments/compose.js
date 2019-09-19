@@ -45,7 +45,7 @@ module.exports = function view (state, emit, opts) {
   var quill = new Quill(editorinner, {
     theme: 'snow',
     bounds: editorel,
-    toolbar: editorel,
+    modules: { toolbar: false },
     placeholder: "Comment on this review...\n\n",
   })
 

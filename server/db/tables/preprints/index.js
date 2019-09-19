@@ -10,7 +10,24 @@ function getPreprint (preprint) {
 	return db('preprints')
 		.where(preprint)
 		.first()
+		.then(getPreprintReviews)
 }
+
+function getPreprintReviews (preprint) {
+	if (preprint && preprint.id) {
+		return db('prereviews')
+			.where({ preprint_id: preprint.id })
+			.then(
+				prereviews => {
+					preprint.prereviews = prereviews
+					return Promise.resolve(preprint)
+				}
+			)
+	} else {
+		return Promise.resolve(null)
+	}
+}
+
 
 function indexNewPreprints () {
 	console.log('indexing new preprints')

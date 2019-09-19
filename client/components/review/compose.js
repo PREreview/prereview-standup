@@ -7,7 +7,7 @@ var templates = require('../../lib/editor/templates/default')
 var btnclasses = "flex flex-row justify-center content-center items-center v-mid bn h2 f5 white link dim outline-0 pa2 pointer br2 dtc v-mid b f6 noselect"
 
 module.exports = function view (state, emit, preprint) {
-  var editor = choo.state.cache(Editor, `editor-${preprint.id.replace('/', '-')}`)
+  var editor = state.cache(Editor, `editor-${preprint.id.replace('/', '-')}`)
 
   var publisher = html`<div class="red i b">${preprint.publisher}</div>`
   var title = html`<h1 class="mv1 lh-solid">${preprint.title}</h1>`
@@ -34,7 +34,6 @@ module.exports = function view (state, emit, preprint) {
     ${editor.render({ toolbarButtons })}
     <div class="flex flex-row justify-between pv2">
       <div class="flex flex-row">
-        <div class="${btnclasses} bg-dark-gray mr2">Invite collaborators</div>
         <div class="${btnclasses} bg-dark-gray mr2">Share a read-only view</div>
       </div>
       ${submit}

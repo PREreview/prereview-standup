@@ -54,10 +54,9 @@ function requestreview () {
 }
 
 function readreviews (state, emit, preprint) {
-  if (!preprint.reviews) preprint.reviews = []
   if (!preprint.requests) preprint.requests = []
 
-  var n = preprint.reviews.length
+  var n = preprint.prereviews.length
 
   var el = html`
   
@@ -67,7 +66,7 @@ function readreviews (state, emit, preprint) {
       <div class="pr2 f4 fw5 nowrap">${n} review${n === 1 ? '' : 's'}</h2>
       ${addreview(state, emit, preprint)}
     </div>
-    ${preprint.reviews.map(r => require('./display')(state, emit, r))}
+    ${preprint.prereviews.map(r => require('./display')(state, emit, r))}
   </div>
   
   `

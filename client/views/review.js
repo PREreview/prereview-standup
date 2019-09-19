@@ -57,7 +57,7 @@ module.exports = function view (state, emit) {
   }
 
   function populatepanes (preprint) {
-    preprint.reviews = reviews()
+    // preprint.reviews = reviews()
     left.appendChild(require('../components/preprint/viewer')(state, emit, preprint))
     right.appendChild(require('../components/review/pane')(state, emit, preprint))
   }

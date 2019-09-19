@@ -16,6 +16,7 @@ module.exports = async (state, emitter) => {
 
     state.prereviews.inProgress[preprintId] = submission
     state.prereviews.currentSubmission = submission
+    submission.author = state.user
     emitter.emit('pushState', '/prereview-submission-check')
   }
 
