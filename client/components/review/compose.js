@@ -6,6 +6,27 @@ var templates = require('../../lib/editor/templates/default')
 
 var btnclasses = "flex flex-row justify-center content-center items-center v-mid bn h2 f5 white link dim outline-0 pa2 pointer br2 dtc v-mid b f6 noselect"
 
+css`
+
+#template-menu-btn:hover {
+  color: white;
+  opacity: 100%;
+}
+
+#template-menu-btn:focus {
+  color: white;
+  opacity: 100%;
+}
+
+
+#template-dropdown:hover {
+  background: white;
+  opacity: 100%;
+}
+
+`
+
+
 module.exports = function view (state, emit, preprint) {
   var editor = state.cache(Editor, `editor-${preprint.id.replace('/', '-')}`)
 
@@ -56,33 +77,39 @@ module.exports = function view (state, emit, preprint) {
 }
 
 function toolbarBtns (state, emit, editor) {
-  var templateBtn = html`<button class="white" style="width: auto; height: 24px; ">Choose a template</button>`
+  var templateBtn = html`<button id="template-menu-btn" class="white" style="width: auto; height: 24px; ">Choose a template</button>`
   var templateDropdown = html`
-  <div class="dn flex-column dark-gray nowrap" style="position: fixed; top: 0; right: 20px; width: auto;" style="z-index: 999;">
+  <div id="template-dropdown" class="bg-white dn flex-column dark-gray nowrap" style="position: fixed; top: 0; right: 20px; width: auto;" style="z-index: 999;">
   </div>
   `
 
-  document.body.appendChild(templateDropdown)
+  templateDropdown.onmouseover = e => {
+    e.cancelBubble = true
+    e.stopPropagation()
+    console.log(e)
+    return false
+  }
 
   templateBtn.onclick = e => {
     e.stopPropagation()
+    console.log(templateDropdown)
     var viewportOffset = templateBtn.getBoundingClientRect()
     // templateDropdown.style.left = viewportOffset.left - 200 + 'px'
-    templateDropdown.style.top = viewportOffset.bottom + 'px'
+    templateDropdown.style.top = viewportOffset.top - (68) + 'px'
     templateDropdown.classList.toggle('dn')
     templateDropdown.classList.toggle('flex')
     return false
   }
 
   Object.keys(templates).forEach(tname => {
-    var option = html`<div class="flex flex-row items-center bg-white h2 link dim pointer ba b--black-10 pa3">${tname}</div>`
+    var option = html`<div class="flex flex-row items-center bg-white h2 pointer ba b--black-10 pa3">${tname}</div>`
     option.onclick = () => {
       editor.quill.updateContents(templates[tname])
       templateDropdown.classList.remove('flex')
       templateDropdown.classList.add('dn')
     }
     templateDropdown.appendChild(option)
-  })
+  })  
 
   return html`
     <div class="flex flex-row" style="position: relative;">

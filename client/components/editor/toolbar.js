@@ -46,7 +46,7 @@ function toolbar (morebuttons) {
         <button type="button" class="ql-script" value="super"></button>
         <button type="button" class="ql-clean"></button>
       </span>
-      <span class="bn f5 white link dim outline-0 pa0 pointer br2 b f6 noselect bg-dark-gray white ma0 ${btnstyle}" style="float: right;">
+      <span class="bn f5 white outline-0 pa0 pointer br2 b f6 noselect bg-dark-gray white ma0 ${btnstyle}" style="float: right;">
         ${morebuttons}
       </span>
     </div>

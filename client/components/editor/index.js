@@ -2,8 +2,6 @@ var Nanocomponent = require('nanocomponent')
 var html = require('choo/html')
 var css = require('sheetify')
 
-var template = require('../../lib/editor/templates/default')
-
 var Quill = require('quill')
 
 css('quill/dist/quill.core.css')
