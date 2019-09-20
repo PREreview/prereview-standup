@@ -4,7 +4,7 @@ module.exports = preprint
 
 function preprint (state, emit, p) {
   var d = p.data || p
-
+  if (d.publisher === 'Neuroscience') d.publisher = 'bioRxiv'
   // TODO remove
   if (!d.date_published) d.date_published = new Date(d.pubDate)
 

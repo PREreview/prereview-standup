@@ -49,6 +49,7 @@ module.exports = function view (state, emit) {
       res => res.json()
     ).then(
       preprint => {
+        if (preprint.publisher === 'Neuroscience') preprint.publisher = 'bioRxiv'
         preprint.pdfblocked = blockedpublishers.indexOf(preprint.publisher.toLowerCase()) > -1
         lastid = { id: id, data: preprint }
         populatepanes(preprint)
