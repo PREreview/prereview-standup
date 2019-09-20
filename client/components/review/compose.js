@@ -53,9 +53,8 @@ module.exports = function view (state, emit, preprint) {
       </p>
     </div>
     ${editor.render({ toolbarButtons })}
-    <div class="flex flex-row justify-between pv2">
+    <div class="flex flex-row justify-end pv2">
       <div class="flex flex-row">
-        <div class="${btnclasses} bg-dark-gray mr2">Share a read-only view</div>
       </div>
       ${submit}
     </div>
