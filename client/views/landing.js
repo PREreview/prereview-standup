@@ -52,9 +52,9 @@ function view (state, emit) {
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray sans-serif">
       ${nav(state, emit)}
       <div class="w-100 flex flex-row ${abovefold}">
-        <div class="content lh-copy w-50 pa5">
+        <div class="w-50 pa5">
           <h1>Changing the <em>who</em>, <em>when</em> and <em>how</em> of scientific peer review.</h1>
-          <h2 class="fw2">Share, read, and review preprints</h2>
+          <h2 class="fw2">This is a beta. Please try it out and <a href="https://forms.gle/Yk8fAQqmtvQKmst68" target="_blank" class="link dim red">send us feedback</a>.</h2>
           <div class="flex flex-row">
             <div class="ph3 pv3 nowrap dim dt bg-red br3 mr3 link pointer">
               <a class="white dtc v-mid b" href="/login-redirect">Join the community</a>
