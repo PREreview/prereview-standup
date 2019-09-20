@@ -82,13 +82,6 @@ function toolbarBtns (state, emit, editor) {
   </div>
   `
 
-  templateDropdown.onmouseover = e => {
-    e.cancelBubble = true
-    e.stopPropagation()
-    console.log(e)
-    return false
-  }
-
   templateBtn.onclick = e => {
     e.stopPropagation()
     console.log(templateDropdown)
@@ -103,7 +96,7 @@ function toolbarBtns (state, emit, editor) {
   Object.keys(templates).forEach(tname => {
     var option = html`<div class="flex flex-row items-center bg-white h2 pointer ba b--black-10 pa3">${tname}</div>`
     option.onclick = () => {
-      editor.quill.updateContents(templates[tname])
+      editor.quill.setContents(templates[tname])
       templateDropdown.classList.remove('flex')
       templateDropdown.classList.add('dn')
     }
