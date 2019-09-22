@@ -9,21 +9,7 @@ const fetch = require('fetch-base64')
 self.addEventListener('fetch', function (e) {
   e.respondWith(self.caches.match(e.request).then(function (request) {
     if (request) return request
-
-    const normalizedUrl = new URL(event.request.url)
-    const urlParts = normalizedUrl.split('/remotepdf/')
-    var remoteUrl
-
-    if (urlParts.length === 2) {
-      remoteUrl = urlParts[1]
-    } else {
-      return self.fetch(e.request)
-    }
-    
-    return fetch.remote(decodeURI(remoteUrl)).catch(e => {
-      console.error('error in service worker fetching remote resource as base64')
-      throw e
-    })
+    else return self.fetch(e.request)
   }))
 })
 
