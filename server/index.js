@@ -1,5 +1,7 @@
 require('../config')
 
+var DEV_ENV = process.env.NODE_ENV === 'dev'
+
 // create server
 var express = require('express')
 
@@ -29,6 +31,7 @@ app.use(require('./auth/sessions'))
 
 // register static file serves
 var path = require('path')
+if (!DEV_ENV) app.use('/*', express.static(path.join(__dirname, '../client/dist')))
 app.use('/assets', express.static(path.join(__dirname, '../client/assets')))
 
 var cors = require('cors')
@@ -48,7 +51,7 @@ require('./auth/orcid')(app)
 app.use('/', require('./routes'))
 
 // register client-side app
-app.get('/*', require('./routes/root'))
+if (DEV_ENV) app.get('/*', require('./routes/root'))
 
 app.use('/loginsuccess', (err, req, res, next) => {
   res.redirect(`/profile`)
