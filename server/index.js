@@ -31,8 +31,10 @@ app.use(require('./auth/sessions'))
 
 // register static file serves
 var path = require('path')
-if (!DEV_ENV) app.use('/*', express.static(path.join(__dirname, '../client/dist')))
-app.use('/assets', express.static(path.join(__dirname, '../client/assets')))
+if (!DEV_ENV) app.use(express.static(path.join(__dirname, '../client/dist'), {
+  redirect: false
+}))
+app.use('/assets/', express.static(path.join(__dirname, '../client/assets')))
 
 var cors = require('cors')
 app.options('/pdfviewer', cors({

@@ -1,10 +1,10 @@
 require('../config')
 
 var tables = [
-	// 'preprints',
-	'users',
+	'preprints',
 	'prereviews',
 	'comments',
+	'users'
 ]
 
 var creators = tables.map(table => require(`../server/db/tables/${table}/schema`)())

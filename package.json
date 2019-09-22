@@ -13,7 +13,7 @@
     "seeddb:dev": "ENVIRONMENT=dev node --max-old-space-size=10000 scripts/seeddb.js",
     "seeddb:prod": "ENVIRONMENT=prod node scripts/seeddb.js",
     "dev": "NODE_ENV=dev ENVIRONMENT=dev node index.js",
-    "start": "NODE_ENV=prod ENVIRONMENT=prod node index.js",
+    "start": "NODE_ENV=prod ENVIRONMENT=prod pm2 start --name prereview --log production.log index.js",
     "stop": "pm2 stop prereview",
     "restart": "pm2 restart prereview",
     "docs": "markdown-folder-to-html server/docs"
