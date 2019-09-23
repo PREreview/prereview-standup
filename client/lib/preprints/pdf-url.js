@@ -16,6 +16,10 @@ var prefixmap = {
     return `https://www.preprints.org/manuscript/${doipart}/download`
   },
   '10.26434': crossrefFirstLinkUrl,
+  '10.31235': async preprint => {
+    var osfid = preprint.id.split('/')[2]
+    retun `https://osf.io/${osfid}/download`
+  }
   '10.7287': async preprint => {
     var peerjid = preprint.id.split('/')[2].split('.')[2]
     return `https://peerj.com/preprints/${peerjid}.pdf`
