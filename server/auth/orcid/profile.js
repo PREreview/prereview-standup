@@ -23,14 +23,14 @@ function addWorksToProfile (user) {
 
     if (data.group) {
       user.profile.works = {
-        updated: data['last-modified-date'].value,
-        list: data.group.map(d => {
+        updated: data['last-modified-date'] ? data['last-modified-date'].value : null,
+        list: data.group ? data.group.map(d => {
           return {
             updated: d['last-modified-date'].value,
             externalIds: d['external-ids'],
             workSummary: d['work-summary']
           }
-        })
+        }) : []
       }
     }
 
