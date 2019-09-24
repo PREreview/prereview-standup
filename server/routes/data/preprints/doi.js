@@ -5,8 +5,8 @@ var express = require('express')
 var router = express.Router()
 
 // Returns data about a preprint by DOi
-router.get('/doi/:doia/:doib', function (req, res, next) {
-  var doi = `${req.params.doia}/${req.params.doib}`
+router.get('/doi/*', function (req, res, next) {
+  var doi = req.params[0]
   
   if (!isdoi({exact: true}).test(doi)) {
     res.status(500, 'Malformed DOI in requested URI')
