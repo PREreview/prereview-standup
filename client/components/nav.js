@@ -88,7 +88,7 @@ module.exports = function(state, emit, opts) {
   var rightpart = html`
   
   <div class="flex flex-row justify-end items-center fr fw1 content-stretch nowrap">
-    <a href="https://forms.gle/Yk8fAQqmtvQKmst68" target="_blank" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
+    <a href="https://forms.gle/Yk8fAQqmtvQKmst68" target="_blank" class="link dim black-90 tc flex flex-row items-center justify-center ml4 red">
       Give feedback
     </a>
     <a href="/docs/about" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
