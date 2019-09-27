@@ -24,7 +24,7 @@ var callstoaction = [
   {
     title: 'Train',
     img: 'c',
-    description: 'Through our PREreview mentorship program, we invite researchers to learn about the peer review process and how to write constructive reivews.'
+    description: 'Through our PREreview mentorship program, we invite researchers to learn about the peer review process and how to write constructive reviews.'
   },
   {
     title: 'Empower',
