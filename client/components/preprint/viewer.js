@@ -50,8 +50,8 @@ function blockedview (preprint) {
   var site = preprint.id.split('/')[0]
   var identifier = preprint.id.replace(site + '/', '')
 
-  return html`
-    <div class="flex flex-column h-100 justify-start lh-copy pa3">
+  var contentel = html`
+    <div class="flex flex-column w-100 justify-start lh-copy pa3">
       ${publisher}
       <a class="black link" href="https://${site}.org/${identifier}" target="_blank">${title}</a>
       ${authors}
@@ -61,6 +61,12 @@ function blockedview (preprint) {
         You can access the <a href="https://${site}.org/${identifier}" target="_blank">full text of this preprint</a> at the preprint server's website.
       </p>
     </div>
+  `
+
+  return html`
+  <div class="flex flex-column h-100 w-100" style="overflow-y: auto;">
+    ${contentel}
+  </div>
   `
 }
 
