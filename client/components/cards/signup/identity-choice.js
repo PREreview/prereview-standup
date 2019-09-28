@@ -33,7 +33,7 @@ function buttonSwitch (state, emit, opts) {
   var rightclasses = 'br--right'
   var selectedclasses = 'bg-red white b'
   var unselectedclasses = 'bg-white dark-gray'
-  var left = html`<div class="${btnclasses} ${leftclasses} ${selectedclasses}">${opts.l.content}</div>`
+  var left = html`<div class="${btnclasses} ${leftclasses} ${unselectedclasses}">${opts.l.content}</div>`
   var right = html`<div class="${btnclasses} ${rightclasses} ${unselectedclasses}">${opts.r.content}</div>`
 
   var lefthead = html`
@@ -64,12 +64,23 @@ function buttonSwitch (state, emit, opts) {
 
   var choice = 'private'
 
+  var submit = html`<div class="${btnclasses} ${selectedclasses} dn">Confirm your choice</div>`
+
+  submit.onclick = e => {
+    emit(`user:become-${choice}`)
+  }
+
+  var choicemade = () => {
+    submit.classList.remove('dn')
+  }
+
   left.onclick = e => {
     left.className = `${btnclasses} ${leftclasses} ${selectedclasses}`
     right.className = `${btnclasses} ${rightclasses} ${unselectedclasses}`
     lefthead.innerHTML = `<h3>${opts.l.content}</h3><span class="ttu small f7 red ba br1 b--red h1 r pa1">selected</span>`
     righthead.innerHTML = `<h3>${opts.r.content}</h3>`
     choice = opts.l.choice
+    choicemade()
   }
 
   right.onclick = e => {
@@ -78,11 +89,7 @@ function buttonSwitch (state, emit, opts) {
     righthead.innerHTML = `<h3>${opts.r.content}</h3><span class="ttu small f7 red ba br1 b--red h1 r pa1">selected</span>`
     lefthead.innerHTML = `<h3>${opts.l.content}</h3>`
     choice = opts.r.choice
-  }
-
-  var submit = html`<div class="${btnclasses} ${selectedclasses}">Confirm your choice</div>`
-  submit.onclick = e => {
-    emit(`user:become-${choice}`)
+    choicemade()
   }
 
   return html`

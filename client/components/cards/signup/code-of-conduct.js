@@ -18,6 +18,7 @@ function agreeButton (state, emit, opts) {
 
   return html`
   <div class="flex flex-column items-center noselect measure">
+    <h1 class="pt0 mt0">Welcome to PREreview</h1>
     <h2>Before you can use PREreview you must read and agree to abide by <a href="/docs/code_of_conduct" target="_blank">code of conduct</a>.</h2>
     <div class="flex flex-row justify-start pointer mw-50">
       ${left}
