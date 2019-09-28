@@ -1,3 +1,4 @@
+var Nanocomponent = require('nanocomponent')
 var html = require('choo/html')
 var raw = require('choo/html/raw')
 var css = require('sheetify')
@@ -18,16 +19,38 @@ module.exports = {
 }
 
 function otheruser (state, emit, waitforuserdata) {
-  var loader = loading()
+  var userId = state.href.split('/users/')[1]
+  return state.cache(OtherUser, `prereview-other-user-profile-${userId}`).render(state, emit, waitforuserdata)
+}
 
-  var el = html`
-    <div class="flex flex-column justify-center items-center w-100 center bg-white br3 pa3 pa4-ns">
-      ${loader}
-    </div>
-  `
+class OtherUser extends Nanocomponent {
+  constructor () {
+    super()
+    this.updated = 0
+  }
 
-  waitforuserdata.then(
-    user => {
+  createElement (state, emit, waitforuserdata) {
+    this.loader = loading()
+
+    var el = html`
+      <div class="flex flex-column justify-center items-center w-100 center bg-white br3 pa3 pa4-ns">
+        ${this.loader}
+      </div>
+    `
+
+    this.populateUser(state, emit, waitforuserdata)
+
+    return el
+
+  }
+
+  populateUser (state, emit, waitforuserdata) {
+    var self = this
+    self.updated = Date.now()
+
+    waitforuserdata.then(insertData)
+
+    function insertData (user) {
       var inner
   
       if (user) {
@@ -44,12 +67,14 @@ function otheruser (state, emit, waitforuserdata) {
   
         var privateuser = user.is_private ? html`<h3>This user's profile is private.</h3>` : null
         var profilepic = (user.profile && user.profile.pic) ? user.profile.pic + '&s=128' : '/assets/illustrations/avatar.png'
+        var usersince = new Date(user.created_at).toDateString()
 
         inner = html`
-          <div class="flex flex-column items-center tc w-50-l w-70-m w-90-s">
+          <div class="flex flex-column justify-center items-center tc w-50-l w-70-m w-90-s mh-100">
             <img src="${profilepic}" class="br-100 h4 w4 dib" title="user profile picture">
             <h1 class="mb1 fw4">${user.name}</h1>
             ${orcid}
+            <p>Member since ${usersince}.</p>
             ${privateuser}
             ${userreviews(state, emit, user)}
           </div>
@@ -62,13 +87,17 @@ function otheruser (state, emit, waitforuserdata) {
         `
       }
 
-
-      loader.remove()
-      el.appendChild(inner)
+      self.loader.replaceWith(inner)
     }
-  )
+  }
 
-  return el
+  update (state) {
+    if (Date.now() - this.updated > 60000) {
+      // update if the user data is > 60 seconds old
+      return true
+    }
+    return false
+  }
 }
 
 function myprofilecard (state, emit) {
@@ -184,7 +213,7 @@ function prereview (p) {
       </div>
     </div>
     <div class="flex flex-row">
-      <a class="black f5 fw7 tl" href="/preprints/${p.id || p.preprint.id}">${p.title || p.preprint.title}</a>
+      <a class="black f5 fw7 tl" href="/preprints/${p.preprint.id}">${p.preprint.title}</a>
     </div>
   </div>
   `

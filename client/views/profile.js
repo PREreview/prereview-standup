@@ -1,4 +1,5 @@
 var html = require('choo/html')
+var css = require('sheetify')
 
 var nav = require('../components/nav')
 var profile = require('../components/profile')
@@ -6,6 +7,14 @@ var profile = require('../components/profile')
 var Setup = require('../components/profile/firstvisit')
 
 var TITLE = 'PREreview2 | profile'
+
+var mainstyle = css`
+
+:host {
+  min-height: calc(100vh - 127px);
+}
+
+`
 
 module.exports = view
 
@@ -19,7 +28,7 @@ function view (state, emit) {
     return html`
     <body class="flex flex-column w-100 justify-center items-center space-around">
       ${nav(state, emit)}
-      <div class="flex flex-column w-70">
+      <div class="flex flex-column w-70 ${mainstyle} justify-center items-center">
         ${profile.otheruser(state, emit, fetch(`/data/users/${userid}`).then(res => res.json()))}
       </div>
     </body>
