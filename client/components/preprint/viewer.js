@@ -44,7 +44,7 @@ class PreprintViewer extends Nanocomponent {
     `
 
     if (this.preprint.pdfblocked) {
-      setTimeout(loadingdone.bind(this), 300)
+      setTimeout(this.loadingdone.bind(this), 300)
     } else {
       this.loadPreprintIntoIframe()
     }
