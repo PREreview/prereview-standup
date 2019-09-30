@@ -44,16 +44,16 @@ function getResultString (state, emit) {
     querystring = state.searchResults.query && state.searchResults.query.string
 
     // the results are from a user search
-    if (state.searchResults.total === 0) {
+    if (!state.searchResults.total) {
       resultstring = 'No results found'
+    } else {
+      var currentPage = state.searchResults.currentpage
+      var totalPages = state.searchResults.totalpages
+      var showingResults = state.searchResults.results.length
+      var totalResults = state.searchResults.total
+
+      resultstring = `Page ${currentPage} of ${totalPages} (${showingResults} of ${totalResults} total results)`
     }
-
-    var currentPage = state.searchResults.currentpage
-    var totalPages = state.searchResults.totalpages
-    var showingResults = state.searchResults.results.length
-    var totalResults = state.searchResults.total
-
-    resultstring = `Page ${currentPage} of ${totalPages} (${showingResults} of ${totalResults} total results)`
   } else {
     // the results are the default view
     resultstring = '20 most recently published'
