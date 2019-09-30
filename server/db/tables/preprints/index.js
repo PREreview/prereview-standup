@@ -5,11 +5,13 @@ module.exports = {
 }
 
 var db = require('../..')
+var fixPublisher = require('./fixPublisher')
 
 function getPreprint (preprint) {
 	return db('preprints')
 		.where(preprint)
 		.first()
+		.then(fixPublisher)
 		.then(getPreprintReviews)
 }
 

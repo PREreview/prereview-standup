@@ -1,4 +1,5 @@
 var db = require('../../')
+var fixPublisher = require('./fixPublisher')
 
 var PAGESIZE = 20
 
@@ -31,6 +32,8 @@ function searchPreprints (query) {
   ]).then(
     ([totalResult, chainResult]) => Promise.all(
       chainResult.map(getPreprintReviewCount)
+    ).then(
+      results => Promise.all(results.map(fixPublisher))
     ).then(
       results => Promise.resolve({
         query: query,
