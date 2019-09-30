@@ -1,8 +1,11 @@
+var Nanocomponent = require('nanocomponent')
 var html = require('choo/html')
 var raw = require('choo/html/raw')
 
 var composer = require('./compose')
 var button = require('../button')
+
+var sanitizeID = require('../../lib/sanitize-id')
 
 module.exports = function view (state, emit, opts) {
   return subroute(state, emit, opts)
@@ -54,24 +57,46 @@ function requestreview () {
 }
 
 function readreviews (state, emit, preprint) {
-  if (!preprint.requests) preprint.requests = []
+  // by using the preprint identifier in the cache key
+  // we automatically get one viewer per preprint
+  var elid = sanitizeID(preprint.id)
+  return state.cache(Reviews, `preprint-freviews-${elid}`).render(state, emit, preprint)
+}
 
-  var n = preprint.prereviews.length
+class Reviews extends Nanocomponent {
+  constructor () {
+    super()
+    this.created = Date.now()
+  }
 
-  var el = html`
+  createElement (state, emit, preprint) {
+    if (!preprint.requests) preprint.requests = []
+
+    var n = preprint.prereviews.length
   
-  <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
-    ${preprint.pdfblocked ? null : meta(state, emit, preprint)}
-    <div class="flex flex-row w-100 justify-between items-center pa3">
-      <div class="pr2 f4 fw5 nowrap">${n} review${n === 1 ? '' : 's'}</h2>
-      ${addreview(state, emit, preprint)}
+    var el = html`
+    
+    <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
+      ${preprint.pdfblocked ? null : meta(state, emit, preprint)}
+      <div class="flex flex-row w-100 justify-between items-center pa3">
+        <div class="pr2 f4 fw5 nowrap">${n} review${n === 1 ? '' : 's'}</h2>
+        ${addreview(state, emit, preprint)}
+      </div>
+      ${preprint.prereviews.map(r => require('./display')(state, emit, r))}
     </div>
-    ${preprint.prereviews.map(r => require('./display')(state, emit, r))}
-  </div>
+    
+    `
   
-  `
+    return el
+  }
 
-  return el
+  update () {
+    if (Date.now() - this.created > 60000) {
+      // update once a minute
+      return true
+    }
+    return false
+  }
 }
 
 function addreview (state, emit, preprint) {
@@ -91,7 +116,6 @@ function addreview (state, emit, preprint) {
 }
 
 function meta (state, emit, preprint) {
-  console.log(preprint)
   var publisher = html`<div class="red i b">${preprint.publisher}</div>`
   var title = html`<h1 class="mv1 lh-solid">${preprint.title}</h1>`
   var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.list.map(a => a.fullName).join(', ')}</h2>`

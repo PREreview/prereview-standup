@@ -1,83 +1,74 @@
+var Nanocomponent = require('nanocomponent')
 var html = require('choo/html')
-var raw = require('choo/html/raw')
-var pdfUrl = require('../../lib/preprints/pdf-url')
 
-var loaded = false
+var blockedview = require('./blockedview')
+var pdfUrl = require('../../lib/preprints/pdf-url')
+var sanitizeID = require('../../lib/sanitize-id')
 
 module.exports = function (state, emit, preprint) {
-  var loading = html`
+  // by using the preprint identifier in the cache key
+  // we automatically get one viewer per preprint
+  var elid = sanitizeID(preprint.id)
+  return state.cache(PreprintViewer, `preprint-viewer-${elid}`).render(state, emit, preprint)
+}
 
-  <div class="flex flex-column absolute w-100 h-100 bg-white justify-center items-center" style="z-index: 9999;">
-    <p>
-      loading preprint...
-    </p>
-    ${require('../utils/loading')()}
-  </div>
-  
-  `
-
-  function loadingdone () {
-    loading.remove()
+class PreprintViewer extends Nanocomponent {
+  constructor () {
+    super()
   }
 
-  var viewercontainer = preprint.pdfblocked ?
-    blockedview(preprint) :
-    html`<iframe class="w-100 h-100 bn"></div>`
-   
+  createElement (state, emit, preprint) {
+    this.preprint = preprint
+    this.loading = html`
 
-  loadPreprintIntoIframe(preprint, viewercontainer, loadingdone)
-
-  var container = html`
-
-  <div class="flex flex-column w-100 h-100 justify-center items-center content-center relative">
-    ${loading}
-    ${viewercontainer}
-  </div>
-  
-  `
-
-  loaded = true
-
-  return container
-}
-
-function blockedview (preprint) {
-  var publisher = html`<div class="red i b">${preprint.publisher}</div>`
-  var title = html`<h1 class="mv1 lh-solid">${preprint.title}</h1>`
-  var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.list.map(a => a.fullName).join(', ')}</h2>`
-  var abstract = raw(`<p class="mt1">${preprint.abstract}</p>`)
-
-  var site = preprint.id.split('/')[0]
-  var identifier = preprint.id.replace(site + '/', '')
-
-  var contentel = html`
-    <div class="flex flex-column w-100 justify-start lh-copy pa3">
-      ${publisher}
-      <a class="black link" href="https://${site}.org/${identifier}" target="_blank">${title}</a>
-      ${authors}
-      <h3 class="mb1">Abstract</h3>
-      ${abstract}
-      <p class="b">
-        You can access the <a href="https://${site}.org/${identifier}" target="_blank">full text of this preprint</a> at the preprint server's website.
+    <div class="flex flex-column absolute w-100 h-100 bg-white justify-center items-center" style="z-index: 9999;">
+      <p>
+        loading preprint...
       </p>
+      ${require('../utils/loading')()}
     </div>
-  `
+    
+    `
+  
+    this.viewercontainer = preprint.pdfblocked ?
+      blockedview(state, emit, preprint) :
+      html`<iframe class="w-100 h-100 bn"></div>`
 
-  return html`
-  <div class="flex flex-column h-100 w-100" style="overflow-y: auto;">
-    ${contentel}
-  </div>
-  `
-}
+    var container = html`
+  
+    <div class="flex flex-column w-100 h-100 justify-center items-center content-center relative">
+      ${this.loading}
+      ${this.viewercontainer}
+    </div>
+    
+    `
 
-function loadPreprintIntoIframe (preprint, container, loadingdone) {
-  console.log('preprint url loading')
-  pdfUrl(preprint).then(
-    docurl => {
-      console.log('got preprint url:', docurl)
-      var corsurl = `https://preprint-proxy.prereview.org/${docurl}`
-      container.setAttribute('src', `/pdfviewer/web/viewer.html?file=${corsurl}`)
-      setTimeout(loadingdone, 3000)
+    if (this.preprint.pdfblocked) {
+      setTimeout(loadingdone.bind(this), 300)
+    } else {
+      this.loadPreprintIntoIframe()
     }
-  )
+  
+    return container
+  }
+
+  loadPreprintIntoIframe () {
+    console.log('preprint url loading')
+    pdfUrl(this.preprint).then(
+      docurl => {
+        console.log('got preprint url:', docurl)
+        var corsurl = `https://preprint-proxy.prereview.org/${docurl}`
+        this.viewercontainer.setAttribute('src', `/pdfviewer/web/viewer.html?file=${corsurl}`)
+        setTimeout(this.loadingdone.bind(this), 3000)
+      }
+    )
+  }
+
+  loadingdone () {
+    this.loading.remove()
+  }
+
+  update () {
+    return false
+  }
 }
