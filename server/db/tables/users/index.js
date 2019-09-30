@@ -4,6 +4,8 @@ module.exports = {
 
 var db = require('../..')
 
+var { getUserReviews } = require('../prereviews')
+
 function addUser (user) {
 	return db('users').insert({
 		orcid: user.orcid,
@@ -32,41 +34,6 @@ function getUserById (userid) {
 		.where({ user_id: userid })
 		.first()
 		.then(getUserReviews)
-}
-
-function getUserReviews (user) {
-	if (user && user.user_id) {
-		return db('prereviews')
-			.where({ author_id: user.user_id })
-			.then(
-				prereviews => {
-					user.prereviews = prereviews
-					return Promise.all(
-						prereviews.map(addPreprintToPrereview)
-					).then(
-						() => Promise.resolve(user)
-					)
-				}
-			)
-	} else {
-		return Promise.resolve(null)
-	}
-}
-
-function addPreprintToPrereview (prereview) {
-	if (prereview && prereview.preprint_id) {
-		return db('preprints')
-			.where({ id: prereview.preprint_id })
-			.first()
-			.then(
-				preprint => {
-					prereview.preprint = preprint
-					return Promise.resolve(prereview)
-				}
-			)
-	} else {
-		return Promise.resolve(null)
-	}
 }
 
 function getOrAddUser (user) {

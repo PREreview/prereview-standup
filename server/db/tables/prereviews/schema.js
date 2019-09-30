@@ -11,6 +11,7 @@ function createTable () {
 			table.text('content').notNullable()
 			table.integer('author_id').notNullable().references('users.user_id').index()
 			table.timestamp('date_created').defaultTo(db.fn.now())
+			table.boolean('is_hidden')
 			table.index('doi', 'doiindex')
 		})
 	})

@@ -12,8 +12,6 @@ router.post('/submit', function (req, res, next) {
     return res.status(401)
   }
 
-  console.log(req.body)
-
   if (req.user.id !== req.body.author.id) {
     // user must be logged in as the same one claiming to author the PREreview
     return res.status(401, 'You cannot post a PREreview as another user')
