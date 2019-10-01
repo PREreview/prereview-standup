@@ -2,9 +2,6 @@ var html = require('choo/html')
 var css = require('sheetify')
 
 var nav = require('../components/nav')
-var header = require('../components/home/header')
-var filterbox = require('../components/home/filterbox')
-var preprintlist = require('../components/home/preprintlist')
 
 var TITLE = 'PREreview 2'
 
