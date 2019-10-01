@@ -14,7 +14,7 @@ module.exports = function(state, emit, opts) {
   var s = state.style.classes
 
   var logo = html`
-    <div class="justify-start" style="cursor: pointer;">
+    <div class="justify-start" style="cursor: pointer; width: 410px;">
       <img class="ml2-m ma0-l pa0" style="width: auto;" src="/assets/images/logo_horizontal_tx.png">
     </div>
   `
