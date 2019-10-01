@@ -1,5 +1,5 @@
 var user = require('../../../db/tables/users')
-var prereview = require('../../../db/tables/prerevies')
+var prereview = require('../../../db/tables/prereviews')
 
 var express = require('express')
 var router = express.Router()
