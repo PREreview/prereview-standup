@@ -6,7 +6,6 @@ var router = express.Router()
 
 // Submits a new PREreview
 router.post('/submit', function (req, res, next) {
-  
   if (!req.user) {
     // user must be logged in
     return res.status(401)
@@ -28,7 +27,7 @@ router.post('/submit', function (req, res, next) {
     content: convertDelta.toHTML(req.body.prereview).replace('<p><br></p>', '')
   }
 
-	prereviews.addPrereview(prereview).then(
+  prereviews.addPrereview(prereview).then(
     data => res.json(data)
   ).catch(
     e => {

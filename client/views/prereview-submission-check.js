@@ -19,7 +19,7 @@ function view (state, emit) {
   `
 
   submit.onclick = () => emit('prereview:confirm-submission')
-    
+
   return html`
 
   <body class="flex flex-column w-100 justify-center items-center space-around dark-gray sans-serif">

@@ -1,4 +1,4 @@
-module.exports = function(state, emitter) {
+module.exports = function (state, emitter) {
   state.appdata = {
     title: 'PREreview',
     settings: {},

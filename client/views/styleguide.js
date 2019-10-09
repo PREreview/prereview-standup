@@ -2,7 +2,7 @@ var html = require('choo/html')
 var css = require('sheetify')
 
 var components = [
-  { 
+  {
     func: buttonSwitch,
     opts: {
       l: {
@@ -11,7 +11,7 @@ var components = [
       },
       r: {
         content: 'Make my identity public',
-        detail: html`This choice shows your real name on your profile, posts and comments, and links them to your ORCID ID <img style="margin-bottom:-3px;" src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />. Anyone visiting PREreview will be able to see your true identity, and search engines such as Google will index your profile page and contributions.` 
+        detail: html`This choice shows your real name on your profile, posts and comments, and links them to your ORCID ID <img style="margin-bottom:-3px;" src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />. Anyone visiting PREreview will be able to see your true identity, and search engines such as Google will index your profile page and contributions.`
       }
     }
   }

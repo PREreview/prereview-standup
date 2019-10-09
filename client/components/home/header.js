@@ -17,7 +17,7 @@ function header (state, emit) {
     onsearch: val => emit('preprint-search:query', val),
     onresults: results => emit('preprint-search:results', results)
   }
-  
+
   var s = state.style.classes
   var search = input(state, emit, searchopts)
 

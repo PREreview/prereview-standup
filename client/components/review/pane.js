@@ -73,7 +73,7 @@ class Reviews extends Nanocomponent {
     if (!preprint.requests) preprint.requests = []
 
     var n = preprint.prereviews.length
-  
+
     var el = html`
     
     <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
@@ -86,7 +86,7 @@ class Reviews extends Nanocomponent {
     </div>
     
     `
-  
+
     return el
   }
 
@@ -119,7 +119,7 @@ function meta (state, emit, preprint) {
   var publisher = html`<div class="red i b">${preprint.publisher}</div>`
   var title = html`<h1 class="mv1 lh-solid">${preprint.title}</h1>`
   var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.list.map(a => a.fullName).join(', ')}</h2>`
-  
+
   var type = preprint.id.split('/')[0]
   var isarxiv = type === 'arxiv'
   var maybeabs = isarxiv ? 'abs/' : ''

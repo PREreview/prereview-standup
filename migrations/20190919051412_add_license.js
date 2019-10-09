@@ -1,10 +1,10 @@
 
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema.table('preprints', function (table) {
     table.json('license')
   })
-};
+}
 
-exports.down = function(knex) {
-  
-};
+exports.down = function (knex) {
+
+}

@@ -2,7 +2,7 @@ var html = require('choo/html')
 var css = require('sheetify')
 
 var components = [
-  { 
+  {
     func: buttonSwitch,
     opts: {
       l: {

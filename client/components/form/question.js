@@ -1,7 +1,7 @@
 var html = require('choo/html')
 var field = require('./')
 
-module.exports = function question(state, emit, opts) {
+module.exports = function question (state, emit, opts) {
   var fieldel = field[opts.field.type](state, emit, opts.field)
 
   var getAnswer = () => {

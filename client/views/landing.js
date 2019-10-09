@@ -41,9 +41,9 @@ function view (state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
 
   var nresults = state.searchResults.length
-  var resultstr = state.searched ?
-    (nresults ? `${nresults} results` : 'no results') :
-    (`20 most recentely reviewed`)
+  var resultstr = state.searched
+    ? (nresults ? `${nresults} results` : 'no results')
+    : ('20 most recentely reviewed')
 
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray sans-serif">
@@ -78,5 +78,5 @@ function minicard (data) {
     <h2 class="mv1 mb2 w-70 tc">${data.description}</h2>
   </div>
   
-  `  
+  `
 }

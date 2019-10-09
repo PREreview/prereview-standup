@@ -10,7 +10,7 @@ var barstyle = css`
 
 `
 
-module.exports = function(state, emit, opts) {
+module.exports = function (state, emit, opts) {
   var s = state.style.classes
 
   var logo = html`
@@ -49,7 +49,6 @@ module.exports = function(state, emit, opts) {
   `
 
   var notlogged = () => {
-
     var login = html`
 
     <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link pointer noselect">
@@ -57,11 +56,10 @@ module.exports = function(state, emit, opts) {
     </div>
 
     `
-    login.onclick = () => window.location = '/login-redirect'  
+    login.onclick = () => window.location = '/login-redirect'
 
     return login
   }
-
 
   var logged = () => {
     var profile = html`
@@ -69,7 +67,7 @@ module.exports = function(state, emit, opts) {
         <p class="ma0 pa0 white dib v-mid b">${state.user.name}</p>
       </div>
     `
-    profile.onclick = () => emit('pushState', '/profile')  
+    profile.onclick = () => emit('pushState', '/profile')
 
     var el = html`
     <div class="flex flex-row items-center justify-center white">

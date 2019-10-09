@@ -5,7 +5,6 @@ var router = express.Router()
 
 // Submits a new PREreview
 router.post('/hide', function (req, res, next) {
-  
   // admin only
   if (!req.user && req.user.is_admin) {
     // user must be logged in and an admin
@@ -16,7 +15,7 @@ router.post('/hide', function (req, res, next) {
     return res.status(500, 'No PREreview ID was provided')
   }
 
-	prereviewAdmin.hidePrereview(prereview_id).then(
+  prereviewAdmin.hidePrereview(prereview_id).then(
     data => res.json(data)
   ).catch(
     e => {

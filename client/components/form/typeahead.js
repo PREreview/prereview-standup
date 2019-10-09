@@ -94,8 +94,8 @@ class TypeAhead extends Nanocomponent {
         this.input.value = eg
 
         var event = new Event('input', {
-          'bubbles': true,
-          'cancelable': false
+          bubbles: true,
+          cancelable: false
         })
 
         this.input.dispatchEvent(event)

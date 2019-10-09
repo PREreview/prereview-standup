@@ -51,7 +51,7 @@ var selectstyle = css`
 
 module.exports = function (opts) {
   return filterbox
-  
+
   function filterbox (state, emit) {
     var filterbydate = state.filters.main.sort === 'date'
 

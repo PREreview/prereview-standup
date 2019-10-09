@@ -26,7 +26,7 @@ var baseStyle = css`
 `
 
 module.exports = class Popover extends Component {
-  constructor(id, state, emit, opts) {
+  constructor (id, state, emit, opts) {
     super(id, state, emit, opts)
     this.opts = Object.assign({
       classes: [baseStyle],
@@ -48,7 +48,7 @@ module.exports = class Popover extends Component {
   }
 
   update () {
-    return this.element ? false : true
+    return !this.element
   }
 
   show (opts) {

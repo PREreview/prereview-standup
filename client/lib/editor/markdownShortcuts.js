@@ -1,5 +1,5 @@
-var Quill = require('quill')
 import HorizontalRule from './formats/hr'
+var Quill = require('quill')
 Quill.register('formats/horizontal', HorizontalRule)
 
 class MarkdownShortcuts {
@@ -49,7 +49,7 @@ class MarkdownShortcuts {
         name: 'bolditalic',
         pattern: /(?:\*|_){3}(.+?)(?:\*|_){3}/g,
         action: (text, selection, pattern, lineStart) => {
-          let match = pattern.exec(text)
+          const match = pattern.exec(text)
 
           const annotatedText = match[0]
           const matchedText = match[1]
@@ -59,7 +59,7 @@ class MarkdownShortcuts {
 
           setTimeout(() => {
             this.quill.deleteText(startIndex, annotatedText.length)
-            this.quill.insertText(startIndex, matchedText, {bold: true, italic: true})
+            this.quill.insertText(startIndex, matchedText, { bold: true, italic: true })
             this.quill.format('bold', false)
           }, 0)
         }
@@ -68,7 +68,7 @@ class MarkdownShortcuts {
         name: 'bold',
         pattern: /(?:\*|_){2}(.+?)(?:\*|_){2}/g,
         action: (text, selection, pattern, lineStart) => {
-          let match = pattern.exec(text)
+          const match = pattern.exec(text)
 
           const annotatedText = match[0]
           const matchedText = match[1]
@@ -78,7 +78,7 @@ class MarkdownShortcuts {
 
           setTimeout(() => {
             this.quill.deleteText(startIndex, annotatedText.length)
-            this.quill.insertText(startIndex, matchedText, {bold: true})
+            this.quill.insertText(startIndex, matchedText, { bold: true })
             this.quill.format('bold', false)
           }, 0)
         }
@@ -87,7 +87,7 @@ class MarkdownShortcuts {
         name: 'italic',
         pattern: /(?:\*|_){1}(.+?)(?:\*|_){1}/g,
         action: (text, selection, pattern, lineStart) => {
-          let match = pattern.exec(text)
+          const match = pattern.exec(text)
 
           const annotatedText = match[0]
           const matchedText = match[1]
@@ -97,7 +97,7 @@ class MarkdownShortcuts {
 
           setTimeout(() => {
             this.quill.deleteText(startIndex, annotatedText.length)
-            this.quill.insertText(startIndex, matchedText, {italic: true})
+            this.quill.insertText(startIndex, matchedText, { italic: true })
             this.quill.format('italic', false)
           }, 0)
         }
@@ -106,7 +106,7 @@ class MarkdownShortcuts {
         name: 'strikethrough',
         pattern: /(?:~~)(.+?)(?:~~)/g,
         action: (text, selection, pattern, lineStart) => {
-          let match = pattern.exec(text)
+          const match = pattern.exec(text)
 
           const annotatedText = match[0]
           const matchedText = match[1]
@@ -116,7 +116,7 @@ class MarkdownShortcuts {
 
           setTimeout(() => {
             this.quill.deleteText(startIndex, annotatedText.length)
-            this.quill.insertText(startIndex, matchedText, {strike: true})
+            this.quill.insertText(startIndex, matchedText, { strike: true })
             this.quill.format('strike', false)
           }, 0)
         }
@@ -125,7 +125,7 @@ class MarkdownShortcuts {
         name: 'code',
         pattern: /(?:`)(.+?)(?:`)/g,
         action: (text, selection, pattern, lineStart) => {
-          let match = pattern.exec(text)
+          const match = pattern.exec(text)
 
           const annotatedText = match[0]
           const matchedText = match[1]
@@ -135,7 +135,7 @@ class MarkdownShortcuts {
 
           setTimeout(() => {
             this.quill.deleteText(startIndex, annotatedText.length)
-            this.quill.insertText(startIndex, matchedText, {code: true})
+            this.quill.insertText(startIndex, matchedText, { code: true })
             this.quill.format('code', false)
             this.quill.insertText(this.quill.getSelection(), ' ')
           }, 0)
@@ -145,13 +145,13 @@ class MarkdownShortcuts {
         name: 'hr',
         pattern: /^([-*]\s?){3}/g,
         action: (text, selection) => {
-          const startIndex = selection.index - text.length;
+          const startIndex = selection.index - text.length
           setTimeout(() => {
             this.quill.deleteText(startIndex, text.length)
 
-            this.quill.insertEmbed(startIndex + 1, 'hr', true, Quill.sources.USER);
-            this.quill.insertText(startIndex + 2, "\n", Quill.sources.SILENT);
-            this.quill.setSelection(startIndex + 2, Quill.sources.SILENT);
+            this.quill.insertEmbed(startIndex + 1, 'hr', true, Quill.sources.USER)
+            this.quill.insertText(startIndex + 2, '\n', Quill.sources.SILENT)
+            this.quill.setSelection(startIndex + 2, Quill.sources.SILENT)
           }, 0)
         }
       },
@@ -230,7 +230,7 @@ class MarkdownShortcuts {
     const text = line.domNode.textContent
     const lineStart = selection.index - offset
     if (this.isValid(text, line.domNode.tagName)) {
-      for (let match of this.matches) {
+      for (const match of this.matches) {
         const matchedText = text.match(match.pattern)
         if (matchedText) {
           // We need to replace only matched text not the whole line
@@ -243,14 +243,14 @@ class MarkdownShortcuts {
   }
 
   onEnter () {
-    let selection = this.quill.getSelection()
+    const selection = this.quill.getSelection()
     if (!selection) return
     const [line, offset] = this.quill.getLine(selection.index)
     const text = line.domNode.textContent + ' '
     const lineStart = selection.index - offset
     selection.length = selection.index++
     if (this.isValid(text, line.domNode.tagName)) {
-      for (let match of this.matches) {
+      for (const match of this.matches) {
         const matchedText = text.match(match.pattern)
         if (matchedText) {
           console.log('matched', match.name, text)

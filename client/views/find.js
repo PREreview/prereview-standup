@@ -59,9 +59,9 @@ function getResultString (state, emit) {
     resultstring = '20 most recently published'
   }
 
-  var querydiv = querystring ?
-    html`<div class="flex flex-row">Query: "<span class="ttn">${querystring}</span>"</div>` :
-    null
+  var querydiv = querystring
+    ? html`<div class="flex flex-row">Query: "<span class="ttn">${querystring}</span>"</div>`
+    : null
 
   return html`
   <div class="flex flex-column">

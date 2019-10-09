@@ -29,10 +29,10 @@ class PreprintViewer extends Nanocomponent {
     </div>
     
     `
-  
-    this.viewercontainer = preprint.pdfblocked ?
-      blockedview(state, emit, preprint) :
-      html`<iframe class="w-100 h-100 bn"></div>`
+
+    this.viewercontainer = preprint.pdfblocked
+      ? blockedview(state, emit, preprint)
+      : html`<iframe class="w-100 h-100 bn"></div>`
 
     var container = html`
   
@@ -48,7 +48,7 @@ class PreprintViewer extends Nanocomponent {
     } else {
       this.loadPreprintIntoIframe()
     }
-  
+
     return container
   }
 

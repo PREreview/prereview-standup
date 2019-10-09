@@ -6,7 +6,7 @@ var blockedroutes = [
   'startup'
 ]
 
-function store(state, emitter) {
+function store (state, emitter) {
   state.navigator = {
     blocked: false
   }
@@ -33,7 +33,7 @@ function store(state, emitter) {
 
   var block = () => state.navigator.blocked = true
   var unblock = () => state.navigator.blocked = false
-  
+
   emitter.on('DOMContentLoaded', function () {
     emitter.on('navigator:render', render)
     emitter.on('navigator:splash', splash)

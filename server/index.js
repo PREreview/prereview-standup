@@ -31,9 +31,11 @@ app.use(require('./auth/sessions'))
 
 // register static file serves
 var path = require('path')
-if (!DEV_ENV) app.use(express.static(path.join(__dirname, '../client/dist'), {
-  redirect: false
-}))
+if (!DEV_ENV) {
+  app.use(express.static(path.join(__dirname, '../client/dist'), {
+    redirect: false
+  }))
+}
 app.use('/assets/', express.static(path.join(__dirname, '../client/assets')))
 
 var cors = require('cors')
@@ -56,7 +58,7 @@ app.use('/', require('./routes'))
 if (DEV_ENV) app.get('/*', require('./routes/root'))
 
 app.use('/loginsuccess', (err, req, res, next) => {
-  res.redirect(`/profile`)
+  res.redirect('/profile')
 })
 
 app.use(function (err, req, res, next) {

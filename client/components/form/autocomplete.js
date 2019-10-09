@@ -1,6 +1,6 @@
 var html = require('choo/html')
 
-module.exports = function tab(state, emit, opts) {
+module.exports = function tab (state, emit, opts) {
   return html`
   
   <div class="${state.style.classes.tab}">

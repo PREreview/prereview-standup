@@ -47,19 +47,19 @@ function searchPreprints (query) {
 }
 
 function getPreprintReviewCount (preprint) {
-	if (preprint && preprint.id) {
-		return db('prereviews')
+  if (preprint && preprint.id) {
+    return db('prereviews')
       .where({ preprint_id: preprint.id })
       .count('* as n_prereviews')
-			.then(
-				counter => {
-					preprint.n_prereviews = parseInt(counter[0].n_prereviews)
-					return Promise.resolve(preprint)
-				}
-			)
-	} else {
-		return Promise.resolve(null)
-	}
+      .then(
+        counter => {
+          preprint.n_prereviews = parseInt(counter[0].n_prereviews)
+          return Promise.resolve(preprint)
+        }
+      )
+  } else {
+    return Promise.resolve(null)
+  }
 }
 
 function cleanResult (r) {

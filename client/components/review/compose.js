@@ -4,7 +4,7 @@ var css = require('sheetify')
 var Editor = require('../editor')
 var templates = require('../../lib/editor/templates/default')
 
-var btnclasses = "flex flex-row justify-center content-center items-center v-mid bn h2 f5 white link dim outline-0 pa2 pointer br2 dtc v-mid b f6 noselect"
+var btnclasses = 'flex flex-row justify-center content-center items-center v-mid bn h2 f5 white link dim outline-0 pa2 pointer br2 dtc v-mid b f6 noselect'
 
 css`
 
@@ -25,7 +25,6 @@ css`
 }
 
 `
-
 
 module.exports = function view (state, emit, preprint) {
   var editor = state.cache(Editor, `editor-${preprint.id.replace('/', '-')}`)
@@ -109,7 +108,7 @@ function toolbarBtns (state, emit, editor) {
       templateDropdown.classList.add('dn')
     }
     templateDropdown.appendChild(option)
-  })  
+  })
 
   return html`
     <div class="flex flex-row" style="position: relative;">

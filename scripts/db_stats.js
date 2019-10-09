@@ -7,10 +7,10 @@ var tables = [
 ]
 
 var countcol = {
-  'preprints': 'id',
-  'prereviews': 'prereview_id',
-  'comments': 'comment_id',
-  'users': 'user_id'
+  preprints: 'id',
+  prereviews: 'prereview_id',
+  comments: 'comment_id',
+  users: 'user_id'
 }
 
 Promise.all(tables.map(countTable)).then(

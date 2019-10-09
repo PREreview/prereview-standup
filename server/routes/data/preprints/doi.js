@@ -7,8 +7,8 @@ var router = express.Router()
 // Returns data about a preprint by DOi
 router.get('/doi/*', function (req, res, next) {
   var doi = req.params[0]
-  
-  if (!isdoi({exact: true}).test(doi)) {
+
+  if (!isdoi({ exact: true }).test(doi)) {
     res.status(500, 'Malformed DOI in requested URI')
   }
 
@@ -17,8 +17,8 @@ router.get('/doi/*', function (req, res, next) {
   // TODO: enrich preprint with getpreprints data
   // e.g. if it's not in our DB, check crossref
   // if we have it, check for updates now
-  
-	preprints.getPreprint({
+
+  preprints.getPreprint({
     id: `doi/${doi}`
   }).then(
     returnedpreprint => {

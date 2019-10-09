@@ -7,7 +7,7 @@ module.exports = async (state, emitter) => {
   var userDo = verb => fetch(`/data/users/me/${verb}`, {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ accept: true })
@@ -32,7 +32,7 @@ module.exports = async (state, emitter) => {
 
   var becomePublic = () => userDo('become_public')
   emitter.on('user:become-public', becomePublic)
-  
+
   emitter.on('DOMContentLoaded', function () {
     state.contentloaded = true
     if (state.user && state.renderonload) {
@@ -47,16 +47,16 @@ module.exports = async (state, emitter) => {
     try {
       var userdata = await fetch('/data/users/me')
       state.user = await userdata.json()
-  
+
       if (!state.user || !state.user.orcid) {
         state.user = null
         emitter.emit('render')
         return
       }
-  
+
       // // if we get here, the user is logged in and we have their data
       // if (state.route === '/') return (window.location = '/find')
-  
+
       if (state.contentloaded) {
         emitter.emit('render')
       } else {

@@ -2,7 +2,7 @@ var express = require('express')
 var router = express.Router()
 
 router.use('/', [
-	require('./data')
+  require('./data')
 ])
 
 module.exports = router

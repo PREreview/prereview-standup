@@ -33,7 +33,7 @@ passport.use(new OrcidStrategy({
     },
     profile: {}
   }
-  
+
   // now we get the list of works for the user from the ORCID api
   // and add it to their profile data
   updateFromOrcid(profile).then(enrichedProfile => {
@@ -51,11 +51,10 @@ module.exports = app => {
   var routes = [
     'login',
     'orcid-callback',
-    'logout',
+    'logout'
   ]
 
   app.use('/', routes.map(route => require(`./routes/${route}`)))
 
   return passport
 }
-

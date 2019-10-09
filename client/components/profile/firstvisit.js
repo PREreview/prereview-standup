@@ -12,7 +12,7 @@ module.exports = class Setup extends Nanocomponent {
   createElement (state) {
     this.coc_accepted = state.user.coc_accepted
     this.privacy_setup = state.user.privacy_setup
-  
+
     var el
 
     if (!state.user.coc_accepted) {
@@ -22,7 +22,7 @@ module.exports = class Setup extends Nanocomponent {
     } else {
       el = start(state)
     }
-  
+
     return html`
       
     <div class="flex flex-column justfy-center items-center pb4 bb b--black-20">

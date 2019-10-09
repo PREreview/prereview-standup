@@ -63,7 +63,7 @@ module.exports = function (state, emitter) {
     fetch('/data/preprints/search', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -79,7 +79,7 @@ module.exports = function (state, emitter) {
   function getLatest () {
     fetch('/data/preprints/latest', {
       headers: {
-        'Accept': 'application/json'
+        Accept: 'application/json'
       }
     }).then(
       results => results.json()
@@ -89,7 +89,6 @@ module.exports = function (state, emitter) {
   }
 
   function handleSearchResponse (response) {
-    
     response.results.forEach(
       r => {
         r.date_created = new Date(r.date_created)

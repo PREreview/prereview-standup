@@ -16,7 +16,6 @@ var editorstyle = css`
 `
 
 module.exports = function view (state, emit, prereview) {
-
   var editorinner = html`<div class="flex ${editorstyle}"></div>`
 
   var btnstyle = state.style.classes.secondaryButton
@@ -45,7 +44,7 @@ module.exports = function view (state, emit, prereview) {
     theme: 'snow',
     bounds: editorel,
     modules: { toolbar: false },
-    placeholder: "Comment on this review...\n\n",
+    placeholder: 'Comment on this review...\n\n'
   })
 
   var contents = null
@@ -53,7 +52,7 @@ module.exports = function view (state, emit, prereview) {
   quill.on('text-change', (oldDelta, newDelta) => {
     contents = newDelta
   })
-  
+
   submit.onclick = () => emit('comment:submit', {
     author_id: state.user.user_id,
     prereview_id: prereview.prereview_id,

@@ -42,11 +42,11 @@ var style = css`
 module.exports = view
 
 function view (state, emit) {
-	if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
+  if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
 
-	var urlparts = state.href.split('/')
-	var doc = urlparts[urlparts.length - 1].split('#')
-	var content = raw(state.docs[doc])
+  var urlparts = state.href.split('/')
+  var doc = urlparts[urlparts.length - 1].split('#')
+  var content = raw(state.docs[doc])
 
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray">

@@ -44,7 +44,7 @@ module.exports = function view (state, emit) {
     if (lastid && lastid.id === id) {
       return populatepanes(lastid.data)
     }
-  
+
     fetch(`/data/preprints/${id}`).then(
       res => res.json()
     ).then(

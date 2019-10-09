@@ -36,7 +36,7 @@ function convert (data, enc, next) {
     if (d.license) {
       d.license = d.license.length > 0 ? d.license[0] : null
     }
-    } else if (d.arxivid) {
+  } else if (d.arxivid) {
     return next()
     d.id = `arxiv/${d.arxivid}`
     delete d.arxivid
@@ -64,21 +64,21 @@ var total = 0
 
 function insert (batch, enc, next) {
   db.batchInsert('preprints', batch)
-  .then(
-    result => {
-      total += batch.length
-      console.log(`inserted ${total} entries into preprints`)
-      next()
-    }
-  ).then(
-    preprints.indexNewPreprints
-  ).catch(
-    e => {
-      console.error('error inserting data', e)
-      throw e
-      process.exit(1)
-    }
-  )
+    .then(
+      result => {
+        total += batch.length
+        console.log(`inserted ${total} entries into preprints`)
+        next()
+      }
+    ).then(
+      preprints.indexNewPreprints
+    ).catch(
+      e => {
+        console.error('error inserting data', e)
+        throw e
+        process.exit(1)
+      }
+    )
 }
 
 function done () {

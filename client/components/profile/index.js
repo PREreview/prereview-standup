@@ -41,7 +41,6 @@ class OtherUser extends Nanocomponent {
     this.populateUser(state, emit, waitforuserdata)
 
     return el
-
   }
 
   populateUser (state, emit, waitforuserdata) {
@@ -52,7 +51,7 @@ class OtherUser extends Nanocomponent {
 
     function insertData (user) {
       var inner
-  
+
       if (user) {
         console.log('loaded user profile data', user)
         var orcid = user.orcid ? html`
@@ -64,7 +63,7 @@ class OtherUser extends Nanocomponent {
             </a>
           </h3>
         ` : null
-  
+
         var privateuser = user.is_private ? html`<h3>This user's profile is private.</h3>` : null
         var profilepic = (user.profile && user.profile.pic) ? user.profile.pic + '&s=128' : '/assets/illustrations/avatar.png'
         var usersince = new Date(user.created_at).toDateString()
@@ -101,9 +100,9 @@ class OtherUser extends Nanocomponent {
 }
 
 function myprofilecard (state, emit) {
-  var gravatartxt = state.user.profile.pic ?
-    null :
-    html`You can choose your profile picture by registering your email on <a href="https://gravatar.com">Gravatar</a>.`
+  var gravatartxt = state.user.profile.pic
+    ? null
+    : html`You can choose your profile picture by registering your email on <a href="https://gravatar.com">Gravatar</a>.`
 
   var profilepic = state.user.profile.pic ? state.user.profile.pic + '&s=128' : '/assets/illustrations/avatar.png'
 
@@ -220,11 +219,13 @@ function prereview (p) {
 }
 
 function start (state) {
-  if (!state.user.coc_accepted || !state.user.privacy_setup) return html`
+  if (!state.user.coc_accepted || !state.user.privacy_setup) {
+    return html`
   <div class="flex flex-row justify-center">
     <p>Once you have completed your signup you can start PREreviewing</p>
   </div>
   `
+  }
 
   return html`
   <div class="flex flex-row justify-center">

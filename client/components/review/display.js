@@ -39,7 +39,7 @@ module.exports = function view (state, emit, review) {
       author.appendChild(authorinner)
     }
   )
-  
+
   return html`
     
   <div class="flex flex-column w-100 pa4 f4 mid-gray lh-copy bt bw1 b--light-gray ">

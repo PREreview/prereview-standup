@@ -9,17 +9,17 @@ module.exports = makepreprintlist
 
 function makepreprintlist (opts) {
   return preprintlist
-  
+
   function preprintlist (state, emit) {
     var preprints = state.searchResults ? state.searchResults.results : []
-  
+
     if (preprints.length === 0) {
       return opts.noresultstxt || 'no results found - please try a different search :)'
     }
-  
+
     var sortFn = state.filters.main.sort === 'date' ? sortByDate : sortByReviews
     var sorted = sortBy(preprints, sortFn)
-  
+
     return sorted.map(p => preprint(state, emit, p))
   }
 }

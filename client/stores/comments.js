@@ -4,7 +4,7 @@ module.exports = async (state, emitter) => {
     currentSubmission: null,
     inProgress: {}
   }
-  
+
   emitter.on('DOMContentLoaded', function () {
     emitter.on('comment:submit', submit)
   })
@@ -13,7 +13,7 @@ module.exports = async (state, emitter) => {
     fetch('/data/comments/submit', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(comment)

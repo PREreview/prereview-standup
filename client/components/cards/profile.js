@@ -1,7 +1,7 @@
 var html = require('choo/html')
 var button = require('../button')
 
-module.exports = function component(state, emit, opts) {
+module.exports = function component (state, emit, opts) {
   var s = state.style.classes
 
   return html`

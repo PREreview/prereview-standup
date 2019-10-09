@@ -1,8 +1,7 @@
 var html = require('choo/html')
 var css = require('sheetify')
 
-
-module.exports = function component(state, emit, opts) {
+module.exports = function component (state, emit, opts) {
   var radio = entry => {
     var input = html`<input name="${opts.name}" type="radio" id="${entry.id}" ${entry.checked ? 'checked' : ''} />`
 
@@ -39,6 +38,6 @@ module.exports = function component(state, emit, opts) {
   </div>
 
   `
-  
+
   return { el, getAnswer }
 }
