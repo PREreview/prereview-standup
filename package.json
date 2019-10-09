@@ -16,7 +16,7 @@
     "start": "NODE_ENV=prod ENVIRONMENT=prod pm2 start --node-args=\"--max-old-space-size=3200\" --name prereview --log production.log index.js",
     "stop": "pm2 stop prereview",
     "restart": "pm2 restart prereview",
-    "docs": "markdown-folder-to-html server/docs"
+    "makedocs": "node scripts/makedocs.js"
   },
   "keywords": [],
   "author": "",
