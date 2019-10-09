@@ -21,3 +21,37 @@
 
 **[Join our PREreview Slack Channel](https://join.slack.com/t/prereview/shared_invite/enQtMzYwMjQzMTk3ODMxLTZhOWQ5M2FmMTY5OTYzZDNhNDg2ZDdhODE2Y2Y4MTVjY2U0OWRiZTA5ZjM3MWM1ZTY0N2E1ODYyNWM1NTc2NDg)**
 
+## Developing
+
+PREreview is composed of a server and client. The client is a [choo](https://github.com/choojs/choo) app written in NodeJS and compiled for the browser using [bankai](https://github.com/choojs/bankai). The server is an [express](https://github.com/choojs/bankai) app written in NodeJS. The database is PostgreSQL v11.
+
+### Requirements
+
+- NodeJS v12+
+
+### Installing
+
+```bash
+# install documentation
+git clone https://github.com/PREreview/documentation.git
+cd documentation && npm i
+# install getpreprints
+git clone https://github.com/PREreview/getpreprints.git
+cd documentation && npm i
+# install PREreview
+git clone https://github.com/PREreview/prereview-standup.git
+cd prereview-standup/client
+npm i # install client app dependencies
+cd ..
+npm i # install server app dependencies
+```
+
+### Running the platform
+
+Running in developer mode provides a live-reloading client and server as well as various tools to inspect and debug the app in node and the browser.
+
+To run the app:
+
+```bash
+npm run dev
+```
