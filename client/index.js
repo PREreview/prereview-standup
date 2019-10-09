@@ -8,7 +8,8 @@ css('tachyons')
 require('./theme')
 
 var app = choo({
-  href: false
+  href: true,
+  hash: false
 })
 if (process.env.NODE_ENV !== 'production') {
   app.use(require('choo-devtools')())

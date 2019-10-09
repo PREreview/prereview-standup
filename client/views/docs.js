@@ -45,7 +45,7 @@ function view (state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
 
   var urlparts = state.href.split('/')
-  var doc = urlparts[urlparts.length - 1].split('#')
+  var doc = urlparts[urlparts.length - 1]
   var content = raw(state.docs[doc])
 
   return html`
