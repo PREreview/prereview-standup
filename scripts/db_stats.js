@@ -2,11 +2,6 @@ require('../config')
 var db = require('../server/db')
 
 var tables = [
-  'users',
-  'prereviews'
-]
-
-var countcol = [
   'preprints',
   'prereviews',
   'comments',
@@ -21,7 +16,7 @@ Promise.all(tables.map(countTable)).then(
 
 function countTable (tablename) {
   console.log('counting entries in table:', tablename)
-  return db.raw(countraw[tablename]).then(
+  return db.raw(countraw(tablename)).then(
     result => {
       console.log(tablename, 'has', result, 'entries')
     }
