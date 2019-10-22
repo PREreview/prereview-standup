@@ -6,12 +6,14 @@ var tables = [
   'prereviews'
 ]
 
-var countcol = {
-  preprints: 'id',
-  prereviews: 'prereview_id',
-  comments: 'comment_id',
-  users: 'user_id'
-}
+var countcol = [
+  'preprints',
+  'prereviews',
+  'comments',
+  'users'
+]
+
+var countraw = table => `SELECT COUNT(*) FROM ${table};`
 
 Promise.all(tables.map(countTable)).then(
   () => process.exit(0)
@@ -19,9 +21,9 @@ Promise.all(tables.map(countTable)).then(
 
 function countTable (tablename) {
   console.log('counting entries in table:', tablename)
-  return db(tablename).count(countcol[tablename], { as: 'entries' }).then(
+  return db.raw(countraw[tablename]).then(
     result => {
-      console.log(tablename, result)
+      console.log(tablename, 'has', result, 'entries')
     }
   ).catch(
     e => {
