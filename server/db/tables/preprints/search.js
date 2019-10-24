@@ -10,6 +10,7 @@ module.exports = searchPreprints
 function searchPreprints (query) {
   query = query || {}
   var currentpage = (query.page || 1)
+  var sortBy = query.sortBy === 'date' ? 'date_published' : 'n_prereviews'
 
   var chain = db('preprints')
 
@@ -23,7 +24,7 @@ function searchPreprints (query) {
   var total = chain.clone().clearSelect().count('* as total').first()
 
   var chain = chain
-    .orderBy('date_published', 'desc')
+    .orderBy(sortBy, 'desc')
     .limit(PAGESIZE)
     .offset((currentpage - 1) * PAGESIZE)
 
