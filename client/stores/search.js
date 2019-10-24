@@ -44,6 +44,7 @@ module.exports = function (state, emitter) {
       clear()
       state.searchQuery = {
         string: null,
+        sortBy: state.sort.by,
         page: 1
       }
       getLatest()
