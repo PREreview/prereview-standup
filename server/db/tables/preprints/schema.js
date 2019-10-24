@@ -17,6 +17,7 @@ function createTable () {
       table.date('date_indexed')
       table.text('authorstring')
       table.json('license')
+      table.integer('n_prereviews', integer)
 
       // fulltext index
       table.specificType('document', 'tsvector').index(null, 'gin')
