@@ -17,9 +17,6 @@ function makepreprintlist (opts) {
       return opts.noresultstxt || 'no results found - please try a different search :)'
     }
 
-    var sortFn = state.filters.main.sort === 'date' ? sortByDate : sortByReviews
-    var sorted = sortBy(preprints, sortFn)
-
-    return sorted.map(p => preprint(state, emit, p))
+    return preprints.map(p => preprint(state, emit, p))
   }
 }

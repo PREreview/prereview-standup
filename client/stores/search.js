@@ -15,6 +15,7 @@ module.exports = function (state, emitter) {
       search.cancel()
       var query = {
         string: querystring,
+        sortBy: state.sort.by,
         page: 1
       }
       state.searchQuery = query
@@ -22,6 +23,7 @@ module.exports = function (state, emitter) {
     })
 
     emitter.on('preprint-search:result-page', page => {
+      state.sortBy = state.sort.by
       if (page === 'next') {
         state.searchQuery.page += 1
       } else if (page === 'prev') {

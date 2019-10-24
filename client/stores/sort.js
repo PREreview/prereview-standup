@@ -1,20 +1,11 @@
 module.exports = async (state, emitter) => {
-  state.filters = {
-    main: {
-      sort: 'date'
-    }
-  }
+  state.sort = { by: 'reviews', desc: 'Most popular' }
 
   emitter.on('DOMContentLoaded', function () {
     if (state.user) emitter.emit('render')
 
     emitter.on('sort', d => {
-      state.filters[d.scope] = d.sort
-      emitter.emit('render')
-    })
-
-    emitter.on('filter', d => {
-      state.filters[d.scope] = d.filter
+      state.sort = d
       emitter.emit('render')
     })
   })
