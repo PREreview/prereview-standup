@@ -12,6 +12,7 @@ function addPrereview (prereview) {
       .where('id', '=', prereview.preprint_id)
       .increment('n_prereviews', 1)
       .then(() => Promise.resolve(res))
+  )
 }
 
 function getPrereview (prereview) {
