@@ -10,7 +10,7 @@ var selectstyle = css`
 	font-weight: 400;
 	color: #444;
 	line-height: 1.3;
-	padding: .6em 1.4em .5em .8em;
+	padding: .6em 1.8em .5em .8em;
 	width: auto;
 	box-sizing: border-box;
 	margin: 0;
@@ -48,15 +48,23 @@ var selectstyle = css`
 
 `
 
+var ddstyle = css`
+
+:host {
+  position: absolute; top: 30px; left: 0; width: auto;
+}
+
+`
+
 module.exports = function (opts) {
   return filterBtn
 }
 
 
 function filterBtn (state, emit) {
-  var sortBtn = html`<button class="${selectstyle}" style="width: auto;">${state.sort.desc}...</button>`
+  var sortBtn = html`<button class="${selectstyle}" style="width: auto;">${state.sort.desc}</button>`
   var sortDropdown = html`
-  <div id="search-sort-dropdown" class="bg-white dn flex-column dark-gray nowrap" style="position: fixed; top: 0; right: 20px; width: auto;" s>
+  <div id="search-sort-dd" class="bg-white flex-column dark-gray nowrap ${ddstyle} dn">
   </div>
   `
 
@@ -67,11 +75,12 @@ function filterBtn (state, emit) {
 
   sortBtn.onclick = e => {
     e.stopPropagation()
-    var viewportOffset = sortBtn.getBoundingClientRect()
+    // var viewportOffset = sortBtn.getBoundingClientRect()
     // sortDropdown.style.left = viewportOffset.left - 200 + 'px'
-    sortDropdown.style.top = viewportOffset.top - (68) + 'px'
-    sortDropdown.classList.toggle('dn')
-    sortDropdown.classList.toggle('flex')
+    // sortDropdown.style.top = viewportOffset.top - (68) + 'px'
+    var dd = document.querySelector('#search-sort-dd')
+    dd.classList.toggle('dn') 
+    dd.classList.toggle('flex')
     return false
   }
 
@@ -79,8 +88,9 @@ function filterBtn (state, emit) {
     var option = html`<div class="flex flex-row items-center bg-white h2 pointer ba b--black-10 pa3">${sort.desc}</div>`
     option.onclick = () => {
       emit('sort', sort)
-      sortDropdown.classList.remove('flex')
-      sortDropdown.classList.add('dn')
+      var dd = document.querySelector('#search-sort-dd')
+      dd.classList.remove('flex')
+      dd.classList.add('dn')
     }
     sortDropdown.appendChild(option)
   })

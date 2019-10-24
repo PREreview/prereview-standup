@@ -7,6 +7,7 @@ module.exports = async (state, emitter) => {
     emitter.on('sort', d => {
       state.sort = d
       emitter.emit('render')
+      emitter.emit('preprint-search:update-sort')
     })
   })
 }
