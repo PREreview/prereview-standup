@@ -10,9 +10,8 @@ var selectstyle = css`
 	font-weight: 400;
 	color: #444;
 	line-height: 1.3;
-	padding: .6em 1.4em .5em .8em;
+	padding: .6em 1.8em .5em .8em;
 	width: auto;
-	max-width: 30%; /* useful when width is set to anything other than 100% */
 	box-sizing: border-box;
 	margin: 0;
 	border: 1px solid #aaa;
@@ -49,33 +48,57 @@ var selectstyle = css`
 
 `
 
+var ddstyle = css`
+
+:host {
+  position: absolute; top: 30px; left: 0; width: auto;
+}
+
+`
+
 module.exports = function (opts) {
-  return filterbox
+  return filterBtn
+}
 
-  function filterbox (state, emit) {
-    var filterbydate = state.filters.main.sort === 'date'
 
-    var recent = html`
-      <option value="1">Most recent</option>
-    `
+function filterBtn (state, emit) {
+  var sortBtn = html`<button class="${selectstyle}" style="width: auto;">${state.sort.desc}</button>`
+  var sortDropdown = html`
+  <div id="search-sort-dd" class="bg-white flex-column dark-gray nowrap ${ddstyle} dn">
+  </div>
+  `
 
-    var popular = html`
-      <option value="2">Most popular</option>
-    `
+  var sorts = [
+    { by: 'date', desc: 'Most recent' },
+    { by: 'reviews', desc: 'Most popular' }
+  ]
 
-    var select = html`
-  
-    <select class="fr ${selectstyle}">
-      <option value="0">Sort by...</option>
-      ${recent}
-      ${popular}
-    </select>
-    
-    `
-
-    recent.onclick = () => emit('sort', { scope: 'main', sort: 'date' })
-    popular.onclick = () => emit('sort', { scope: 'main', sort: 'reviews' })
-
-    return select
+  sortBtn.onclick = e => {
+    e.stopPropagation()
+    // var viewportOffset = sortBtn.getBoundingClientRect()
+    // sortDropdown.style.left = viewportOffset.left - 200 + 'px'
+    // sortDropdown.style.top = viewportOffset.top - (68) + 'px'
+    var dd = document.querySelector('#search-sort-dd')
+    dd.classList.toggle('dn') 
+    dd.classList.toggle('flex')
+    return false
   }
+
+  sorts.forEach(sort => {
+    var option = html`<div class="flex flex-row items-center bg-white h2 pointer ba b--black-10 pa3">${sort.desc}</div>`
+    option.onclick = () => {
+      emit('sort', sort)
+      var dd = document.querySelector('#search-sort-dd')
+      dd.classList.remove('flex')
+      dd.classList.add('dn')
+    }
+    sortDropdown.appendChild(option)
+  })
+
+  return html`
+    <div class="flex flex-row" style="position: relative;">
+      ${sortBtn}
+      ${sortDropdown}
+    </div>
+  `
 }

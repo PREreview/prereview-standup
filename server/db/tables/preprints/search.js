@@ -10,6 +10,9 @@ module.exports = searchPreprints
 function searchPreprints (query) {
   query = query || {}
   var currentpage = (query.page || 1)
+  var sortBy = query.sortBy === 'date' ? 
+    [ { column: 'date_published', order: 'desc' } ] :
+    [ { column: 'n_prereviews', order: 'desc' }, { column: 'date_published', order: 'desc' } ]
 
   var chain = db('preprints')
 
@@ -23,18 +26,14 @@ function searchPreprints (query) {
   var total = chain.clone().clearSelect().count('* as total').first()
 
   var chain = chain
-    .orderBy('date_published', 'desc')
+    .orderBy(sortBy)
     .limit(PAGESIZE)
     .offset((currentpage - 1) * PAGESIZE)
 
   return Promise.all([
     total, chain
   ]).then(
-    ([totalResult, chainResult]) => Promise.all(
-      chainResult.map(getPreprintReviewCount)
-    ).then(
-      results => Promise.all(results.map(fixPublisher))
-    ).then(
+    ([totalResult, chainResult]) => Promise.all(chainResult.map(fixPublisher)).then(
       results => Promise.resolve({
         query: query,
         total: totalResult.total,
@@ -46,21 +45,21 @@ function searchPreprints (query) {
   )
 }
 
-function getPreprintReviewCount (preprint) {
-  if (preprint && preprint.id) {
-    return db('prereviews')
-      .where({ preprint_id: preprint.id })
-      .count('* as n_prereviews')
-      .then(
-        counter => {
-          preprint.n_prereviews = parseInt(counter[0].n_prereviews)
-          return Promise.resolve(preprint)
-        }
-      )
-  } else {
-    return Promise.resolve(null)
-  }
-}
+// function getPreprintReviewCount (preprint) {
+//   if (preprint && preprint.id) {
+//     return db('prereviews')
+//       .where({ preprint_id: preprint.id })
+//       .count('* as n_prereviews')
+//       .then(
+//         counter => {
+//           preprint.n_prereviews = parseInt(counter[0].n_prereviews)
+//           return Promise.resolve(preprint)
+//         }
+//       )
+//   } else {
+//     return Promise.resolve(null)
+//   }
+// }
 
 function cleanResult (r) {
   ['document', 'authorstring'].forEach(key => { delete r[key] })

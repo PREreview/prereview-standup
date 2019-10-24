@@ -7,7 +7,12 @@ var db = require('../..')
 var { getPrereviewComments } = require('../comments')
 
 function addPrereview (prereview) {
-  return db('prereviews').insert(prereview)
+  return db('prereviews').insert(prereview).then(
+    res => db('preprints')
+      .where('id', '=', prereview.preprint_id)
+      .increment('n_prereviews', 1)
+      .then(() => Promise.resolve(res))
+  )
 }
 
 function getPrereview (prereview) {

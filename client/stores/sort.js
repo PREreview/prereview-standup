@@ -1,21 +1,13 @@
 module.exports = async (state, emitter) => {
-  state.filters = {
-    main: {
-      sort: 'date'
-    }
-  }
+  state.sort = { by: 'reviews', desc: 'Most popular' }
 
   emitter.on('DOMContentLoaded', function () {
     if (state.user) emitter.emit('render')
 
     emitter.on('sort', d => {
-      state.filters[d.scope] = d.sort
+      state.sort = d
       emitter.emit('render')
-    })
-
-    emitter.on('filter', d => {
-      state.filters[d.scope] = d.filter
-      emitter.emit('render')
+      emitter.emit('preprint-search:update-sort')
     })
   })
 }

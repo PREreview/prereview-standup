@@ -5,8 +5,12 @@ var router = express.Router()
 
 // Returns data about a preprint by DOi
 router.post('/search', function (req, res, next) {
+  var start = Date.now()
   searchPreprints(req.body.query).then(
-    results => res.json(results)
+    results => {
+      console.log('search took', Date.now() - start, 'ms')
+      return res.json(results)
+    }
   )
 })
 
