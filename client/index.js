@@ -23,6 +23,7 @@ app.use(require('./stores/comments'))
 app.use(require('./stores/styles'))
 app.use(require('./stores/search'))
 app.use(require('./stores/sort'))
+app.use(require('./stores/requestreview'))
 
 app.route('/styleguide', require('./views/styleguide'))
 app.route('/', require('./views/landing'))

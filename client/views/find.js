@@ -4,31 +4,39 @@ var nav = require('../components/nav')
 var header = require('../components/home/header')
 var filterbox = require('../components/home/filterbox')
 var preprintlist = require('../components/home/preprintlist')
-
+var requestReviewBtn = require('../components/home/requestReview/btn')
+var requestReviewModal = require('../components/home/requestReview/modal')
 var TITLE = 'PREreview2 | find'
 
 module.exports = view
 
 function view (state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
-
   var resultstr = getResultString(state, emit)
 
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray">
+      ${requestReviewModal(state, emit)}
       ${nav(state, emit)}
       ${header(state, emit)}
-      <div class="w-70 flex flex-row">
-        <div class="content fl w-100 pa2 f7 lh-copy">
-          <div class="actions flex flex-row justify-between pv0" style="position: relative;">
-            <div class="flex items-center ttu red tracked f6 b mr3">
-              ${resultstr}
+      ${requestReviewBtn(state, emit)}
+      <div class="w-70 flex">
+        <div class="w-20 flex">
+          <p>New Column</p>
+        </div>
+
+        <div class="w-80 flex flex-row">
+          <div class="content fl w-100 pa2 f7 lh-copy">
+            <div class="actions flex flex-row justify-between pv0" style="position: relative;">
+              <div class="flex items-center ttu red tracked f6 b mr3">
+                ${resultstr}
+              </div>
+              ${pagingbuttons(state, emit)}
+              ${filterbox(state, emit)}
             </div>
-            ${pagingbuttons(state, emit)}
-            ${filterbox(state, emit)}
-          </div>
-          <div class="articles">
-            ${preprintlist(state, emit)}
+            <div class="articles">
+              ${preprintlist(state, emit)}
+            </div>
           </div>
         </div>
       </div>
@@ -60,14 +68,14 @@ function getResultString (state, emit) {
   }
 
   var querydiv = querystring
-    ? html`<div class="flex flex-row">Query: "<span class="ttn">${querystring}</span>"</div>`
+  ? html`<div class="flex flex-row">Query: "<span class="ttn">${querystring}</span>"</div>`
     : null
 
   return html`
-  <div class="flex flex-column">
-    ${querydiv}
-    <div class="flex flex-row">${resultstring}</div>
-  </div>
+    <div class="flex flex-column">
+      ${querydiv}
+      <div class="flex flex-row">${resultstring}</div>
+    </div>
   `
 }
 
@@ -82,7 +90,7 @@ function pagingbuttons (state, emit) {
   right.onclick = () => emit('preprint-search:result-page', 'next')
 
   return html`
-    <div class="flex flex-row justify-center items-center pointer w-100 h2" style="position: absolute;">
+  <div class="flex flex-row justify-center items-center pointer w-100 h2" style="position: absolute;">
       ${left}
       ${right}
     </div>
