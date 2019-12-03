@@ -1,6 +1,6 @@
-var html = require("choo/html");
-var css = require("sheetify");
-var input = require("../../form/typeahead");
+var html = require('choo/html')
+var css = require('sheetify')
+var input = require('../../form/typeahead')
 
 var modal = css`
   :host {
@@ -13,7 +13,7 @@ var modal = css`
     overflow: auto;
     background-color: hsla(0, 0%, 0%, 0.33);
   }
-`;
+`
 
 var modalContent = css`
   :host {
@@ -22,7 +22,7 @@ var modalContent = css`
     padding: 24px 24px 32px 32px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 10px;
   }
-`;
+`
 
 var close = css`
   :host {
@@ -42,13 +42,13 @@ var close = css`
     text-decoration: none;
     cursor: pointer;
   }
-`;
+`
 
 var contentText = css`
   :host {
     color: black;
   }
-`;
+`
 
 var title = css`
   :host {
@@ -57,7 +57,7 @@ var title = css`
     text-transform: uppercase;
     font-weight: 400;
   }
-`;
+`
 
 var controlBtns = css`
   :host {
@@ -77,7 +77,7 @@ var controlBtns = css`
     opacity: 0.8;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
   }
-`;
+`
 
 var preprintCountainer = css`
   :host {
@@ -85,21 +85,21 @@ var preprintCountainer = css`
     padding: 16px;
     margin-top: 24px;
   }
-`;
+`
 
 var preprintTitle = css`
   :host {
     font-size: 15px;
     color: black;
   }
-`;
+`
 
 var preprintPublisher = css`
   :host {
     font-size: 13px;
     color: grey;
   }
-`;
+`
 
 module.exports = function(state, emit) {
   if (state.requestreview.modalVisible) {
@@ -114,9 +114,9 @@ module.exports = function(state, emit) {
           </div>
         </div>
       </div>
-    `;
+    `
   }
-};
+}
 
 function modalTitle(state, emit) {
   // if (!emit.user) {
@@ -127,7 +127,7 @@ function modalTitle(state, emit) {
 
   return html`
     <p class="${title}">Add entry</p>
-  `;
+  `
 }
 
 function closeModalBtn(state, emit) {
@@ -135,13 +135,13 @@ function closeModalBtn(state, emit) {
     <div class="${close}">
       x
     </div
-  `;
+  `
 
-  closeBtn.onclick = () => emit("requestreview-modal:toggle");
+  closeBtn.onclick = () => emit('requestreview-modal:toggle')
 
   return html`
     <div>${closeBtn}</div>
-  `;
+  `
 }
 
 function foundPreprint(state, emit) {
@@ -155,7 +155,7 @@ function foundPreprint(state, emit) {
           ${state.requestreview.searchResult.publisher}
         </p>
       </div>
-    `;
+    `
   }
 }
 
@@ -164,7 +164,7 @@ function handleContent(state, emit) {
   //   return logInRequired(state, emit);
   // }
 
-  return addEntry(state, emit);
+  return addEntry(state, emit)
 }
 
 function logInRequired(state, emit) {
@@ -175,7 +175,7 @@ function logInRequired(state, emit) {
       </p>
       <a href="/login-redirect"> Log in with your ORCID </a>
     </div>
-  `;
+  `
 }
 
 function addEntry(state, emit) {
@@ -183,39 +183,39 @@ function addEntry(state, emit) {
     <button class="${controlBtns}">
       Cancel
     </button>
-  `;
+  `
 
-  cancelBtn.onclick = () => emit("requestreview-modal:toggle");
+  cancelBtn.onclick = () => emit('requestreview-modal:toggle')
 
   var requestReviewBtn = html`
     <button class="${controlBtns}">
       Request review
     </button>
-  `;
+  `
 
   // TO-DO:
   // - change author_id value with current logged in user
   requestReviewBtn.onclick = () =>
-    emit("requestreview-modal:add-request", {
+    emit('requestreview-modal:add-request', {
+      author_id: state.user.user_id,
       preprint_id: state.requestreview.searchResult.id,
-      author_id: "1",
-    });
+    })
 
   var searchopts = {
-    id: "request-review-search-input",
+    id: 'request-review-search-input',
     entries: [],
     container: {
-      class: "mt2 flex flex-column items-center bg-white dark-gray f4"
+      class: 'mt2 flex flex-column items-center bg-white dark-gray f4'
     },
     input: {
-      class: "flex w-100",
-      placeholder: "Enter preprint DOI or an arXiv ID"
+      class: 'flex w-100',
+      placeholder: 'Enter preprint DOI or an arXiv ID'
     },
-    onsearch: val => emit("requestreview-search:query", val),
-    onresults: results => emit("requestreview-search:results", results)
-  };
+    onsearch: val => emit('requestreview-search:query', val),
+    onresults: results => emit('requestreview-search:results', results)
+  }
 
-  var search = input(state, emit, searchopts);
+  var search = input(state, emit, searchopts)
 
   return html`
     <div class="w-100">
@@ -224,5 +224,5 @@ function addEntry(state, emit) {
         ${cancelBtn} ${requestReviewBtn}
       </div>
     </div>
-  `;
+  `
 }

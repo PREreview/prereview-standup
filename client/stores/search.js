@@ -1,6 +1,6 @@
 var debounce = require('lodash/debounce')
 
-module.exports = function (state, emitter) {
+module.exports = function(state, emitter) {
   state.searched = false
   state.searchResults = {
     total: 0,
@@ -78,11 +78,8 @@ module.exports = function (state, emitter) {
       body: JSON.stringify({
         query
       })
-    }).then(
-      results => results.json()
-    ).then(
-      handleSearchResponse
-    )
+    }).then(results => results.json())
+      .then(handleSearchResponse)
   }
 
   function getLatest () {
@@ -90,22 +87,26 @@ module.exports = function (state, emitter) {
       headers: {
         Accept: 'application/json'
       }
-    }).then(
-      results => results.json()
-    ).then(
-      handleSearchResponse
-    )
+    })
+      .then(results => results.json())
+      .then(handleSearchResponse)
   }
 
   function handleSearchResponse (response) {
-    response.results.forEach(
-      r => {
-        r.date_created = new Date(r.date_created)
-        r.date_published = new Date(r.date_published)
-        r.date_indexed = new Date(r.date_indexed)
-        r.authors = r.authors.list
-      }
-    )
+    response.results.forEach(r => {
+      fetch(`/data/reviewrequests/preprint_id/${r.id}`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(results => results.json())
+        .then(data => (r.n_requests = data.length))
+      r.date_created = new Date(r.date_created)
+      r.date_published = new Date(r.date_published)
+      r.date_indexed = new Date(r.date_indexed)
+      r.authors = r.authors.list
+    })
     state.searchResults = response
     emitter.emit('render')
   }

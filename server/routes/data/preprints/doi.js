@@ -12,8 +12,6 @@ router.get('/doi/*', function (req, res, next) {
     res.status(500, 'Malformed DOI in requested URI')
   }
 
-  var preprint
-
   // TODO: enrich preprint with getpreprints data
   // e.g. if it's not in our DB, check crossref
   // if we have it, check for updates now

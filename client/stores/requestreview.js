@@ -1,95 +1,83 @@
-var debounce = require("lodash/debounce");
+var debounce = require('lodash/debounce')
 
 module.exports = async (state, emitter) => {
   state.requestreview = {
     modalVisible: false,
     searchQuery: null,
     searchResult: null
-  };
+  }
 
-  var search = debounce(runsearch, 400);
+  var search = debounce(runsearch, 400)
 
   function toggleModal() {
-    clear();
-    state.requestreview.modalVisible = !state.requestreview.modalVisible;
-    emitter.emit("render");
+    // clear();
+    state.requestreview.modalVisible = !state.requestreview.modalVisible
+    emitter.emit('render')
   }
 
   function findPreprints(querystring) {
-    clear();
+    // clear();
 
-    state.requestreview.searchQuery = querystring;
+    state.requestreview.searchQuery = querystring
 
-    search(querystring);
+    search(querystring)
   }
 
   function runsearch(querystring) {
     fetch(`/data/preprints/doi/${querystring}`, {
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
       }
     })
       .then(results => results.json())
-      .then(handleSearchResponse);
+      .then(handleSearchResponse)
   }
 
-  // function runsearch(query) {
-  //   fetch("/data/preprints/latest", {
-  //     headers: {
-  //       Accept: "application/json"
-  //     }
-  //   })
-  //     .then(results => results.json())
-  //     .then(response => handleSearchResponse(response, query));
-  // }
-
   function setData(data) {
-    clear();
+    state.requestreview.searchResult = data
+    state.requestreview.searchQuery = data.id
 
-    state.requestreview.searchResult = data;
-
-    emitter.emit("render");
+    emitter.emit('render')
   }
 
   function addRequest(requestreview) {
-    fetch("/data/reviewrequests/submit", {
-      method: "POST",
+    fetch('/data/reviewrequests/submit', {
+      method: 'POST',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(requestreview)
     })
-    .then(res => res.json())
-    .catch(err => console.log(err));
+      .then(res => res.json())
+      .catch(err => console.log(err))
 
-    clear();
-    emitter.emit("requestreview-modal:toggle");
-    emitter.emit("render");
+    // clear();
+    emitter.emit('requestreview-modal:toggle')
+    emitter.emit('render')
   }
 
-  function clear() {
-    state.requestreview.searchQuery = null;
-    state.requestreview.searchResult = null;
-  }
+  // function clear() {
+  //   state.requestreview.searchQuery = null;
+  //   state.requestreview.searchResult = null;
+  // }
 
   function handleSearchResponse(response, query) {
-    response.date_created = new Date(response.date_created);
-    response.date_published = new Date(response.date_published);
-    response.date_indexed = new Date(response.date_indexed);
-    response.authors = response.authors.list;
+    response.date_created = new Date(response.date_created)
+    response.date_published = new Date(response.date_published)
+    response.date_indexed = new Date(response.date_indexed)
+    response.authors = response.authors.list
 
-    state.requestreview.searchResult = response;
+    state.requestreview.searchResult = response
 
-    emitter.emit("render");
+    emitter.emit('render')
   }
 
-  emitter.on("DOMContentLoaded", function() {
-    emitter.on("requestreview-modal:toggle", toggleModal);
-    emitter.on("requestreview-search:query", findPreprints);
-    emitter.on("requestreview-search:clear", clear);
-    emitter.on("requestreview-modal:set-data", setData);
-    emitter.on("requestreview-modal:add-request", addRequest);
-  });
-};
+  emitter.on('DOMContentLoaded', function() {
+    emitter.on('requestreview-modal:toggle', toggleModal)
+    emitter.on('requestreview-search:query', findPreprints)
+    emitter.on('requestreview-modal:set-data', setData)
+    emitter.on('requestreview-modal:add-request', addRequest)
+  })
+}

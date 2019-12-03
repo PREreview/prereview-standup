@@ -21,11 +21,7 @@ function view (state, emit) {
       ${header(state, emit)}
       ${requestReviewBtn(state, emit)}
       <div class="w-70 flex">
-        <div class="w-20 flex">
-          <p>New Column</p>
-        </div>
-
-        <div class="w-80 flex flex-row">
+        <div class="w-100 flex flex-row">
           <div class="content fl w-100 pa2 f7 lh-copy">
             <div class="actions flex flex-row justify-between pv0" style="position: relative;">
               <div class="flex items-center ttu red tracked f6 b mr3">

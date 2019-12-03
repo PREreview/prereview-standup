@@ -4,6 +4,7 @@ var tables = [
   'preprints',
   'prereviews',
   'comments',
+  'reviewrequests',
   'users'
 ]
 

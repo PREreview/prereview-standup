@@ -38,7 +38,7 @@ var selectstyle = css`
 
 :host:focus {
   border-color: #ff3333;
-  color: black; 
+  color: black;
   outline: none;
 }
 
@@ -70,7 +70,8 @@ function filterBtn (state, emit) {
 
   var sorts = [
     { by: 'date', desc: 'Most recent' },
-    { by: 'reviews', desc: 'Most popular' }
+    { by: 'reviews', desc: 'Most popular' },
+    { by: 'n_requests', desc: 'Most requested' }
   ]
 
   sortBtn.onclick = e => {
@@ -79,7 +80,7 @@ function filterBtn (state, emit) {
     // sortDropdown.style.left = viewportOffset.left - 200 + 'px'
     // sortDropdown.style.top = viewportOffset.top - (68) + 'px'
     var dd = document.querySelector('#search-sort-dd')
-    dd.classList.toggle('dn') 
+    dd.classList.toggle('dn')
     dd.classList.toggle('flex')
     return false
   }
