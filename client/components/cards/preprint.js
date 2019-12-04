@@ -51,7 +51,7 @@ function preprint (state, emit, p) {
 
   var requestReviewBtn = html`
     <button class="${requestReview}">
-      <span>${d.n_requests}</span> Add request
+        <span>${d.n_requests}</span> Add request
     </button>
   `
 

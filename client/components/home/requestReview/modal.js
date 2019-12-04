@@ -118,12 +118,13 @@ module.exports = function(state, emit) {
   }
 }
 
+// change title text based on user authentication
 function modalTitle(state, emit) {
-  // if (!emit.user) {
-  //   return html`
-  //     <p class=${title}">Log in required</p>
-  //   `;
-  // }
+  if (!emit.user) {
+    return html`
+      <p class=${title}">Log in required</p>
+    `
+  }
 
   return html`
     <p class="${title}">Add entry</p>
@@ -159,10 +160,11 @@ function foundPreprint(state, emit) {
   }
 }
 
+// change content text based on user authentication
 function handleContent(state, emit) {
-  // if (!emit.user) {
-  //   return logInRequired(state, emit);
-  // }
+  if (!emit.user) {
+    return logInRequired(state, emit)
+  }
 
   return addEntry(state, emit)
 }
@@ -193,12 +195,10 @@ function addEntry(state, emit) {
     </button>
   `
 
-  // TO-DO:
-  // - change author_id value with current logged in user
   requestReviewBtn.onclick = () =>
     emit('requestreview-modal:add-request', {
       author_id: state.user.user_id,
-      preprint_id: state.requestreview.searchResult.id,
+      preprint_id: state.requestreview.searchResult.id
     })
 
   var searchopts = {

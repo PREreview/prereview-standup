@@ -102,11 +102,18 @@ module.exports = function(state, emitter) {
       })
         .then(results => results.json())
         .then(data => (r.n_requests = data.length))
+
       r.date_created = new Date(r.date_created)
       r.date_published = new Date(r.date_published)
       r.date_indexed = new Date(r.date_indexed)
       r.authors = r.authors.list
     })
+
+    // sort preprints (desc) by number of review requests
+    if (response.query.sortBy === 'n_requests') {
+      response.results.sort((a, b) => b.n_requests - a.n_requests)
+    }
+
     state.searchResults = response
     emitter.emit('render')
   }
