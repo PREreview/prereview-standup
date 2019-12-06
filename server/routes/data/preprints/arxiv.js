@@ -1,22 +1,14 @@
-var isdoi = require('doi-regex')
 var preprints = require('../../../db/tables/preprints')
 
 var express = require('express')
 var router = express.Router()
 
-// Returns data about a preprint by DOi
+// Returns data about a preprint by arXiv
 router.get('/arxiv/*', function (req, res, next) {
-  var arxivid = req.path.split('/arxiv/')[1]
-
-  if (!arxivid) {
-    res.status(500, 'Malformed arXiv ID in requested URI')
-  }
-
-  var preprint
+  var arxiv = req.params[0]
 
   preprints.getPreprint({
-    identifier_type: 'arxiv',
-    identifier: arxivid
+    id: `arxiv/${arxiv}`
   }).then(
     returnedpreprint => {
       res.json(returnedpreprint)
