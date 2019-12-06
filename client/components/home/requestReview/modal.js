@@ -120,7 +120,7 @@ module.exports = function(state, emit) {
 
 // change title text based on user authentication
 function modalTitle(state, emit) {
-  if (!emit.user) {
+  if (!state.user) {
     return html`
       <p class=${title}">Log in required</p>
     `
@@ -162,7 +162,7 @@ function foundPreprint(state, emit) {
 
 // change content text based on user authentication
 function handleContent(state, emit) {
-  if (!emit.user) {
+  if (!state.user) {
     return logInRequired(state, emit)
   }
 
