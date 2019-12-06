@@ -1,5 +1,5 @@
 var pg = require('pg')
-pg.defaults.ssl = false
+pg.defaults.ssl = process.env.DEFAULTS_SSL
 
 var config = require('../../config/db')[process.env.ENVIRONMENT || 'development']
 
