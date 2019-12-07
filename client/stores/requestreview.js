@@ -80,11 +80,6 @@ module.exports = async (state, emitter) => {
   }
 
   function handleSearchResponse(response) {
-    response.date_created = new Date(response.date_created)
-    response.date_published = new Date(response.date_published)
-    response.date_indexed = new Date(response.date_indexed)
-    response.authors = response.authors.list
-
     state.requestreview.searchResult = response
 
     emitter.emit('render')
