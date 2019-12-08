@@ -94,15 +94,6 @@ module.exports = function(state, emitter) {
 
   function handleSearchResponse (response) {
     response.results.forEach(r => {
-      fetch(`/data/reviewrequests/preprint_id/${r.id}`, {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(results => results.json())
-        .then(data => (r.n_requests = data.length))
-
       r.date_created = new Date(r.date_created)
       r.date_published = new Date(r.date_published)
       r.date_indexed = new Date(r.date_indexed)
