@@ -102,7 +102,7 @@ var preprintPublisher = css`
 `
 
 module.exports = function(state, emit) {
-  if (state.requestreview.modalVisible) {
+  if (state.addPreprint.modalVisible) {
     return html`
       <div class="${modal}">
         <div class="w-30 ${modalContent}">
@@ -120,10 +120,10 @@ module.exports = function(state, emit) {
 
 // change title text based on user authentication
 function modalTitle(state, emit) {
-  if (!state.user) {
+  if (!emit.user) {
     return html`
-      <p class=${title}">Log in required</p>
-    `
+        <p class=${title}">Log in required</p>
+      `
   }
 
   return html`
@@ -138,7 +138,7 @@ function closeModalBtn(state, emit) {
     </div
   `
 
-  closeBtn.onclick = () => emit('requestreview-modal:toggle')
+  closeBtn.onclick = () => emit('addPreprint-modal:toggle')
 
   return html`
     <div>${closeBtn}</div>
@@ -146,14 +146,14 @@ function closeModalBtn(state, emit) {
 }
 
 function foundPreprint(state, emit) {
-  if (state.requestreview.searchResult) {
+  if (state.addPreprint.searchResult) {
     return html`
       <div class="w-100 ${preprintCountainer}">
         <p class="${preprintTitle}">
-          ${state.requestreview.searchResult.title}
+          ${state.addPreprint.searchResult.title}
         </p>
         <p class="${preprintPublisher}">
-          ${state.requestreview.searchResult.publisher}
+          ${state.addPreprint.searchResult.publisher}
         </p>
       </div>
     `
@@ -162,7 +162,7 @@ function foundPreprint(state, emit) {
 
 // change content text based on user authentication
 function handleContent(state, emit) {
-  if (!state.user) {
+  if (!emit.user) {
     return logInRequired(state, emit)
   }
 
@@ -187,22 +187,19 @@ function addEntry(state, emit) {
     </button>
   `
 
-  cancelBtn.onclick = () => emit('requestreview-modal:toggle')
+  cancelBtn.onclick = () => emit('addPreprint-modal:toggle')
 
-  var requestReviewBtn = html`
+  var addPreprintBtn = html`
     <button class="${controlBtns}">
-      Request review
+      Add preprint
     </button>
   `
 
-  requestReviewBtn.onclick = () =>
-    emit('requestreview-modal:add-request', {
-      author_id: state.user.user_id,
-      preprint_id: state.requestreview.searchResult.id
-    })
+  addPreprintBtn.onclick = () =>
+    emit('addPreprint-modal:add-preprint', state.addPreprint.searchResult)
 
   var searchopts = {
-    id: 'request-review-search-input',
+    id: 'publication-search-input',
     entries: [],
     container: {
       class: 'mt2 flex flex-column items-center bg-white dark-gray f4'
@@ -211,8 +208,8 @@ function addEntry(state, emit) {
       class: 'flex w-100',
       placeholder: 'Enter preprint DOI or an arXiv ID'
     },
-    onsearch: val => emit('requestreview-search:query', val),
-    onresults: results => emit('requestreview-search:results', results)
+    onsearch: val => emit('addPreprint-search:query', val),
+    onresults: results => emit('addPreprint-search:results', results)
   }
 
   var search = input(state, emit, searchopts)
@@ -221,7 +218,7 @@ function addEntry(state, emit) {
     <div class="w-100">
       ${search} ${foundPreprint(state, emit)}
       <div class="flex flex-row justify-end w-100">
-        ${cancelBtn} ${requestReviewBtn}
+        ${cancelBtn} ${addPreprintBtn}
       </div>
     </div>
   `

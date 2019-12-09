@@ -1,7 +1,7 @@
 var html = require('choo/html')
 var css = require('sheetify')
 
-var requestReview = css`
+var addPreprint = css`
   :host {
     border-radius: 5px;
     font-weight: 600;
@@ -25,11 +25,11 @@ var requestReview = css`
 `
 
 module.exports = function(state, emit) {
-  var requestReviewBtn = html`
-  <button class="${requestReview}"> Request Review </span>
+  var addPreprintBtn = html`
+  <button class="${addPreprint}"> Add Preprint </span>
 `
 
-  requestReviewBtn.onclick = () => emit('requestreview-modal:toggle')
+  addPreprintBtn.onclick = () => emit('addPreprint-modal:toggle')
 
-  return requestReviewBtn
+  return addPreprintBtn
 }

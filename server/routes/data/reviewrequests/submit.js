@@ -6,6 +6,18 @@ var router = express.Router()
 
 // Submits a new review request
 router.post('/submit', async function(req, res, next) {
+  // if (!req.user) {
+  //   // user must be logged in
+  //   return res.status(401)
+  // }
+
+  // console.log(req.body)
+
+  // if (req.user.id !== req.body.author.id) {
+  //   // user must be logged in as the same one claiming to author the preprint
+  //   return res.status(401, 'You cannot post a preprint as another user')
+  // }
+
   var reviewrequest = {
     id: uuidv4(),
     preprint_id: req.body.preprint_id,
@@ -30,6 +42,8 @@ router.post('/submit', async function(req, res, next) {
           'Something went wrong trying to publish this Review Request'
         )
       })
+  } else {
+    return res.json({ userAlreadyRequested: true })
   }
 })
 

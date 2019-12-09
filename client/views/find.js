@@ -6,6 +6,8 @@ var filterbox = require('../components/home/filterbox')
 var preprintlist = require('../components/home/preprintlist')
 var requestReviewBtn = require('../components/home/requestReview/btn')
 var requestReviewModal = require('../components/home/requestReview/modal')
+var addPreprintBtn = require('../components/home/addPreprint/btn')
+var addPreprintModal = require('../components/home/addPreprint/modal')
 var TITLE = 'PREreview2 | find'
 
 module.exports = view
@@ -17,9 +19,13 @@ function view (state, emit) {
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray">
       ${requestReviewModal(state, emit)}
+      ${addPreprintModal(state, emit)}
       ${nav(state, emit)}
       ${header(state, emit)}
-      ${requestReviewBtn(state, emit)}
+      <div class="flex flex-row w-70 justify-end">
+        ${addPreprintBtn(state, emit)}
+        ${requestReviewBtn(state, emit)}
+      </div>
       <div class="w-70 flex">
         <div class="w-100 flex flex-row">
           <div class="content fl w-100 pa2 f7 lh-copy">

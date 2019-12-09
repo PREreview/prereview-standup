@@ -73,6 +73,11 @@ module.exports = async (state, emitter) => {
       body: JSON.stringify(requestreview)
     })
       .then(res => res.json())
+      .then(response => {
+        if (response && response.userAlreadyRequested) {
+          alert('You already requested a review for this preprint!')
+        }
+      })
       .catch(console.log)
 
     emitter.emit('requestreview-modal:toggle')

@@ -24,6 +24,7 @@ app.use(require('./stores/styles'))
 app.use(require('./stores/search'))
 app.use(require('./stores/sort'))
 app.use(require('./stores/requestreview'))
+app.use(require('./stores/addPreprint'))
 
 app.route('/styleguide', require('./views/styleguide'))
 app.route('/', require('./views/landing'))
