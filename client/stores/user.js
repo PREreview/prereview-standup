@@ -92,7 +92,7 @@ module.exports = async (state, emitter) => {
 
             var preprintData = {
               created_date,
-              journal_title: workSummary['journal-title'].value,
+              journal_title: workSummary['journal-title'] ? workSummary['journal-title'].value : null,
               title: workSummary.title.title.value,
               url: workSummary.url ? workSummary.url.value : null
             }
@@ -108,7 +108,7 @@ module.exports = async (state, emitter) => {
 
   const getUserBiography = orcidId =>
     new Promise(resolve =>
-      fetch(`https://pub.orcid.org/v3.0/${orcidId}/person`, {
+      fetch(`https://pub.orcid.org/v3.0/${orcidId}/biography`, {
         headers: {
           Accept: 'application/json'
         }
