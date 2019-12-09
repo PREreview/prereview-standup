@@ -9,11 +9,9 @@ var Setup = require('../components/profile/firstvisit')
 var TITLE = 'PREreview2 | profile'
 
 var mainstyle = css`
-
-:host {
-  min-height: calc(100vh - 127px);
-}
-
+  :host {
+    min-height: calc(100vh - 127px);
+  }
 `
 
 module.exports = view
@@ -48,13 +46,13 @@ function view (state, emit) {
   }
 
   return html`
-  <body class="flex flex-column w-100 justify-center items-center space-around">
-    ${nav(state, emit)}
-    <div class="flex flex-column w-70">
-      ${profile.myprofilecard(state, emit)}
-      ${state.cache(Setup, `setup-user-${state.user.orcid}`).render(state)}
-      ${profile.usercontent(state, emit)}
-    </div>
-  </body>
+    <body class="flex flex-column w-100 justify-center items-center space-around">
+      ${nav(state, emit)}
+      <div class="flex flex-column w-70">
+        ${profile.myprofilecard(state, emit)}
+        ${state.cache(Setup, `setup-user-${state.user.orcid}`).render(state)}
+        ${profile.usercontent(state, emit)}
+      </div>
+    </body>
   `
 }
