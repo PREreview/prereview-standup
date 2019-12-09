@@ -1,6 +1,7 @@
 module.exports = {
   getPreprint: getPreprint,
   indexNewPreprints: indexNewPreprints,
+  insertPreprint: insertPreprint,
   searchPreprints: require('./search')
 }
 
@@ -8,6 +9,10 @@ var db = require('../..')
 var fixPublisher = require('./fixPublisher')
 
 var { getPreprintReviews } = require('../prereviews')
+
+function insertPreprint(preprint){
+  return db('preprints').insert(preprint)
+}
 
 function getPreprint (preprint) {
   return db('preprints')

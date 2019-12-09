@@ -59,7 +59,7 @@ class TypeAhead extends Nanocomponent {
   getAdvancedButton () {
     return null
     var btn = html`
-    
+
     <div class="ph4 h3 nowrap dim bg-dark-gray br4 mv4 flex flex-row items-center link pointer">
       <p class="ma0 pa0 white dtc v-mid f5 fw6">Advanced search</p>
     </div>

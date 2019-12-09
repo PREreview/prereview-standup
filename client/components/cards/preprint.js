@@ -75,7 +75,6 @@ function preprint (state, emit, p) {
 
   return html`
     <div class="flex flex-column article w-100 bb b--black-10 pa2 pb3 mb3 lh-copy">
-      ${requestReviewModal(state, emit)}
       <div class="flex flex-row w-100 justify-start mv3 fw6">
         <div class="red i">
           ${d.publisher}
