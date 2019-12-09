@@ -3,17 +3,14 @@ const ORCID = require('orcid-utils')
 module.exports = async (state, emitter) => {
   state.contentloaded = false
   state.user = null
-
   var userDo = verb => fetch(`/data/users/me/${verb}`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ accept: true })
-  }).then(
-    getCurrentUser()
-  )
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ accept: true })
+    }).then(getCurrentUser())
 
   var acceptCoC = () => {
     state.user.coc_accepted = true
@@ -48,6 +45,12 @@ module.exports = async (state, emitter) => {
       var userdata = await fetch('/data/users/me')
       state.user = await userdata.json()
 
+      var userBiography = await getUserBiography(state.user.orcid)
+      state.user.orcidBiography = userBiography
+
+      var userWorks = await getUserWorks(state.user.orcid)
+      state.user.orcidPreprints = userWorks
+
       if (!state.user || !state.user.orcid) {
         state.user = null
         emitter.emit('render')
@@ -66,6 +69,61 @@ module.exports = async (state, emitter) => {
       state.user = null
     }
   }
+
+  // Fetch user biography from ORCID
+  const getUserWorks = orcidId =>
+    new Promise(resolve =>
+      fetch(`https://pub.orcid.org/v3.0/${orcidId}/works`, {
+        headers: {
+          Accept: 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          var works = data.group
+          var userPreprints = []
+
+          for (var i = 0; i < works.length; i++) {
+            var workGroup = works[i]
+            var workSummary = workGroup['work-summary'][0]
+
+            // transform timestamp into normal date
+            var created_date = new Date(workSummary['created-date'].value)
+
+            var preprintData = {
+              created_date,
+              journal_title: workSummary['journal-title'].value,
+              title: workSummary.title.title.value,
+              url: workSummary.url ? workSummary.url.value : null
+            }
+
+            userPreprints.push(preprintData)
+          }
+
+          return userPreprints
+        })
+        .then(userPreprints => resolve(userPreprints))
+        .catch(err => resolve(null))
+    )
+
+  const getUserBiography = orcidId =>
+    new Promise(resolve =>
+      fetch(`https://pub.orcid.org/v3.0/${orcidId}/person`, {
+        headers: {
+          Accept: 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.content) {
+            return resolve(data.content)
+          }
+        })
+        .catch(err => {
+          console.log('err', err)
+          return resolve(null)
+        })
+    )
 
   if (typeof window !== 'undefined') getCurrentUser()
 }

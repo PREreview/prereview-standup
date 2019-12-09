@@ -2,6 +2,7 @@ var Nanocomponent = require('nanocomponent')
 var html = require('choo/html')
 var raw = require('choo/html/raw')
 var css = require('sheetify')
+var orcidPreprints = require('../../components/profile/orcidPreprints');
 
 var biostyle = css`
 
@@ -134,7 +135,7 @@ function usercontent (state, emit) {
         <div class="flex flex-column pa4">
           <div class="flex flex-row justify-between">
             <div class="b">Biography</div>
-            <div class="ml2 pl2 lh-copy ${biostyle}">${raw(state.user.profile.biography || 'not yet filled in')}</div>
+            <div class="ml2 pl2 lh-copy ${biostyle}">${raw(state.user.profile.biography || state.user.orcidBiography || 'not yet filled in')}</div>
           </div>
           <div class="flex flex-row justify-between">
             <div class="b">PREreviews</div>
@@ -157,9 +158,7 @@ function usercontent (state, emit) {
           <div class="ttu tracked">
             <h2 class="mt0 tc fw4">Your preprints</h2>
           </div>
-          <div class="pa3 lh-copy tc">
-            <p>We don't know about any preprints authored by you. Let us know about preprints you've written by adding them to <a href="https://orcid.org/my-orcid" target="_blank">your ORCID profile</a>.</p>
-          </div>
+          ${orcidPreprints(state, emit)}
         </div>
       </div>
     </div>
