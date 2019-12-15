@@ -6,7 +6,8 @@ router.use('/preprints', [
   require('./doi'),
   require('./latest'),
   require('./search'),
-  require('./insert')
+  require('./insert'),
+  require('./getMetadata')
 ])
 
 module.exports = router

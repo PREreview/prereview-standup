@@ -45,11 +45,13 @@ module.exports = async (state, emitter) => {
       var userdata = await fetch('/data/users/me')
       state.user = await userdata.json()
 
-      var userBiography = await getUserBiography(state.user.orcid)
-      state.user.orcidBiography = userBiography
+      if (Object.keys(state.user).length > 0) {
+        var userBiography = await getUserBiography(state.user.orcid)
+        state.user.orcidBiography = userBiography
 
-      var userWorks = await getUserWorks(state.user.orcid)
-      state.user.orcidPreprints = userWorks
+        var userWorks = await getUserWorks(state.user.orcid)
+        state.user.orcidPreprints = userWorks
+      }
 
       if (!state.user || !state.user.orcid) {
         state.user = null

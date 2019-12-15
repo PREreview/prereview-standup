@@ -37,6 +37,8 @@ app.route('/prereview-submission-check', require('./views/prereview-submission-c
 app.route('/users/*', require('./views/profile'))
 app.route('/docs/*', require('./views/docs'))
 
+app.route('/logout', () => window.location.replace('/'))
+
 // /preprints/doi -> read
 // /preprints/doi/new -> write
 // /preprints/doi/request -> request

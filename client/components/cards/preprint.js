@@ -88,7 +88,7 @@ function preprint (state, emit, p) {
         <div>
           <h3 class="fw6 f4 ma0 lh-copy pb1 tl">${title}</h3>
           <div class="f5 fw1 i">
-            ${d.authors.list.map(a => a.fullName).join(', ')}
+            ${d.authors.list.join(', ')}
           </div>
         </div>
       </div>
