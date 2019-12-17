@@ -1,8 +1,14 @@
+var express = require('express')
+var fs = require('fs')
+var formidableMiddleware = require('express-formidable');
+
 var user = require('../../../db/tables/users')
 var prereview = require('../../../db/tables/prereviews')
 
-var express = require('express')
 var router = express.Router()
+
+// parse files to req.files
+router.use(formidableMiddleware());
 
 // Serves the current user's own data to the client app
 // only works if the user is logged in - otherwise req.user is null
@@ -51,5 +57,22 @@ router.post('/me/accept_coc', function (req, res) {
     res.json({})
   }
 })
+
+// Update profile picture
+router.post('/me/updateProfilePic', function (req, res) {
+  var imagePath = req.files.avatar.path
+  var fileType =  req.files.avatar.type
+
+  var file = fs.readFileSync(imagePath, "base64");
+  var base64 = `data:${fileType};base64,${file}`
+
+  if (req.user) {
+    user.updateProfilePic(req.user, base64).then(res.json(req.user))
+  } else {
+    res.status(401)
+    res.json({})
+  }
+})
+
 
 module.exports = router

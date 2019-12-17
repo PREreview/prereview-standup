@@ -36,11 +36,12 @@ passport.use(new OrcidStrategy({
 
   // now we get the list of works for the user from the ORCID api
   // and add it to their profile data
-  updateFromOrcid(profile).then(enrichedProfile => {
-    return users.getOrAddUser(enrichedProfile).then(userdata => {
+
+  updateFromOrcid(profile).then(enrichedProfile =>
+    users.getOrAddUser(enrichedProfile).then(userdata =>
       done(null, enrichedProfile)
-    })
-  }).catch(done)
+    )
+  ).catch(done)
 }))
 
 module.exports = app => {

@@ -62,10 +62,10 @@ const scrapeURL = (url, publicationId, type) =>
       }
 
       if (metadata) {
-        const { openGraph, highwirePress } = metadata
+        const { general, openGraph, highwirePress } = metadata
         let authors = []
 
-        if (highwirePress.author) {
+        if (highwirePress && highwirePress.author && typeof highwirePress.author === "array") {
           highwirePress.author.forEach(author => {
             if (author.includes(',')) {
               authors.push(author.replace(',', ''))
@@ -73,12 +73,18 @@ const scrapeURL = (url, publicationId, type) =>
               authors.push(author)
             }
           })
+        } else {
+          if (highwirePress.author.includes(',')) {
+            authors.push(highwirePress.author.replace(',', ''))
+          } else {
+            authors.push(highwirePress.author)
+          }
         }
 
         var preprint = {
           id: `${type}/${publicationId}`,
           title: highwirePress.title ? highwirePress.title : null,
-          abstract: openGraph.abstract ? openGraph.abstract : openGraph.description ? openGraph.description : null,
+          abstract: openGraph.abstract ? openGraph.abstract : openGraph.description ? openGraph.description : general.description ? general.description : null,
           source: openGraph.url ? openGraph.url : null,
           publisher: openGraph.site_name ? openGraph.site_name : 'preprints.org',
           authors: { list: authors },

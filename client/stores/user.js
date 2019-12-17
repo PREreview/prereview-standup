@@ -3,7 +3,8 @@ const ORCID = require('orcid-utils')
 module.exports = async (state, emitter) => {
   state.contentloaded = false
   state.user = null
-  var userDo = verb => fetch(`/data/users/me/${verb}`, {
+  var userDo = verb =>
+    fetch(`/data/users/me/${verb}`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -30,7 +31,7 @@ module.exports = async (state, emitter) => {
   var becomePublic = () => userDo('become_public')
   emitter.on('user:become-public', becomePublic)
 
-  emitter.on('DOMContentLoaded', function () {
+  emitter.on('DOMContentLoaded', function() {
     state.contentloaded = true
     if (state.user && state.renderonload) {
       emitter.emit('render')
@@ -40,7 +41,21 @@ module.exports = async (state, emitter) => {
     emitter.on('user:update-me', getCurrentUser)
   })
 
-  async function getCurrentUser () {
+  var updateProfilePic = formData => {
+    fetch('/data/users/me/updateProfilePic', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json())
+      .then(result => emitter.emit('render'))
+      .catch(console.log)
+
+    emitter.emit('render')
+  }
+
+  emitter.on('user:update-profile-picture', updateProfilePic)
+
+  async function getCurrentUser() {
     try {
       var userdata = await fetch('/data/users/me')
       state.user = await userdata.json()
@@ -94,7 +109,9 @@ module.exports = async (state, emitter) => {
 
             var preprintData = {
               created_date,
-              journal_title: workSummary['journal-title'] ? workSummary['journal-title'].value : null,
+              journal_title: workSummary['journal-title']
+                ? workSummary['journal-title'].value
+                : null,
               title: workSummary.title.title.value,
               url: workSummary.url ? workSummary.url.value : null
             }

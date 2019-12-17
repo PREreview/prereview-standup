@@ -24,9 +24,11 @@ module.exports = async (state, emitter) => {
   // modal search function for DOI and arXiv preprints
   async function runsearch(pub_id) {
     // search for preprint on web by Id
-    const foundPreprint = await fetchPreprintData(pub_id)
+    let foundPreprint = await fetchPreprintData(pub_id)
 
-    if (foundPreprint) handleSearchResponse(foundPreprint)
+    if (foundPreprint) {
+      handleSearchResponse(foundPreprint)
+    }
   }
 
   // fetch publications by DOI on web
@@ -39,7 +41,8 @@ module.exports = async (state, emitter) => {
           publicationId: pub_id
         }
       })
-        .then(response => resolve(response.json()))
+        .then(response => response.json())
+        .then(result => resolve(result))
         .catch(err => {
           console.log('err', err)
           resolve(null)
@@ -48,7 +51,7 @@ module.exports = async (state, emitter) => {
 
   // insert preprint DB
   function insertPreprint(preprint) {
-    fetch('data/preprints/insert', {
+    fetch('/data/preprints/insert', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -58,6 +61,7 @@ module.exports = async (state, emitter) => {
     })
       .then(res => res.json())
       .then(response => {
+        emitter.emit('render')
         if (response && response.preprintAlredyExists) {
           alert('The preprint you are trying to add already exists!')
         }
