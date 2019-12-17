@@ -33,7 +33,7 @@ module.exports = function view (state, emit, preprint) {
     if (preprint.pdfblocked) return null
     var publisher = html`<div class="red i b">${preprint.publisher}</div>`
     var title = html`<h1 class="mv1 lh-solid">${preprint.title}</h1>`
-    var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.list.map(a => a.fullName).join(', ')}</h2>`
+    var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.join(', ')}</h2>`
     return html`
     <div class="flex flex-column w-100">
       ${publisher}
@@ -50,7 +50,7 @@ module.exports = function view (state, emit, preprint) {
   var toolbarButtons = toolbarBtns(state, emit, editor)
 
   var editorel = html`
-  
+
   <div class="flex flex-column h-100 w-100 ph2 pv0">
     <div class="flex flex-column lh-copy pa3">
       ${maybemeta()}
@@ -66,7 +66,7 @@ module.exports = function view (state, emit, preprint) {
       ${submit}
     </div>
   </div>
-  
+
   `
 
   submit.onclick = () => {

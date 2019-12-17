@@ -75,7 +75,7 @@ class Reviews extends Nanocomponent {
     var n = preprint.prereviews.length
 
     var el = html`
-    
+
     <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
       ${preprint.pdfblocked ? null : meta(state, emit, preprint)}
       <div class="flex flex-row w-100 justify-between items-center pa3">
@@ -84,7 +84,7 @@ class Reviews extends Nanocomponent {
       </div>
       ${preprint.prereviews.map(r => require('./display')(state, emit, r))}
     </div>
-    
+
     `
 
     return el
@@ -118,7 +118,7 @@ function addreview (state, emit, preprint) {
 function meta (state, emit, preprint) {
   var publisher = html`<div class="red i b">${preprint.publisher}</div>`
   var title = html`<h1 class="mv1 lh-solid">${preprint.title}</h1>`
-  var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.list.map(a => a.fullName).join(', ')}</h2>`
+  var authors = html`<h2 class="f4 mv1 i lh-title">${preprint.authors.list.join(', ')}</h2>`
 
   var type = preprint.id.split('/')[0]
   var isarxiv = type === 'arxiv'

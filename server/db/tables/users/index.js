@@ -1,5 +1,5 @@
 module.exports = {
-  addUser, getUser, getUserById, getOrAddUser, makeUserPrivate, makeUserPublic, acceptCoC, getUserReviews
+  addUser, getUser, getUserById, getOrAddUser, makeUserPrivate, makeUserPublic, acceptCoC, getUserReviews, updateProfilePic
 }
 
 var db = require('../..')
@@ -49,6 +49,7 @@ function getOrAddUser (user) {
           }
         )
       } else {
+        delete user.profile
         return updateUser(user).then(
           user => {
             user.firstvisit = false
@@ -85,5 +86,16 @@ function acceptCoC (user) {
     .first()
     .update({
 		  coc_accepted: true
+    })
+}
+
+function updateProfilePic (user, img) {
+  return db('users')
+    .where({ orcid: user.orcid })
+    .first()
+    .update({
+		  profile: {
+        pic: img
+      }
     })
 }

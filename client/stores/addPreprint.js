@@ -23,70 +23,35 @@ module.exports = async (state, emitter) => {
 
   // modal search function for DOI and arXiv preprints
   async function runsearch(pub_id) {
-    // search for DOIs on web
-    const foundDoi = await fetchDoi(pub_id)
+    // search for preprint on web by Id
+    let foundPreprint = await fetchPreprintData(pub_id)
 
-    if (foundDoi) {
-      var authorstring = ''
-      var authors = {
-        list: {
-          list: []
-        }
-      }
-
-      for (var i = 0; i < foundDoi.author.length; i++) {
-        foundDoi.author[
-          i
-        ].fullName = `${foundDoi.author[i].given} ${foundDoi.author[i].family}`
-        authors.list.list.push(foundDoi.author[i])
-        authorstring.concat(foundDoi.author[i].fullName)
-      }
-
-      var preprint = {
-        id: `doi/${foundDoi.DOI}`,
-        title: foundDoi.title[0],
-        abstract: foundDoi.abstract,
-        source: foundDoi.source,
-        publisher: foundDoi.publisher,
-        authors,
-        date_created: foundDoi.created['date-time'],
-        date_published: foundDoi.deposited['date-time'],
-        date_indexed: foundDoi.indexed['date-time'],
-        authorstring,
-        license: foundDoi.license ? foundDoi.license : null,
-        n_prereviews: 0,
-        document: null
-      }
-
-      handleSearchResponse(preprint)
-    } else {
-      // search for arXivs on web
-      const foundArXiv = await fetchArXiv(pub_id)
+    if (foundPreprint) {
+      handleSearchResponse(foundPreprint)
     }
   }
 
   // fetch publications by DOI on web
-  const fetchDoi = pub_id =>
+  const fetchPreprintData = pub_id =>
     new Promise(resolve =>
-      fetch(`https://api.crossref.org/works/${pub_id}`)
+      fetch(`/data/preprints/getMetadata`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          publicationId: pub_id
+        }
+      })
         .then(response => response.json())
-        .then(data => resolve(data.message))
-        .catch(err => resolve(null))
-    )
-
-  // fetch publications by arXiv on web
-  const fetchArXiv = pub_id =>
-    new Promise(resolve =>
-      fetch(`https://api.altmetric.com/v1/arxiv/${pub_id}`, { mode: 'no-cors' })
-        .then(results => console.log('results.json', results))
-        .then(str => new window.DOMParser().parseFromString(str, 'text/xml'))
-        .then(data => console.log('data', data))
-        .catch(e => resolve(false))
+        .then(result => resolve(result))
+        .catch(err => {
+          console.log('err', err)
+          resolve(null)
+        })
     )
 
   // insert preprint DB
   function insertPreprint(preprint) {
-    fetch('data/preprints/insert', {
+    fetch('/data/preprints/insert', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -96,6 +61,7 @@ module.exports = async (state, emitter) => {
     })
       .then(res => res.json())
       .then(response => {
+        emitter.emit('render')
         if (response && response.preprintAlredyExists) {
           alert('The preprint you are trying to add already exists!')
         }

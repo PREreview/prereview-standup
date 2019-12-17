@@ -97,7 +97,6 @@ module.exports = function(state, emitter) {
       r.date_created = new Date(r.date_created)
       r.date_published = new Date(r.date_published)
       r.date_indexed = new Date(r.date_indexed)
-      r.authors = r.authors.list
     })
 
     // sort preprints (desc) by number of review requests

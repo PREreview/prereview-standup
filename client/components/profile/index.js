@@ -4,13 +4,43 @@ var raw = require('choo/html/raw')
 var css = require('sheetify')
 var orcidPreprints = require('../../components/profile/orcidPreprints');
 
-var biostyle = css`
-
-:host > p {
-  margin: 0;
-}
-
+var prereview_container = css`
+  :host {
+    border-radius: 5px;
+    background-color: #f7f7f7;
+  }
 `
+var avatar_input = css`
+  :host {
+    display: none;
+  }
+`
+
+var avatar_label = css`
+  :host {
+    cursor: pointer;
+    position: relative;
+    width: 128px;
+    height: 128px;
+    display: block;
+  }
+
+  :host:hover img {
+    filter: brightness(70%);
+    transition: all 0.3s ease;
+  }
+
+  :host:hover:before {
+    content: "+";
+    position: absolute;
+    color: white;
+    font-weight: 800;
+    font-size: 2em;
+    z-index: 1;
+    top: 36%;
+    left: 44%;
+  }
+`;
 
 var icon = require('../utils/icon')
 var loading = require('../utils/loading')
@@ -18,12 +48,10 @@ var loading = require('../utils/loading')
 module.exports = {
   myprofilecard, otheruser, usercontent, start
 }
-
 function otheruser (state, emit, waitforuserdata) {
   var userId = state.href.split('/users/')[1]
   return state.cache(OtherUser, `prereview-other-user-profile-${userId}`).render(state, emit, waitforuserdata)
 }
-
 class OtherUser extends Nanocomponent {
   constructor () {
     super()
@@ -32,27 +60,21 @@ class OtherUser extends Nanocomponent {
 
   createElement (state, emit, waitforuserdata) {
     this.loader = loading()
-
     var el = html`
       <div class="flex flex-column justify-center items-center w-100 center bg-white br3 pa3 pa4-ns">
         ${this.loader}
       </div>
     `
-
     this.populateUser(state, emit, waitforuserdata)
-
     return el
   }
 
   populateUser (state, emit, waitforuserdata) {
     var self = this
     self.updated = Date.now()
-
     waitforuserdata.then(insertData)
-
     function insertData (user) {
       var inner
-
       if (user) {
         console.log('loaded user profile data', user)
         var orcid = user.orcid ? html`
@@ -86,7 +108,6 @@ class OtherUser extends Nanocomponent {
           </div>
         `
       }
-
       self.loader.replaceWith(inner)
     }
   }
@@ -101,65 +122,64 @@ class OtherUser extends Nanocomponent {
 }
 
 function myprofilecard (state, emit) {
-  var gravatartxt = state.user.profile.pic
-    ? null
-    : html`You can choose your profile picture by registering your email on <a href="https://gravatar.com">Gravatar</a>.`
+  var profilepic = (state.user.profile && state.user.profile.pic) ? state.user.profile.pic : '/assets/illustrations/avatar.png'
 
-  var profilepic = state.user.profile.pic ? state.user.profile.pic + '&s=128' : '/assets/illustrations/avatar.png'
+  var input = html`<input type="file" id="avatar" value="" name="avatar" class="${avatar_input}">`
+
+  input.onchange = (event) => {
+    const files = event.target.files
+    const formData = new FormData()
+
+    formData.append('avatar', files[0])
+
+    emit('user:update-profile-picture', formData)
+  }
 
   return html`
-    <div class="w-100 center bg-white br3 pa3 pa4-ns">
-      <div class="tc">
-        <img src="${profilepic}" class="br-100 h4 w4 dib" title="your picture">
-        ${gravatartxt}
-        <h2 class="mb1 fw4">${state.user.name}</h2>
-        <h3 class="mt1 f5 fw3 mv0">
-          ORCID
-          <img src="/assets/images/orcid_16x16.gif" alt="ORCID ID icon" />
-          <a class="link dim dark-red code" href="https://orcid.org/${state.user.orcid}" target="_blank">
-            ${state.user.orcid}
-          </a>
-        </h3>
+    <div class="w-100 center bg-white br3 pa1">
+      <label for="avatar" class="mt3 ${avatar_label}">
+        ${input}
+        <img src="${profilepic}" class="br-100 h4 w4 dib"/>
+      </label>
+      <h2 class="mb2 fw4">${state.user.name}</h2>
+      <h3 class="mt1 f5 fw3 mv0 flex flex-row">
+        <div class="b"> ORCiD </div>
+        <a class="link dim dark-red code ml1" href="https://orcid.org/${state.user.orcid}" target="_blank">
+          ${state.user.orcid}
+        </a>
+      </h3>
+      <div class="flex flex-row mt1">
+        <div class="b">Community appreciation: </div>
+        <div class="ml1 pl2">None yet</div>
+      </div>
+      <div class="w-100 flex flex-row mt1">
+        <div class="b">Biography: </div>
+        <div class="ml1 pl2">${raw(state.user.profile.biography || state.user.orcidBiography || 'not yet filled in')}</div>
       </div>
     </div>
   `
 }
 
 function usercontent (state, emit) {
+  let n_orcidPreprints = state.user && state.user.orcidPreprints ? state.user.orcidPreprints.length : 'None yet'
+
   return html`
-    <div class="w-100 flex flex-row justify-center mt1">
-      <div class="content fl f6 lh-copy w-50 pa3 br b--black-20">
-        <div class="ttu tracked">
-          <h2 class="mt0 tc fw4">Your Profile</h2>
+    <div class="content fl f6 lh-copy w-100 pt3">
+      <div class="mt3 pt3">
+        <div class="tracked flex flex-row">
+          <h2 class="mt0 tc fw4 mb1">Your PREreviews (${state.user.prereviews.length || 'None yet'})</h2>
         </div>
-        <div class="flex flex-column pa4">
-          <div class="flex flex-row justify-between">
-            <div class="b">Biography</div>
-            <div class="ml2 pl2 lh-copy ${biostyle}">${raw(state.user.profile.biography || state.user.orcidBiography || 'not yet filled in')}</div>
-          </div>
-          <div class="flex flex-row justify-between">
-            <div class="b">PREreviews</div>
-            <div class="">${state.user.prereviews.length || 'None yet'}</div>
-          </div>
-          <div class="flex flex-row justify-between">
-            <div class="b">Community appreciation</div>
-            <div class="">None yet</div>
-          </div>
-        </div>
+        <div class="bt b--black-20 mt3 mb4"></div>
+        ${prereviews(state, emit)}
       </div>
-      <div class="flex flex-column content fl f6 lh-copy w-50 pa3">
-        <div class="flex flex-column">
-          <div class="ttu tracked">
-            <h2 class="mt0 tc fw4">Your PREreviews</h2>
-          </div>
-          ${prereviews(state, emit)}
+    </div>
+    <div class="content fl f6 lh-copy w-100 pt2">
+      <div class="mt3 pt3">
+        <div class="tracked flex flex-row">
+          <h2 class="mt0 tc fw4 mb1">Your preprints (${n_orcidPreprints}) </h2>
         </div>
-        <div class="flex flex-column mt3 pt4 bt b--black-20">
-          <div class="ttu tracked">
-            <h2 class="mt0 tc fw4">Your preprints</h2>
-          </div>
-          ${orcidPreprints(state, emit)}
-        </div>
+        <div class="bt b--black-20 mt3 mb4"></div>
+        ${orcidPreprints(state, emit)}
       </div>
     </div>
   `
@@ -167,14 +187,13 @@ function usercontent (state, emit) {
 
 function prereviews (state, emit) {
   var reviews = state.user.prereviews
-
   if (reviews && reviews.length > 0) {
     return reviews.map(prereview)
   } else {
     return html`
-    <div class="pa3 lh-copy tc">
-      <p>You haven't written any PREreviews yet.</p>
-    </div>
+      <div>
+        <p>You haven't written any PREreviews yet.</p>
+      </div>
     `
   }
 }
@@ -199,38 +218,51 @@ function userreviews (state, emit, user) {
 }
 
 function prereview (p) {
-  var revdate = (new Date(p.date_created)).toDateString()
+  var revdate = formatDate(p.date_created)
 
   return html`
-  <div class="flex flex-column justify-start items-start pa3 lh-copy ba b--light-gray mb2">
-    <div class="flex flex-row mb2 items-between justify-between w-100">
-      <div class="flex flex-row red">PREreviewed on <span class="b ml2">${revdate}</span></div>
-      <div class="flex flex-row nowrap">
-        <div class="flex flex-row nowrap items-center">${icon('message-square')} 0</div>
-        <div class="flex flex-row nowrap items-center ml3">${icon('clap', { size: '30px' })} 0</div>
+    <div class="flex flex-column justify-start items-start pa3 mt4 lh-copy mb2 ${prereview_container}">
+      <div class="flex flex-row mb2 items-between justify-between w-100">
+        <div class="flex flex-row">
+          <a class="black f5 fw7 tl" href="/preprints/${p.preprint.id}">${p.preprint.title}</a>
+        </div>
+        <div class="flex flex-row nowrap">
+          <div class="flex flex-row">PREreviewed on <span class="b ml2">${revdate}</span></div>
+        </div>
+      </div>
+      <div class="flex flex-row mt2">
+        <div class="flex flex-row nowrap items-center">
+          ${icon('message-square')}
+          <span class="red ml2"> 0 </span>
+        </div>
+        <div class="flex flex-row nowrap items-center ml3">
+          ${icon('clap', { size: '30px' })}
+          <span class="red ml2"> 0 </span>
+        </div>
       </div>
     </div>
-    <div class="flex flex-row">
-      <a class="black f5 fw7 tl" href="/preprints/${p.preprint.id}">${p.preprint.title}</a>
-    </div>
-  </div>
   `
 }
 
 function start (state) {
   if (!state.user.coc_accepted || !state.user.privacy_setup) {
     return html`
-  <div class="flex flex-row justify-center">
-    <p>Once you have completed your signup you can start PREreviewing</p>
-  </div>
-  `
+      <div class="flex flex-row justify-center">
+        <p>Once you have completed your signup you can start PREreviewing</p>
+      </div>
+    `
   }
+}
 
-  return html`
-  <div class="flex flex-row justify-center">
-    <div class="ph3 pv3 nowrap dim dt bg-red br3 link noselect">
-      <a class="white dtc v-mid b" href="/find">Start PREreviewing</a>
-    </div>
-  </div>
-  `
+// format date from 2019-03-13T03:29:22.099Z to 2019-03-13
+const formatDate = date => {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+  if (month.length < 2)
+      month = '0' + month;
+  if (day.length < 2)
+      day = '0' + day;
+  return [year, month, day].join('-');
 }

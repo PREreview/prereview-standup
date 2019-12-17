@@ -1,6 +1,5 @@
 var got = require('got')
 var md = require('markdown-string')
-var gravatar = require('gravatar')
 
 module.exports = updateFromOrcid
 
@@ -58,7 +57,7 @@ function addPersonToProfile (user) {
     if (data.emails && data.emails.email) {
       var emails = data.emails.email.map(e => e.email)
       user.profile.emails = emails
-      user.profile.pic = gravatarFromEmails(emails)
+      user.profile.pic = null
     }
 
     return user
@@ -72,16 +71,4 @@ function getPerson (user) {
     json: true
   }
   return got(opts).then(addPersonToProfile(user))
-}
-
-function gravatarFromEmails (emails) {
-  if (!emails || emails.length === 0) return null
-
-  var registered = emails.find(
-    email => gravatar.url(email, { protocol: 'https', d: '404' })
-  )
-
-  // TODO: this does one more gravatar request than necessary
-  if (registered) return gravatar.url(registered, { protocol: 'https', d: 'identicon' })
-  else return gravatar.url(emails[0], { protocol: 'https', d: 'identicon' })
 }
