@@ -1,36 +1,5 @@
 var html = require('choo/html')
 var css = require('sheetify')
-var requestReviewModal = require('../home/requestReview/modal')
-
-var requestReview = css`
-  :host {
-    background-color: transparent;
-    border-radius: 5px;
-    padding: 0 6px 0 2px;
-    font-weight: 400px;
-    padding: 3px 8px 3px 8px;
-    height: 24px;
-    border: 0;
-  }
-
-  :host > span {
-    color: red;
-    font-weight: bold;
-    font-size: 13px;
-  }
-
-  :host:hover {
-    color: white;
-    cursor: pointer;
-    transition: all 0.1s;
-    background-color: #ff3333;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  :host:hover > span {
-    color: white;
-  }
-`
 
 function preprint (state, emit, p) {
   var d = p.data || p
@@ -50,64 +19,66 @@ function preprint (state, emit, p) {
   showreviews.onclick = gotoreviews
 
   var requestReviewBtn = html`
-    <button class="${requestReview}">
-        <span>${d.n_requests}</span> Add request
-    </button>
+    <div class="ph2 pv1 nowrap dim bg-white bt br bb bl b--red br3 flex flex-row items-center link noselect pointer mr2">
+      <p class="ma0 pa0 red dtc v-mid b f6">${d.n_requests} | Request PREreview</p>
+    </div>
   `
 
   requestReviewBtn.onclick = () => {
-    emit('requestreview-modal:toggle')
-    emit('requestreview-modal:set-data', d)
+    emit('add-modal:toggle')
+    emit('add-modal:set-data', d)
   }
 
   var addreview = null
 
   if (state.user) {
     addreview = html`
-      <div class="ph3 pv2 nowrap dim bg-red br3 flex flex-row items-center link noselect pointer">
-        <p class="ma0 pa0 white dtc v-mid b f6">Write a PREreview</p>
+      <div class="ph2 pv1 nowrap dim bg-white bt br bb bl b--red br3 flex flex-row items-center link noselect pointer">
+        <p class="ma0 pa0 red dtc v-mid b f6">Write PREreview</p>
       </div>
     `
     addreview.onclick = () => emit('pushState', `/preprints/${d.id}/new`)
   }
 
-  var pubdate = `Preprint published ${d.date_published.toLocaleDateString({ dateStyle: 'full' })}.`
+  var pubdate = `Published on ${formatDate(d.date_published)}`
 
   return html`
-    <div class="flex flex-column article w-100 bb b--black-10 pa2 pb3 mb3 lh-copy">
-      <div class="flex flex-row w-100 justify-start mv3 fw6">
-        <div class="red i">
-          ${d.publisher}
-        </div>
-        <div class="red ttu">
-          ${d.tags && `: ${d.tags.join(', ')}`}
-        </div>
+    <div class="flex flex-column w-100 bb b--black-10 pa2 pb2 mb3 lh-copy">
+      <div class="flex flex-row w-100 justify-between mv3 fw6">
+        <div class="red i">${d.publisher}</div>
+
+        <div class="i">${pubdate}</div>
       </div>
 
-      <div class="flex flex-column items-start w-100">
-        <div>
-          <h3 class="fw6 f4 ma0 lh-copy pb1 tl">${title}</h3>
-          <div class="f5 fw1 i">
-            ${d.authors.list.join(', ')}
-          </div>
-        </div>
+      <h3 class="fw6 f4 ma0 lh-copy pb1 tl">${title}</h3>
+
+      <div class="f5 fw1 i">
+        ${d.authors.list.join(', ')}
       </div>
 
-      <div class="footer flex justify-between mv3">
-        <div class="flex flex-row items-center flex-wrap left f6 fw3">
-          ${pubdate}
-        </div>
-        <div class="flex flex-row items-center flex-nowrap right f6 fw3">
-          ${showreviews}
-          ${addreview}
-        </div>
+      <div class="mv2">
+        ${showreviews}
       </div>
 
-      <div class="footer flex justify-star mv3">
+      <div class="flex justify-start mv3">
         ${requestReviewBtn}
+        ${addreview}
       </div>
     </div>
   `
+}
+
+// format date from 2019-03-13T03:29:22.099Z to 2019-03-13
+const formatDate = date => {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+  if (month.length < 2)
+      month = '0' + month;
+  if (day.length < 2)
+      day = '0' + day;
+  return [year, month, day].join('-');
 }
 
 module.exports = preprint

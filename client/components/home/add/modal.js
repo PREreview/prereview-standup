@@ -1,10 +1,12 @@
 var html = require('choo/html')
 var css = require('sheetify')
+
 var input = require('../../form/typeahead')
+var GRID = require('../../../grid')
 
 var modal = css`
   :host {
-    position: fixed;
+    position: absolute;
     z-index: 100;
     left: 0;
     top: 0;
@@ -102,10 +104,16 @@ var preprintPublisher = css`
 `
 
 module.exports = function(state, emit) {
-  if (state.requestreview.modalVisible) {
+  if (state.add.modalVisible) {
+    var modalSubContainer = `${modalContent} w-30`
+
+    if (state.dimensions.width < GRID.XL) {
+      modalSubContainer = `${modalSubContainer} w-100`
+    }
+
     return html`
       <div class="${modal}">
-        <div class="w-30 ${modalContent}">
+        <div class=${modalSubContainer}>
           <div class="flex flex-row justify-between w-100">
             ${modalTitle(state, emit)} ${closeModalBtn(state, emit)}
           </div>
@@ -122,8 +130,8 @@ module.exports = function(state, emit) {
 function modalTitle(state, emit) {
   if (!state.user) {
     return html`
-      <p class=${title}">Log in required</p>
-    `
+        <p class=${title}">Log in required</p>
+      `
   }
 
   return html`
@@ -138,7 +146,7 @@ function closeModalBtn(state, emit) {
     </div
   `
 
-  closeBtn.onclick = () => emit('requestreview-modal:toggle')
+  closeBtn.onclick = () => emit('add-modal:toggle')
 
   return html`
     <div>${closeBtn}</div>
@@ -146,14 +154,14 @@ function closeModalBtn(state, emit) {
 }
 
 function foundPreprint(state, emit) {
-  if (state.requestreview.searchResult) {
+  if (state.add.searchResult) {
     return html`
       <div class="w-100 ${preprintCountainer}">
         <p class="${preprintTitle}">
-          ${state.requestreview.searchResult.title}
+          ${state.add.searchResult.title}
         </p>
         <p class="${preprintPublisher}">
-          ${state.requestreview.searchResult.publisher}
+          ${state.add.searchResult.publisher}
         </p>
       </div>
     `
@@ -187,22 +195,31 @@ function addEntry(state, emit) {
     </button>
   `
 
-  cancelBtn.onclick = () => emit('requestreview-modal:toggle')
+  cancelBtn.onclick = () => emit('add-modal:toggle')
 
-  var requestReviewBtn = html`
+  var addReviewBtn = html`
     <button class="${controlBtns}">
-      Request review
+      Add review
     </button>
   `
 
-  requestReviewBtn.onclick = () =>
-    emit('requestreview-modal:add-request', {
+  addReviewBtn.onclick = () =>
+    emit('add-modal:insert-preprint', state.add.searchResult)
+
+  var requestReviewsBtn = html`
+    <button class="${controlBtns}">
+      Request reviews
+    </button>
+  `
+
+  requestReviewsBtn.onclick = () =>
+    emit('add-modal:insert-request', {
       author_id: state.user.user_id,
-      preprint_id: state.requestreview.searchResult.id
+      preprint_id: state.add.searchResult.id
     })
 
   var searchopts = {
-    id: 'request-review-search-input',
+    id: 'publication-search-input',
     entries: [],
     container: {
       class: 'mt2 flex flex-column items-center bg-white dark-gray f4'
@@ -211,8 +228,8 @@ function addEntry(state, emit) {
       class: 'flex w-100',
       placeholder: 'Enter preprint DOI or an arXiv ID'
     },
-    onsearch: val => emit('requestreview-search:query', val),
-    onresults: results => emit('requestreview-search:results', results)
+    onsearch: val => emit('add-search:query', val),
+    onresults: results => emit('add-search:results', results)
   }
 
   var search = input(state, emit, searchopts)
@@ -221,7 +238,7 @@ function addEntry(state, emit) {
     <div class="w-100">
       ${search} ${foundPreprint(state, emit)}
       <div class="flex flex-row justify-end w-100">
-        ${cancelBtn} ${requestReviewBtn}
+        ${cancelBtn} ${requestReviewsBtn} ${addReviewBtn}
       </div>
     </div>
   `

@@ -3,6 +3,7 @@ const ORCID = require('orcid-utils')
 module.exports = async (state, emitter) => {
   state.contentloaded = false
   state.user = null
+
   var userDo = verb =>
     fetch(`/data/users/me/${verb}`, {
       method: 'POST',
@@ -76,7 +77,7 @@ module.exports = async (state, emitter) => {
 
       // // if we get here, the user is logged in and we have their data
       // if (state.route === '/') return (window.location = '/find')
-
+      
       if (state.contentloaded) {
         emitter.emit('render')
       } else {

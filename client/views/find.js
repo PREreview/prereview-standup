@@ -4,43 +4,37 @@ var nav = require('../components/nav')
 var header = require('../components/home/header')
 var filterbox = require('../components/home/filterbox')
 var preprintlist = require('../components/home/preprintlist')
-var requestReviewBtn = require('../components/home/requestReview/btn')
-var requestReviewModal = require('../components/home/requestReview/modal')
-var addPreprintBtn = require('../components/home/addPreprint/btn')
-var addPreprintModal = require('../components/home/addPreprint/modal')
+var addButton = require('../components/home/add/button')
+var addModal = require('../components/home/add/modal')
+
 var TITLE = 'PREreview2 | find'
 
 module.exports = view
 
 function view (state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
-  var resultstr = getResultString(state, emit)
+
+  var mobileWidth = "w-90"
+  var desktopWidth = "w-70"
 
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray">
-      ${requestReviewModal(state, emit)}
-      ${addPreprintModal(state, emit)}
+      ${addModal(state, emit)}
       ${nav(state, emit)}
       ${header(state, emit)}
-      <div class="flex flex-row w-70 justify-end">
-        ${addPreprintBtn(state, emit)}
-        ${requestReviewBtn(state, emit)}
-      </div>
-      <div class="w-70 flex">
-        <div class="w-100 flex flex-row">
-          <div class="content fl w-100 pa2 f7 lh-copy">
-            <div class="actions flex flex-row justify-between pv0" style="position: relative;">
-              <div class="flex items-center ttu red tracked f6 b mr3">
-                ${resultstr}
-              </div>
-              ${pagingbuttons(state, emit)}
-              ${filterbox(state, emit)}
-            </div>
-            <div class="articles">
-              ${preprintlist(state, emit)}
-            </div>
-          </div>
+
+      <div class=${state.dimensions.width > 1000 ? desktopWidth : mobileWidth}>
+        <div class="flex flex-row w-100 justify-end">
+          ${addButton(state, emit)}
+          ${filterbox(state, emit)}
         </div>
+
+        <div class="flex flex-column w-100 ">
+            ${preprintlist(state, emit)}
+            ${getResultString(state, emit)}
+            ${pagingbuttons(state, emit)}
+        </div>
+
       </div>
     </body>
   `
@@ -74,25 +68,25 @@ function getResultString (state, emit) {
     : null
 
   return html`
-    <div class="flex flex-column">
-      ${querydiv}
-      <div class="flex flex-row">${resultstring}</div>
-    </div>
+    <div class="flex items-center ttu red tracked f6 b">
+      <div class="flex flex-column">
+        ${querydiv}
+        <div class="flex flex-row">${resultstring}</div>
+      </div>
+    </div
   `
 }
 
 function pagingbuttons (state, emit) {
   var btnclasses = 'h2 pa2 ba br2 b--black-10 link dim bg-white dark-gray'
-  var leftclasses = 'br--left'
-  var rightclasses = 'br--right'
-  var left = html`<div class="${btnclasses} ${leftclasses}">Prev</div>`
-  var right = html`<div class="${btnclasses} ${rightclasses}">Next</div>`
+  var left = html`<div class="${btnclasses} br--left"> Prev </div>`
+  var right = html`<div class="${btnclasses} br--right"> Next </div>`
 
   left.onclick = () => emit('preprint-search:result-page', 'prev')
   right.onclick = () => emit('preprint-search:result-page', 'next')
 
   return html`
-  <div class="flex flex-row justify-center items-center pointer w-100 h2" style="position: absolute;">
+    <div class="flex flex-row justify-center items-center pointer w-100 h2 mb4">
       ${left}
       ${right}
     </div>

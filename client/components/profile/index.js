@@ -2,7 +2,9 @@ var Nanocomponent = require('nanocomponent')
 var html = require('choo/html')
 var raw = require('choo/html/raw')
 var css = require('sheetify')
+
 var orcidPreprints = require('../../components/profile/orcidPreprints');
+var GRID = require('../../grid')
 
 var prereview_container = css`
   :host {
@@ -123,7 +125,8 @@ class OtherUser extends Nanocomponent {
 
 function myprofilecard (state, emit) {
   var profilepic = (state.user.profile && state.user.profile.pic) ? state.user.profile.pic : '/assets/illustrations/avatar.png'
-
+  var biographyContainer = "w-100 mt1"
+  var biographyContent
   var input = html`<input type="file" id="avatar" value="" name="avatar" class="${avatar_input}">`
 
   input.onchange = (event) => {
@@ -135,26 +138,36 @@ function myprofilecard (state, emit) {
     emit('user:update-profile-picture', formData)
   }
 
+  if(state.dimensions.width < GRID.LG) {
+  } else {
+    biographyContainer = `${biographyContainer} flex flex-row`
+    biographyContent = "ml1 pl2"
+  }
+
   return html`
     <div class="w-100 center bg-white br3 pa1">
       <label for="avatar" class="mt3 ${avatar_label}">
         ${input}
         <img src="${profilepic}" class="br-100 h4 w4 dib"/>
       </label>
+
       <h2 class="mb2 fw4">${state.user.name}</h2>
+
       <h3 class="mt1 f5 fw3 mv0 flex flex-row">
         <div class="b"> ORCiD </div>
         <a class="link dim dark-red code ml1" href="https://orcid.org/${state.user.orcid}" target="_blank">
           ${state.user.orcid}
         </a>
       </h3>
+
       <div class="flex flex-row mt1">
         <div class="b">Community appreciation: </div>
         <div class="ml1 pl2">None yet</div>
       </div>
-      <div class="w-100 flex flex-row mt1">
+
+      <div class=${biographyContainer}>
         <div class="b">Biography: </div>
-        <div class="ml1 pl2">${raw(state.user.profile.biography || state.user.orcidBiography || 'not yet filled in')}</div>
+        <div class=${biographyContent}>${raw(state.user.profile.biography || state.user.orcidBiography || '-')}</div>
       </div>
     </div>
   `
@@ -187,6 +200,7 @@ function usercontent (state, emit) {
 
 function prereviews (state, emit) {
   var reviews = state.user.prereviews
+
   if (reviews && reviews.length > 0) {
     return reviews.map(prereview)
   } else {
@@ -203,7 +217,7 @@ function userreviews (state, emit, user) {
 
   if (reviews && reviews.length > 0) {
     return html`
-      <div class="flex flex-column pa3">
+      <div class="flex flex-column pa3 w-100">
         <h2>PREreviews</h2>
         ${reviews.map(prereview)}
       </div>
@@ -221,20 +235,23 @@ function prereview (p) {
   var revdate = formatDate(p.date_created)
 
   return html`
-    <div class="flex flex-column justify-start items-start pa3 mt4 lh-copy mb2 ${prereview_container}">
-      <div class="flex flex-row mb2 items-between justify-between w-100">
-        <div class="flex flex-row">
-          <a class="black f5 fw7 tl" href="/preprints/${p.preprint.id}">${p.preprint.title}</a>
-        </div>
-        <div class="flex flex-row nowrap">
-          <div class="flex flex-row">PREreviewed on <span class="b ml2">${revdate}</span></div>
+    <div class="flex-row justify-start items-start pa3 pt2 mt4 lh-copy mb2 ${prereview_container}">
+      <div class="flex flex-row justify-end w-100">
+        <div>
+          PREreviewed on <span class="b ml2">${revdate}</span>
         </div>
       </div>
-      <div class="flex flex-row mt2">
+
+      <div class="flex flex-row justify-between w-100">
+        <a class="black f5 fw7 tl" href="/preprints/${p.preprint.id}">${p.preprint.title}</a>
+      </div>
+
+      <div class="flex flex-row mt2 w-100">
         <div class="flex flex-row nowrap items-center">
           ${icon('message-square')}
           <span class="red ml2"> 0 </span>
         </div>
+
         <div class="flex flex-row nowrap items-center ml3">
           ${icon('clap', { size: '30px' })}
           <span class="red ml2"> 0 </span>
