@@ -19,6 +19,28 @@ var components = [
   }
 ]
 
+var identityChoice = css`
+  :host {
+    padding: 35px;
+    border: 1px solid black;
+    border-radius: 5px;
+    -webkit-box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.2);
+    box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.2);
+  }
+`
+
+var optionButton = css`
+  :host {
+    border: 1px solid black !important;
+    font-weight: bold;
+  }
+  :host:active {
+    border: 1px solid black !important;
+    font-weight: bold;
+  }
+`
+
 module.exports = (state, emit) => {
   return html`
     <div class="flex flex-column justify-start">
@@ -28,43 +50,29 @@ module.exports = (state, emit) => {
 }
 
 function buttonSwitch (state, emit, opts) {
-  var btnclasses = 'pa3 ba br2 b--black-10 link dim'
+  var btnclasses = 'ba br2 b--black-10 link dim'
   var leftclasses = 'br--left'
   var rightclasses = 'br--right'
   var selectedclasses = 'bg-red white b'
   var unselectedclasses = 'bg-white dark-gray'
-  var left = html`<div class="${btnclasses} ${leftclasses} ${unselectedclasses}">${opts.l.content}</div>`
-  var right = html`<div class="${btnclasses} ${rightclasses} ${unselectedclasses}">${opts.r.content}</div>`
+  var left = html`<div title="This choice shows a pseudonym on your profile, posts and comments. Your ORCID, real name, email address and other personal details will not be connected with your profile or activity on PREreview. However, the PREreview staff will always be able to see your identity." class="${btnclasses} ${leftclasses} ${unselectedclasses} ${optionButton}" style="text-align: center; padding-left: 16px; padding-right: 16px; padding-top: 6px; padding-bottom: 6px;">${opts.l.content}</div>`
+  var right = html`<div title="This choice shows your real name on your profile, posts and comments, and links them to your ORCID. Anyone visiting PREreview will be able to see your true identity, and search engines such as Google will index your profile page and contributions." class="${btnclasses} ${rightclasses} ${unselectedclasses} ${optionButton}" style="text-align: center; padding-left: 16px; padding-right: 16px; padding-top: 6px; padding-bottom: 6px;">${opts.r.content}</div>`
 
   var lefthead = html`
   <div class="flex flex-row items-center justify-between">
-    <h3>${opts.l.content}</h3>
-  </div>
-  `
-
-  var leftexplan = html`
-  <div>
-    ${lefthead}
-    <p>${opts.l.detail}</p>
+    <p>${opts.l.content}</p>
   </div>
   `
 
   var righthead = html`
   <div class="flex flex-row items-center justify-between">
-    <h3>${opts.r.content}</h3>
-  </div>
-  `
-
-  var rightexplan = html`  
-  <div>
-    <div>${righthead}</div>
-    <p>${opts.r.detail}</p>
+    <p>${opts.r.content}</p>
   </div>
   `
 
   var choice = 'private'
 
-  var submit = html`<div class="${btnclasses} ${selectedclasses} dn">Confirm your choice</div>`
+  var submit = html`<div class="${btnclasses} ${selectedclasses} dn" style="padding-left: 16px; padding-right: 16px; height: 32px; line-height: 30px">Confirm your choice</div>`
 
   submit.onclick = e => {
     emit(`user:become-${choice}`)
@@ -75,8 +83,8 @@ function buttonSwitch (state, emit, opts) {
   }
 
   left.onclick = e => {
-    left.className = `${btnclasses} ${leftclasses} ${selectedclasses}`
-    right.className = `${btnclasses} ${rightclasses} ${unselectedclasses}`
+    left.className = `${btnclasses} ${leftclasses} ${selectedclasses} ${optionButton}`
+    right.className = `${btnclasses} ${rightclasses} ${unselectedclasses} ${optionButton}`
     lefthead.innerHTML = `<h3>${opts.l.content}</h3><span class="ttu small f7 red ba br1 b--red h1 r pa1">selected</span>`
     righthead.innerHTML = `<h3>${opts.r.content}</h3>`
     choice = opts.l.choice
@@ -84,8 +92,8 @@ function buttonSwitch (state, emit, opts) {
   }
 
   right.onclick = e => {
-    left.className = `${btnclasses} ${leftclasses} ${unselectedclasses}`
-    right.className = `${btnclasses} ${rightclasses} ${selectedclasses}`
+    left.className = `${btnclasses} ${leftclasses} ${unselectedclasses} ${optionButton}`
+    right.className = `${btnclasses} ${rightclasses} ${selectedclasses} ${optionButton}`
     righthead.innerHTML = `<h3>${opts.r.content}</h3><span class="ttu small f7 red ba br1 b--red h1 r pa1">selected</span>`
     lefthead.innerHTML = `<h3>${opts.l.content}</h3>`
     choice = opts.r.choice
@@ -93,19 +101,15 @@ function buttonSwitch (state, emit, opts) {
   }
 
   return html`
-  <div class="flex flex-column items-center noselect measure">
-    <h1 class="pt0 mt0">Welcome to PREreview</h1>
-    <h2>To start using PREreview you need to choose whether to publicly link your identity to your account.</h2>
-    <div class="flex flex-row justify-start pointer mw-50">
-      ${left}
-      ${right}
+  <div class="flex flex-column items-center noselect measure ${identityChoice}">
+    <p>Please, select how you wish your identity to be displayed. Please keep in mind that once you select the public option you will NOT be able to go back to the private setting.</p>
+    <div class="flex flex-row justify-between">
+      <div class="flex flex-row justify-start pointer mw-50 mt3">
+        ${left}
+        ${right}
+      </div>
     </div>
-    <div class="flex flex-column lh-copy dark-gray mw-50 measure">
-      <h2>What does this mean?</h2>
-        ${leftexplan}
-        ${rightexplan}
-    </div>
-    <div class="flex flex-column lh-copy dark-gray mw-50 measure">
+    <div class="flex flex-column lh-copy dark-gray mw-50 measure  br2 mt3 ${optionButton}">
       ${submit}
     </div>
   </div>

@@ -1,23 +1,44 @@
 var html = require('choo/html')
 var css = require('sheetify')
+
 var icon = require('./utils/icon')
+var GRID = require('../grid')
 
 var barstyle = css`
+  :host {
+    z-index: 99;
+  }
+`
 
-:host {
-  z-index: 99;
-}
-
+var logoImg = css`
+  :host {
+    cursor: pointer;
+    width: auto;
+    height: 48px;
+    padding: 16px 16px 16px 24px;
+  }
 `
 
 module.exports = function (state, emit, opts) {
-  var s = state.style.classes
+  var findContainer = 'ph3 flex flex-row items-center nowrap dim bg-dark-gray br-pill link pointer'
+  var buttonItem = 'link dim black-90 tc flex flex-row items-center justify-center'
+  var buttonsContainer = 'flex flex-row items-center justify-end'
+  var navContainer
+  var logo
 
-  var logo = html`
-    <div class="justify-start" style="cursor: pointer; width: 410px;">
-      <img class="ml2-m ma0-l pa0" style="width: auto;" src="/assets/images/logo_horizontal_tx.png">
-    </div>
-  `
+  if(state.dimensions.width < GRID.LG) {
+    logo = html`<img class=${logoImg} src="/assets/images/prereview_logo_icon_colour.svg">`
+  } else {
+    logo = html`<img class=${logoImg} src="/assets/images/logo_horizontal_tx.png">`
+  }
+
+  if(state.dimensions.width < GRID.XL) {
+    findContainer = `${findContainer} w-100`
+    buttonsContainer = `${buttonsContainer} justify-between`
+    navContainer = `fl w-100 bg-white bb flex flex-column justify-start sans-serif ${barstyle}`
+  } else {
+    navContainer = `fl w-100 bg-white bb flex flex-row justify-between sans-serif ${barstyle}`
+  }
 
   logo.onclick = () => emit('pushState', '/')
 
@@ -27,34 +48,29 @@ module.exports = function (state, emit, opts) {
     }
 
     var find = html`
-      <div class="ml2-m ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link pointer noselect">
+      <div class=${findContainer} style="height: 48px; margin-right: 24px;">
         ${icon('search', { backgroundColor: 'white' })}
-        <div class="dn-s dn-m">
-          <div class="ma0 ml2 pa0 white dib v-mid">Find preprints to review</div>
-        </div>
+          <div class="ml2 white dib v-mid">Find preprints to review</div>
       </div>
     `
+
     find.onclick = () => emit('pushState', '/find')
 
     return find
   }
 
   var leftpart = html`
-
-  <div class="flex flex-row justify-start items-center fl fw1 nowrap">
-    ${logo}
-    ${findbtn()}
-  </div>
-
+    <div class="flex flex-row justify-between items-center">
+      ${logo}
+      ${findbtn()}
+    </div>
   `
 
   var notlogged = () => {
     var login = html`
-
-    <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link pointer noselect">
-      <p class="ma0 pa0 white dib v-mid b">Log in</p>
-    </div>
-
+      <div class="ph3 flex flex-row items-center bg-dark-gray br-pill link pointer" style="height: 48px; margin-right: 24px;">
+        <p class="ma0 pa0 white dib v-mid b">Log in</p>
+      </div>
     `
     login.onclick = () => window.location = '/login-redirect'
 
@@ -63,20 +79,20 @@ module.exports = function (state, emit, opts) {
 
   var logged = () => {
     var profile = html`
-      <div class="ph3 pv3 flex flex-row items-center nowrap dim bg-dark-gray br-pill mr3 link pointer noselect">
+      <div class="ph3 flex flex-row items-center bg-dark-gray br-pill link pointer" style="height: 48px; margin-right: 24px;">
         <p class="ma0 pa0 white dib v-mid b">${state.user.name}</p>
       </div>
     `
     profile.onclick = () => emit('pushState', '/profile')
 
     var el = html`
-    <div class="flex flex-row items-center justify-center white">
-      <a href="/logout" class="link dim black-90 tc flex flex-row items-center justify-center mr4">
-        Log out
-      </a>
-      ${profile}
-    </div>
-  `
+      <div class="flex flex-row items-center justify-center white">
+        <a href="/logout" class="link dim black-90 tc flex flex-row items-center justify-center mr4">
+          Log out
+        </a>
+        ${profile}
+      </div>
+    `
 
     return el
   }
@@ -84,34 +100,35 @@ module.exports = function (state, emit, opts) {
   var userpart = state.user ? logged() : notlogged()
 
   var rightpart = html`
-  
-  <div class="flex flex-row justify-end items-center fr fw1 content-stretch nowrap">
-    <a href="https://forms.gle/Yk8fAQqmtvQKmst68" target="_blank" class="link dim black-90 tc flex flex-row items-center justify-center ml4 red">
-      Give feedback
-    </a>
-    <a href="/docs/about" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
-      About
-    </a>
-    <a href="/docs/code_of_conduct" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
-      Code of Conduct 
-    </a>
-    <a href="https://blog.prereview.org" target="_blank" class="link dim black-90 tc flex flex-row items-center justify-center ml4">
-      Blog
-    </a>
-    <a href="/docs/resources" class="link dim black-90 tc flex flex-row items-center justify-center ml4 mr4">
-      Resources
-    </a>
-    ${userpart}
-  </div>
+    <div class=${buttonsContainer}>
+      <a href="https://forms.gle/Yk8fAQqmtvQKmst68" target="_blank" class="${buttonItem} red" style="margin-left: 16px; margin-right: 16px;">
+        Give feedback
+      </a>
 
+      <a href="/docs/about" class="${buttonItem}" style="margin-left: 16px; margin-right: 16px;">
+        About
+      </a>
+
+      <a href="/docs/code_of_conduct" class="${buttonItem}" style="margin-left: 16px; margin-right: 16px;">
+        Code of Conduct
+      </a>
+
+      <a href="https://blog.prereview.org" target="_blank" class="${buttonItem}" style="margin-left: 16px; margin-right: 16px;">
+        Blog
+      </a>
+
+      <a href="/docs/resources" class="${buttonItem}" style="margin-left: 16px; margin-right: 16px;">
+        Resources
+      </a>
+
+      ${userpart}
+    </div>
   `
 
   return html`
-  
-  <div class="h4 fl w-100 bg-white bb flex flex-row justify-between sans-serif ${barstyle}">
-    ${leftpart}
-    ${rightpart}
-  </div>
-  
+    <div class=${navContainer}>
+      ${leftpart}
+      ${rightpart}
+    </div>
   `
 }

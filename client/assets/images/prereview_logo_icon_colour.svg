@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="51px" height="63px" viewBox="0 0 51 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>prereview_logo_icon_coloud</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="prereview_logo_h_colour" transform="translate(1.000000, 1.000000)">
+            <g id="PreReview-Logo---Horizontal---Colour">
+                <path d="M37.9,57.7 L2,57.7 C1.1,57.7 0.3,56.9 0.3,56 L0.3,56 L0.3,1.8 C0.3,0.9 1.1,0.1 2,0.1 L2,0.1 L46.6,0.1 C47.5,0.1 48.3,0.9 48.3,1.8 L48.3,1.8 L48.3,56" id="Shape" stroke="#000000"></path>
+                <polyline id="Shape" fill="#FF3333" fill-rule="nonzero" points="33.9 61.5 40.4 57.7 33.9 53.9"></polyline>
+                <path d="M11,15 L37.9,15" id="Shape" stroke="#000000"></path>
+                <path d="M11,29.1 L37.9,29.1" id="Shape" stroke="#000000"></path>
+                <path d="M11,43.3 L37.9,43.3" id="Shape" stroke="#000000"></path>
+            </g>
+        </g>
+    </g>
+</svg>

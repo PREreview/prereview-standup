@@ -1,6 +1,14 @@
 var Nanocomponent = require('nanocomponent')
 var html = require('choo/html')
+var css = require('sheetify')
+
 var { start } = require('./')
+
+var firstVisitContainer = css`
+  :host {
+    height: 80vh;
+  }
+`
 
 module.exports = class Setup extends Nanocomponent {
   constructor (id, state, emit, opts) {
@@ -21,6 +29,7 @@ module.exports = class Setup extends Nanocomponent {
       el = require('../cards/signup/identity-choice')(state, this.emit)
     } else {
       el = start(state)
+
       return html`
         <div class="flex flex-column justfy-center items-center">
           ${el}
@@ -29,7 +38,7 @@ module.exports = class Setup extends Nanocomponent {
     }
 
     return html`
-      <div class="flex flex-column justfy-center items-center pb4 bb b--black-20">
+      <div class="flex items-center justify-center ${firstVisitContainer}">
         ${el}
       </div>
     `

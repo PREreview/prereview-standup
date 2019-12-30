@@ -39,14 +39,12 @@ module.exports = function(state, emit) {
     var created_date = formatDate(p.created_date)
 
     var preprintTemplate = html`
-      <div class="flex flex-column justify-start items-start pa3 mt4 lh-copy mb2 ${container}">
-        <div class="flex flex-row mb2 items-between justify-between w-100">
+      <div class="flex flex-column justify-start items-start pa3 pt2 mt4 lh-copy mb2 ${container}">
+        <div class="flex flex-row nowrap items-center justify-end w-100">
+          <div class="flex flex-row">Created on <span class="b ml2">${created_date}</span></div>
+        </div>
+        <div class="flex flex-row mb2 items-start justify-start w-100">
           <div class="flex flex-row"><span class="black f5 fw7 tl">${p.title}</span></div>
-          <div class="flex flex-row nowrap">
-            <div class="flex flex-row nowrap items-center">
-              <div class="flex flex-row">Created on <span class="b ml2">${created_date}</span></div>
-            </div>
-          </div>
         </div>
         <div class="${journalTitle}">${p.journal_title}</div>
       </div>

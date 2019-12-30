@@ -7,9 +7,6 @@ var prereview = require('../../../db/tables/prereviews')
 
 var router = express.Router()
 
-// parse files to req.files
-router.use(formidableMiddleware());
-
 // Serves the current user's own data to the client app
 // only works if the user is logged in - otherwise req.user is null
 router.get('/me', function (req, res) {
@@ -59,7 +56,7 @@ router.post('/me/accept_coc', function (req, res) {
 })
 
 // Update profile picture
-router.post('/me/updateProfilePic', function (req, res) {
+router.post('/me/updateProfilePic', formidableMiddleware(), function (req, res) {
   var imagePath = req.files.avatar.path
   var fileType =  req.files.avatar.type
 
@@ -73,6 +70,5 @@ router.post('/me/updateProfilePic', function (req, res) {
     res.json({})
   }
 })
-
 
 module.exports = router

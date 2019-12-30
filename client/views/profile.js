@@ -3,8 +3,8 @@ var css = require('sheetify')
 
 var nav = require('../components/nav')
 var profile = require('../components/profile')
-
 var Setup = require('../components/profile/firstvisit')
+var GRID = require('../grid')
 
 var TITLE = 'PREreview2 | profile'
 
@@ -21,12 +21,22 @@ function view (state, emit) {
 
   var userid = state.href.split('/users/')[1]
 
+  var otherUserContainer = `flex flex-column ${mainstyle} justify-center items-center`
+  var profileContainer = `flex flex-column`
+
+  if(state.dimensions.width < GRID.LG ) {
+    otherUserContainer = `${otherUserContainer} w-90`
+    profileContainer = `${profileContainer} w-90`
+  } else {
+    otherUserContainer = `${otherUserContainer} w-70`
+    profileContainer = `${profileContainer} w-70`
+  }
+
   if (userid) {
     // viewing a specific user's profile
     return html`
     <body class="flex flex-column w-100 justify-center items-center space-around">
-      ${nav(state, emit)}
-      <div class="flex flex-column w-70 ${mainstyle} justify-center items-center">
+      <div class=${otherUserContainer}>
         ${profile.otheruser(state, emit, fetch(`/data/users/${userid}`).then(res => res.json()))}
       </div>
     </body>
@@ -45,12 +55,22 @@ function view (state, emit) {
     `
   }
 
-  return html`
+  var firstvisit = html`
     <body class="flex flex-column w-100 justify-center items-center space-around">
       ${nav(state, emit)}
       <div class="flex flex-column w-70">
-        ${profile.myprofilecard(state, emit)}
         ${state.cache(Setup, `setup-user-${state.user.orcid}`).render(state)}
+      </div>
+    </body>
+  `
+
+  if (!state.user.coc_accepted || !state.user.privacy_setup) return firstvisit
+
+  return html`
+    <body class="flex flex-column w-100 justify-center items-center space-around">
+      ${nav(state, emit)}
+      <div class=${profileContainer}>
+        ${profile.myprofilecard(state, emit)}
         ${profile.usercontent(state, emit)}
       </div>
     </body>
