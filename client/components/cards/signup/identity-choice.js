@@ -50,43 +50,29 @@ module.exports = (state, emit) => {
 }
 
 function buttonSwitch (state, emit, opts) {
-  var btnclasses = 'pa3 ba br2 b--black-10 link dim'
+  var btnclasses = 'ba br2 b--black-10 link dim'
   var leftclasses = 'br--left'
   var rightclasses = 'br--right'
   var selectedclasses = 'bg-red white b'
   var unselectedclasses = 'bg-white dark-gray'
-  var left = html`<div title="This choice shows a pseudonym on your profile, posts and comments. Your ORCID, real name, email address and other personal details will not be connected with your profile or activity on PREreview. However, the PREreview staff will always be able to see your identity." class="${btnclasses} ${leftclasses} ${unselectedclasses} ${optionButton}" style="text-align: center;">${opts.l.content}</div>`
-  var right = html`<div title="This choice shows your real name on your profile, posts and comments, and links them to your ORCID. Anyone visiting PREreview will be able to see your true identity, and search engines such as Google will index your profile page and contributions." class="${btnclasses} ${rightclasses} ${unselectedclasses} ${optionButton}" style="text-align: center;">${opts.r.content}</div>`
+  var left = html`<div title="This choice shows a pseudonym on your profile, posts and comments. Your ORCID, real name, email address and other personal details will not be connected with your profile or activity on PREreview. However, the PREreview staff will always be able to see your identity." class="${btnclasses} ${leftclasses} ${unselectedclasses} ${optionButton}" style="text-align: center; padding-left: 16px; padding-right: 16px; padding-top: 6px; padding-bottom: 6px;">${opts.l.content}</div>`
+  var right = html`<div title="This choice shows your real name on your profile, posts and comments, and links them to your ORCID. Anyone visiting PREreview will be able to see your true identity, and search engines such as Google will index your profile page and contributions." class="${btnclasses} ${rightclasses} ${unselectedclasses} ${optionButton}" style="text-align: center; padding-left: 16px; padding-right: 16px; padding-top: 6px; padding-bottom: 6px;">${opts.r.content}</div>`
 
   var lefthead = html`
   <div class="flex flex-row items-center justify-between">
-    <h3>${opts.l.content}</h3>
-  </div>
-  `
-
-  var leftexplan = html`
-  <div>
-    ${lefthead}
-    <p>${opts.l.detail}</p>
+    <p>${opts.l.content}</p>
   </div>
   `
 
   var righthead = html`
   <div class="flex flex-row items-center justify-between">
-    <h3>${opts.r.content}</h3>
-  </div>
-  `
-
-  var rightexplan = html`
-  <div>
-    <div>${righthead}</div>
-    <p>${opts.r.detail}</p>
+    <p>${opts.r.content}</p>
   </div>
   `
 
   var choice = 'private'
 
-  var submit = html`<div class="${btnclasses} ${selectedclasses} dn">Confirm your choice</div>`
+  var submit = html`<div class="${btnclasses} ${selectedclasses} dn" style="padding-left: 16px; padding-right: 16px; height: 32px; line-height: 30px">Confirm your choice</div>`
 
   submit.onclick = e => {
     emit(`user:become-${choice}`)

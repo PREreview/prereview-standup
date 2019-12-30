@@ -11,7 +11,6 @@ router.post('/insert', async function(req, res, next) {
 
   var preprint = req.body
   // var preprintExists = await checkExists(preprint)
-  // console.log('preprintExists', preprintExists)
 
   // if (!preprintExists) {
     preprints

@@ -15,7 +15,7 @@ function header (state, emit) {
     },
     input: {
       class: 'flex bg-white dark-gray b--dark-gray ba br-pill pa3 pl4 w-100',
-      placeholder: 'Search by title, DOI, author, etc...'
+      placeholder: 'Search preprints with PREreviews or requests for review by DOI, arXiv ID or title'
     },
     onsearch: val => emit('preprint-search:query', val),
     onresults: results => emit('preprint-search:results', results)
@@ -26,7 +26,7 @@ function header (state, emit) {
 
   return html`
     <div style=${state.dimensions.width > 700 ? null : "text-align: center;"} class="header w-100 ${s.col} ${s.center} flex flex-column pt4 pb4 justify-center items-center dark-gray">
-      <h2>Search preprints to read or review.</h2>
+      <h2>A platform for the crowdsourcing of preprint reviews.</h2>
       ${search}
     </div>
   `

@@ -107,7 +107,7 @@ function addreview (state, emit, preprint) {
   }
 
   var write = button(state, emit, {
-    label: 'Review this preprint',
+    label: 'PREreview this preprint',
     classes: 'ml2 bg-red white'
   })
   write.onclick = () => emit('pushState', `/preprints/${preprint.id}/new`)

@@ -73,7 +73,7 @@ function filterBtn (state, emit) {
 
   var sorts = [
     { by: 'date', desc: 'Most recent' },
-    { by: 'reviews', desc: 'Most popular' },
+    { by: 'reviews', desc: 'Most reviewed' },
     { by: 'n_requests', desc: 'Most requested' }
   ]
 

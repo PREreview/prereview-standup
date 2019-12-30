@@ -11,8 +11,6 @@ router.post('/submit', async function(req, res, next) {
   //   return res.status(401)
   // }
 
-  // console.log(req.body)
-
   // if (req.user.id !== req.body.author.id) {
   //   // user must be logged in as the same one claiming to author the preprint
   //   return res.status(401, 'You cannot post a preprint as another user')
@@ -33,13 +31,13 @@ router.post('/submit', async function(req, res, next) {
       .then(data => res.json(data))
       .catch(e => {
         console.error(
-          'Error trying to create Review Request with data:',
+          'Error trying to create PREreview Request with data:',
           JSON.stringify(reviewrequest)
         )
         console.error(e)
         res.status(
           500,
-          'Something went wrong trying to publish this Review Request'
+          'Something went wrong trying to publish this PREreview Request'
         )
       })
   } else {

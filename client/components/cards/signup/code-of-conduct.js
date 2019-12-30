@@ -21,21 +21,21 @@ module.exports = (state, emit) => {
 }
 
 function agreeButton(state, emit, opts) {
-  var left = html`<div class="pa3 ba br2 b--black-10 link dim bg-red white b">Agree</div>`
+  var agree = html`<div class="ba br2 b--black-10 link dim bg-red white mt3" style="padding-left: 16px; padding-right: 16px; height: 32px; line-height: 30px;">Agree</div>`
 
-  left.onclick = e => {
+  agree.onclick = e => {
     emit('user:accept-coc')
   }
 
   return html`
     <div class="flex flex-column items-center noselect measure ${codeOfConductContainer}">
       <h1 class="pt0 mt0">Welcome to PREreview</h1>
-      <h2>
+      <p>
         To continue, please read and agree to abide by our community
         <a href="/docs/code_of_conduct" target="_blank">code of conduct</a>.
-      </h2>
+      </p>
       <div class="flex flex-row justify-start pointer mw-50">
-        ${left}
+        ${agree}
       </div>
     </div>
   `

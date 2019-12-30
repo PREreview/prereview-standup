@@ -6,6 +6,7 @@ var filterbox = require('../components/home/filterbox')
 var preprintlist = require('../components/home/preprintlist')
 var addButton = require('../components/home/add/button')
 var addModal = require('../components/home/add/modal')
+var GRID = require('../grid')
 
 var TITLE = 'PREreview2 | find'
 
@@ -24,7 +25,7 @@ function view (state, emit) {
       ${header(state, emit)}
 
       <div class=${state.dimensions.width > 1000 ? desktopWidth : mobileWidth}>
-        <div class="flex flex-row w-100 justify-end">
+        <div class=${state.dimensions.width > GRID.SM ? 'flex flex-row justify-end' : 'flex flex-column'}>
           ${addButton(state, emit)}
           ${filterbox(state, emit)}
         </div>

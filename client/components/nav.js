@@ -19,29 +19,6 @@ var logoImg = css`
   }
 `
 
-var menuButtonItem = css`
-  :host {
-    width: 35px;
-    height: 6px;
-    background-color: black;
-    margin: 7px 0;
-  }
-`
-
-var menuContainer = css`
-  :host {
-    display: inline-block;
-    cursor: pointer;
-  }
-`
-
-var change = css`
-  :host > menuButtonItem {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-    transform: rotate(-45deg) translate(-9px, 6px);
-  }
-`;
-
 module.exports = function (state, emit, opts) {
   var findContainer = 'ph3 flex flex-row items-center nowrap dim bg-dark-gray br-pill link pointer'
   var buttonItem = 'link dim black-90 tc flex flex-row items-center justify-center'
@@ -66,9 +43,9 @@ module.exports = function (state, emit, opts) {
   logo.onclick = () => emit('pushState', '/')
 
   var findbtn = () => {
-    // if (state.href === '/find') {
-    //   return null
-    // }
+    if (state.href === '/find') {
+      return null
+    }
 
     var find = html`
       <div class=${findContainer} style="height: 48px; margin-right: 24px;">
@@ -147,15 +124,6 @@ module.exports = function (state, emit, opts) {
       ${userpart}
     </div>
   `
-
-  var menuButton = html`
-    <button class="hamburger" type="button">
-      <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
-      </span>
-    </button>
-  `
-
 
   return html`
     <div class=${navContainer}>

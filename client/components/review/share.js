@@ -12,7 +12,7 @@ module.exports = function view (state, emit, opts) {
   <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
     ${opts.pdfblocked ? null : meta(state, emit, opts)}
     <div class="flex flex-row w-100 justify-start items-center pa3">
-      <div class="pr2 f4 fw5 nowrap">Review in progress</h2>
+      <div class="pr2 f4 fw5 nowrap">PREreview in progress</h2>
     </div>
   </div>
   `
