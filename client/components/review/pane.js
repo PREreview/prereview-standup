@@ -1,10 +1,8 @@
 var Nanocomponent = require('nanocomponent')
 var html = require('choo/html')
-var raw = require('choo/html/raw')
 
 var composer = require('./compose')
 var button = require('../button')
-
 var sanitizeID = require('../../lib/sanitize-id')
 
 module.exports = function view (state, emit, opts) {
@@ -75,16 +73,14 @@ class Reviews extends Nanocomponent {
     var n = preprint.prereviews.length
 
     var el = html`
-
-    <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
-      ${preprint.pdfblocked ? null : meta(state, emit, preprint)}
-      <div class="flex flex-row w-100 justify-between items-center pa3">
-        <div class="pr2 f4 fw5 nowrap">${n} review${n === 1 ? '' : 's'}</h2>
-        ${addreview(state, emit, preprint)}
+      <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
+        ${preprint.pdfblocked ? null : meta(state, emit, preprint)}
+        <div class="flex flex-row w-100 justify-between items-center pa3">
+          <div class="pr2 f4 fw5 nowrap">${n} review${n === 1 ? '' : 's'}</h2>
+          ${addreview(state, emit, preprint)}
+        </div>
+        ${preprint.prereviews.map(r => require('./display')(state, emit, r))}
       </div>
-      ${preprint.prereviews.map(r => require('./display')(state, emit, r))}
-    </div>
-
     `
 
     return el
@@ -106,10 +102,10 @@ function addreview (state, emit, preprint) {
     return html`<div class="flex flex-row w-100 justify-end">${login}</div>`
   }
 
-  var write = button(state, emit, {
-    label: 'PREreview this preprint',
-    classes: 'ml2 bg-red white'
-  })
+  var write = html`
+    <button class="ml2 bg-red white br4"> PREreview this preprint </button>
+  `
+
   write.onclick = () => emit('pushState', `/preprints/${preprint.id}/new`)
 
   return write

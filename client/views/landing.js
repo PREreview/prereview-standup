@@ -52,6 +52,7 @@ function view (state, emit) {
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray sans-serif">
       ${nav(state, emit)}
+      
       <div class="w-100 flex flex-row ${abovefold}">
         <div class=${firstSectionContainer}>
           <h1>A platform for crowdsourcing reviews of preprints.</h1>

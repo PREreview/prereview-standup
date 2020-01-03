@@ -3,19 +3,15 @@ module.exports = styles
 var css = require('sheetify')
 
 var main = css`
-
-:host {
-  background: #a9e4f7;
-}
-
+  :host {
+    background: #a9e4f7;
+  }
 `
 
 var section = css`
-
-:host {
-  background: -moz-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(246,246,246,0.7) 44%, rgba(237,237,237,0.7) 100%);
-}
-
+  :host {
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(246,246,246,0.7) 44%, rgba(237,237,237,0.7) 100%);
+  }
 `
 
 function styles (state, emitter) {

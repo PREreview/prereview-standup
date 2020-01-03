@@ -33,11 +33,30 @@ var identityChoice = css`
 var optionButton = css`
   :host {
     border: 1px solid black !important;
-    font-weight: bold;
   }
+
+  :host:hover > p {
+    visibility: visible;
+  }
+
   :host:active {
     border: 1px solid black !important;
-    font-weight: bold;
+  }
+`
+
+var tooltiptext = css`
+  :host {
+    visibility: hidden;
+    width: 45vw;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 16px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
   }
 `
 
@@ -50,29 +69,45 @@ module.exports = (state, emit) => {
 }
 
 function buttonSwitch (state, emit, opts) {
-  var btnclasses = 'ba br2 b--black-10 link dim'
+  var btnclasses = 'ba br4 b--black-10 link'
   var leftclasses = 'br--left'
   var rightclasses = 'br--right'
-  var selectedclasses = 'bg-red white b'
+  var selectedclasses = 'bg-red white'
   var unselectedclasses = 'bg-white dark-gray'
-  var left = html`<div title="This choice shows a pseudonym on your profile, posts and comments. Your ORCID, real name, email address and other personal details will not be connected with your profile or activity on PREreview. However, the PREreview staff will always be able to see your identity." class="${btnclasses} ${leftclasses} ${unselectedclasses} ${optionButton}" style="text-align: center; padding-left: 16px; padding-right: 16px; padding-top: 6px; padding-bottom: 6px;">${opts.l.content}</div>`
-  var right = html`<div title="This choice shows your real name on your profile, posts and comments, and links them to your ORCID. Anyone visiting PREreview will be able to see your true identity, and search engines such as Google will index your profile page and contributions." class="${btnclasses} ${rightclasses} ${unselectedclasses} ${optionButton}" style="text-align: center; padding-left: 16px; padding-right: 16px; padding-top: 6px; padding-bottom: 6px;">${opts.r.content}</div>`
+  var btnStyle = 'text-align: center; padding-left: 16px; padding-right: 16px; padding-top: 6px; padding-bottom: 6px; font-size: 15px; height: auto;'
+
+  var left = html`
+    <button class="${btnclasses} ${leftclasses} ${unselectedclasses} ${optionButton}" style=${btnStyle}>
+      <p class=${tooltiptext}>${opts.l.detail}</p>
+      ${opts.l.content}
+    </button>
+  `
+  var right = html`
+    <button class="${btnclasses} ${rightclasses} ${unselectedclasses} ${optionButton}" style=${btnStyle}>
+      <p class=${tooltiptext}>${opts.r.detail}</p>
+      ${opts.r.content}
+    </button>
+  `
 
   var lefthead = html`
-  <div class="flex flex-row items-center justify-between">
-    <p>${opts.l.content}</p>
-  </div>
+    <div class="flex flex-row items-center justify-between">
+      <p>${opts.l.content}</p>
+    </div>
   `
 
   var righthead = html`
-  <div class="flex flex-row items-center justify-between">
-    <p>${opts.r.content}</p>
-  </div>
+    <div class="flex flex-row items-center justify-between">
+      <p>${opts.r.content}</p>
+    </div>
   `
 
   var choice = 'private'
 
-  var submit = html`<div class="${btnclasses} ${selectedclasses} dn" style="padding-left: 16px; padding-right: 16px; height: 32px; line-height: 30px">Confirm your choice</div>`
+  var submit = html`
+    <button class="link ${selectedclasses} dn pointer" style="padding-left: 16px; padding-right: 16px; height: 32px; line-height: 30px; border-radius: 16px; font-size: 15px;">
+      Confirm your choice
+    </button>
+  `
 
   submit.onclick = e => {
     emit(`user:become-${choice}`)
@@ -101,17 +136,20 @@ function buttonSwitch (state, emit, opts) {
   }
 
   return html`
-  <div class="flex flex-column items-center noselect measure ${identityChoice}">
-    <p>Please, select how you wish your identity to be displayed. Please keep in mind that once you select the public option you will NOT be able to go back to the private setting.</p>
-    <div class="flex flex-row justify-between">
-      <div class="flex flex-row justify-start pointer mw-50 mt3">
-        ${left}
-        ${right}
+    <div class="flex flex-column noselect measure ${identityChoice}">
+      <p class="mb0">Please, select how you wish your identity to be displayed.</p>
+      <p class="mb0">Please keep in mind that once you select the public option you will NOT be able to go back to the private setting.</p>
+
+      <div class="flex flex-row justify-between">
+        <div class="flex flex-row justify-start pointer mw-50" style="margin-top: 35px;">
+          ${left}
+          ${right}
+        </div>
+      </div>
+
+      <div class="flex flex-column items-center lh-copy dark-gray mw-50 measure br2" style="margin-top: 35px; border-radius: 16px;">
+        ${submit}
       </div>
     </div>
-    <div class="flex flex-column lh-copy dark-gray mw-50 measure  br2 mt3 ${optionButton}">
-      ${submit}
-    </div>
-  </div>
   `
 }

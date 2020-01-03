@@ -5,24 +5,21 @@ var stylise = require('../../lib/stylise')
 var css = require('sheetify')
 
 var baseStyle = css`
-
-:host {
-  border-top: 1px solid #ddd;
-  background: white;
-  padding: 0 20px;
-  padding-bottom: 20px;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  z-index: 1001;
-  -webkit-transition: height 0.5s; 
-  -moz-transition: height 0.5s; 
-  -ms-transition: height 0.5s; 
-  -o-transition: height 0.5s; 
-  transition: height 0.5s;  
-}
-
-
+  :host {
+    border-top: 1px solid #ddd;
+    background: white;
+    padding: 0 20px;
+    padding-bottom: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1001;
+    -webkit-transition: height 0.5s;
+    -moz-transition: height 0.5s;
+    -ms-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    transition: height 0.5s;
+  }
 `
 
 module.exports = class Popover extends Component {
@@ -39,11 +36,9 @@ module.exports = class Popover extends Component {
 
   createElement () {
     return html`
-    
-    <div class="popover ${this.opts.classes.join(' ')}" style="${stylise(this.opts.style)}">
-      ${this.opts.content}
-    </div>
-    
+      <div class="popover ${this.opts.classes.join(' ')}" style="${stylise(this.opts.style)}">
+        ${this.opts.content}
+      </div>
     `
   }
 

@@ -1,12 +1,8 @@
-module.exports = {
-  addUser, getUser, getUserById, getOrAddUser, makeUserPrivate, makeUserPublic, acceptCoC, getUserReviews, updateProfilePic
-}
-
 var db = require('../..')
 
 var { getUserReviews } = require('../prereviews')
 
-function addUser (user) {
+function addUser(user) {
   return db('users').insert({
     orcid: user.orcid,
     name: user.name,
@@ -15,52 +11,48 @@ function addUser (user) {
   })
 }
 
-function updateUser (user) {
+function updateUser(user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
     .update(user)
 }
 
-function getUser (user) {
+function getUser(user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
     .then(getUserReviews)
 }
 
-function getUserById (userid) {
+function getUserById(userid) {
   return db('users')
     .where({ user_id: userid })
     .first()
     .then(getUserReviews)
 }
 
-function getOrAddUser (user) {
+function getOrAddUser(user) {
   return db('users')
     .where({ orcid: user.orcid })
     .then(results => {
       if (results.length < 1) {
         // create new user
-        return addUser(user).then(
-          user => {
-            user.firstvisit = true
-            return user
-          }
-        )
+        return addUser(user).then(user => {
+          user.firstvisit = true
+          return user
+        })
       } else {
         delete user.profile
-        return updateUser(user).then(
-          user => {
-            user.firstvisit = false
-            return user
-          }
-        )
+        return updateUser(user).then(user => {
+          user.firstvisit = false
+          return user
+        })
       }
     })
 }
 
-function makeUserPrivate (user) {
+function makeUserPrivate(user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
@@ -70,7 +62,7 @@ function makeUserPrivate (user) {
     })
 }
 
-function makeUserPublic (user) {
+function makeUserPublic(user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
@@ -80,22 +72,34 @@ function makeUserPublic (user) {
     })
 }
 
-function acceptCoC (user) {
+function acceptCoC(user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
     .update({
-		  coc_accepted: true
+      coc_accepted: true
     })
 }
 
-function updateProfilePic (user, img) {
+function updateProfilePic(user, img) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
     .update({
-		  profile: {
+      profile: {
         pic: img
       }
     })
+}
+
+module.exports = {
+  addUser,
+  getUser,
+  getUserById,
+  getOrAddUser,
+  makeUserPrivate,
+  makeUserPublic,
+  acceptCoC,
+  getUserReviews,
+  updateProfilePic
 }

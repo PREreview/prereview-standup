@@ -2,7 +2,7 @@ var css = require('sheetify')
 
 css`
   * {
-    font-family: 'Open Sans', sans-serif;
+    font-family: sans-serif;
     --theme-red: #ff3333;
     --theme-black: ##00000;
     --theme-white: #ffffff;
@@ -64,8 +64,9 @@ css`
   }
 
   p {
-    font-size: 11pt;
+    font-size: 15px;
     font-weight: 500;
+    line-height: 1.25em;
   }
 
   .noselect {
@@ -75,5 +76,14 @@ css`
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+  }
+
+  button {
+    border: 0;
+    background-color: #FFF;
+    cursor: pointer;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 32px;
   }
 `

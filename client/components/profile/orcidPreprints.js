@@ -6,10 +6,6 @@ var container = css`
     border-radius: 5px;
     background-color: #f7f7f7;
   }
-
-  :host:hover {
-    cursor: pointer;
-  }
 `
 
 var journalTitle = css`
@@ -39,7 +35,7 @@ module.exports = function(state, emit) {
     var created_date = formatDate(p.created_date)
 
     var preprintTemplate = html`
-      <div class="flex flex-column justify-start items-start pa3 pt2 mt4 lh-copy mb2 ${container}">
+      <div class="flex flex-column justify-start items-start pa3 pt2 mt4 lh-copy mb2 ${container} pointer">
         <div class="flex flex-row nowrap items-center justify-end w-100">
           <div class="flex flex-row">Created on <span class="b ml2">${created_date}</span></div>
         </div>

@@ -20,14 +20,12 @@ class PreprintViewer extends Nanocomponent {
   createElement (state, emit, preprint) {
     this.preprint = preprint
     this.loading = html`
-
-    <div class="flex flex-column absolute w-100 h-100 bg-white justify-center items-center" style="z-index: 9999;">
-      <p>
-        loading preprint...
-      </p>
-      ${require('../utils/loading')()}
-    </div>
-    
+      <div class="flex flex-column absolute w-100 h-100 bg-white justify-center items-center" style="z-index: 9999;">
+        <p>
+          loading preprint...
+        </p>
+        ${require('../utils/loading')()}
+      </div>
     `
 
     this.viewercontainer = preprint.pdfblocked
@@ -35,12 +33,10 @@ class PreprintViewer extends Nanocomponent {
       : html`<iframe class="w-100 h-100 bn"></div>`
 
     var container = html`
-  
-    <div class="flex flex-column w-100 h-100 justify-center items-center content-center relative">
-      ${this.loading}
-      ${this.viewercontainer}
-    </div>
-    
+      <div class="flex flex-column w-100 h-100 justify-center items-center content-center relative">
+        ${this.loading}
+        ${this.viewercontainer}
+      </div>
     `
 
     if (this.preprint.pdfblocked) {
@@ -54,6 +50,7 @@ class PreprintViewer extends Nanocomponent {
 
   loadPreprintIntoIframe () {
     console.log('preprint url loading')
+    
     pdfUrl(this.preprint).then(
       docurl => {
         console.log('got preprint url:', docurl)
