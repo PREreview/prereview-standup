@@ -36,13 +36,11 @@ var close = css`
   :host:hover {
     color: black;
     text-decoration: none;
-    cursor: pointer;
   }
 
   :host:focus {
     color: red;
     text-decoration: none;
-    cursor: pointer;
   }
 `
 
@@ -71,7 +69,6 @@ var controlBtns = css`
     margin-left: 16px;
     transition: all 0.2s;
     background-color: transparent;
-    cursor: pointer;
     color: black;
   }
 
@@ -141,7 +138,7 @@ function modalTitle(state, emit) {
 
 function closeModalBtn(state, emit) {
   var closeBtn = html`
-    <div class="${close}">
+    <div class="${close} pointer">
       x
     </div
   `
@@ -190,7 +187,7 @@ function logInRequired(state, emit) {
 
 function addEntry(state, emit) {
   var cancelBtn = html`
-    <button class="${controlBtns}">
+    <button class="${controlBtns} pointer">
       Cancel
     </button>
   `
@@ -198,8 +195,8 @@ function addEntry(state, emit) {
   cancelBtn.onclick = () => emit('add-modal:toggle')
 
   var addReviewBtn = html`
-    <button class="${controlBtns}">
-      Add review
+    <button class="${controlBtns} pointer">
+      Add PREreview
     </button>
   `
 
@@ -207,8 +204,8 @@ function addEntry(state, emit) {
     emit('add-modal:insert-preprint', state.add.searchResult)
 
   var requestReviewsBtn = html`
-    <button class="${controlBtns}">
-      Request reviews
+    <button class="${controlBtns} pointer">
+      Request PREreview
     </button>
   `
 

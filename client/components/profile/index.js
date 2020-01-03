@@ -20,7 +20,6 @@ var avatar_input = css`
 
 var avatar_label = css`
   :host {
-    cursor: pointer;
     position: relative;
     width: 128px;
     height: 128px;
@@ -146,7 +145,7 @@ function myprofilecard (state, emit) {
 
   return html`
     <div class="w-100 center bg-white br3 pa1">
-      <label for="avatar" class="mt3 ${avatar_label}">
+      <label for="avatar" class="mt3 ${avatar_label} pointer">
         ${input}
         <img src="${profilepic}" class="br-100 h4 w4 dib"/>
       </label>

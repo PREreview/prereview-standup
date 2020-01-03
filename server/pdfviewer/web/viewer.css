@@ -21,7 +21,7 @@
   bottom: 0;
   overflow: hidden;
   opacity: 0.2;
-  line-height: 1.0;
+  line-height: 1;
 }
 
 .textLayer > span {
@@ -30,7 +30,7 @@
   white-space: pre;
   cursor: text;
   -webkit-transform-origin: 0% 0%;
-          transform-origin: 0% 0%;
+  transform-origin: 0% 0%;
 }
 
 .textLayer .highlight {
@@ -57,9 +57,13 @@
   background-color: rgb(0, 100, 0);
 }
 
-.textLayer ::-moz-selection { background: rgb(0,0,255); }
+.textLayer ::-moz-selection {
+  background: rgb(0, 0, 255);
+}
 
-.textLayer ::selection { background: rgb(0,0,255); }
+.textLayer ::selection {
+  background: rgb(0, 0, 255);
+}
 
 .textLayer .endOfContent {
   display: block;
@@ -71,15 +75,14 @@
   z-index: -1;
   cursor: default;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .textLayer .endOfContent.active {
   top: 0px;
 }
-
 
 .annotationLayer section {
   position: absolute;
@@ -180,12 +183,12 @@
 
 .annotationLayer .buttonWidgetAnnotation.checkBox input:checked:before {
   -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .annotationLayer .buttonWidgetAnnotation.checkBox input:checked:after {
   -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .annotationLayer .buttonWidgetAnnotation.radioButton input:checked:before {
@@ -215,8 +218,8 @@
 .annotationLayer .buttonWidgetAnnotation.checkBox input,
 .annotationLayer .buttonWidgetAnnotation.radioButton input {
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   padding: 0;
 }
 
@@ -229,7 +232,7 @@
   position: absolute;
   z-index: 200;
   max-width: 20em;
-  background-color: #FFFF99;
+  background-color: #ffff99;
   box-shadow: 0px 2px 5px #888;
   border-radius: 2px;
   padding: 6px;
@@ -306,13 +309,16 @@
   border: none;
 }
 
-.pdfViewer.scrollHorizontal, .pdfViewer.scrollWrapped, .spread {
+.pdfViewer.scrollHorizontal,
+.pdfViewer.scrollWrapped,
+.spread {
   margin-left: 3.5px;
   margin-right: 3.5px;
   text-align: center;
 }
 
-.pdfViewer.scrollHorizontal, .spread {
+.pdfViewer.scrollHorizontal,
+.spread {
   white-space: nowrap;
 }
 
@@ -456,7 +462,7 @@ select {
   overflow: hidden;
   cursor: none;
   -webkit-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 #viewerContainer.pdfPresentationMode:-moz-full-screen {
@@ -468,7 +474,7 @@ select {
   overflow: hidden;
   cursor: none;
   -moz-user-select: none;
-       user-select: none;
+  user-select: none;
 }
 
 #viewerContainer.pdfPresentationMode:-ms-fullscreen {
@@ -480,7 +486,7 @@ select {
   overflow: hidden;
   cursor: none;
   -ms-user-select: none;
-      user-select: none;
+  user-select: none;
 }
 
 #viewerContainer.pdfPresentationMode:fullscreen {
@@ -492,9 +498,9 @@ select {
   overflow: hidden;
   cursor: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .pdfPresentationMode:-webkit-full-screen a:not(.internalLink) {
@@ -553,9 +559,9 @@ select {
 
   -webkit-transition-duration: 200ms;
 
-          transition-duration: 200ms;
+  transition-duration: 200ms;
   -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
+  transition-timing-function: ease;
 }
 html[dir='ltr'] #sidebarContainer {
   -webkit-transition-property: left;
@@ -577,12 +583,12 @@ html[dir='rtl'] #sidebarContainer {
 #outerContainer.sidebarResizing #sidebarContainer {
   /* Improve responsiveness and avoid visual glitches when the sidebar is resized. */
   -webkit-transition-duration: 0s;
-          transition-duration: 0s;
+  transition-duration: 0s;
   /* Prevent e.g. the thumbnails being selected when the sidebar is resized. */
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #outerContainer.sidebarMoving #sidebarContainer,
@@ -612,15 +618,15 @@ html[dir='rtl'] #outerContainer.sidebarOpen #sidebarContainer {
   -webkit-overflow-scrolling: touch;
   position: absolute;
   width: 100%;
-  background-color: hsla(0,0%,0%,.1);
+  background-color: hsla(0, 0%, 0%, 0.1);
 }
 html[dir='ltr'] #sidebarContent {
   left: 0;
-  box-shadow: inset -1px 0 0 hsla(0,0%,0%,.25);
+  box-shadow: inset -1px 0 0 hsla(0, 0%, 0%, 0.25);
 }
 html[dir='rtl'] #sidebarContent {
   right: 0;
-  box-shadow: inset 1px 0 0 hsla(0,0%,0%,.25);
+  box-shadow: inset 1px 0 0 hsla(0, 0%, 0%, 0.25);
 }
 
 #viewerContainer {
@@ -635,30 +641,34 @@ html[dir='rtl'] #sidebarContent {
 }
 #viewerContainer:not(.pdfPresentationMode) {
   -webkit-transition-duration: 200ms;
-          transition-duration: 200ms;
+  transition-duration: 200ms;
   -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
+  transition-timing-function: ease;
 }
 html[dir='ltr'] #viewerContainer {
-  box-shadow: inset 1px 0 0 hsla(0,0%,100%,.05);
+  box-shadow: inset 1px 0 0 hsla(0, 0%, 100%, 0.05);
 }
 html[dir='rtl'] #viewerContainer {
-  box-shadow: inset -1px 0 0 hsla(0,0%,100%,.05);
+  box-shadow: inset -1px 0 0 hsla(0, 0%, 100%, 0.05);
 }
 
 #outerContainer.sidebarResizing #viewerContainer {
   /* Improve responsiveness and avoid visual glitches when the sidebar is resized. */
   -webkit-transition-duration: 0s;
-          transition-duration: 0s;
+  transition-duration: 0s;
 }
 
-html[dir='ltr'] #outerContainer.sidebarOpen #viewerContainer:not(.pdfPresentationMode) {
+html[dir='ltr']
+  #outerContainer.sidebarOpen
+  #viewerContainer:not(.pdfPresentationMode) {
   -webkit-transition-property: left;
   transition-property: left;
   left: 200px;
   left: var(--sidebar-width);
 }
-html[dir='rtl'] #outerContainer.sidebarOpen #viewerContainer:not(.pdfPresentationMode) {
+html[dir='rtl']
+  #outerContainer.sidebarOpen
+  #viewerContainer:not(.pdfPresentationMode) {
   -webkit-transition-property: right;
   transition-property: right;
   right: 200px;
@@ -688,15 +698,13 @@ html[dir='rtl'] #outerContainer.sidebarOpen #viewerContainer:not(.pdfPresentatio
 }
 html[dir='ltr'] #toolbarSidebar {
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25),
-              inset 0 -1px 0 hsla(0,0%,100%,.05),
-              0 1px 0 hsla(0,0%,0%,.15),
-              0 0 1px hsla(0,0%,0%,.1);
+    inset 0 -1px 0 hsla(0, 0%, 100%, 0.05), 0 1px 0 hsla(0, 0%, 0%, 0.15),
+    0 0 1px hsla(0, 0%, 0%, 0.1);
 }
 html[dir='rtl'] #toolbarSidebar {
   box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.25),
-              inset 0 1px 0 hsla(0,0%,100%,.05),
-              0 1px 0 hsla(0,0%,0%,.15),
-              0 0 1px hsla(0,0%,0%,.1);
+    inset 0 1px 0 hsla(0, 0%, 100%, 0.05), 0 1px 0 hsla(0, 0%, 0%, 0.15),
+    0 0 1px hsla(0, 0%, 0%, 0.1);
 }
 
 #sidebarResizer {
@@ -714,7 +722,9 @@ html[dir='rtl'] #sidebarResizer {
   left: -6px;
 }
 
-#toolbarContainer, .findbar, .secondaryToolbar {
+#toolbarContainer,
+.findbar,
+.secondaryToolbar {
   position: relative;
   height: 32px;
   background-color: #333; /* fallback */
@@ -723,17 +733,19 @@ html[dir='rtl'] #sidebarResizer {
   background-image: url(images/texture.png),
                     linear-gradient(hsla(0,0%,32%,.99), hsla(0,0%,27%,.95)); */
 }
-html[dir='ltr'] #toolbarContainer, .findbar, .secondaryToolbar {
-  box-shadow: inset 0 1px 1px hsla(0,0%,0%,.15),
-              inset 0 -1px 0 hsla(0,0%,100%,.05),
-              0 1px 0 hsla(0,0%,0%,.15),
-              0 1px 1px hsla(0,0%,0%,.1);
+html[dir='ltr'] #toolbarContainer,
+.findbar,
+.secondaryToolbar {
+  box-shadow: inset 0 1px 1px hsla(0, 0%, 0%, 0.15),
+    inset 0 -1px 0 hsla(0, 0%, 100%, 0.05), 0 1px 0 hsla(0, 0%, 0%, 0.15),
+    0 1px 1px hsla(0, 0%, 0%, 0.1);
 }
-html[dir='rtl'] #toolbarContainer, .findbar, .secondaryToolbar {
-  box-shadow: inset 0 1px 1px hsla(0,0%,0%,.15),
-              inset 0 -1px 0 hsla(0,0%,100%,.05),
-              0 1px 0 hsla(0,0%,0%,.15),
-              0 1px 1px hsla(0,0%,0%,.1);
+html[dir='rtl'] #toolbarContainer,
+.findbar,
+.secondaryToolbar {
+  box-shadow: inset 0 1px 1px hsla(0, 0%, 0%, 0.15),
+    inset 0 -1px 0 hsla(0, 0%, 100%, 0.05), 0 1px 0 hsla(0, 0%, 0%, 0.15),
+    0 1px 1px hsla(0, 0%, 0%, 0.1);
 }
 
 #toolbarViewer {
@@ -761,13 +773,21 @@ html[dir='rtl'] #toolbarContainer, .findbar, .secondaryToolbar {
 }
 
 @-webkit-keyframes progressIndeterminate {
-  0% { left: -142px; }
-  100% { left: 0; }
+  0% {
+    left: -142px;
+  }
+  100% {
+    left: 0;
+  }
 }
 
 @keyframes progressIndeterminate {
-  0% { left: -142px; }
-  100% { left: 0; }
+  0% {
+    left: -142px;
+  }
+  100% {
+    left: 0;
+  }
 }
 
 #loadingBar .progress.indeterminate {
@@ -783,17 +803,23 @@ html[dir='rtl'] #toolbarContainer, .findbar, .secondaryToolbar {
   height: 100%;
   width: calc(100% + 150px);
 
-  background: repeating-linear-gradient(135deg,
-                                        #bbb 0, #999 5px,
-                                        #999 45px, #ddd 55px,
-                                        #ddd 95px, #bbb 100px);
+  background: repeating-linear-gradient(
+    135deg,
+    #bbb 0,
+    #999 5px,
+    #999 45px,
+    #ddd 55px,
+    #ddd 95px,
+    #bbb 100px
+  );
 
   -webkit-animation: progressIndeterminate 950ms linear infinite;
 
-          animation: progressIndeterminate 950ms linear infinite;
+  animation: progressIndeterminate 950ms linear infinite;
 }
 
-.findbar, .secondaryToolbar {
+.findbar,
+.secondaryToolbar {
   top: 32px;
   position: absolute;
   z-index: 10000;
@@ -801,7 +827,7 @@ html[dir='rtl'] #toolbarContainer, .findbar, .secondaryToolbar {
   min-width: 16px;
   padding: 0px 6px 0px 6px;
   margin: 4px 2px 4px 2px;
-  color: hsl(0,0%,85%);
+  color: hsl(0, 0%, 85%);
   font-size: 12px;
   line-height: 14px;
   text-align: left;
@@ -829,9 +855,9 @@ html[dir='rtl'] .findbar {
 
 .findbar label {
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #findInput {
@@ -852,12 +878,12 @@ html[dir='rtl'] .findbar {
 #findInput::placeholder {
   font-style: italic;
 }
-#findInput[data-status="pending"] {
+#findInput[data-status='pending'] {
   background-image: url(images/loading-small.png);
   background-repeat: no-repeat;
   background-position: right;
 }
-html[dir='rtl'] #findInput[data-status="pending"] {
+html[dir='rtl'] #findInput[data-status='pending'] {
   background-position: left;
 }
 
@@ -888,15 +914,17 @@ html[dir='rtl'] .secondaryToolbar {
 
 .doorHanger,
 .doorHangerRight {
-  border: 1px solid hsla(0,0%,0%,.5);
+  border: 1px solid hsla(0, 0%, 0%, 0.5);
   border-radius: 2px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
-.doorHanger:after, .doorHanger:before,
-.doorHangerRight:after, .doorHangerRight:before {
+.doorHanger:after,
+.doorHanger:before,
+.doorHangerRight:after,
+.doorHangerRight:before {
   bottom: 100%;
   border: solid transparent;
-  content: " ";
+  content: ' ';
   height: 0;
   width: 0;
   position: absolute;
@@ -904,12 +932,12 @@ html[dir='rtl'] .secondaryToolbar {
 }
 .doorHanger:after,
 .doorHangerRight:after {
-  border-bottom-color: hsla(0,0%,32%,.99);
+  border-bottom-color: hsla(0, 0%, 32%, 0.99);
   border-width: 8px;
 }
 .doorHanger:before,
 .doorHangerRight:before {
-  border-bottom-color: hsla(0,0%,0%,.5);
+  border-bottom-color: hsla(0, 0%, 0%, 0.5);
   border-width: 9px;
 }
 
@@ -946,7 +974,7 @@ html[dir='ltr'] .doorHangerRight:before {
 
 #findMsg {
   font-style: italic;
-  color: #A6B7D0;
+  color: #a6b7d0;
 }
 #findMsg:empty {
   display: none;
@@ -960,7 +988,7 @@ html[dir='ltr'] .doorHangerRight:before {
   position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 html[dir='ltr'] #toolbarViewerLeft,
@@ -1022,7 +1050,7 @@ html[dir='rtl'] .splitToolbarButton > .toolbarButton {
 .toolbarButton[disabled],
 .secondaryToolbarButton[disabled],
 .overlayButton[disabled] {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .splitToolbarButton.toggled .toolbarButton {
@@ -1033,22 +1061,30 @@ html[dir='rtl'] .splitToolbarButton > .toolbarButton {
 .splitToolbarButton:focus > .toolbarButton,
 .splitToolbarButton.toggled > .toolbarButton,
 .toolbarButton.textButton {
-  background-color: hsla(0,0%,0%,.12);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0,0%,100%,.05)), to(hsla(0,0%,100%,0)));
-  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-color: hsla(0, 0%, 0%, 0.12);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsla(0, 0%, 100%, 0.05)),
+    to(hsla(0, 0%, 100%, 0))
+  );
+  background-image: linear-gradient(
+    hsla(0, 0%, 100%, 0.05),
+    hsla(0, 0%, 100%, 0)
+  );
   background-clip: padding-box;
-  border: 1px solid hsla(0,0%,0%,.35);
-  border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42);
-  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
-              0 0 1px hsla(0,0%,100%,.15) inset,
-              0 1px 0 hsla(0,0%,100%,.05);
+  border: 1px solid hsla(0, 0%, 0%, 0.35);
+  border-color: hsla(0, 0%, 0%, 0.32) hsla(0, 0%, 0%, 0.38)
+    hsla(0, 0%, 0%, 0.42);
+  box-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.05) inset,
+    0 0 1px hsla(0, 0%, 100%, 0.15) inset, 0 1px 0 hsla(0, 0%, 100%, 0.05);
   -webkit-transition-property: background-color, border-color, box-shadow;
   transition-property: background-color, border-color, box-shadow;
   -webkit-transition-duration: 150ms;
-          transition-duration: 150ms;
+  transition-duration: 150ms;
   -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
-
+  transition-timing-function: ease;
 }
 .splitToolbarButton > .toolbarButton:hover,
 .splitToolbarButton > .toolbarButton:focus,
@@ -1057,10 +1093,9 @@ html[dir='rtl'] .splitToolbarButton > .toolbarButton {
 .overlayButton:focus,
 .toolbarButton.textButton:hover,
 .toolbarButton.textButton:focus {
-  background-color: hsla(0,0%,0%,.2);
-  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
-              0 0 1px hsla(0,0%,100%,.15) inset,
-              0 0 1px hsla(0,0%,0%,.05);
+  background-color: hsla(0, 0%, 0%, 0.2);
+  box-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.05) inset,
+    0 0 1px hsla(0, 0%, 100%, 0.15) inset, 0 0 1px hsla(0, 0%, 0%, 0.05);
   z-index: 199;
 }
 .splitToolbarButton > .toolbarButton {
@@ -1087,9 +1122,9 @@ html[dir='rtl'] .splitToolbarButton > .toolbarButton:first-child {
 .splitToolbarButtonSeparator {
   padding: 8px 0;
   width: 1px;
-  background-color: hsla(0,0%,0%,.5);
+  background-color: hsla(0, 0%, 0%, 0.5);
   z-index: 99;
-  box-shadow: 0 0 0 1px hsla(0,0%,100%,.08);
+  box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.08);
   display: inline-block;
   margin: 5px 0;
 }
@@ -1103,13 +1138,13 @@ html[dir='rtl'] .splitToolbarButtonSeparator {
 .splitToolbarButton.toggled > .splitToolbarButtonSeparator {
   padding: 12px 0;
   margin: 1px 0;
-  box-shadow: 0 0 0 1px hsla(0,0%,100%,.03);
+  box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.03);
   -webkit-transition-property: padding;
   transition-property: padding;
   -webkit-transition-duration: 10ms;
-          transition-duration: 10ms;
+  transition-duration: 10ms;
   -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
+  transition-timing-function: ease;
 }
 
 .toolbarButton,
@@ -1120,21 +1155,21 @@ html[dir='rtl'] .splitToolbarButtonSeparator {
   padding: 2px 6px 0;
   border: 1px solid transparent;
   border-radius: 2px;
-  color: hsla(0,0%,100%,.8);
+  color: hsla(0, 0%, 100%, 0.8);
   font-size: 12px;
   line-height: 14px;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   /* Opera does not support user-select, use <... unselectable="on"> instead */
   cursor: default;
   -webkit-transition-property: background-color, border-color, box-shadow;
   transition-property: background-color, border-color, box-shadow;
   -webkit-transition-duration: 150ms;
-          transition-duration: 150ms;
+  transition-duration: 150ms;
   -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
+  transition-timing-function: ease;
 }
 
 html[dir='ltr'] .toolbarButton,
@@ -1154,62 +1189,86 @@ html[dir='rtl'] .dropdownToolbarButton {
 .overlayButton,
 .secondaryToolbarButton:hover,
 .secondaryToolbarButton:focus {
-  background-color: hsla(0,0%,0%,.12);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0,0%,100%,.05)), to(hsla(0,0%,100%,0)));
-  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-color: hsla(0, 0%, 0%, 0.12);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsla(0, 0%, 100%, 0.05)),
+    to(hsla(0, 0%, 100%, 0))
+  );
+  background-image: linear-gradient(
+    hsla(0, 0%, 100%, 0.05),
+    hsla(0, 0%, 100%, 0)
+  );
   background-clip: padding-box;
-  border: 1px solid hsla(0,0%,0%,.35);
-  border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42);
-  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
-              0 0 1px hsla(0,0%,100%,.15) inset,
-              0 1px 0 hsla(0,0%,100%,.05);
+  border: 1px solid hsla(0, 0%, 0%, 0.35);
+  border-color: hsla(0, 0%, 0%, 0.32) hsla(0, 0%, 0%, 0.38)
+    hsla(0, 0%, 0%, 0.42);
+  box-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.05) inset,
+    0 0 1px hsla(0, 0%, 100%, 0.15) inset, 0 1px 0 hsla(0, 0%, 100%, 0.05);
 }
 
 .toolbarButton:hover:active,
 .overlayButton:hover:active,
 .dropdownToolbarButton:hover:active,
 .secondaryToolbarButton:hover:active {
-  background-color: hsla(0,0%,0%,.2);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0,0%,100%,.05)), to(hsla(0,0%,100%,0)));
-  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
-  border-color: hsla(0,0%,0%,.35) hsla(0,0%,0%,.4) hsla(0,0%,0%,.45);
-  box-shadow: 0 1px 1px hsla(0,0%,0%,.1) inset,
-              0 0 1px hsla(0,0%,0%,.2) inset,
-              0 1px 0 hsla(0,0%,100%,.05);
+  background-color: hsla(0, 0%, 0%, 0.2);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsla(0, 0%, 100%, 0.05)),
+    to(hsla(0, 0%, 100%, 0))
+  );
+  background-image: linear-gradient(
+    hsla(0, 0%, 100%, 0.05),
+    hsla(0, 0%, 100%, 0)
+  );
+  border-color: hsla(0, 0%, 0%, 0.35) hsla(0, 0%, 0%, 0.4) hsla(0, 0%, 0%, 0.45);
+  box-shadow: 0 1px 1px hsla(0, 0%, 0%, 0.1) inset,
+    0 0 1px hsla(0, 0%, 0%, 0.2) inset, 0 1px 0 hsla(0, 0%, 100%, 0.05);
   -webkit-transition-property: background-color, border-color, box-shadow;
   transition-property: background-color, border-color, box-shadow;
   -webkit-transition-duration: 10ms;
-          transition-duration: 10ms;
+  transition-duration: 10ms;
   -webkit-transition-timing-function: linear;
-          transition-timing-function: linear;
+  transition-timing-function: linear;
 }
 
 .toolbarButton.toggled,
 .splitToolbarButton.toggled > .toolbarButton.toggled,
 .secondaryToolbarButton.toggled {
-  background-color: hsla(0,0%,0%,.3);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0,0%,100%,.05)), to(hsla(0,0%,100%,0)));
-  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
-  border-color: hsla(0,0%,0%,.4) hsla(0,0%,0%,.45) hsla(0,0%,0%,.5);
-  box-shadow: 0 1px 1px hsla(0,0%,0%,.1) inset,
-              0 0 1px hsla(0,0%,0%,.2) inset,
-              0 1px 0 hsla(0,0%,100%,.05);
+  background-color: hsla(0, 0%, 0%, 0.3);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsla(0, 0%, 100%, 0.05)),
+    to(hsla(0, 0%, 100%, 0))
+  );
+  background-image: linear-gradient(
+    hsla(0, 0%, 100%, 0.05),
+    hsla(0, 0%, 100%, 0)
+  );
+  border-color: hsla(0, 0%, 0%, 0.4) hsla(0, 0%, 0%, 0.45) hsla(0, 0%, 0%, 0.5);
+  box-shadow: 0 1px 1px hsla(0, 0%, 0%, 0.1) inset,
+    0 0 1px hsla(0, 0%, 0%, 0.2) inset, 0 1px 0 hsla(0, 0%, 100%, 0.05);
   -webkit-transition-property: background-color, border-color, box-shadow;
   transition-property: background-color, border-color, box-shadow;
   -webkit-transition-duration: 10ms;
-          transition-duration: 10ms;
+  transition-duration: 10ms;
   -webkit-transition-timing-function: linear;
-          transition-timing-function: linear;
+  transition-timing-function: linear;
 }
 
 .toolbarButton.toggled:hover:active,
 .splitToolbarButton.toggled > .toolbarButton.toggled:hover:active,
 .secondaryToolbarButton.toggled:hover:active {
-  background-color: hsla(0,0%,0%,.4);
-  border-color: hsla(0,0%,0%,.4) hsla(0,0%,0%,.5) hsla(0,0%,0%,.55);
-  box-shadow: 0 1px 1px hsla(0,0%,0%,.2) inset,
-              0 0 1px hsla(0,0%,0%,.3) inset,
-              0 1px 0 hsla(0,0%,100%,.05);
+  background-color: hsla(0, 0%, 0%, 0.4);
+  border-color: hsla(0, 0%, 0%, 0.4) hsla(0, 0%, 0%, 0.5) hsla(0, 0%, 0%, 0.55);
+  box-shadow: 0 1px 1px hsla(0, 0%, 0%, 0.2) inset,
+    0 0 1px hsla(0, 0%, 0%, 0.3) inset, 0 1px 0 hsla(0, 0%, 100%, 0.05);
 }
 
 .dropdownToolbarButton {
@@ -1229,15 +1288,20 @@ html[dir='rtl'] .dropdownToolbarButton {
 .dropdownToolbarButton > select {
   min-width: 140px;
   font-size: 12px;
-  color: hsl(0,0%,95%);
+  color: hsl(0, 0%, 95%);
   margin: 0;
   padding: 3px 2px 2px;
   border: none;
-  background: rgba(0,0,0,0); /* Opera does not support 'transparent' <select> background */
+  background: rgba(
+    0,
+    0,
+    0,
+    0
+  ); /* Opera does not support 'transparent' <select> background */
 }
 
 .dropdownToolbarButton > select > option {
-  background: hsl(0,0%,24%);
+  background: hsl(0, 0%, 24%);
 }
 
 #customScaleOption {
@@ -1245,7 +1309,7 @@ html[dir='rtl'] .dropdownToolbarButton {
 }
 
 #pageWidthOption {
-  border-bottom: 1px rgba(255, 255, 255, .5) solid;
+  border-bottom: 1px rgba(255, 255, 255, 0.5) solid;
 }
 
 html[dir='ltr'] .splitToolbarButton:first-child,
@@ -1291,10 +1355,10 @@ html[dir='rtl'] #findNext {
   left: 7px;
 }
 
-html[dir="ltr"] .secondaryToolbarButton::before {
+html[dir='ltr'] .secondaryToolbarButton::before {
   left: 4px;
 }
-html[dir="rtl"] .secondaryToolbarButton::before {
+html[dir='rtl'] .secondaryToolbarButton::before {
   right: 4px;
 }
 
@@ -1380,7 +1444,7 @@ html[dir='rtl'] .toolbarButton.pageDown::before {
 }
 
 .bookmark[href='#'] {
-  opacity: .5;
+  opacity: 0.5;
   pointer-events: none;
 }
 
@@ -1393,10 +1457,10 @@ html[dir='rtl'] .toolbarButton.pageDown::before {
   content: url(images/toolbarButton-viewThumbnail.png);
 }
 
-html[dir="ltr"] #viewOutline.toolbarButton::before {
+html[dir='ltr'] #viewOutline.toolbarButton::before {
   content: url(images/toolbarButton-viewOutline.png);
 }
-html[dir="rtl"] #viewOutline.toolbarButton::before {
+html[dir='rtl'] #viewOutline.toolbarButton::before {
   content: url(images/toolbarButton-viewOutline-rtl.png);
 }
 
@@ -1414,7 +1478,7 @@ html[dir="rtl"] #viewOutline.toolbarButton::before {
   top: 1px;
   /* Create a filled circle, with a diameter of 9 pixels, using only CSS: */
   content: '';
-  background-color: #70DB55;
+  background-color: #70db55;
   height: 9px;
   width: 9px;
   border-radius: 50%;
@@ -1436,25 +1500,25 @@ html[dir='rtl'] .toolbarButton.pdfSidebarNotification::after {
   min-width: 100%;
   white-space: normal;
 }
-html[dir="ltr"] .secondaryToolbarButton {
+html[dir='ltr'] .secondaryToolbarButton {
   padding-left: 24px;
   text-align: left;
 }
-html[dir="rtl"] .secondaryToolbarButton {
+html[dir='rtl'] .secondaryToolbarButton {
   padding-right: 24px;
   text-align: right;
 }
-html[dir="ltr"] .secondaryToolbarButton.bookmark {
+html[dir='ltr'] .secondaryToolbarButton.bookmark {
   padding-left: 27px;
 }
-html[dir="rtl"] .secondaryToolbarButton.bookmark {
+html[dir='rtl'] .secondaryToolbarButton.bookmark {
   padding-right: 27px;
 }
 
-html[dir="ltr"] .secondaryToolbarButton > span {
+html[dir='ltr'] .secondaryToolbarButton > span {
   padding-right: 4px;
 }
-html[dir="rtl"] .secondaryToolbarButton > span {
+html[dir='rtl'] .secondaryToolbarButton > span {
   padding-left: 4px;
 }
 
@@ -1515,8 +1579,8 @@ html[dir="rtl"] .secondaryToolbarButton > span {
   padding: 8px 0;
   margin: 8px 4px;
   width: 1px;
-  background-color: hsla(0,0%,0%,.5);
-  box-shadow: 0 0 0 1px hsla(0,0%,100%,.08);
+  background-color: hsla(0, 0%, 0%, 0.5);
+  box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.08);
 }
 html[dir='ltr'] .verticalToolbarSeparator {
   margin-left: 2px;
@@ -1530,8 +1594,8 @@ html[dir='rtl'] .verticalToolbarSeparator {
   margin: 0 0 4px 0;
   height: 1px;
   width: 100%;
-  background-color: hsla(0,0%,0%,.5);
-  box-shadow: 0 0 0 1px hsla(0,0%,100%,.08);
+  background-color: hsla(0, 0%, 0%, 0.5);
+  box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.08);
 }
 
 .toolbarField {
@@ -1539,27 +1603,37 @@ html[dir='rtl'] .verticalToolbarSeparator {
   margin: 4px 0 4px 0;
   border: 1px solid transparent;
   border-radius: 2px;
-  background-color: hsla(0,0%,100%,.09);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0,0%,100%,.05)), to(hsla(0,0%,100%,0)));
-  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-color: hsla(0, 0%, 100%, 0.09);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsla(0, 0%, 100%, 0.05)),
+    to(hsla(0, 0%, 100%, 0))
+  );
+  background-image: linear-gradient(
+    hsla(0, 0%, 100%, 0.05),
+    hsla(0, 0%, 100%, 0)
+  );
   background-clip: padding-box;
-  border: 1px solid hsla(0,0%,0%,.35);
-  border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42);
-  box-shadow: 0 1px 0 hsla(0,0%,0%,.05) inset,
-              0 1px 0 hsla(0,0%,100%,.05);
-  color: hsl(0,0%,95%);
+  border: 1px solid hsla(0, 0%, 0%, 0.35);
+  border-color: hsla(0, 0%, 0%, 0.32) hsla(0, 0%, 0%, 0.38)
+    hsla(0, 0%, 0%, 0.42);
+  box-shadow: 0 1px 0 hsla(0, 0%, 0%, 0.05) inset,
+    0 1px 0 hsla(0, 0%, 100%, 0.05);
+  color: hsl(0, 0%, 95%);
   font-size: 12px;
   line-height: 14px;
   outline-style: none;
   -webkit-transition-property: background-color, border-color, box-shadow;
   transition-property: background-color, border-color, box-shadow;
   -webkit-transition-duration: 150ms;
-          transition-duration: 150ms;
+  transition-duration: 150ms;
   -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
+  transition-timing-function: ease;
 }
 
-.toolbarField[type=checkbox] {
+.toolbarField[type='checkbox'] {
   display: inline-block;
   margin: 8px 0px;
 }
@@ -1579,18 +1653,19 @@ html[dir='rtl'] .verticalToolbarSeparator {
 
 .toolbarField.pageNumber::-webkit-inner-spin-button,
 .toolbarField.pageNumber::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .toolbarField:hover {
-  background-color: hsla(0,0%,100%,.11);
-  border-color: hsla(0,0%,0%,.4) hsla(0,0%,0%,.43) hsla(0,0%,0%,.45);
+  background-color: hsla(0, 0%, 100%, 0.11);
+  border-color: hsla(0, 0%, 0%, 0.4) hsla(0, 0%, 0%, 0.43) hsla(0, 0%, 0%, 0.45);
 }
 
 .toolbarField:focus {
-  background-color: hsla(0,0%,100%,.15);
-  border-color: hsla(204,100%,65%,.8) hsla(204,100%,65%,.85) hsla(204,100%,65%,.9);
+  background-color: hsla(0, 0%, 100%, 0.15);
+  border-color: hsla(204, 100%, 65%, 0.8) hsla(204, 100%, 65%, 0.85)
+    hsla(204, 100%, 65%, 0.9);
 }
 
 .toolbarLabel {
@@ -1599,14 +1674,14 @@ html[dir='rtl'] .verticalToolbarSeparator {
   margin: 4px 2px 4px 0;
   border: 1px solid transparent;
   border-radius: 2px;
-  color: hsl(0,0%,85%);
+  color: hsl(0, 0%, 85%);
   font-size: 12px;
   line-height: 14px;
   text-align: left;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   cursor: default;
 }
 
@@ -1664,35 +1739,51 @@ html[dir='rtl'] .thumbnail {
 
 a:focus > .thumbnail > .thumbnailSelectionRing > .thumbnailImage,
 .thumbnail:hover > .thumbnailSelectionRing > .thumbnailImage {
-  opacity: .9;
+  opacity: 0.9;
 }
 
 a:focus > .thumbnail > .thumbnailSelectionRing,
 .thumbnail:hover > .thumbnailSelectionRing {
-  background-color: hsla(0,0%,100%,.15);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0,0%,100%,.05)), to(hsla(0,0%,100%,0)));
-  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-color: hsla(0, 0%, 100%, 0.15);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsla(0, 0%, 100%, 0.05)),
+    to(hsla(0, 0%, 100%, 0))
+  );
+  background-image: linear-gradient(
+    hsla(0, 0%, 100%, 0.05),
+    hsla(0, 0%, 100%, 0)
+  );
   background-clip: padding-box;
-  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
-              0 0 1px hsla(0,0%,100%,.2) inset,
-              0 0 1px hsla(0,0%,0%,.2);
-  color: hsla(0,0%,100%,.9);
+  box-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.05) inset,
+    0 0 1px hsla(0, 0%, 100%, 0.2) inset, 0 0 1px hsla(0, 0%, 0%, 0.2);
+  color: hsla(0, 0%, 100%, 0.9);
 }
 
 .thumbnail.selected > .thumbnailSelectionRing > .thumbnailImage {
-  box-shadow: 0 0 0 1px hsla(0,0%,0%,.5);
+  box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.5);
   opacity: 1;
 }
 
 .thumbnail.selected > .thumbnailSelectionRing {
-  background-color: hsla(0,0%,100%,.3);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0,0%,100%,.05)), to(hsla(0,0%,100%,0)));
-  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-color: hsla(0, 0%, 100%, 0.3);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsla(0, 0%, 100%, 0.05)),
+    to(hsla(0, 0%, 100%, 0))
+  );
+  background-image: linear-gradient(
+    hsla(0, 0%, 100%, 0.05),
+    hsla(0, 0%, 100%, 0)
+  );
   background-clip: padding-box;
-  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
-              0 0 1px hsla(0,0%,100%,.1) inset,
-              0 0 1px hsla(0,0%,0%,.2);
-  color: hsla(0,0%,100%,1);
+  box-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.05) inset,
+    0 0 1px hsla(0, 0%, 100%, 0.1) inset, 0 0 1px hsla(0, 0%, 0%, 0.2);
+  color: hsla(0, 0%, 100%, 1);
 }
 
 #outlineView,
@@ -1704,9 +1795,9 @@ a:focus > .thumbnail > .thumbnailSelectionRing,
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #outlineView {
@@ -1731,18 +1822,20 @@ html[dir='rtl'] .outlineItem > .outlineItems {
   text-decoration: none;
   display: inline-block;
   min-width: 95%;
-  min-width: calc(100% - 4px); /* Subtract the right padding (left, in RTL mode)
+  min-width: calc(
+    100% - 4px
+  ); /* Subtract the right padding (left, in RTL mode)
                                   of the container. */
   height: auto;
   margin-bottom: 1px;
   border-radius: 2px;
-  color: hsla(0,0%,100%,.8);
+  color: hsla(0, 0%, 100%, 0.8);
   font-size: 13px;
   line-height: 15px;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   white-space: normal;
 }
 
@@ -1773,7 +1866,7 @@ html[dir='rtl'] .attachmentsItem > button {
   position: relative;
   height: 0;
   width: 0;
-  color: hsla(0,0%,100%,.5);
+  color: hsla(0, 0%, 100%, 0.5);
 }
 .outlineItemToggler::before {
   content: url(images/treeitem-expanded.png);
@@ -1807,31 +1900,47 @@ html[dir='rtl'] .outlineItemToggler::before {
 .outlineItemToggler:hover ~ .outlineItems,
 .outlineItem > a:hover,
 .attachmentsItem > button:hover {
-  background-color: hsla(0,0%,100%,.02);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0,0%,100%,.05)), to(hsla(0,0%,100%,0)));
-  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-color: hsla(0, 0%, 100%, 0.02);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsla(0, 0%, 100%, 0.05)),
+    to(hsla(0, 0%, 100%, 0))
+  );
+  background-image: linear-gradient(
+    hsla(0, 0%, 100%, 0.05),
+    hsla(0, 0%, 100%, 0)
+  );
   background-clip: padding-box;
-  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
-              0 0 1px hsla(0,0%,100%,.2) inset,
-              0 0 1px hsla(0,0%,0%,.2);
+  box-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.05) inset,
+    0 0 1px hsla(0, 0%, 100%, 0.2) inset, 0 0 1px hsla(0, 0%, 0%, 0.2);
   border-radius: 2px;
-  color: hsla(0,0%,100%,.9);
+  color: hsla(0, 0%, 100%, 0.9);
 }
 
 .outlineItem.selected {
-  background-color: hsla(0,0%,100%,.08);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0,0%,100%,.05)), to(hsla(0,0%,100%,0)));
-  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-color: hsla(0, 0%, 100%, 0.08);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(hsla(0, 0%, 100%, 0.05)),
+    to(hsla(0, 0%, 100%, 0))
+  );
+  background-image: linear-gradient(
+    hsla(0, 0%, 100%, 0.05),
+    hsla(0, 0%, 100%, 0)
+  );
   background-clip: padding-box;
-  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
-              0 0 1px hsla(0,0%,100%,.1) inset,
-              0 0 1px hsla(0,0%,0%,.2);
-  color: hsla(0,0%,100%,1);
+  box-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.05) inset,
+    0 0 1px hsla(0, 0%, 100%, 0.1) inset, 0 0 1px hsla(0, 0%, 0%, 0.2);
+  color: hsla(0, 0%, 100%, 1);
 }
 
 .noResults {
   font-size: 12px;
-  color: hsla(0,0%,100%,.8);
+  color: hsla(0, 0%, 100%, 0.8);
   font-style: italic;
   cursor: default;
 }
@@ -1839,11 +1948,15 @@ html[dir='rtl'] .outlineItemToggler::before {
 /* TODO: file FF bug to support ::-moz-selection:window-inactive
    so we can override the opaque grey background when the window is inactive;
    see https://bugzilla.mozilla.org/show_bug.cgi?id=706209 */
-::-moz-selection { background: rgba(0,0,255,0.3); }
-::selection { background: rgba(0,0,255,0.3); }
+::-moz-selection {
+  background: rgba(0, 0, 255, 0.3);
+}
+::selection {
+  background: rgba(0, 0, 255, 0.3);
+}
 
 #errorWrapper {
-  background: none repeat scroll 0 0 #FF5555;
+  background: none repeat scroll 0 0 #ff5555;
   color: white;
   left: 0;
   position: absolute;
@@ -1865,7 +1978,7 @@ html[dir='rtl'] .outlineItemToggler::before {
 }
 
 #errorMoreInfo {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   color: black;
   padding: 3px;
   margin: 3px;
@@ -1883,7 +1996,7 @@ html[dir='rtl'] .outlineItemToggler::before {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: hsla(0,0%,0%,.2);
+  background-color: hsla(0, 0%, 0%, 0.2);
   z-index: 40000;
 }
 #overlayContainer > * {
@@ -1901,20 +2014,19 @@ html[dir='rtl'] .outlineItemToggler::before {
   display: inline-block;
   padding: 15px;
   border-spacing: 4px;
-  color: hsl(0,0%,85%);
+  color: hsl(0, 0%, 85%);
   font-size: 12px;
   line-height: 14px;
   background-color: #474747; /* fallback */
   background-image: url(images/texture.png),
-                    -webkit-gradient(linear, left top, left bottom, from(hsla(0,0%,32%,.99)), to(hsla(0,0%,27%,.95)));
+    -webkit-gradient(linear, left top, left bottom, from(hsla(0, 0%, 32%, 0.99)), to(hsla(0, 0%, 27%, 0.95)));
   background-image: url(images/texture.png),
-                    linear-gradient(hsla(0,0%,32%,.99), hsla(0,0%,27%,.95));
-  box-shadow: inset 1px 0 0 hsla(0,0%,100%,.08),
-              inset 0 1px 1px hsla(0,0%,0%,.15),
-              inset 0 -1px 0 hsla(0,0%,100%,.05),
-              0 1px 0 hsla(0,0%,0%,.15),
-              0 1px 1px hsla(0,0%,0%,.1);
-  border: 1px solid hsla(0,0%,0%,.5);
+    linear-gradient(hsla(0, 0%, 32%, 0.99), hsla(0, 0%, 27%, 0.95));
+  box-shadow: inset 1px 0 0 hsla(0, 0%, 100%, 0.08),
+    inset 0 1px 1px hsla(0, 0%, 0%, 0.15),
+    inset 0 -1px 0 hsla(0, 0%, 100%, 0.05), 0 1px 0 hsla(0, 0%, 0%, 0.15),
+    0 1px 1px hsla(0, 0%, 0%, 0.1);
+  border: 1px solid hsla(0, 0%, 0%, 0.5);
   border-radius: 4px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
@@ -1936,8 +2048,8 @@ html[dir='rtl'] .outlineItemToggler::before {
   margin: 4px 0 4px 0;
   height: 1px;
   width: 100%;
-  background-color: hsla(0,0%,0%,.5);
-  box-shadow: 0 0 0 1px hsla(0,0%,100%,.08);
+  background-color: hsla(0, 0%, 0%, 0.5);
+  box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.08);
 }
 
 .dialog .buttonRow {
@@ -2006,9 +2118,9 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
   width: 300px;
 }
 #PDFBug .controls {
-    background:#EEEEEE;
-    border-bottom: 1px solid #666666;
-    padding: 3px;
+  background: #eeeeee;
+  border-bottom: 1px solid #666666;
+  padding: 3px;
 }
 #PDFBug .panels {
   bottom: 0;
@@ -2035,18 +2147,18 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
   white-space: pre;
 }
 #PDFBug .stats .title {
-    font-weight: bold;
+  font-weight: bold;
 }
 #PDFBug table {
   font-size: 10px;
 }
 
 #viewer.textLayer-visible .textLayer {
-  opacity: 1.0;
+  opacity: 1;
 }
 
 #viewer.textLayer-visible .canvasWrapper {
-  background-color: rgb(128,255,128);
+  background-color: rgb(128, 255, 128);
 }
 
 #viewer.textLayer-visible .canvasWrapper canvas {
@@ -2066,21 +2178,22 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
 }
 
 #viewer.textLayer-shadow .textLayer > span {
-  background-color: rgba(255,255,255, .6);
+  background-color: rgba(255, 255, 255, 0.6);
   color: black;
 }
 
 .grab-to-pan-grab {
-  cursor: url("images/grab.cur"), move !important;
+  cursor: url('images/grab.cur'), move !important;
   cursor: -webkit-grab !important;
   cursor: grab !important;
 }
-.grab-to-pan-grab *:not(input):not(textarea):not(button):not(select):not(:link) {
+.grab-to-pan-grab
+  *:not(input):not(textarea):not(button):not(select):not(:link) {
   cursor: inherit !important;
 }
 .grab-to-pan-grab:active,
 .grab-to-pan-grabbing {
-  cursor: url("images/grabbing.cur"), move !important;
+  cursor: url('images/grabbing.cur'), move !important;
   cursor: -webkit-grabbing !important;
   cursor: grabbing !important;
 
@@ -2103,17 +2216,18 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
   display: none;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio: 1.1), screen and (min-resolution: 1.1dppx) {
+@media screen and (-webkit-min-device-pixel-ratio: 1.1),
+  screen and (min-resolution: 1.1dppx) {
   /* Rules for Retina screens */
   .toolbarButton::before {
     -webkit-transform: scale(0.5);
-            transform: scale(0.5);
+    transform: scale(0.5);
     top: -5px;
   }
 
   .secondaryToolbarButton::before {
     -webkit-transform: scale(0.5);
-            transform: scale(0.5);
+    transform: scale(0.5);
     top: -4px;
   }
 
@@ -2130,7 +2244,7 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
   }
 
   .toolbarField.pageNumber.visiblePageIsLoading,
-  #findInput[data-status="pending"] {
+  #findInput[data-status='pending'] {
     background-image: url(images/loading-small@2x.png);
     background-size: 16px 17px;
   }
@@ -2219,10 +2333,10 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
     content: url(images/toolbarButton-viewThumbnail@2x.png);
   }
 
-  html[dir="ltr"] #viewOutline.toolbarButton::before {
+  html[dir='ltr'] #viewOutline.toolbarButton::before {
     content: url(images/toolbarButton-viewOutline@2x.png);
   }
-  html[dir="rtl"] #viewOutline.toolbarButton::before {
+  html[dir='rtl'] #viewOutline.toolbarButton::before {
     content: url(images/toolbarButton-viewOutline-rtl@2x.png);
   }
 
@@ -2288,7 +2402,7 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
 
   .outlineItemToggler::before {
     -webkit-transform: scale(0.5);
-            transform: scale(0.5);
+    transform: scale(0.5);
     top: -1px;
     content: url(images/treeitem-expanded@2x.png);
   }
@@ -2313,14 +2427,22 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
   }
 
   /* Rules for browsers that don't support mozPrintCallback. */
-  #sidebarContainer, #secondaryToolbar, .toolbar, #loadingBox, #errorWrapper, .textLayer {
+  #sidebarContainer,
+  #secondaryToolbar,
+  .toolbar,
+  #loadingBox,
+  #errorWrapper,
+  .textLayer {
     display: none;
   }
   #viewerContainer {
     overflow: visible;
   }
 
-  #mainContainer, #viewerContainer, .page, .page canvas {
+  #mainContainer,
+  #viewerContainer,
+  .page,
+  .page canvas {
     position: static;
     padding: 0;
     margin: 0;
@@ -2383,13 +2505,13 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
     left: auto;
     position: inherit;
     -webkit-transform: none;
-            transform: none;
+    transform: none;
   }
 }
 
 @media all and (max-width: 840px) {
   #sidebarContent {
-    background-color: hsla(0,0%,0%,.7);
+    background-color: hsla(0, 0%, 0%, 0.7);
   }
 
   html[dir='ltr'] #outerContainer.sidebarOpen #viewerContainer {
@@ -2428,7 +2550,8 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
 }
 
 @media all and (max-width: 640px) {
-  .hiddenSmallView, .hiddenSmallView * {
+  .hiddenSmallView,
+  .hiddenSmallView * {
     display: none;
   }
   .visibleSmallView {

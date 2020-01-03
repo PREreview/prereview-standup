@@ -31,9 +31,9 @@ function view (state, emit) {
         </div>
 
         <div class="flex flex-column w-100 ">
-            ${preprintlist(state, emit)}
-            ${getResultString(state, emit)}
-            ${pagingbuttons(state, emit)}
+          ${preprintlist(state, emit)}
+          ${getResultString(state, emit)}
+          ${pagingbuttons(state, emit)}
         </div>
 
       </div>

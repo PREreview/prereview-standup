@@ -58,6 +58,7 @@ function view (state, emit) {
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray">
       ${nav(state, emit)}
+      
 			<div class=${contentContainer}>
         ${content}
       </div>

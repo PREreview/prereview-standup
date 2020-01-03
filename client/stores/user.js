@@ -77,7 +77,7 @@ module.exports = async (state, emitter) => {
 
       // // if we get here, the user is logged in and we have their data
       // if (state.route === '/') return (window.location = '/find')
-      
+
       if (state.contentloaded) {
         emitter.emit('render')
       } else {

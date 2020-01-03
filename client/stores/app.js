@@ -1,12 +1,13 @@
 module.exports = (state, emitter) => {
   state.dimensions = {
     width: (window.innerWidth > 0) ? window.innerWidth : screen.width,
-    height: (window.innerHeight > 0) ? window.innerHeight : screen.height
+    height: (window.innerHeight > 0) ? window.innerHeight : screen.height,
   }
 
   state.appdata = {
     title: 'PREreview',
     settings: {},
+    toggleMenuButton: false,
     version: require('../package.json').version
   }
 
@@ -22,4 +23,12 @@ module.exports = (state, emitter) => {
   }
 
   window.addEventListener('resize', onresize)
+
+  emitter.on('DOMContentLoaded', function() {
+    emitter.on('navigation-mnu:toggle', () => {
+      state.appdata.toggleMenuButton = !state.appdata.toggleMenuButton
+
+      emitter.emit('render')
+    })
+  })
 }
