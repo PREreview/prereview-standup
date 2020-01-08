@@ -47,7 +47,7 @@
     "identifiers-arxiv": "^0.1.1",
     "joi": "^14.3.1",
     "keyfinder": "^1.0.0",
-    "knex": "^0.19.1",
+    "knex": "^0.20.7",
     "lorem-ipsum": "^2.0.1",
     "lunr": "^2.3.6",
     "markdown-string": "^0.2.0",

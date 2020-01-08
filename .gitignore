@@ -97,3 +97,6 @@ config/
 
 # Prettiercc
 .prettierrc.js
+
+# IDEA
+.idea

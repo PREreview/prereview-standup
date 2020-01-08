@@ -14,7 +14,7 @@
   "dependencies": {
     "animejs": "^3.0.1",
     "babel-polyfill": "^6.26.0",
-    "choo": "^6.13.1",
+    "choo": "^7.0.0",
     "choo-service-worker": "^2.4.0",
     "hyphenate-style-name": "^1.0.3",
     "lodash": "^4.17.11",
