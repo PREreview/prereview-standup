@@ -29,6 +29,7 @@
     "choo-devtools": "^2.5.1",
     "choo-service-worker": "^2.4.0",
     "cors": "^2.8.5",
+    "cors-anywhere": "^0.4.1",
     "deep_find": "^1.0.1",
     "deepdash": "^4.2.10",
     "doi-regex": "^0.1.10",
