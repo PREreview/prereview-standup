@@ -1,53 +1,9 @@
 var prereviews = require('../../../db/tables/prereviews')
 var convertDelta = require('../../../../client/lib/editor/convert')
-const fetch = require('node-fetch')
+var zenodoService = require('../../../services/zenodo');
 
 var express = require('express')
 var router = express.Router()
-
-const ACCESS_TOKEN =
-  'JQeLsGAvpkCc70Du6W2LYuZKp4WK1RYvq5huzpDi8uXp6T16nBM0tBTc7nUE'
-
-const zenodoBaseUrl = (action = '') =>
-  `https://sandbox.zenodo.org/api/deposit/depositions${action}?access_token=${ACCESS_TOKEN}`;
-
-const zenodoOptions = (data = {}) => ({
-  method: 'POST',
-  body: data,
-  headers: { 'Content-Type': 'application/json' }
-})
-
-const generateDOI = async prereview => {
-
-  const data = {
-    metadata: {
-      upload_type: "publication",
-      publication_type: "other",
-      title: 'My first upload',
-      description: 'This is my first upload',
-      creators: [{
-        'name': 'Doe, John',
-        'affiliation': 'Zenodo'
-      }]
-    }
-  };
-
-  // Create a deposition
-  const depositionRes = await fetch(zenodoBaseUrl(), zenodoOptions(data));
-  const depositionData = await depositionRes.json();
-
-  console.log("dap", depositionData);
-
-  // Publish the deposition
-  const action = `/${depositionData.id}actions/publish`;
-  const publishRes = await fetch(zenodoBaseUrl(action), zenodoOptions());
-  const publishData = await publishRes.json();
-
-  console.log("nop", publishData);
-
-
-  return '0000-0002-0900-3713'
-}
 
 // Submits a new PREreview
 router.post('/submit', async function (req, res, next) {
@@ -72,12 +28,20 @@ router.post('/submit', async function (req, res, next) {
     content: convertDelta.toHTML(req.body.prereview).replace('<p><br></p>', '')
   }
 
+  const zenodoData = {
+    authorName: req.body.author.name,
+    authorOrchid: req.body.author.orcid,
+    content: prereview.content,
+    title: req.body.preprint.title,
+    description: req.body.preprint.abstract
+  }
+
   try {
-    prereview.doi = await generateDOI(prereview)
-
-    // await prereviews.addPrereview(prereview)
-
-    return next()
+    // Generate the DOI for it
+    prereview.doi = await zenodoService.generateDOI(zenodoData)
+    // Save it in our DB
+    const data = await prereviews.addPrereview(prereview)
+    return res.json(data)
   } catch (e) {
     console.error('Error trying to create PREreview with data:', JSON.stringify(prereview))
     console.error(e)

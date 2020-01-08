@@ -1,0 +1,90 @@
+const fetch = require('node-fetch')
+const FormData = require('form-data')
+const fs = require('fs');
+
+const ENV = process.env.ENVIRONMENT || "dev";
+
+const ACCESS_TOKEN = {
+  dev: 'JQeLsGAvpkCc70Du6W2LYuZKp4WK1RYvq5huzpDi8uXp6T16nBM0tBTc7nUE',
+  prod: 'JQeLsGAvpkCc70Du6W2LYuZKp4WK1RYvq5huzpDi8uXp6T16nBM0tBTc7nUE',
+  // prod: 'RsHOiW6HZbDzYYfKsRB7nSu79DvRJ5zUmuP3QWsmalrLXOWCzXCn4FC0FV7E'
+}[ENV];
+
+const BASE_URL = {
+  dev: 'https://sandbox.zenodo.org',
+  prod: 'https://sandbox.zenodo.org',
+  // prod: 'https://zenodo.org'
+}[ENV];
+
+const zenodoBaseUrl = (action = '') =>
+  `${BASE_URL}/api/deposit/depositions${action}?access_token=${ACCESS_TOKEN}`
+
+const zenodoPayload = (body = {}, headers = {}) => ({
+  method: 'POST', body, headers: { 'content-type': 'application/json', ...headers }
+})
+
+const generateDOI = async prereviewData => {
+  // Review deposition data
+  const data = {
+    metadata: {
+      upload_type: 'publication',
+      publication_type: 'article',
+      title: prereviewData.title,
+      description: prereviewData.description,
+      creators: [{
+        name: prereviewData.authorName,
+        orcid: prereviewData.authorOrcid
+      }]
+    }
+  }
+
+  // Create a deposition
+  const depositionUrl = zenodoBaseUrl()
+  const depositionPayload = zenodoPayload(JSON.stringify(data))
+  const depositionRes = await fetch(depositionUrl, depositionPayload)
+  const depositionData = await depositionRes.json()
+
+  // Check if we have a valid deposition id
+  if (!depositionData.id) {
+    throw new Error("Missing Zenodo deposition id")
+    return;
+  }
+
+  // Review deposition file
+  const formData = new FormData();
+  const buffer = Buffer.from(prereviewData.content, 'utf8');
+  formData.append('file', buffer, {
+    contentType: 'text/html',
+    name: 'file',
+    filename: `review_${Date.now()}.html`,
+  });
+
+  // Upload the deposition file
+  const uploadAction = `/${depositionData.id}/files`
+  const uploadUrl = zenodoBaseUrl(uploadAction)
+  const uploadPayload = zenodoPayload(formData, formData.getHeaders())
+  const uploadRes = await fetch(uploadUrl, uploadPayload)
+  const uploadData = await uploadRes.json();
+
+  // Publish the deposition
+  const publishAction = `/${depositionData.id}/actions/publish`
+  const publishUrl = zenodoBaseUrl(publishAction)
+  const publishPayload = zenodoPayload()
+  const publishRes = await fetch(publishUrl, publishPayload)
+  const publishData = await publishRes.json()
+
+  // Check if we have a valid DOI
+  if (!publishData.doi) {
+    throw new Error("Missing DOI in publish data")
+    return;
+  }
+
+  // Success
+  console.log(`
+    [ZENODO] Deposition published successfully at https://sandbox.zenodo.org/deposit/${depositionData.id}
+  `)
+
+  return publishData.doi
+}
+
+module.exports = { generateDOI }

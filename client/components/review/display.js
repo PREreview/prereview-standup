@@ -46,7 +46,13 @@ module.exports = function view (state, emit, review) {
     <div class="flex flex-row w-100 mb2">
       <div class="flex flex-row w-100 justify-between items-center">
         ${author}
-        <div>${new Date(review.date_created).toLocaleString({ dateStyle: 'medium' })}</div>
+
+        <div>
+          <small>
+          <b>${new Date(review.date_created).toLocaleString({ dateStyle: 'medium' })}</b>
+          <div><a href="https://doi.org/${review.doi}">doi.org/${review.doi}</a></div>
+          </small>
+        </div>
       </div>
     </div>
     <div class="flex flex-column lhview-copy w-100 pb2 mb2">
