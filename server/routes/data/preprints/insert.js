@@ -9,7 +9,37 @@ router.post('/insert', async function(req, res, next) {
     return res.status(401)
   }
 
-  var preprint = req.body
+  var {
+    id,
+    title,
+    abstract,
+    source,
+    publisher,
+    authors,
+    date_created,
+    date_published,
+    date_indexed,
+    authorstring,
+    license, // TODO check why this converts to invalid json
+    n_prereviews,
+    document
+  } = req.body
+
+  var preprint = {
+    id,
+    title,
+    abstract,
+    source,
+    publisher,
+    authors,
+    date_created,
+    date_published,
+    date_indexed,
+    authorstring,
+    n_prereviews,
+    document
+  }
+
   // var preprintExists = await checkExists(preprint)
 
   // if (!preprintExists) {
@@ -23,7 +53,7 @@ router.post('/insert', async function(req, res, next) {
         )
         console.error(e)
         res.json({ preprintAlredyExists: true })
-        res.status(500, 'Something went wrong trying to publish this PREreview')
+        res.status(500, 'Something went wrong trying to publish this PREprint')
       })
   // } else {
   //   return res.json({ preprintAlredyExists: true })
