@@ -26,9 +26,8 @@ app.use(require('./stores/sort'))
 app.use(require('./stores/add'))
 
 app.route('/styleguide', require('./views/styleguide'))
-app.route('/', require('./views/landing'))
+app.route('/', require('./views/find'))
 app.route('/login-redirect', require('./views/login-redirect'))
-app.route('/find', require('./views/find'))
 app.route('/profile', require('./views/profile'))
 
 app.route('/prereview-published', require('./views/prereview-published'))
