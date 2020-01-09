@@ -86,5 +86,7 @@ const generateDOI = async prereviewData => {
 
   return publishData.doi
 }
+// Testing:
+// generateDOI({ title: "test", authorName: "Daniel", authorOrcid: "0000-0001-9596-7596", description: "desc", content: "<h1>test</h1>" })
 
 module.exports = { generateDOI }

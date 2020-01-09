@@ -50,7 +50,7 @@ module.exports = function view (state, emit, review) {
         <div>
           <small>
           <b>${new Date(review.date_created).toLocaleString({ dateStyle: 'medium' })}</b>
-          <div><a href="https://doi.org/${review.doi}">doi.org/${review.doi}</a></div>
+          <div>${review.doi ? html`<a href="https://doi.org/${review.doi}">${review.doi}</a>` : ''}</div>
           </small>
         </div>
       </div>

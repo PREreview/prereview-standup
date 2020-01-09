@@ -22,18 +22,27 @@ router.post('/submit', async function (req, res, next) {
   //   return res.status(500, 'preprint DOI is not valid')
   // }
 
-  var prereview = {
-    preprint_id: req.body.preprint.id,
-    author_id: req.body.author.user_id,
-    content: convertDelta.toHTML(req.body.prereview).replace('<p><br></p>', '')
-  }
+  const content = convertDelta.toHTML(req.body.prereview).replace('<p><br></p>', '');
+
+  // Search for headings in the content - grab the first one
+  // This will become the prereview title - if available
+  const titleMatch = content.match(/<h[^>]+>(.*)<\/h[^>]+>/)
 
   const zenodoData = {
     authorName: req.body.author.name,
     authorOrchid: req.body.author.orcid,
-    content: prereview.content,
-    title: req.body.preprint.title,
+    // Remove the title from the content if it has been found
+    content: titleMatch ? content.replace(titleMatch[0], "") : content,
+    // Use the found title if found. Fallback to the preprint title
+    title: titleMatch ? titleMatch[1] : req.body.preprint.title,
+    // Use the preprint abstract as the description
     description: req.body.preprint.abstract
+  }
+
+  const prereview = {
+    preprint_id: req.body.preprint.id,
+    author_id: req.body.author.user_id,
+    content: content
   }
 
   try {
