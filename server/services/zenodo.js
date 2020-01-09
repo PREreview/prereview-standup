@@ -30,7 +30,7 @@ const generateDOI = async prereviewData => {
       upload_type: 'publication',
       publication_type: 'article',
       title: prereviewData.title,
-      description: prereviewData.description,
+      description: prereviewData.content,
       creators: [{
         name: prereviewData.authorName,
         orcid: prereviewData.authorOrcid
@@ -87,6 +87,6 @@ const generateDOI = async prereviewData => {
   return publishData.doi
 }
 // Testing:
-// generateDOI({ title: "test", authorName: "Daniel", authorOrcid: "0000-0001-9596-7596", description: "desc", content: "<h1>test</h1>" })
+// generateDOI({ title: "test", authorName: "Daniel", authorOrcid: "0000-0001-9596-7596", content: "<h1>test</h1>" })
 
 module.exports = { generateDOI }

@@ -35,8 +35,6 @@ router.post('/submit', async function (req, res, next) {
     content: titleMatch ? content.replace(titleMatch[0], "") : content,
     // Use the found title if found. Fallback to the preprint title
     title: titleMatch ? titleMatch[1] : req.body.preprint.title,
-    // Use the preprint abstract as the description
-    description: req.body.preprint.abstract
   }
 
   const prereview = {
