@@ -20,10 +20,10 @@ function view (state, emit) {
 
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around dark-gray">
-      ${addModal(state, emit)}
+    
       ${nav(state, emit)}
       ${header(state, emit)}
-
+      
       <div class=${state.dimensions.width > 1000 ? desktopWidth : mobileWidth}>
         <div class=${state.dimensions.width > GRID.SM ? 'flex flex-row justify-end' : 'flex flex-column'}>
           ${addButton(state, emit)}
@@ -37,6 +37,8 @@ function view (state, emit) {
         </div>
 
       </div>
+      
+      ${addModal(state, emit)}
     </body>
   `
 }

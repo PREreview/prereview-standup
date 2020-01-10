@@ -65,27 +65,9 @@ module.exports = function (state, emit, opts) {
 
   logo.onclick = () => emit('pushState', '/')
 
-  var findbtn = () => {
-    if (state.href === '/find') {
-      return null
-    }
-
-    var find = html`
-      <div class=${findContainer} style="height: 48px; margin-right: 24px; width: fit-content">
-        ${icon('search', { backgroundColor: 'white' })}
-          <div class="ml2 white dib v-mid">Find preprints to review</div>
-      </div>
-    `
-
-    find.onclick = () => emit('pushState', '/find')
-
-    return find
-  }
-
   var leftpart = html`
     <div class="flex flex-row justify-between items-center">
       ${logo}
-      ${findbtn()}
     </div>
   `
 

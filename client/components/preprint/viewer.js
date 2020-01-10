@@ -54,8 +54,8 @@ class PreprintViewer extends Nanocomponent {
     pdfUrl(this.preprint).then(
       docurl => {
         console.log('got preprint url:', docurl)
-        var corsurl = `https://preprint-proxy.prereview.org/${docurl}`
-        this.viewercontainer.setAttribute('src', `/pdfviewer/web/viewer.html?file=${corsurl}`)
+        var corsUrl = `/proxy/${docurl}`
+        this.viewercontainer.setAttribute('src', `/pdfviewer/web/viewer.html?file=${corsUrl}`)
         setTimeout(this.loadingdone.bind(this), 3000)
       }
     )

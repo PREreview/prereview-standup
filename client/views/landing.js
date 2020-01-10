@@ -1,3 +1,5 @@
+// TODO old landing page, not used anymore, remove once sure
+
 var html = require('choo/html')
 var css = require('sheetify')
 
