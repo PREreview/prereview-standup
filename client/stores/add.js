@@ -32,7 +32,7 @@ module.exports = async (state, emitter) => {
     let foundPreprint = await fetchPreprintInDB(pub_id)
 
     // search for preprint on web by Id
-    if(!foundPreprint) {
+    if (!foundPreprint) {
       foundPreprint = await fetchPreprintOnWeb(pub_id)
     }
 
@@ -91,7 +91,9 @@ module.exports = async (state, emitter) => {
     )
 
   // insert preprint DB
-  function insertPreprint(preprint) {
+  function insertPreprint(data) {
+    const { preprint, author_id } = data
+
     fetch('/data/preprints/insert', {
       method: 'POST',
       headers: {
@@ -101,12 +103,8 @@ module.exports = async (state, emitter) => {
       body: JSON.stringify(preprint)
     })
       .then(res => res.json())
-      .then(response => {
-        emitter.emit('render')
-        if (response && response.preprintAlredyExists) {
-          alert('The preprint you are trying to add already exists!')
-        }
-      })
+      .then(() => insertReviewRequest({ author_id, preprint_id: preprint.id }))
+      .then(() => emitter.emit('preprint-search:latest'))
       .catch(console.log)
 
     emitter.emit('add-modal:toggle')
@@ -130,9 +128,6 @@ module.exports = async (state, emitter) => {
         }
       })
       .catch(console.log)
-
-    emitter.emit('add-modal:toggle')
-    emitter.emit('render')
   }
 
   // set search data into state
@@ -153,6 +148,5 @@ module.exports = async (state, emitter) => {
     emitter.on('add-search:query', findPreprints)
     emitter.on('add-modal:set-data', setData)
     emitter.on('add-modal:insert-preprint', insertPreprint)
-    emitter.on('add-modal:insert-request', insertReviewRequest)
   })
 }

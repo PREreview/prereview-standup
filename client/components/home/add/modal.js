@@ -150,6 +150,7 @@ function closeModalBtn(state, emit) {
   `
 }
 
+// display preprint data
 function foundPreprint(state, emit) {
   if (state.add.searchResult) {
     return html`
@@ -174,6 +175,7 @@ function handleContent(state, emit) {
   return addEntry(state, emit)
 }
 
+// displayed in case user is not logged in
 function logInRequired(state, emit) {
   return html`
     <div>
@@ -185,6 +187,7 @@ function logInRequired(state, emit) {
   `
 }
 
+
 function addEntry(state, emit) {
   var cancelBtn = html`
     <button class="${controlBtns} pointer">
@@ -194,26 +197,27 @@ function addEntry(state, emit) {
 
   cancelBtn.onclick = () => emit('add-modal:toggle')
 
-  var addReviewBtn = html`
+  var addPREreviewBtn = html`
     <button class="${controlBtns} pointer">
       Add PREreview
     </button>
   `
 
-  addReviewBtn.onclick = () =>
-    emit('add-modal:insert-preprint', state.add.searchResult)
+  addPREreviewBtn.onclick = () =>
+    emit('pushState', `/preprints/${state.add.searchResult.id}/new`)
 
-  var requestReviewsBtn = html`
+  var requestPREreviewBtn = html`
     <button class="${controlBtns} pointer">
       Request PREreview
     </button>
   `
 
-  requestReviewsBtn.onclick = () =>
-    emit('add-modal:insert-request', {
-      author_id: state.user.user_id,
-      preprint_id: state.add.searchResult.id
+  requestPREreviewBtn.onclick = () => {
+    emit('add-modal:insert-preprint', {
+      preprint: state.add.searchResult,
+      author_id: state.user.user_id
     })
+  }
 
   var searchopts = {
     id: 'publication-search-input',
@@ -233,9 +237,11 @@ function addEntry(state, emit) {
 
   return html`
     <div class="w-100">
-      ${search} ${foundPreprint(state, emit)}
+      ${search}
+      ${foundPreprint(state, emit)}
+
       <div class="flex flex-row justify-end w-100">
-        ${cancelBtn} ${requestReviewsBtn} ${addReviewBtn}
+        ${cancelBtn} ${requestPREreviewBtn} ${addPREreviewBtn}
       </div>
     </div>
   `

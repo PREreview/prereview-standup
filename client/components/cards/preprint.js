@@ -26,7 +26,7 @@ function preprint (state, emit, p) {
     </button>
   `
 
-  iconPrereviews.onclick = () => gotoreviews()
+  iconPrereviews.onclick = () => emit('pushState', `/preprints/${d.id}/new`)
 
   iconPrerequests.onclick = () => {
     emit('add-modal:toggle')

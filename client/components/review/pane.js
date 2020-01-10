@@ -69,8 +69,6 @@ class Reviews extends Nanocomponent {
 
   createElement (state, emit, preprint) {
     if (!preprint.requests) preprint.requests = []
-    console.log('preprint', preprint.reviewRequests);
-    console.log('state', state);
 
     var n = preprint.prereviews.length
     var n_requests = preprint.reviewRequests.length
@@ -81,19 +79,20 @@ class Reviews extends Nanocomponent {
 
         <div class="flex flex-row w-100 justify-between items-center pa3">
           <div class="pr2 f4 fw5 nowrap">${n_requests} requests</h2>
-          ${addreview(state, emit, preprint)}
         </div>
 
-        ${preprint.reviewRequests.map(r =>
-          html`
-            <div class="w-100 flex flex-row justify-between items-center">
-              <div class="b dark-gray fw4 f4">
-                <a href="/users/${r.author_id}">${r.authorName}</a>
-              </div>
-              <div class="f4 mid-gray">${new Date(r.date_created).toLocaleString({ dateStyle: 'medium' })}</div>
-            </div>
-          `
-        )}
+        <div class="w-100 pa4 pt0">
+          ${preprint.reviewRequests.map(r =>
+              html`
+                <div class="w-100 flex flex-row justify-between items-center">
+                  <div class="b dark-gray fw4 f4">
+                    <a href="/users/${r.author_id}">${r.authorName}</a>
+                  </div>
+                  <div class="f4 mid-gray">${new Date(r.date_created).toLocaleString({ dateStyle: 'medium' })}</div>
+                </div>
+              `
+            )}
+          </div>
 
         <div class="flex flex-row w-100 justify-between items-center pa3">
           <div class="pr2 f4 fw5 nowrap">${n} review${n === 1 ? '' : 's'}</h2>
@@ -152,17 +151,3 @@ function meta (state, emit, preprint) {
     </div>
   `
 }
-
-// format date from 2019-03-13T03:29:22.099Z to 2019-03-13
-const formatDate = date => {
-  var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
-  if (month.length < 2)
-      month = '0' + month;
-  if (day.length < 2)
-      day = '0' + day;
-  return [year, month, day].join('-');
-}
-
