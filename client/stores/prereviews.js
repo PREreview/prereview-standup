@@ -23,6 +23,7 @@ module.exports = async (state, emitter) => {
   function confirmSubmission () {
     var submission = state.prereviews.currentSubmission
     submission.status = 'submitted'
+    emitter.emit('render');
     submit(submission)
   }
 
