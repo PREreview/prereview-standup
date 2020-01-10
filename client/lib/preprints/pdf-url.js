@@ -8,7 +8,9 @@ var prefixmap = {
     var pubday = ('0' + pubdate.getDate()).slice(-2)
     var doipart = preprint.id.split('/')[2]
     var site = preprint.publisher.toLowerCase()
-    return `https://www.${site}.org/content/${site}/early/${pubyear}/${pubmonth}/${pubday}/${doipart}.full-text.pdf`
+    // return `https://www.${site}.org/content/${site}/early/${pubyear}/${pubmonth}/${pubday}/${doipart}.full-text.pdf`
+    const [_, ...doi] = preprint.id.split('/');
+    return `https://www.${site}.org/content/${doi.join('/')}v1.full.pdf`
   },
   10.12688: crossrefPdfLinkUrl,
   10.20944: async preprint => {
@@ -27,6 +29,7 @@ var prefixmap = {
 }
 
 async function preprintToPdfUrl (preprint) {
+  console.log(preprint);
   if (preprint.id.startsWith('doi')) {
     var doi = preprint.id.replace('doi/', '')
     var pdffn = doiToPdfMap(doi)
