@@ -122,9 +122,8 @@ const fetchReviewRequests = preprintId =>
       resolve(null)
   })
 
-const fetchUserData = userId => {
-  console.log('userId',userId);
-  return new Promise(resolve =>
+const fetchUserData = userId =>
+  new Promise(resolve =>
     fetch(`/data/users/${userId}`, {
       headers: {
         Accept: 'application/json',
@@ -138,5 +137,3 @@ const fetchUserData = userId => {
       resolve(null)
     })
   )
-
-}
