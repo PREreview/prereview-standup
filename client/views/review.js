@@ -51,23 +51,29 @@ module.exports = function view (state, emit) {
 
   fetchAndLoad()
 
-  function fetchAndLoad () {
+  async function fetchAndLoad() {
     if (lastid && lastid.id === id) {
       return populatepanes(lastid.data)
     }
 
-    fetch(`/data/preprints/${id}`).then(
-      res => res.json()
-    ).then(
-      preprint => {
-        if (preprint.publisher === 'Neuroscience') preprint.publisher = 'bioRxiv'
+    var preprint = await fetchPreprint(id)
 
-        preprint.pdfblocked = blockedpublishers.indexOf(preprint.publisher.toLowerCase()) > -1
-        lastid = { id: id, data: preprint }
+    if (preprint) {
+      var reviewRequests = await fetchReviewRequests(id)
 
-        populatepanes(preprint)
+      if (reviewRequests) {
+        for(var i = 0; i < reviewRequests.length; i++) {
+          var userData = await fetchUserData(reviewRequests[i].author_id)
+          reviewRequests[i].authorName = userData.name
+        }
+
+        preprint.reviewRequests = reviewRequests
+      } else {
+        preprint.reviewRequests = []
       }
-    )
+
+      populatepanes(preprint)
+    }
   }
 
   function populatepanes (preprint) {
@@ -78,3 +84,56 @@ module.exports = function view (state, emit) {
 
   return el
 }
+
+const fetchPreprint = preprintId =>
+  new Promise(resolve =>
+    fetch(`/data/preprints/${preprintId}`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(preprint => {
+      if (preprint.publisher === 'Neuroscience') preprint.publisher = 'bioRxiv'
+
+      preprint.pdfblocked = blockedpublishers.indexOf(preprint.publisher.toLowerCase()) > -1
+      lastid = { id: preprintId, data: preprint }
+
+      resolve(preprint)
+    })
+  ).catch(err => {
+    console.log('err', err)
+    resolve(null)
+  })
+
+const fetchReviewRequests = preprintId =>
+  new Promise(resolve =>
+    fetch(`/data/reviewrequests/preprint_id/${preprintId}`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(reviewRequests => resolve(reviewRequests))
+  ).catch(err => {
+      console.log('err', err)
+      resolve(null)
+  })
+
+const fetchUserData = userId =>
+  new Promise(resolve =>
+    fetch(`/data/users/${userId}`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(userData => resolve(userData))
+    .catch(err => {
+      console.log('err', err)
+      resolve(null)
+    })
+  )
