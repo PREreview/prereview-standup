@@ -50,7 +50,7 @@ class PreprintViewer extends Nanocomponent {
 
   loadPreprintIntoIframe () {
     console.log('preprint url loading')
-    
+
     pdfUrl(this.preprint).then(
       docurl => {
         console.log('got preprint url:', docurl)

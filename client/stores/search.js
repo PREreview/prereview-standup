@@ -10,19 +10,22 @@ module.exports = function(state, emitter) {
 
   var search = debounce(runsearch, 400)
 
-  function updateAfterSort () {
+  function updateAfterSort() {
     emitter.emit('preprint-search:result-page', state.searchQuery.page)
   }
 
-  emitter.on('DOMContentLoaded', async function () {
+  emitter.on('DOMContentLoaded', async function() {
     emitter.on('preprint-search:query', querystring => {
       search.cancel()
+
       var query = {
         string: querystring,
         sortBy: state.sort.by,
         page: 1
       }
+
       state.searchQuery = query
+
       search(query)
     })
 
@@ -55,11 +58,10 @@ module.exports = function(state, emitter) {
     })
 
     emitter.on('preprint-search:update-sort', updateAfterSort)
-
     emitter.emit('preprint-search:latest')
   })
 
-  function clear () {
+  function clear() {
     state.searched = false
     state.searchQuery = null
     state.searchResults = {
@@ -68,7 +70,7 @@ module.exports = function(state, emitter) {
     }
   }
 
-  function runsearch (query) {
+  function runsearch(query) {
     fetch('/data/preprints/search', {
       method: 'POST',
       headers: {
@@ -78,11 +80,12 @@ module.exports = function(state, emitter) {
       body: JSON.stringify({
         query
       })
-    }).then(results => results.json())
+    })
+      .then(results => results.json())
       .then(handleSearchResponse)
   }
 
-  function getLatest () {
+  function getLatest() {
     fetch('/data/preprints/latest', {
       headers: {
         Accept: 'application/json'
@@ -92,7 +95,7 @@ module.exports = function(state, emitter) {
       .then(handleSearchResponse)
   }
 
-  function handleSearchResponse (response) {
+  function handleSearchResponse(response) {
     response.results.forEach(r => {
       r.date_created = new Date(r.date_created)
       r.date_published = new Date(r.date_published)
