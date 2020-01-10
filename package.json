@@ -12,7 +12,7 @@
     "initdb:prod": "ENVIRONMENT=prod node scripts/initdb.js",
     "seeddb:dev": "ENVIRONMENT=dev node --max-old-space-size=10000 scripts/seeddb.js",
     "seeddb:prod": "ENVIRONMENT=prod node scripts/seeddb.js",
-    "dev": "NODE_ENV=dev ENVIRONMENT=dev nodemon --max-old-space-size=3200 index.js",
+    "dev": "NODE_ENV=dev ENVIRONMENT=dev nodemon --watch server --max-old-space-size=3200 index.js",
     "start": "NODE_ENV=prod ENVIRONMENT=prod pm2 start --node-args=\"--max-old-space-size=3200\" --name prereview --log production.log index.js",
     "stop": "pm2 stop prereview",
     "restart": "pm2 restart prereview",
