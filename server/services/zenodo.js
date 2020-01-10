@@ -4,16 +4,19 @@ const fs = require('fs');
 
 const ENV = process.env.ENVIRONMENT || "dev";
 
+// Test account tokens - These have been created only for testing
+// Feel free to create your own at sandbox.zenodo.org and zenodo.org
+// dev: 'JQeLsGAvpkCc70Du6W2LYuZKp4WK1RYvq5huzpDi8uXp6T16nBM0tBTc7nUE',
+// prod: 'RsHOiW6HZbDzYYfKsRB7nSu79DvRJ5zUmuP3QWsmalrLXOWCzXCn4FC0FV7E',
+
 const ACCESS_TOKEN = {
-  dev: 'JQeLsGAvpkCc70Du6W2LYuZKp4WK1RYvq5huzpDi8uXp6T16nBM0tBTc7nUE',
-  prod: 'JQeLsGAvpkCc70Du6W2LYuZKp4WK1RYvq5huzpDi8uXp6T16nBM0tBTc7nUE',
-  // prod: 'RsHOiW6HZbDzYYfKsRB7nSu79DvRJ5zUmuP3QWsmalrLXOWCzXCn4FC0FV7E'
+  dev: 'NYh4NaZUOuhtpLUnDogyVtyDARQpXzTzVyQKCATKlgpmCOV6FF6CPYKrSdWT',
+  prod: 'grObDyR4ckMSSvs8RatGAsy7F46vWtJr1pYZbk11E7yGaI94iB9hMjXzMcAf',
 }[ENV];
 
 const BASE_URL = {
   dev: 'https://sandbox.zenodo.org',
-  prod: 'https://sandbox.zenodo.org',
-  // prod: 'https://zenodo.org'
+  prod: 'https://zenodo.org'
 }[ENV];
 
 const zenodoBaseUrl = (action = '') =>
