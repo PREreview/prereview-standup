@@ -2,7 +2,7 @@ var db = require('../..')
 
 var { getUserReviews } = require('../prereviews')
 
-function addUser(user) {
+function addUser (user) {
   return db('users').insert({
     orcid: user.orcid,
     name: user.name,
@@ -11,7 +11,7 @@ function addUser(user) {
   })
 }
 
-function updateUser(user) {
+function updateUser (user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
@@ -31,14 +31,14 @@ function getUser(user) {
     .then(getUserReviews)
 }
 
-function getUserById(userid) {
+function getUserById (userid) {
   return db('users')
     .where({ user_id: userid })
     .first()
     .then(getUserReviews)
 }
 
-function getOrAddUser(user) {
+function getOrAddUser (user) {
   return db('users')
     .where({ orcid: user.orcid })
     .then(results => {
@@ -58,7 +58,7 @@ function getOrAddUser(user) {
     })
 }
 
-function makeUserPrivate(user) {
+function makeUserPrivate (user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
@@ -68,7 +68,7 @@ function makeUserPrivate(user) {
     })
 }
 
-function makeUserPublic(user) {
+function makeUserPublic (user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
@@ -78,7 +78,7 @@ function makeUserPublic(user) {
     })
 }
 
-function acceptCoC(user) {
+function acceptCoC (user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
@@ -87,14 +87,37 @@ function acceptCoC(user) {
     })
 }
 
-function updateProfilePic(user, img) {
+function updateProfilePic (user, img) {
+  // TODO upload to external service or use another db field ?
+  // cannot use jsonb_set because knex does not escape properly a buffer
+  const { profile } = user
+  Object.assign(profile, { pic: img })
+
+  return db('users')
+    .where({ orcid: user.orcid })
+    .first()
+    .update({ profile })
+}
+
+function updateEmail (user, email) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
     .update({
-      profile: {
-        pic: img
-      }
+      profile: db.raw(`jsonb_set(??, '{emails}', '["${email}"]')`, ['profile'])
+    })
+}
+
+function updateEmailPreferences (user, preferences) {
+  const { isReceivingEmails, isEmailPrivate } = preferences
+  console.log("thishit", isReceivingEmails, isEmailPrivate);
+
+  return db('users')
+    .where({ orcid: user.orcid })
+    .first()
+    .update({
+      profile: db.raw(`jsonb_set(jsonb_set(??, '{isReceivingEmails}', ?), '{isEmailPrivate}', ?)
+        `, ['profile', isReceivingEmails, isEmailPrivate])
     })
 }
 
@@ -107,6 +130,8 @@ module.exports = {
   makeUserPublic,
   acceptCoC,
   getUserReviews,
+  updateEmail,
+  updateEmailPreferences,
   updateProfilePic,
   getOnlyUserById
 }

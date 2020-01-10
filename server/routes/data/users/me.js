@@ -1,6 +1,6 @@
 var express = require('express')
 var fs = require('fs')
-var formidableMiddleware = require('express-formidable');
+var formidableMiddleware = require('express-formidable')
 
 var user = require('../../../db/tables/users')
 var prereview = require('../../../db/tables/prereviews')
@@ -58,13 +58,81 @@ router.post('/me/accept_coc', function (req, res) {
 // Update profile picture
 router.post('/me/updateProfilePic', formidableMiddleware(), function (req, res) {
   var imagePath = req.files.avatar.path
-  var fileType =  req.files.avatar.type
+  var fileType = req.files.avatar.type
 
-  var file = fs.readFileSync(imagePath, "base64");
+  var file = fs.readFileSync(imagePath, 'base64')
   var base64 = `data:${fileType};base64,${file}`
 
   if (req.user) {
-    user.updateProfilePic(req.user, base64).then(res.json(req.user))
+    user.updateProfilePic(req.user, base64).then(() => {
+      const { profile } = req.user
+      // return updated user
+      res.json({
+        ...req.user,
+        profile: {
+          ...profile,
+          pic: base64
+        }
+      })
+    })
+  } else {
+    res.status(401)
+    res.json({})
+  }
+})
+
+// Update personal email
+router.post('/me/updatePersonalEmail', function (req, res) {
+  const { email } = req.body
+  const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+  if (!emailRegex.test(email)) {
+    res.status(401, 'Not a valid email address')
+    return res.json({})
+  }
+
+  if (req.user) {
+    user.updateEmail(req.user, email).then(() => {
+      const { profile } = req.user
+      // return updated user
+      res.json({
+        ...req.user,
+        profile: {
+          ...profile,
+          emails: [email]
+        }
+      })
+    })
+  } else {
+    res.status(401)
+    res.json({})
+  }
+})
+
+// Update personal email
+router.post('/me/updateEmailPreferences', function (req, res) {
+  const { isReceivingEmails, isEmailPrivate } = req.body
+
+  if (req.user) {
+    user.updateEmailPreferences(
+      req.user,
+      {
+        isReceivingEmails,
+        isEmailPrivate
+      }
+    ).then(() => {
+      const { profile } = req.user
+
+      // return updated user
+      res.json({
+        ...req.user,
+        profile: {
+          ...profile,
+          isReceivingEmails,
+          isEmailPrivate
+        }
+      })
+    })
   } else {
     res.status(401)
     res.json({})

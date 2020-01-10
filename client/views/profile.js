@@ -3,7 +3,8 @@ var css = require('sheetify')
 
 var nav = require('../components/nav')
 var profile = require('../components/profile')
-var Setup = require('../components/profile/firstvisit')
+var Setup = require('../components/profile/firstVisit')
+var MyProfileCard = require('../components/profile/myProfileCard')
 var GRID = require('../grid')
 
 var TITLE = 'PREreview2 | profile'
@@ -18,13 +19,11 @@ module.exports = view
 
 function view (state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
-
-  var userid = state.href.split('/users/')[1]
-
+  var userId = state.href.split('/users/')[1]
   var otherUserContainer = `flex flex-column ${mainstyle} justify-center items-center`
   var profileContainer = `flex flex-column`
 
-  if(state.dimensions.width < GRID.LG ) {
+  if (state.dimensions.width < GRID.LG) {
     otherUserContainer = `${otherUserContainer} w-90`
     profileContainer = `${profileContainer} w-90`
   } else {
@@ -32,12 +31,12 @@ function view (state, emit) {
     profileContainer = `${profileContainer} w-70`
   }
 
-  if (userid) {
+  if (userId) {
     // viewing a specific user's profile
     return html`
     <body class="flex flex-column w-100 justify-center items-center space-around">
       <div class=${otherUserContainer}>
-        ${profile.otheruser(state, emit, fetch(`/data/users/${userid}`).then(res => res.json()))}
+        ${profile.otheruser(state, emit, fetch(`/data/users/${userId}`).then(res => res.json()))}
       </div>
     </body>
     `
@@ -56,7 +55,7 @@ function view (state, emit) {
     `
   }
 
-  var firstvisit = html`
+  var firstVisit = html`
     <body class="flex flex-column w-100 justify-center items-center space-around">
       ${nav(state, emit)}
 
@@ -66,14 +65,14 @@ function view (state, emit) {
     </body>
   `
 
-  if (!state.user.coc_accepted || !state.user.privacy_setup) return firstvisit
+  if (!state.user.coc_accepted || !state.user.privacy_setup) return firstVisit
 
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around">
       ${nav(state, emit)}
 
       <div class=${profileContainer}>
-        ${profile.myprofilecard(state, emit)}
+        ${state.cache(MyProfileCard, `profile-card`).render(state)}
         ${profile.usercontent(state, emit)}
       </div>
     </body>
