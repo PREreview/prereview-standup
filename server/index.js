@@ -80,6 +80,8 @@ var corsProxyOptions = (() => {
 
   // if ssl on ENV, add to proxy as well
   if (listenport === 443) {
+    var fs = require('fs')
+    
     Object.assign(defaultOptions, {
       httpsOptions: {
         key: fs.readFileSync(process.env.PREREVIEW_TLS_KEY),
