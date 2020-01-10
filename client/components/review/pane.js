@@ -87,10 +87,10 @@ class Reviews extends Nanocomponent {
         ${preprint.reviewRequests.map(r =>
           html`
             <div class="w-100 flex flex-row justify-between items-center">
-              <div class="b dark-gray fw4">
+              <div class="b dark-gray fw4 f4">
                 <a href="/users/${r.author_id}">${r.authorName}</a>
               </div>
-              <div>${new Date(r.date_created).toLocaleString({ dateStyle: 'medium' })}</div>
+              <div class="f4 mid-gray">${new Date(r.date_created).toLocaleString({ dateStyle: 'medium' })}</div>
             </div>
           `
         )}
