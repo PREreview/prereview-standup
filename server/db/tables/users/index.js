@@ -42,6 +42,7 @@ async function getOrAddUser (user) {
   const [existingUser] = await db('users').where({ orcid: user.orcid })
 
   if (existingUser) {
+    existingUser.profile = existingUser.profile || {}
     // extend profile
 
     user.profile = {

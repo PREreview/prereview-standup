@@ -1,61 +1,61 @@
-var express = require('express')
-const uuidv4 = require('uuid/v4')
-var reviewrequests = require('../../../db/tables/reviewrequests')
+const express = require('express')
+const reviewRequestsTable = require('../../../db/tables/reviewrequests')
 
-var router = express.Router()
+const router = express.Router()
 
 // Submits a new review request
-router.post('/submit', async function(req, res, next) {
-  // if (!req.user) {
-  //   // user must be logged in
-  //   return res.status(401)
-  // }
+router.post('/submit', async function (req, res, next) {
+  if (!req.user) {
+    // user must be logged in
+    return res.status(401)
+  }
 
   // if (req.user.id !== req.body.author.id) {
   //   // user must be logged in as the same one claiming to author the preprint
   //   return res.status(401, 'You cannot post a preprint as another user')
   // }
 
-  var reviewrequest = {
-    id: uuidv4(),
-    preprint_id: req.body.preprint_id,
-    author_id: req.body.author_id,
-    date_created: new Date()
-  }
+  const { preprint_id } = req.body
+  const { user_id: author_id } = req.user
 
-  const userRequested = await checkRequested(reviewrequest)
+  const isAlreadyRequestedByUser = await getIsAlreadyRequestedByUser({ preprint_id, author_id })
 
-  if (!userRequested) {
-    reviewrequests
-      .addReviewRequest(reviewrequest)
-      .then(data => res.json(data))
-      .catch(e => {
-        console.error(
-          'Error trying to create PREreview Request with data:',
-          JSON.stringify(reviewrequest)
-        )
-        console.error(e)
-        res.status(
-          500,
-          'Something went wrong trying to publish this PREreview Request'
-        )
-      })
+  if (!isAlreadyRequestedByUser) {
+    const reviewRequest = {
+      preprint_id,
+      author_id,
+      date_created: new Date()
+    }
+
+    try {
+      const insertResult = await reviewRequestsTable.insertReviewRequest(reviewRequest)
+
+      res.json(insertResult)
+    } catch (error) {
+      console.error(
+        'Error trying to create PREreview Request with data:',
+        JSON.stringify(reviewRequest)
+      )
+      console.error(error)
+      res.status(
+        500,
+        'Something went wrong trying to publish this PREreview Request'
+      )
+    }
   } else {
     return res.json({ userAlreadyRequested: true })
   }
 })
 
 // checks if user already requested a review for current preprint
-const checkRequested = reviewrequest =>
-  new Promise(resolve => {
-    return reviewrequests.getReviewRequests(reviewrequest).then(requests => {
-      requests.forEach(request => {
-        if (request.author_id == reviewrequest.author_id) {
-          resolve(true)
-        }
-      })
-      resolve(false)
-    })
+const getIsAlreadyRequestedByUser = async ({ preprint_id, author_id }) => {
+  const requests = await reviewRequestsTable.getReviewRequests({ preprint_id })
+
+  const existingRequest = requests.find(request => {
+    return request.author_id === author_id
   })
+
+  return !!existingRequest
+}
 
 module.exports = router
