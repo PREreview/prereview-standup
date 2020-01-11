@@ -34,7 +34,7 @@ router.post('/submit', async function (req, res, next) {
     // Remove the title from the content if it has been found
     content: titleMatch ? content.replace(titleMatch[0], "") : content,
     // Use the found title if found. Fallback to the preprint title
-    title: titleMatch ? titleMatch[1] : req.body.preprint.title,
+    title: titleMatch ? titleMatch[1] : `PREreview of "${req.body.preprint.title}"`,
   }
 
   const prereview = {
