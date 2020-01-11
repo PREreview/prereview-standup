@@ -7,6 +7,7 @@ var GRID = require('../grid')
 var barstyle = css`
   :host {
     z-index: 99;
+    height: 80px;
   }
 `
 
@@ -52,7 +53,7 @@ module.exports = function (state, emit, opts) {
   if(state.dimensions.width < GRID.LG) {
     logo = html`<img class="${logoImg} pointer" src="/assets/images/prereview_logo_icon_colour.svg">`
   } else {
-    logo = html`<img class="${logoImg} pointer" src="/assets/images/logo_horizontal_tx.png">`
+    logo = html`<img class="${logoImg} pointer" src="/assets/images/prereview_logo_h_colour_cropped.svg">`
   }
 
   if(state.dimensions.width < GRID.MD) {
