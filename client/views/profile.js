@@ -31,6 +31,12 @@ function view (state, emit) {
     profileContainer = `${profileContainer} w-70`
   }
 
+  // Don't render anything if we're still fetching data
+  // This will avoid having flashing of content on the profile page
+  if (!state.contentloaded) {
+    return html`<div></div>`
+  }
+
   if (userId) {
     // viewing a specific user's profile
     return html`

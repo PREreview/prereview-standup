@@ -19,35 +19,12 @@ app.use(require('morgan')('combined'))
 // it's OK to ask if we're OK
 app.get('/health', (req, res) => res.sendStatus(200))
 
-var corsAnywhere = require('cors-anywhere');
-
-var corsProxyOptions = (() => {
-  var defaultOptions = {
-    originWhitelist: [], // Allow all origins
-    requireHeaders: [], // Do not require any headers.
-    removeHeaders: [], // Do not remove any headers.
-  }
-
-  // if ssl on ENV, add to proxy as well
-  if (listenport === 443) {
-    Object.assign(defaultOptions, {
-      httpsOptions: {
-        key: fs.readFileSync(process.env.PREREVIEW_TLS_KEY),
-        cert: fs.readFileSync(process.env.PREREVIEW_TLS_CERT),
-      }
-    })
-  }
-
-  return defaultOptions;
-})()
-
-var corsProxy = corsAnywhere.createServer(corsProxyOptions);
-
-app.get('/proxy', (req, res) => {
+app.get('/proxy/:proxyUrl*', (req, res) => {
+  var request = require('request')
   // Strip '/proxy' from the front of the URL, else the proxy won't work.
   req.url = req.url.replace('/proxy/', '');
 
-  corsProxy.emit('request', req, res);
+  request(req.url).pipe(res);
 });
 
 // favicons
