@@ -9,25 +9,30 @@ var plusIcon = css`
   }
 
   :host:hover {
-    filter: invert(51%) sepia(92%) saturate(6183%) hue-rotate(343deg) brightness(102%) contrast(101%);
+    filter: invert(51%) sepia(92%) saturate(6183%) hue-rotate(343deg)
+      brightness(102%) contrast(101%);
   }
 `
 
-function preprint (state, emit, p) {
+function preprint(state, emit, p) {
   var iconPrereviews = html`
-    <button class="pa0" style="line-height: 32px">
-      <img class="${plusIcon}" src="../../assets/images/add_prereview_icon.svg">
+    <button class="pa0">
+      <img
+        class="${plusIcon}"
+        src="../../assets/images/add_prereview_icon.svg"
+      />
     </button>
   `
-
-  var iconPrerequests = html`
-    <button class="pa0" style="line-height: 32px">
-      <img class="${plusIcon}" src="../../assets/images/add_prereview_icon.svg">
-    </button>
-  `
-
   iconPrereviews.onclick = () => emit('pushState', `/preprints/${d.id}/new`)
 
+  var iconPrerequests = html`
+    <button class="pa0">
+      <img
+        class="${plusIcon}"
+        src="../../assets/images/add_prereview_icon.svg"
+      />
+    </button>
+  `
   iconPrerequests.onclick = () => {
     emit('add-modal:toggle')
     emit('add-modal:set-data', d)
@@ -41,59 +46,48 @@ function preprint (state, emit, p) {
 
   var gotoreviews = () => emit('pushState', `/preprints/${d.id}`)
 
-  var title = html`<div class="link pointer">${d.title}</div>`
+  var title = html`
+    <div class="link pointer">${d.title}</div>
+  `
   title.onclick = gotoreviews
 
-  var prereviewsInfo = html`
-    <button class="flex flex-row pl0 pr0">
+  var PREreviewsInfo = html`
+    <button class="flex flex-row items-center pl0 pr0 mb1">
       <p class="ma0 pa0 red dtc v-mid b mr1">${d.n_prereviews}</p>
-      <p class="ma0 pa0 dark-gray"> PREreviews </p>
+      <p class="ma0 pa0 dark-gray">PREreviews</p>
     </button>
   `
-  prereviewsInfo.onclick = gotoreviews
+  PREreviewsInfo.onclick = gotoreviews
 
-  var n_prereviews = html`
-      <div class="nowrap bg-white br3 flex flex-row items-center link noselect pointer mr2">
-        ${iconPrereviews}
-        ${prereviewsInfo}
-      </div>
-    `
-
-  var showPreReviews = html`
-    <div class="mr2 dark-gray link pointer">${n_prereviews}</div>
-  `
-
-  var preRequestsInfo = html`
-    <button class="flex flex-row pl0 pr0">
-      <p class="ma0 pa0 red dtc v-mid b mr1">${d.n_requests}</p>
-      <p class="ma0 pa0 dark-gray"> Requests </p>
-    </button>
-  `
-
-  preRequestsInfo.onclick = gotoreviews
-
-  var showPreRequests = html`
+  var PREreviewsBtn = html`
     <div class="nowrap bg-white br3 flex flex-row items-center link noselect pointer mr2">
-      ${iconPrerequests}
-      ${preRequestsInfo}
+      ${iconPrereviews} ${PREreviewsInfo}
     </div>
   `
 
-  var addreview = null
+  var PRErequestsInfo = html`
+    <button class="flex flex-row items-center pl0 pr0 mb1">
+      <p class="ma0 pa0 red dtc v-mid b mr1">${d.n_requests}</p>
+      <p class="ma0 pa0 dark-gray">Requests</p>
+    </button>
+  `
+
+  PRErequestsInfo.onclick = gotoreviews
+
+  var PRErequestsBtn = html`
+    <div class="nowrap bg-white br3 flex flex-row items-center link noselect pointer mr2">
+      ${iconPrerequests} ${PRErequestsInfo}
+    </div>
+  `
+
   var addRequestReview = null
 
   if (state.user) {
-    addreview = html`
-      <div class="ph2 pv1 nowrap dim bg-white flex flex-row items-center link noselect pointer">
-        <p class="ma0 pa0 red dtc v-mid b f6">Add PREreview</p>
-      </div>
-    `
-
-    addreview.onclick = () => emit('pushState', `/preprints/${d.id}/new`)
-
     addRequestReview = html`
       <button class="nowrap dim bg-red flex flex-row br4 items-center link noselect pointer">
-        <p class="ma0 pa0 white dtc v-mid f6">Add PREreview | Request PREreview </p>
+        <p class="ma0 pa0 white dtc v-mid f6">
+          Add PREreview | Request PREreview
+        </p>
       </button>
     `
 
@@ -106,7 +100,7 @@ function preprint (state, emit, p) {
   var pubdate = `Published on ${formatDate(d.date_published)}`
   var controlBtns = 'flex justify-between mv3'
 
-  if(state.dimensions.width < GRID.MD) {
+  if (state.dimensions.width < GRID.MD) {
     controlBtns = 'mv3'
   }
 
@@ -126,8 +120,8 @@ function preprint (state, emit, p) {
       <div class="mt4">
         <div class=${controlBtns} style="margin: auto 0;">
           <div class="flex">
-            ${showPreReviews}
-            ${showPreRequests}
+            ${PREreviewsBtn}
+            ${PRErequestsBtn}
           </div>
 
           <div class="flex">
@@ -142,14 +136,12 @@ function preprint (state, emit, p) {
 // format date from 2019-03-13T03:29:22.099Z to 2019-03-13
 const formatDate = date => {
   var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
-  if (month.length < 2)
-      month = '0' + month;
-  if (day.length < 2)
-      day = '0' + day;
-  return [year, month, day].join('-');
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear()
+  if (month.length < 2) month = '0' + month
+  if (day.length < 2) day = '0' + day
+  return [year, month, day].join('-')
 }
 
 module.exports = preprint
