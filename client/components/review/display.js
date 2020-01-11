@@ -50,7 +50,8 @@ module.exports = function view (state, emit, review) {
         <div>
           <small>
           <b>${new Date(review.date_created).toLocaleString({ dateStyle: 'medium' })}</b>
-          <div>${review.doi ? html`<a href="https://doi.org/${review.doi}">${review.doi}</a>` : ''}</div>
+          <div>${review.doi ? html`<a href="https://doi.org/${review.doi}"><img src="https://sandbox.zenodo.org/badge/DOI/${review.doi}.svg" alt="DOI"></a>` : ''}</div>
+          </div>
           </small>
         </div>
       </div>
