@@ -3,12 +3,22 @@ var md = require('markdown-string')
 
 module.exports = updateFromOrcid
 
-function updateFromOrcid (user) {
-  return getWorks(user).then(getPerson(user))
+async function updateFromOrcid (user) {
+  const works = await fetchWorksFromOrcid(user)
+  const personData = await fetchPersonFromOrcid(user)
+  const { emails, biography } = personData
+
+  Object.assign(user.profile, {
+    works,
+    emails,
+    biography
+  })
+
+  return user;
 }
 
-function tokentype (user) {
-  var type = user.token.token_type
+function tokenType (user) {
+  const type = user.token.token_type
   return type.charAt(0).toUpperCase() + type.slice(1)
 }
 
@@ -16,59 +26,54 @@ function token (user) {
   return user.token.access_token
 }
 
-function addWorksToProfile (user) {
-  return res => {
-    var data = res.body
-
-    if (data.group) {
-      user.profile.works = {
-        updated: data['last-modified-date'] ? data['last-modified-date'].value : null,
-        list: data.group ? data.group.map(d => {
-          return {
-            updated: d['last-modified-date'].value,
-            externalIds: d['external-ids'],
-            workSummary: d['work-summary']
-          }
-        }) : []
-      }
-    }
-
-    return user
-  }
-}
-
-function getWorks (user) {
-  var opts = {
+async function fetchWorksFromOrcid (user) {
+  const opts = {
     url: `https://pub.orcid.org/v2.1/${user.orcid}/works`,
-    headers: { Authorization: `${tokentype(user)} ${token(user)}` },
+    headers: { Authorization: `${tokenType(user)} ${token(user)}` },
     json: true
   }
-  return got(opts).then(addWorksToProfile(user))
-}
 
-function addPersonToProfile (user) {
-  return res => {
-    var data = res.body
+  const res = await got(opts)
 
-    if (data.biography && data.biography.content) {
-      user.profile.biography = md`${data.biography.content}`
+  const data = res.body
+
+  if (data.group) {
+    return {
+      updated: data['last-modified-date'] ? data['last-modified-date'].value : null,
+      list: data.group ? data.group.map(d => {
+        return {
+          updated: d['last-modified-date'].value,
+          externalIds: d['external-ids'],
+          workSummary: d['work-summary']
+        }
+      }) : []
     }
-
-    if (data.emails && data.emails.email) {
-      var emails = data.emails.email.map(e => e.email)
-      user.profile.emails = emails
-      user.profile.pic = null
-    }
-
-    return user
   }
+
+  return {}
 }
 
-function getPerson (user) {
-  var opts = {
+async function fetchPersonFromOrcid (user) {
+  const parsedData = {}
+  const opts = {
     url: `https://pub.orcid.org/v2.1/${user.orcid}/person`,
-    headers: { Authorization: `${tokentype(user)} ${token(user)}` },
+    headers: { Authorization: `${tokenType(user)} ${token(user)}` },
     json: true
   }
-  return got(opts).then(addPersonToProfile(user))
+
+  const res = await got(opts)
+  const data = res.body
+
+  if (data.biography && data.biography.content) {
+    Object.assign(parsedData, {
+      biography: md`${data.biography.content}`
+    })
+  }
+
+  if (data.emails && data.emails.email) {
+    const emails = data.emails.email.map(e => e.email)
+    Object.assign(parsedData, { emails })
+  }
+
+  return parsedData
 }

@@ -18,13 +18,13 @@ function updateUser (user) {
     .update(user)
 }
 
-function getOnlyUserById(userid) {
+function getOnlyUserById (userid) {
   return db('users')
     .where({ user_id: userid })
     .first()
 }
 
-function getUser(user) {
+function getUser (user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
@@ -38,24 +38,27 @@ function getUserById (userid) {
     .then(getUserReviews)
 }
 
-function getOrAddUser (user) {
-  return db('users')
-    .where({ orcid: user.orcid })
-    .then(results => {
-      if (results.length < 1) {
-        // create new user
-        return addUser(user).then(user => {
-          user.firstvisit = true
-          return user
-        })
-      } else {
-        delete user.profile
-        return updateUser(user).then(user => {
-          user.firstvisit = false
-          return user
-        })
-      }
+async function getOrAddUser (user) {
+  const [existingUser] = await db('users').where({ orcid: user.orcid })
+
+  if (existingUser) {
+    // extend profile
+
+    user.profile = {
+      ...user.profile,
+      ...existingUser.profile,
+    }
+
+    return updateUser(user).then(user => {
+      user.firstvisit = false
+      return user
     })
+  } else {
+    return addUser(user).then(user => {
+      user.firstvisit = true
+      return user
+    })
+  }
 }
 
 function makeUserPrivate (user) {
@@ -110,7 +113,7 @@ function updateEmail (user, email) {
 
 function updateEmailPreferences (user, preferences) {
   const { isReceivingEmails, isEmailPrivate } = preferences
-  console.log("thishit", isReceivingEmails, isEmailPrivate);
+  console.log('thishit', isReceivingEmails, isEmailPrivate)
 
   return db('users')
     .where({ orcid: user.orcid })
