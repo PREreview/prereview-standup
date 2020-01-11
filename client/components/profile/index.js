@@ -58,12 +58,12 @@ class OtherUser extends Nanocomponent {
         ` : null
 
         var privateuser = user.is_private ? html`<h3>This user's profile is private.</h3>` : null
-        var profilepic = (user.profile && user.profile.pic) ? user.profile.pic + '&s=128' : '/assets/illustrations/avatar.png'
+        var profilepic = (user.profile && user.profile.pic) ? user.profile.pic : '/assets/illustrations/avatar.png'
         var usersince = new Date(user.created_at).toDateString()
 
         inner = html`
           <div class="flex flex-column justify-center items-center tc w-50-l w-70-m w-90-s mh-100">
-            <img src="${profilepic}" class="br-100 h4 w4 dib" title="user profile picture">
+            <img src="${profilepic}" class="br-100 h4 w4 dib"/>
             <h1 class="mb1 fw4">${user.name}</h1>
             ${orcid}
             <p>Member since ${usersince}.</p>
