@@ -18,6 +18,12 @@ function updateUser(user) {
     .update(user)
 }
 
+function getOnlyUserById(userid) {
+  return db('users')
+    .where({ user_id: userid })
+    .first()
+}
+
 function getUser(user) {
   return db('users')
     .where({ orcid: user.orcid })
@@ -101,5 +107,6 @@ module.exports = {
   makeUserPublic,
   acceptCoC,
   getUserReviews,
-  updateProfilePic
+  updateProfilePic,
+  getOnlyUserById
 }

@@ -71,14 +71,34 @@ class Reviews extends Nanocomponent {
     if (!preprint.requests) preprint.requests = []
 
     var n = preprint.prereviews.length
+    var n_requests = preprint.reviewRequests.length
 
     var el = html`
       <div class="flex flex-column w-100 h-100 pa2 items-start overflow-y-scroll overflow-x-hidden">
         ${preprint.pdfblocked ? null : meta(state, emit, preprint)}
+
+        <div class="flex flex-row w-100 justify-between items-center pa3">
+          <div class="pr2 f4 fw5 nowrap">${n_requests} requests</h2>
+        </div>
+
+        <div class="w-100 pa4 pt0">
+          ${preprint.reviewRequests.map(r =>
+              html`
+                <div class="w-100 flex flex-row justify-between items-center">
+                  <div class="b dark-gray fw4 f4">
+                    <a href="/users/${r.author_id}">${r.authorName}</a>
+                  </div>
+                  <div class="f4 mid-gray">${new Date(r.date_created).toLocaleString({ dateStyle: 'medium' })}</div>
+                </div>
+              `
+            )}
+          </div>
+
         <div class="flex flex-row w-100 justify-between items-center pa3">
           <div class="pr2 f4 fw5 nowrap">${n} review${n === 1 ? '' : 's'}</h2>
           ${addreview(state, emit, preprint)}
         </div>
+
         ${preprint.prereviews.map(r => require('./display')(state, emit, r))}
       </div>
     `
@@ -97,7 +117,9 @@ class Reviews extends Nanocomponent {
 
 function addreview (state, emit, preprint) {
   if (!state.user) {
-    var login = button(state, emit, { label: 'Log in to review this preprint' })
+    var login = html`
+      <button class="ml2 bg-red white br4">Log in to review this preprint </button>
+    `
     login.onclick = () => emit('pushState', '/login-redirect')
     return html`<div class="flex flex-row w-100 justify-end">${login}</div>`
   }
