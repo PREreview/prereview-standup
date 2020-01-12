@@ -31,7 +31,7 @@ app.get('/proxy/:proxyUrl*', (req, res) => {
 var favicon = require('serve-favicon')
 var path = require('path')
 app.use(
-  favicon(path.join(__dirname, '..', 'assets', 'favicons', 'favicon.ico'))
+  favicon(path.join(__dirname, '..', 'assets', 'favicons', 'prereview_logo_icon_colour_square.png'))
 )
 
 // setup user sessions
