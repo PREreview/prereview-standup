@@ -108,13 +108,21 @@ function updateEmail (user, email) {
     .where({ orcid: user.orcid })
     .first()
     .update({
-      profile: db.raw(`jsonb_set(??, '{emails}', '["${email}"]')`, ['profile'])
+      profile: db.raw(`jsonb_set(??, '{email}', ?)`, ['profile', email])
+    })
+}
+
+function setEmailTokenAsVerified (token) {
+  return db('users')
+    .whereRaw(`profile->'email'->>'token' = ?`, token)
+    .first()
+    .update({
+      profile: db.raw(`jsonb_set(??, '{email, verified}', ?)`, ['profile', true])
     })
 }
 
 function updateEmailPreferences (user, preferences) {
   const { isReceivingEmails, isEmailPrivate } = preferences
-  console.log('thishit', isReceivingEmails, isEmailPrivate)
 
   return db('users')
     .where({ orcid: user.orcid })
@@ -137,5 +145,6 @@ module.exports = {
   updateEmail,
   updateEmailPreferences,
   updateProfilePic,
-  getOnlyUserById
+  getOnlyUserById,
+  setEmailTokenAsVerified
 }

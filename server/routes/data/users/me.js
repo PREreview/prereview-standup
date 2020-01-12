@@ -1,11 +1,13 @@
-var express = require('express')
-var fs = require('fs')
-var formidableMiddleware = require('express-formidable')
+const express = require('express')
+const fs = require('fs')
+const uuid = require('uuid')
+const formidableMiddleware = require('express-formidable')
 
-var user = require('../../../db/tables/users')
-var prereview = require('../../../db/tables/prereviews')
+const user = require('../../../db/tables/users')
+const prereview = require('../../../db/tables/prereviews')
 
-var router = express.Router()
+const router = express.Router()
+const EmailService = require('../../../services/EmailService')
 
 // Serves the current user's own data to the client app
 // only works if the user is logged in - otherwise req.user is null
@@ -81,27 +83,51 @@ router.post('/me/updateProfilePic', formidableMiddleware(), function (req, res) 
   }
 })
 
+// Serves the current user's own data to the client app
+// only works if the user is logged in - otherwise req.user is null
+router.get('/confirm-email', async function (req, res) {
+  const token = req.query.token
+  await user.setEmailTokenAsVerified(token)
+  res.redirect('/profile')
+})
+
 // Update personal email
-router.post('/me/updatePersonalEmail', function (req, res) {
-  const { email } = req.body
+router.post('/me/updatePersonalEmail', async function (req, res) {
+  const { emailAddress } = req.body
   const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-  if (!emailRegex.test(email)) {
+  if (!emailRegex.test(emailAddress)) {
     res.status(401, 'Not a valid email address')
     return res.json({})
   }
 
   if (req.user) {
-    user.updateEmail(req.user, email).then(() => {
-      const { profile } = req.user
-      // return updated user
-      res.json({
-        ...req.user,
-        profile: {
-          ...profile,
-          emails: [email]
-        }
-      })
+
+    const { user: { profile: { email: { address: currentEmailAddress } = {} } } } = req
+
+    // do not update the email if it's the same
+    if (currentEmailAddress === emailAddress || !emailAddress) {
+      return res.json(req.user)
+    }
+
+    const email = {
+      address: emailAddress,
+      verified: false,
+      token: uuid() // TODO actually generate a token
+    }
+
+    await user.updateEmail(req.user, email)
+
+    EmailService.sendVerificationEmail({ ...req.user, email })
+
+    const { profile } = req.user
+    // return updated user
+    res.json({
+      ...req.user,
+      profile: {
+        ...profile,
+        email
+      }
     })
   } else {
     res.status(401)

@@ -1,16 +1,16 @@
-var Nanocomponent = require('nanocomponent')
-var html = require('choo/html')
-var css = require('sheetify')
-var raw = require('choo/html/raw')
-var GRID = require('../../grid')
+const Nanocomponent = require('nanocomponent')
+const html = require('choo/html')
+const css = require('sheetify')
+const raw = require('choo/html/raw')
+const GRID = require('../../grid')
 
-var avatarInputClass = css`
+const avatarInputClass = css`
   :host {
     display: none;
   }
 `
 
-var avatarLabelClass = css`
+const avatarLabelClass = css`
   :host {
     position: relative;
     width: 128px;
@@ -35,15 +35,17 @@ var avatarLabelClass = css`
   }
 `
 
-var emailInputClass = css`
+const emailInputClass = css`
   :host {
+    width: 240px;
     pointer-events: none;
     border: 1px solid rgba(255,255,255,.5);
   }
 `
 
-var emailInputEditClass = css`
+const emailInputEditClass = css`
   :host {
+    width: 240px;
     border: 1px solid black;
   }
 `
@@ -60,36 +62,38 @@ module.exports = class MyProfileCard extends Nanocomponent {
   }
 
   createElement (state) {
-    var { isEditingEmail } = this.localState
-    var { user: { profile: { emails = [], isReceivingEmails, isEmailPrivate } = {} } = {} } = state
-    var [email] = emails
+    const { isEditingEmail } = this.localState
+    const { user: { profile: { email, isReceivingEmails, isEmailPrivate } = {} } = {} } = state
+    const { address: emailAddress, verified } = email || {}
 
-    var profilepic = (state.user.profile && state.user.profile.pic) ? state.user.profile.pic : '/assets/illustrations/avatar.png'
-    var biographyContainer = 'w-100 mt1'
-    var biographyContent
-    var avatarInput = html`<input type="file" id="avatar" value="" name="avatar" class="${avatarInputClass}">`
-    var isReceivingEmailsCheckbox = html`<input type="checkbox" id="isReceivingEmailsCheckbox" checked=${isReceivingEmails} value="" name="isReceivingEmailsCheckbox">`
-    var isEmailPrivateCheckbox = html`<input type="checkbox" id="isEmailPrivateCheckbox" checked=${isEmailPrivate} value="" name="isEmailPrivateCheckbox">`
+    const profilePic = (state.user.profile && state.user.profile.pic) ? state.user.profile.pic : '/assets/illustrations/avatar.png'
+    const avatarInput = html`<input type="file" id="avatar" value="" name="avatar" class="${avatarInputClass}">`
+    const isReceivingEmailsCheckbox = html`<input type="checkbox" id="isReceivingEmailsCheckbox" checked=${isReceivingEmails} value="" name="isReceivingEmailsCheckbox">`
+    const isEmailPrivateCheckbox = html`<input type="checkbox" id="isEmailPrivateCheckbox" checked=${isEmailPrivate} value="" name="isEmailPrivateCheckbox">`
 
-    var emailInput = html`
+    let biographyContainer = 'w-100 mt1'
+    let biographyContent
+
+    const emailInput = html`
         <input 
+            required
             type="email" 
             id="emailInput" 
-            value="${email}" 
-            name="email"
+            value="${emailAddress}" 
+            name="emailAddress"
             placeholder="no email address"
             class="${isEditingEmail ? emailInputEditClass : emailInputClass}"
          >
     `
 
-    var toggleIsEditingEmail = () => {
+    const toggleIsEditingEmail = () => {
       this.localState.isEditingEmail = !isEditingEmail
       this.emit('render')
     }
 
-    var updateEmailPreferences = () => {
-      var isReceivingEmailsCheckbox = document.querySelector('#isReceivingEmailsCheckbox')
-      var isEmailPrivateCheckbox = document.querySelector('#isEmailPrivateCheckbox')
+    const updateEmailPreferences = () => {
+      const isReceivingEmailsCheckbox = document.querySelector('#isReceivingEmailsCheckbox')
+      const isEmailPrivateCheckbox = document.querySelector('#isEmailPrivateCheckbox')
 
       const formData = {
         isReceivingEmails: isReceivingEmailsCheckbox.checked,
@@ -98,13 +102,17 @@ module.exports = class MyProfileCard extends Nanocomponent {
       this.emit('user:update-email-preferences', formData)
     }
 
-    var emailSubmitFunction = (e) => {
+    const sendVerificationEmail = () => {
+
+    }
+
+    const emailSubmitFunction = (e) => {
       e.preventDefault()
-      const { email: emailInput } = e.currentTarget
+      const { emailAddress: emailInput } = e.currentTarget
 
       if (isEditingEmail) {
         const formData = {
-          email: emailInput.value,
+          emailAddress: emailInput.value
         }
         this.emit('user:update-personal-email', formData)
         state.user.profile.emails = [emailInput.value]
@@ -114,7 +122,7 @@ module.exports = class MyProfileCard extends Nanocomponent {
       toggleIsEditingEmail()
     }
 
-    var emailEditButton = html`
+    const emailEditButton = html`
         <button 
             class="ml1 pl2 link dim blue" 
             type="${isEditingEmail ? 'submit' : 'button'}"
@@ -146,19 +154,26 @@ module.exports = class MyProfileCard extends Nanocomponent {
     <div class="w-100 center bg-white br3 pa1">
       <label for="avatar" class="mt3 ${avatarLabelClass} pointer">
         ${avatarInput}
-        <img src="${profilepic}" class="br-100 h4 w4 dib"/>
+        <img src="${profilePic}" class="br-100 h4 w4 dib"/>
       </label>
 
       <h2 class="mb2 fw4">${state.user.name}</h2>
 
       <div class="flex flex-row mt1 items-center">
-        <div class="b">Email Address: </div>
+        <div class="b">Email address: </div>
         <div class="ml1 pl2"> 
         <form onsubmit="${emailSubmitFunction}">
          ${emailInput}
          ${emailEditButton}
         </form>
+        </div>
       </div>
+      
+       <div class="flex flex-row mt1 items-center">
+        <div class="b">Email address status: </div>
+        <div class="ml1 pl2"> 
+            ${verified ? html`<p class="green">verified</p>` : html`<p class="dark-red">not verified</p>`}
+        </div>
       </div>
       
        <div class="flex flex-row mt1">

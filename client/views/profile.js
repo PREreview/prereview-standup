@@ -54,7 +54,7 @@ function view (state, emit) {
 
       <div class="w-60 flex flex-row">
         <div class="w-100 h8 justify-center items-center pa6 ${state.style.classes.col} ${state.style.classes.center}">
-          <h3 class="fw4">Oops! You must <a href="/login" class="link dim dark-red">log in</a> to view your profile.</h4>
+          <h3 class="fw4">Oops! You must <a href="/login-redirect" class="link dim dark-red">log in</a> to view your profile.</h4>
         </div>
       </div>
     </body>

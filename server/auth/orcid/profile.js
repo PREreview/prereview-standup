@@ -14,7 +14,7 @@ async function updateFromOrcid (user) {
     biography
   })
 
-  return user;
+  return user
 }
 
 function tokenType (user) {
@@ -72,7 +72,8 @@ async function fetchPersonFromOrcid (user) {
 
   if (data.emails && data.emails.email) {
     const emails = data.emails.email.map(e => e.email)
-    Object.assign(parsedData, { emails })
+    const [emailAddress] = emails
+    Object.assign(parsedData, { email: { address: emailAddress, verified: true } })
   }
 
   return parsedData

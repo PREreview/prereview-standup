@@ -10,11 +10,6 @@ router.post('/submit', async function (req, res, next) {
     return res.status(401)
   }
 
-  // if (req.user.id !== req.body.author.id) {
-  //   // user must be logged in as the same one claiming to author the preprint
-  //   return res.status(401, 'You cannot post a preprint as another user')
-  // }
-
   const { preprint_id } = req.body
   const { user_id: author_id } = req.user
 
