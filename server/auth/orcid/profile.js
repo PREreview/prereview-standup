@@ -6,11 +6,11 @@ module.exports = updateFromOrcid
 async function updateFromOrcid (user) {
   const works = await fetchWorksFromOrcid(user)
   const personData = await fetchPersonFromOrcid(user)
-  const { emails, biography } = personData
+  const { email, biography } = personData
 
   Object.assign(user.profile, {
     works,
-    emails,
+    email,
     biography,
     isReceivingEmails: true,
     isEmailPrivate: true
