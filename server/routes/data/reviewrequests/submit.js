@@ -1,3 +1,4 @@
+const uuidv4 = require('uuid/v4')
 const express = require('express')
 const reviewRequestsTable = require('../../../db/tables/reviewrequests')
 
@@ -17,6 +18,7 @@ router.post('/submit', async function (req, res, next) {
 
   if (!isAlreadyRequestedByUser) {
     const reviewRequest = {
+      id: uuidv4(),
       preprint_id,
       author_id,
       date_created: new Date()
