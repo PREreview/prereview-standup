@@ -6,7 +6,7 @@ var GRID = require('../../../grid')
 
 var modal = css`
   :host {
-    position: absolute;
+    position: fixed;
     z-index: 100;
     left: 0;
     top: 0;
