@@ -203,8 +203,13 @@ function addEntry(state, emit) {
     </button>
   `
 
-  addPREreviewBtn.onclick = () =>
-    emit('pushState', `/preprints/${state.add.searchResult.id}/new`)
+  addPREreviewBtn.onclick = () => {
+    emit('add-modal:insert-preprint', {
+      preprint: state.add.searchResult,
+      author_id: state.user.user_id,
+      withRedirectToNew: true
+    })
+  }
 
   var requestPREreviewBtn = html`
     <button class="${controlBtns} pointer">
