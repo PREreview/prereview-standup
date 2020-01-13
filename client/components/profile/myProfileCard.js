@@ -79,7 +79,7 @@ module.exports = class MyProfileCard extends Nanocomponent {
             required
             type="email" 
             id="emailInput" 
-            value="${emailAddress}" 
+            value="${emailAddress || ''}" 
             name="emailAddress"
             placeholder="no email address"
             class="${isEditingEmail ? emailInputEditClass : emailInputClass}"
