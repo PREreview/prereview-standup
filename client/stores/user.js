@@ -48,13 +48,58 @@ module.exports = async (state, emitter) => {
       body: formData
     })
       .then(response => response.json())
-      .then(result => emitter.emit('render'))
+      .then(result => {
+        state.user = result;
+        emitter.emit('render')
+      })
       .catch(console.log)
 
     emitter.emit('render')
   }
 
   emitter.on('user:update-profile-picture', updateProfilePic)
+
+  var updatePersonalEmail = formData => {
+    fetch('/data/users/me/updatePersonalEmail', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(response => response.json())
+      .then(result => {
+        state.user = result;
+        emitter.emit('render')
+      })
+      .catch(console.log)
+
+    emitter.emit('render')
+  }
+
+  emitter.on('user:update-personal-email', updatePersonalEmail)
+
+  var updateEmailPreferences = formData => {
+    fetch('/data/users/me/updateEmailPreferences', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(response => response.json())
+      .then(result => {
+        state.user = result;
+        emitter.emit('render')
+      })
+      .catch(console.log)
+
+    emitter.emit('render')
+  }
+
+  emitter.on('user:update-email-preferences', updateEmailPreferences)
 
   async function getCurrentUser() {
     try {
