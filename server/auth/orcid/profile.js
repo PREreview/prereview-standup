@@ -11,7 +11,9 @@ async function updateFromOrcid (user) {
   Object.assign(user.profile, {
     works,
     emails,
-    biography
+    biography,
+    isReceivingEmails: true,
+    isEmailPrivate: true
   })
 
   return user

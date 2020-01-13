@@ -57,6 +57,15 @@ class OtherUser extends Nanocomponent {
           </h3>
         ` : null
 
+        var email = (user.profile && user.profile.email && user.profile.email.address && !user.profile.isEmailPrivate) ? html`
+          <h3 class="mt1 f5 fw3 mv0">
+            Email address:
+            <a class="link dim black code" href="mailto:${user.profile.email.address}" target="_blank">
+              ${user.profile.email.address}
+            </a>
+          </h3>
+        ` : null
+
         var privateuser = user.is_private ? html`<h3>This user's profile is private.</h3>` : null
         var profilepic = (user.profile && user.profile.pic) ? user.profile.pic : '/assets/illustrations/avatar.png'
         var usersince = new Date(user.created_at).toDateString()
@@ -66,6 +75,7 @@ class OtherUser extends Nanocomponent {
             <img src="${profilepic}" class="br-100 h4 w4 dib"/>
             <h1 class="mb1 fw4">${user.name}</h1>
             ${orcid}
+            ${email}
             <p>Member since ${usersince}.</p>
             ${privateuser}
             ${userreviews(state, emit, user)}
