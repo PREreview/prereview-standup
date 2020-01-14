@@ -37,7 +37,6 @@ const avatarLabelClass = css`
 
 const emailInputClass = css`
   :host {
-    width: 240px;
     pointer-events: none;
     border: 1px solid rgba(255,255,255,.5);
   }
@@ -45,7 +44,6 @@ const emailInputClass = css`
 
 const emailInputEditClass = css`
   :host {
-    width: 240px;
     border: 1px solid black;
   }
 `
@@ -77,14 +75,25 @@ module.exports = class MyProfileCard extends Nanocomponent {
     const emailInput = html`
         <input 
             required
+            style=""
             type="email" 
             id="emailInput" 
             value="${emailAddress || ''}" 
             name="emailAddress"
             placeholder="no email address"
+            size=${Math.max(emailAddress.length * 1.3, 30)}
             class="${isEditingEmail ? emailInputEditClass : emailInputClass}"
          >
     `
+
+    emailInput.onkeyup = function (e) {
+      const target = e.target || e.srcElement
+      const newSize = Math.max(target.value.length * 1.3, 30)
+
+      target.setAttribute
+        ? target.setAttribute('size', newSize)
+        : (target['size'] = newSize)
+    }
 
     const toggleIsEditingEmail = () => {
       this.localState.isEditingEmail = !isEditingEmail
