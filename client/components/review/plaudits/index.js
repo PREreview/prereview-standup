@@ -1,6 +1,7 @@
 var html = require('choo/html')
 var icon = require('../../utils/icon')
 
+// TODO remove if left unused
 module.exports = function plauditsBtn (state, emit, review) {
   var n = review.plaudits
 
