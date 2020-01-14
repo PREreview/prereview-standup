@@ -47,6 +47,7 @@ var navButton = css`
     font: 500 18px/20pt Open Sans, sans-serif;
     color: #0b0b0b;
     opacity: 0.8;
+    padding: 0 16px;
   }
 
   :host:hover {
@@ -66,7 +67,7 @@ var burgerLine = css`
 
 module.exports = function (state, emit, opts) {
   var findContainer = 'ph3 flex flex-row items-center nowrap dim bg-dark-gray br-pill link pointer'
-  var buttonItem = 'tc flex pt2 pb2 ml2 mr2'
+  var buttonItem = 'tc flex'
   var buttonsContainer = 'flex flex-row items-center justify-end'
   var navContainer = `fl w-100 bg-white bb flex flex-row justify-between sans-serif ${barstyle}`
   var logo
