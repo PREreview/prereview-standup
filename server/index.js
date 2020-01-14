@@ -75,7 +75,7 @@ app.use(function (err, req, res, next) {
   res.status(500).send(err.message)
 })
 
-var listenport = parseInt(process.env.PREREVIEW_PORT)
+var listenport = parseInt(process.env.PREREVIEW_PORT || process.env.PORT);
 
 if (listenport === 443) {
   var https = require('https')
