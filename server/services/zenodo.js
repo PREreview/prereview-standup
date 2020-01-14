@@ -84,8 +84,11 @@ const generateDOI = async prereviewData => {
   }
 
   // Success
+  const domain = ENV === "dev" ? "https://sandbox.zenodo.org" : "https://zenodo.org"
   console.log(`
-    [ZENODO] Deposition published successfully at https://sandbox.zenodo.org/deposit/${depositionData.id}
+    [ZENODO] Deposition published successfully!
+    > Deposition: ${domain}/deposit/${depositionData.id}
+    > Record: ${domain}/record/${publishData.doi.split("zenodo.")[1]}
   `)
 
   return publishData.doi
