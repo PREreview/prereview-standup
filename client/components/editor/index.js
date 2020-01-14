@@ -69,9 +69,29 @@ module.exports = class Editor extends Nanocomponent {
   }
 
   load() {
+    const defaultText = 'PREreview Title';
     // // console.log('the Editor component just loaded into the DOM')
     // // set contents to markdown template
-    // this.quill.updateContents(template['Quick template'])
+    this.quill.updateContents({
+      ops: [
+        { insert: defaultText, attributes: { color: "#ccc" } },
+        { insert: '\n', attributes: { header: 1 } },
+      ]
+    });
+
+    const clearPlaceholder = (ev) => {
+      // Check if the click target is the placeholder text
+      if (ev.target.innerHTML !== defaultText) {
+        return;
+      }
+      // Remove the placeholder text
+      this.quill.deleteText(0, defaultText.length);
+      // Remove the click event
+      this.quill.root.removeEventListener('click', clearPlaceholder);
+    }
+
+    // Add the click event
+    this.quill.root.addEventListener('click', clearPlaceholder);
 
     // focus cursor inside editor
     this.quill.focus()
