@@ -127,19 +127,19 @@ module.exports = function (state, emit, opts) {
 
   var rightpart = html`
     <div class=${buttonsContainer}>
-      <a href="/docs/about" class=${buttonItem} style="padding-top: 8px; padding-bottom: 8px; margin-left: 16px; margin-right: 16px;">
+      <a href="https://content.prereview.org/about" target="_blank" class="${buttonItem} pt1 pb1 ml2 mr2">
         About
       </a>
 
-      <a href="/docs/code_of_conduct" class=${buttonItem} style="padding-top: 8px; padding-bottom: 8px; margin-left: 16px; margin-right: 16px;">
+      <a href="https://content.prereview.org/coc" target="_blank" class="${buttonItem} pt1 pb1 ml2 mr2">
         Code of Conduct
       </a>
 
-      <a href="https://blog.prereview.org" target="_blank" class=${buttonItem} style="padding-top: 8px; padding-bottom: 8px; margin-left: 16px; margin-right: 16px;">
+      <a href="https://content.prereview.org/resources" target="_blank" class="${buttonItem} pt1 pb1 ml2 mr2">
         Blog
       </a>
 
-      <a href="/docs/resources" class=${buttonItem} style="padding-top: 8px; padding-bottom: 8px; margin-left: 16px; margin-right: 16px;">
+      <a href="https://content.prereview.org/resources" target="_blank" class="${buttonItem} pt1 pb1 ml2 mr2">
         Resources
       </a>
 
