@@ -73,7 +73,8 @@
     "sql-template-strings": "^2.2.2",
     "tachyons": "^4.11.1",
     "through2": "^3.0.1",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "pm2": "^3.5.1"
   },
   "devDependencies": {
     "bankai": "^9.15.0",
@@ -82,7 +83,6 @@
     "express-list-endpoints": "^4.0.1",
     "flush-write-stream": "^2.0.0",
     "hyperdb": "^3.5.0",
-    "pm2": "^3.5.1",
     "pump": "^3.0.0",
     "standard": "^14.3.1",
     "untildify": "^4.0.0",
