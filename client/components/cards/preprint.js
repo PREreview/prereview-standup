@@ -85,7 +85,7 @@ function preprint(state, emit, p) {
   if (state.user) {
     addRequestReview = html`
       <button class="nowrap dim bg-red flex flex-row br4 items-center link noselect pointer">
-        <p class="ma0 pa0 white dtc v-mid f6">
+        <p class="ma0 pa0 white dtc v-mid f6" style="font-size: 16px">
           Add PREreview | Request PREreview
         </p>
       </button>

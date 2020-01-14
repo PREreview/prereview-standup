@@ -38,13 +38,35 @@ var giveFeedbackBtn = css`
 
 var fitContent = css`
   :host {
-    width: fit-content
+    width: fit-content;
+  }
+`
+
+var navButton = css`
+  :host {
+    font: 500 18px/20pt Open Sans, sans-serif;
+    color: #0b0b0b;
+    opacity: 0.8;
+  }
+
+  :host:hover {
+    opacity: 1;
+    color: #0b0b0b;
+  }
+`
+
+var burgerLine = css`
+  :host {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
   }
 `
 
 module.exports = function (state, emit, opts) {
   var findContainer = 'ph3 flex flex-row items-center nowrap dim bg-dark-gray br-pill link pointer'
-  var buttonItem = 'link dim black-90 tc flex'
+  var buttonItem = 'tc flex pt2 pb2 ml2 mr2'
   var buttonsContainer = 'flex flex-row items-center justify-end'
   var navContainer = `fl w-100 bg-white bb flex flex-row justify-between sans-serif ${barstyle}`
   var logo
@@ -86,14 +108,14 @@ module.exports = function (state, emit, opts) {
   var logged = () => {
     var profile = html`
       <div class="ph3 flex flex-row items-center bg-dark-gray br-pill link pointer ${fitContent}" style="height: 32px; margin-right: 24px;">
-        <p class="ma0 pa0 white dib v-mid b">${state.user.name}</p>
+        <p class="ma0 pa0 white dib v-mid ${navButton}">${state.user.name}</p>
       </div>
     `
     profile.onclick = () => emit('pushState', '/profile')
 
     var el = html`
       <div class=${loggedInBtns}>
-        <a href="/logout" class="link dim black-90 tc flex mr4" style="padding-top: 8px; padding-bottom: 8px; margin-left: 16px; margin-right: 16px;">
+        <a href="/logout" class="${buttonItem} mr3 ${navButton}">
           Log out
         </a>
         ${profile}
@@ -107,9 +129,9 @@ module.exports = function (state, emit, opts) {
 
   var menuButton = state.dimensions.width < GRID.MD ? html`
     <button class="hamburger" type="button" style="margin-top: 18px; margin-right: 24px;">
-      <div style="width: 35px; height: 5px; background-color: black; margin: 6px 0"></div>
-      <div style="width: 35px; height: 5px; background-color: black; margin: 6px 0"></div>
-      <div style="width: 35px; height: 5px; background-color: black; margin: 6px 0"></div>
+      <div class=${burgerLine}></div>
+      <div class=${burgerLine}></div>
+      <div class=${burgerLine}></div>
     </button>
   ` : html`
     <div></div>
@@ -127,19 +149,19 @@ module.exports = function (state, emit, opts) {
 
   var rightpart = html`
     <div class=${buttonsContainer}>
-      <a href="/docs/about" class=${buttonItem} style="padding-top: 8px; padding-bottom: 8px; margin-left: 16px; margin-right: 16px;">
+      <a href="https://content.prereview.org/about" target="_blank" class="${buttonItem} ${navButton}">
         About
       </a>
 
-      <a href="/docs/code_of_conduct" class=${buttonItem} style="padding-top: 8px; padding-bottom: 8px; margin-left: 16px; margin-right: 16px;">
+      <a href="https://content.prereview.org/coc" target="_blank" class="${buttonItem} ${navButton}">
         Code of Conduct
       </a>
 
-      <a href="https://blog.prereview.org" target="_blank" class=${buttonItem} style="padding-top: 8px; padding-bottom: 8px; margin-left: 16px; margin-right: 16px;">
+      <a href="https://content.prereview.org/resources" target="_blank" class="${buttonItem} ${navButton}">
         Blog
       </a>
 
-      <a href="/docs/resources" class=${buttonItem} style="padding-top: 8px; padding-bottom: 8px; margin-left: 16px; margin-right: 16px;">
+      <a href="https://content.prereview.org/resources" target="_blank" class="${buttonItem} ${navButton}">
         Resources
       </a>
 
