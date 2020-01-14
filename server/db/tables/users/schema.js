@@ -12,7 +12,7 @@ function createTable () {
       // .profile and .token are also updated at each subsequent login
       table.string('orcid').unique().comment('Only one account per ORCID')
       table.string('name').comment('User real name taken from ORCID record')
-      table.json('profile').nullable()
+      table.jsonb('profile').nullable()
       table.json('token').nullable()
 
       // admin users must be defined by config (see /config)

@@ -12,7 +12,7 @@ module.exports = async (state, emitter) => {
   var search = debounce(runsearch, 400)
 
   // toggle modal visibility
-  function toggleModal() {
+  function toggleModal () {
     state.add.modalVisible = !state.add.modalVisible
     state.add.searchResult = null
     state.add.foundInDB = false
@@ -22,12 +22,12 @@ module.exports = async (state, emitter) => {
   }
 
   // search for preprint by preprint id
-  function findPreprints(pub_id) {
+  function findPreprints (pub_id) {
     search(pub_id)
   }
 
   // modal search function for DOI and arXiv preprints
-  async function runsearch(pub_id) {
+  async function runsearch (pub_id) {
     // search for preprint in DB by Id
     let foundPreprint = await fetchPreprintInDB(pub_id)
 
@@ -91,8 +91,8 @@ module.exports = async (state, emitter) => {
     )
 
   // insert preprint DB
-  function insertPreprint(data) {
-    const { preprint, author_id } = data
+  function insertPreprint (data) {
+    const { preprint, author_id, withRedirectToNew } = data
 
     fetch('/data/preprints/insert', {
       method: 'POST',
@@ -104,7 +104,13 @@ module.exports = async (state, emitter) => {
     })
       .then(res => res.json())
       .then(() => insertReviewRequest({ author_id, preprint_id: preprint.id }))
-      .then(() => emitter.emit('preprint-search:latest'))
+      .then(() => {
+        if (withRedirectToNew) {
+          emitter.emit('pushState', `/preprints/${preprint.id}/new`)
+        } else {
+          emitter.emit('preprint-search:latest')
+        }
+      })
       .catch(console.log)
 
     emitter.emit('add-modal:toggle')
@@ -112,8 +118,8 @@ module.exports = async (state, emitter) => {
   }
 
   // add review request in DB
-  function insertReviewRequest(requestreview) {
-    fetch('/data/reviewrequests/submit', {
+  function insertReviewRequest (requestreview) {
+    return fetch('/data/reviewrequests/submit', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -131,19 +137,19 @@ module.exports = async (state, emitter) => {
   }
 
   // set search data into state
-  function setData(data) {
+  function setData (data) {
     state.add.searchResult = data
     state.add.searchQuery = data.id
 
     emitter.emit('render')
   }
 
-  function handleSearchResponse(response) {
+  function handleSearchResponse (response) {
     state.add.searchResult = response
     emitter.emit('render')
   }
 
-  emitter.on('DOMContentLoaded', function() {
+  emitter.on('DOMContentLoaded', function () {
     emitter.on('add-modal:toggle', toggleModal)
     emitter.on('add-search:query', findPreprints)
     emitter.on('add-modal:set-data', setData)

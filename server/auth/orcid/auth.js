@@ -1,4 +1,3 @@
-
 var passport = require('passport')
 var users = require('../../db/tables/users')
 var OrcidStrategy = require('passport-orcid').Strategy
@@ -20,7 +19,7 @@ passport.use(new OrcidStrategy({
   clientID: process.env.ORCID_CLIENT_ID,
   clientSecret: process.env.ORCID_CLIENT_SECRET,
   callbackURL: `${process.env.APP_ROOT_URI}/orcid-callback`
-}, function (accessToken, refreshToken, params, profile, done) {
+}, async (accessToken, refreshToken, params, profile, done) => {
   // `profile` is empty as ORCID has no generic profile URL,
   // so populate the profile object from the params instead
   profile = {
@@ -37,11 +36,9 @@ passport.use(new OrcidStrategy({
   // now we get the list of works for the user from the ORCID api
   // and add it to their profile data
 
-  updateFromOrcid(profile).then(enrichedProfile =>
-    users.getOrAddUser(enrichedProfile).then(userdata =>
-      done(null, enrichedProfile)
-    )
-  ).catch(done)
+  const enrichedProfile = await updateFromOrcid(profile)
+  await users.getOrAddUser(enrichedProfile)
+  done(null, enrichedProfile)
 }))
 
 module.exports = app => {

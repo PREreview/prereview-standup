@@ -2,7 +2,7 @@ var db = require('../..')
 
 var { getUserReviews } = require('../prereviews')
 
-function addUser(user) {
+function addUser (user) {
   return db('users').insert({
     orcid: user.orcid,
     name: user.name,
@@ -11,54 +11,58 @@ function addUser(user) {
   })
 }
 
-function updateUser(user) {
+function updateUser (user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
     .update(user)
 }
 
-function getOnlyUserById(userid) {
+function getOnlyUserById (userid) {
   return db('users')
     .where({ user_id: userid })
     .first()
 }
 
-function getUser(user) {
+function getUser (user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
     .then(getUserReviews)
 }
 
-function getUserById(userid) {
+function getUserById (userid) {
   return db('users')
     .where({ user_id: userid })
     .first()
     .then(getUserReviews)
 }
 
-function getOrAddUser(user) {
-  return db('users')
-    .where({ orcid: user.orcid })
-    .then(results => {
-      if (results.length < 1) {
-        // create new user
-        return addUser(user).then(user => {
-          user.firstvisit = true
-          return user
-        })
-      } else {
-        delete user.profile
-        return updateUser(user).then(user => {
-          user.firstvisit = false
-          return user
-        })
-      }
+async function getOrAddUser (user) {
+  const [existingUser] = await db('users').where({ orcid: user.orcid })
+
+  if (existingUser) {
+    existingUser.profile = existingUser.profile || {}
+    // extend profile
+
+    user.profile = {
+      ...user.profile,
+      ...existingUser.profile,
+    }
+
+    return updateUser(user).then(user => {
+      user.firstvisit = false
+      return user
     })
+  } else {
+    return addUser(user).then(user => {
+      user.firstvisit = true
+      return user
+    })
+  }
 }
 
-function makeUserPrivate(user) {
+function makeUserPrivate (user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
@@ -68,7 +72,7 @@ function makeUserPrivate(user) {
     })
 }
 
-function makeUserPublic(user) {
+function makeUserPublic (user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
@@ -78,7 +82,7 @@ function makeUserPublic(user) {
     })
 }
 
-function acceptCoC(user) {
+function acceptCoC (user) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
@@ -87,14 +91,45 @@ function acceptCoC(user) {
     })
 }
 
-function updateProfilePic(user, img) {
+function updateProfilePic (user, img) {
+  // TODO upload to external service or use another db field ?
+  // cannot use jsonb_set because knex does not escape properly a buffer
+  const { profile } = user
+  Object.assign(profile, { pic: img })
+
+  return db('users')
+    .where({ orcid: user.orcid })
+    .first()
+    .update({ profile })
+}
+
+function updateEmail (user, email) {
   return db('users')
     .where({ orcid: user.orcid })
     .first()
     .update({
-      profile: {
-        pic: img
-      }
+      profile: db.raw(`jsonb_set(??, '{email}', ?)`, ['profile', email])
+    })
+}
+
+function setEmailTokenAsVerified (token) {
+  return db('users')
+    .whereRaw(`profile->'email'->>'token' = ?`, token)
+    .first()
+    .update({
+      profile: db.raw(`jsonb_set(??, '{email, verified}', ?)`, ['profile', true])
+    })
+}
+
+function updateEmailPreferences (user, preferences) {
+  const { isReceivingEmails, isEmailPrivate } = preferences
+
+  return db('users')
+    .where({ orcid: user.orcid })
+    .first()
+    .update({
+      profile: db.raw(`jsonb_set(jsonb_set(??, '{isReceivingEmails}', ?), '{isEmailPrivate}', ?)
+        `, ['profile', isReceivingEmails, isEmailPrivate])
     })
 }
 
@@ -107,6 +142,9 @@ module.exports = {
   makeUserPublic,
   acceptCoC,
   getUserReviews,
+  updateEmail,
+  updateEmailPreferences,
   updateProfilePic,
-  getOnlyUserById
+  getOnlyUserById,
+  setEmailTokenAsVerified
 }

@@ -3,7 +3,8 @@ var css = require('sheetify')
 
 var nav = require('../components/nav')
 var profile = require('../components/profile')
-var Setup = require('../components/profile/firstvisit')
+var Setup = require('../components/profile/firstVisit')
+var MyProfileCard = require('../components/profile/myProfileCard')
 var GRID = require('../grid')
 
 var TITLE = 'PREreview2 | profile'
@@ -18,13 +19,11 @@ module.exports = view
 
 function view (state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
-
-  var userid = state.href.split('/users/')[1]
-
+  var userId = state.href.split('/users/')[1]
   var otherUserContainer = `flex flex-column ${mainstyle} justify-center items-center`
   var profileContainer = `flex flex-column`
 
-  if(state.dimensions.width < GRID.LG ) {
+  if (state.dimensions.width < GRID.LG) {
     otherUserContainer = `${otherUserContainer} w-90`
     profileContainer = `${profileContainer} w-90`
   } else {
@@ -35,15 +34,15 @@ function view (state, emit) {
   // Don't render anything if we're still fetching data
   // This will avoid having flashing of content on the profile page
   if (!state.contentloaded) {
-    return html`<div></div>`;
+    return html`<div></div>`
   }
 
-  if (userid) {
+  if (userId) {
     // viewing a specific user's profile
     return html`
     <body class="flex flex-column w-100 justify-center items-center space-around">
       <div class=${otherUserContainer}>
-        ${profile.otheruser(state, emit, fetch(`/data/users/${userid}`).then(res => res.json()))}
+        ${profile.otheruser(state, emit, fetch(`/data/users/${userId}`).then(res => res.json()))}
       </div>
     </body>
     `
@@ -55,14 +54,14 @@ function view (state, emit) {
 
       <div class="w-60 flex flex-row">
         <div class="w-100 h8 justify-center items-center pa6 ${state.style.classes.col} ${state.style.classes.center}">
-          <h3 class="fw4">Oops! You must <a href="/login" class="link dim dark-red">log in</a> to view your profile.</h4>
+          <h3 class="fw4">Oops! You must <a href="/login-redirect" class="link dim dark-red">log in</a> to view your profile.</h4>
         </div>
       </div>
     </body>
     `
   }
 
-  var firstvisit = html`
+  var firstVisit = html`
     <body class="flex flex-column w-100 justify-center items-center space-around">
       ${nav(state, emit)}
 
@@ -72,14 +71,14 @@ function view (state, emit) {
     </body>
   `
 
-  if (!state.user.coc_accepted || !state.user.privacy_setup) return firstvisit
+  if (!state.user.coc_accepted || !state.user.privacy_setup) return firstVisit
 
   return html`
     <body class="flex flex-column w-100 justify-center items-center space-around">
       ${nav(state, emit)}
 
       <div class=${profileContainer}>
-        ${profile.myprofilecard(state, emit)}
+        ${state.cache(MyProfileCard, `profile-card`).render(state)}
         ${profile.usercontent(state, emit)}
       </div>
     </body>

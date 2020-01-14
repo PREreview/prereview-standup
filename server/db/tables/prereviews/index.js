@@ -2,17 +2,15 @@ module.exports = {
   addPrereview, getPrereview, getPreprintReviews, getUserReviews
 }
 
-var db = require('../..')
+const db = require('../..')
 
-var { getPrereviewComments } = require('../comments')
+const { getPrereviewComments } = require('../comments')
+const { afterPreReviewInsert } = require('./hooks')
 
-function addPrereview (prereview) {
-  return db('prereviews').insert(prereview).then(
-    res => db('preprints')
-      .where('id', '=', prereview.preprint_id)
-      .increment('n_prereviews', 1)
-      .then(() => Promise.resolve(res))
-  )
+async function addPrereview (preReview) {
+  const insertResult =  await db('prereviews').insert(preReview)
+  afterPreReviewInsert(insertResult);
+  return insertResult;
 }
 
 function getPrereview (prereview) {

@@ -2,7 +2,7 @@ var html = require('choo/html')
 var GRID = require('../../../grid')
 
 module.exports = function(state, emit) {
-  var btnStyle = "padding-left: 16px; padding-right: 16px; height: 32px; border-radius: 16px; border: 0; font-size: 15px; width: fit-content;"
+  var btnStyle = "padding: 0 16px; height: 32px; border-radius: 16px; border: 0; font-size: 16px; width: fit-content;"
 
   if(state.dimensions.width < GRID.SM) {
     btnStyle = `${btnStyle} margin-bottom: 32px;`

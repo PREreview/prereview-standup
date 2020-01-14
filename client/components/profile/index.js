@@ -1,58 +1,26 @@
 var Nanocomponent = require('nanocomponent')
 var html = require('choo/html')
-var raw = require('choo/html/raw')
 var css = require('sheetify')
 
-var orcidPreprints = require('../../components/profile/orcidPreprints');
-var GRID = require('../../grid')
+var orcidPreprints = require('../../components/profile/orcidPreprints')
 
-var prereview_container = css`
+var preReviewContainerCss = css`
   :host {
     border-radius: 5px;
     background-color: #f7f7f7;
   }
 `
-var avatar_input = css`
-  :host {
-    display: none;
-  }
-`
-
-var avatar_label = css`
-  :host {
-    position: relative;
-    width: 128px;
-    height: 128px;
-    display: block;
-  }
-
-  :host:hover img {
-    filter: brightness(70%);
-    transition: all 0.3s ease;
-  }
-
-  :host:hover:before {
-    content: "+";
-    position: absolute;
-    color: white;
-    font-weight: 800;
-    font-size: 2em;
-    z-index: 1;
-    top: 36%;
-    left: 44%;
-  }
-`;
 
 var icon = require('../utils/icon')
 var loading = require('../utils/loading')
 
-module.exports = {
-  myprofilecard, otheruser, usercontent, start
-}
+module.exports = { otheruser, usercontent, start }
+
 function otheruser (state, emit, waitforuserdata) {
   var userId = state.href.split('/users/')[1]
   return state.cache(OtherUser, `prereview-other-user-profile-${userId}`).render(state, emit, waitforuserdata)
 }
+
 class OtherUser extends Nanocomponent {
   constructor () {
     super()
@@ -89,6 +57,15 @@ class OtherUser extends Nanocomponent {
           </h3>
         ` : null
 
+        var email = (user.profile && user.profile.email && user.profile.email.address && !user.profile.isEmailPrivate) ? html`
+          <h3 class="mt1 f5 fw3 mv0">
+            Email address:
+            <a class="link dim black code" href="mailto:${user.profile.email.address}" target="_blank">
+              ${user.profile.email.address}
+            </a>
+          </h3>
+        ` : null
+
         var privateuser = user.is_private ? html`<h3>This user's profile is private.</h3>` : null
         var profilepic = (user.profile && user.profile.pic) ? user.profile.pic : '/assets/illustrations/avatar.png'
         var usersince = new Date(user.created_at).toDateString()
@@ -98,6 +75,7 @@ class OtherUser extends Nanocomponent {
             <img src="${profilepic}" class="br-100 h4 w4 dib"/>
             <h1 class="mb1 fw4">${user.name}</h1>
             ${orcid}
+            ${email}
             <p>Member since ${usersince}.</p>
             ${privateuser}
             ${userreviews(state, emit, user)}
@@ -121,56 +99,6 @@ class OtherUser extends Nanocomponent {
     }
     return false
   }
-}
-
-function myprofilecard (state, emit) {
-  var profilepic = (state.user.profile && state.user.profile.pic) ? state.user.profile.pic : '/assets/illustrations/avatar.png'
-  var biographyContainer = "w-100 mt1"
-  var biographyContent
-  var input = html`<input type="file" id="avatar" value="" name="avatar" class="${avatar_input}">`
-
-  input.onchange = (event) => {
-    const files = event.target.files
-    const formData = new FormData()
-
-    formData.append('avatar', files[0])
-
-    emit('user:update-profile-picture', formData)
-  }
-
-  if(state.dimensions.width < GRID.LG) {
-  } else {
-    biographyContainer = `${biographyContainer} flex flex-row`
-    biographyContent = "ml1 pl2"
-  }
-
-  return html`
-    <div class="w-100 center bg-white br3 pa1">
-      <label for="avatar" class="mt3 ${avatar_label} pointer">
-        ${input}
-        <img src="${profilepic}" class="br-100 h4 w4 dib"/>
-      </label>
-
-      <h2 class="mb2 fw4">${state.user.name}</h2>
-
-      <h3 class="mt1 f5 fw3 mv0 flex flex-row">
-        <div class="b"> ORCiD </div>
-        <a class="link dim dark-red code ml1" href="https://orcid.org/${state.user.orcid}" target="_blank">
-          ${state.user.orcid}
-        </a>
-      </h3>
-
-      <div class="flex flex-row mt1">
-        <div class="b">Community appreciation: </div>
-        <div class="ml1 pl2">None yet</div>
-      </div>
-
-      <div class=${biographyContainer}>
-        <div class="b">Biography: </div>
-        <div class=${biographyContent}>${raw(state.user.profile.biography || state.user.orcidBiography || '-')}</div>
-      </div>
-    </div>
-  `
 }
 
 function usercontent (state, emit) {
@@ -235,7 +163,7 @@ function prereview (p) {
   var revdate = formatDate(p.date_created)
 
   return html`
-    <div class="flex-row justify-start items-start pa3 pt2 mt4 lh-copy mb2 ${prereview_container}">
+    <div class="flex-row justify-start items-start pa3 pt2 mt4 lh-copy mb2 ${preReviewContainerCss}">
       <div class="flex flex-row justify-end w-100">
         <div>
           PREreviewed on <span class="b ml2">${revdate}</span>
@@ -274,12 +202,12 @@ function start (state) {
 // format date from 2019-03-13T03:29:22.099Z to 2019-03-13
 const formatDate = date => {
   var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear()
   if (month.length < 2)
-      month = '0' + month;
+    month = '0' + month
   if (day.length < 2)
-      day = '0' + day;
-  return [year, month, day].join('-');
+    day = '0' + day
+  return [year, month, day].join('-')
 }
