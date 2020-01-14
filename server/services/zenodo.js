@@ -55,11 +55,12 @@ const generateDOI = async prereviewData => {
 
   // Review deposition file
   const formData = new FormData();
+  const fileName = prereviewData.title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
   const buffer = Buffer.from(prereviewData.content, 'utf8');
   formData.append('file', buffer, {
     contentType: 'text/html',
     name: 'file',
-    filename: `review_${Date.now()}.html`,
+    filename: `${fileName}_${Date.now()}.html`,
   });
 
   // Upload the deposition file
