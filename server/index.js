@@ -57,19 +57,27 @@ require('./auth/orcid')(app)
 // register server routers
 app.use('/', require('./routes'))
 
-// register client-side app
-if (DEV_ENV) app.get('/*', require('./routes/root'))
-
-app.use('/loginsuccess', (err, req, res, next) => {
+app.get('/loginsuccess', (req, res) => {
   res.redirect('/profile')
 })
 
+// setup user sessions
+app.use(require('./auth/sessions'))
+
 // register static file serves
 if (!DEV_ENV) {
-  app.use("/*", express.static(path.join(__dirname, '../client/dist'), {
+  app.use(express.static(path.join(__dirname, '../client/dist'), {
     redirect: false
   }))
+
+  app.use('/*', express.static(path.join(__dirname, '../client/dist')))
 }
+
+app.use('/assets/', express.static(path.join(__dirname, '../client/assets')))
+
+
+// register client-side app
+if (DEV_ENV) app.get('/*', require('./routes/root'))
 
 app.use(function (err, req, res, next) {
   console.error(err)
