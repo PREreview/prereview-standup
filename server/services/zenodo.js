@@ -49,6 +49,7 @@ const generateDOI = async prereviewData => {
 
   // Check if we have a valid deposition id
   if (!depositionData.id) {
+    console.error(depositionData);
     throw new Error("Missing Zenodo deposition id")
     return;
   }
@@ -84,11 +85,10 @@ const generateDOI = async prereviewData => {
   }
 
   // Success
-  const domain = ENV === "dev" ? "https://sandbox.zenodo.org" : "https://zenodo.org"
   console.log(`
     [ZENODO] Deposition published successfully!
-    > Deposition: ${domain}/deposit/${depositionData.id}
-    > Record: ${domain}/record/${publishData.doi.split("zenodo.")[1]}
+    > Deposition: ${BASE_URL}/deposit/${depositionData.id}
+    > Record: ${BASE_URL}/record/${publishData.doi.split("zenodo.")[1]}
   `)
 
   return publishData.doi
