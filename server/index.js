@@ -23,6 +23,8 @@ app.get('/proxy/:proxyUrl*', (req, res) => {
   var request = require('request')
   // Strip '/proxy' from the front of the URL, else the proxy won't work.
   req.url = req.url.replace('/proxy/', '');
+  req.url = req.url.replace('https:/www', 'https://www');
+  req.url = req.url.replace('http:/www', 'http://www');
 
   request(req.url).pipe(res);
 });
