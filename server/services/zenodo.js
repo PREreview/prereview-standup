@@ -19,6 +19,9 @@ const BASE_URL = {
   prod: 'https://zenodo.org'
 }[ENV];
 
+console.log("ENVIRONMENT", process.env.ENVIRONMENT);
+console.log("NODE_ENV", process.env.NODE_ENV);
+
 const zenodoBaseUrl = (action = '') =>
   `${BASE_URL}/api/deposit/depositions${action}?access_token=${ACCESS_TOKEN}`
 

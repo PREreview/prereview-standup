@@ -81,7 +81,7 @@ module.exports = class MyProfileCard extends Nanocomponent {
             value="${emailAddress || ''}" 
             name="emailAddress"
             placeholder="no email address"
-            size=${Math.max(emailAddress.length * 1.3, 30)}
+            size=${Math.max((emailAddress ? emailAddress.length : 0) * 1.3, 30)}
             class="${isEditingEmail ? emailInputEditClass : emailInputClass}"
          >
     `
