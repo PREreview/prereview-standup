@@ -62,6 +62,8 @@ module.exports = function view (state, emit, review) {
     </div>
     <div class="flex flex-row lh-copy w-100 justify-between pb2 mb2">
       ${review.doi && plaudit.script}
+    </div>
+    <div class="flex flex-row lh-copy w-100 justify-between pb2 mb2">
       ${commentsBtn(state, emit, review, expand)}
     </div>
     ${comments}
