@@ -61,7 +61,7 @@ module.exports = function view (state, emit, review) {
       ${raw(review.content)}
     </div>
     <div class="flex flex-row lh-copy w-100 justify-between pb2 mb2">
-      ${review.doi && plaudit.script}
+      <script async src="https://prereview-review.plaudit.pub/embed/endorsements.js" data-embedder-id="prereview" ></script>
     </div>
     <div class="flex flex-row lh-copy w-100 justify-between pb2 mb2">
       ${commentsBtn(state, emit, review, expand)}
