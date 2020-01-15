@@ -69,6 +69,7 @@ class Reviews extends Nanocomponent {
 
   createElement (state, emit, preprint) {
     if (!preprint.requests) preprint.requests = []
+    if (!preprint.reviewRequests) preprint.reviewRequests = []
 
     var n = preprint.prereviews.length
     var n_requests = preprint.reviewRequests.length
