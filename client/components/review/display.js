@@ -5,8 +5,7 @@ var css = require('sheetify')
 var composeComment = require('./comments/compose')
 var comment = require('./comments/comment')
 var commentsBtn = require('./comments/btn')
-
-var plauditsBtn = require('./plaudits')
+var plaudit = require('../../lib/plaudit')
 
 var contentStyle = css`
 
@@ -24,14 +23,16 @@ var contentStyle = css`
 `
 
 module.exports = function view (state, emit, review) {
-  var comments = getComments(state, emit, review)
-  var expand = () => {
+  const comments = getComments(state, emit, review)
+  const expand = () => {
     console.log('expanding comments')
     comments.classList.remove('dn')
     comments.classList.add('flex')
   }
 
-  var author = html`<div class="b dark-gray fw4"></div>`
+  plaudit.addDOItoHead(review.doi)
+
+  const author = html`<div class="b dark-gray fw4"></div>`
 
   fetch(`/data/users/${review.author_id}`).then(res => res.json()).then(
     authordata => {
@@ -60,7 +61,7 @@ module.exports = function view (state, emit, review) {
       ${raw(review.content)}
     </div>
     <div class="flex flex-row lh-copy w-100 justify-between pb2 mb2">
-      ${plauditsBtn(state, emit, review)}
+      ${review.doi && plaudit.script}
       ${commentsBtn(state, emit, review, expand)}
     </div>
     ${comments}
@@ -71,6 +72,7 @@ module.exports = function view (state, emit, review) {
 
 function getComments (state, emit, review) {
   if (!review.comments) review.comments = []
+
   return html`
     <div class="flex-column lh-copy w-100 justify-between dn">
       ${state.user && composeComment(state, emit, review)}
