@@ -37,12 +37,6 @@ app.use(
 // setup user sessions
 app.use(require('./auth/sessions'))
 
-// register static file serves
-if (!DEV_ENV) {
-  app.use(express.static(path.join(__dirname, '../client/dist'), {
-    redirect: false
-  }))
-}
 app.use('/assets/', express.static(path.join(__dirname, '../client/assets')))
 
 var cors = require('cors')
@@ -70,12 +64,19 @@ app.use('/loginsuccess', (err, req, res, next) => {
   res.redirect('/profile')
 })
 
+// register static file serves
+if (!DEV_ENV) {
+  app.use("/*", express.static(path.join(__dirname, '../client/dist'), {
+    redirect: false
+  }))
+}
+
 app.use(function (err, req, res, next) {
   console.error(err)
   res.status(500).send(err.message)
 })
 
-var listenport = parseInt(process.env.PREREVIEW_PORT || process.env.PORT);
+var listenport = parseInt(process.env.PORT || process.env.PREREVIEW_PORT);
 
 if (listenport === 443) {
   var https = require('https')
