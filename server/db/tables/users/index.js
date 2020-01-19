@@ -25,9 +25,9 @@ function updateUser (user) {
     .update(user)
 }
 
-function getOnlyUserById (userid) {
+function getOnlyUserById (userId) {
   return db('users')
-    .where({ user_id: userid })
+    .where({ user_id: userId })
     .first()
 }
 

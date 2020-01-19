@@ -1,7 +1,3 @@
-module.exports = {
-  addPrereview, getPrereview, getPreprintReviews, getUserReviews
-}
-
 const db = require('../..')
 
 const { getPreReviewComments } = require('../comments')
@@ -11,7 +7,7 @@ async function addPrereview (preReview) {
   const insertResult = await db('prereviews').insert(preReview)
 
   try {
-    await afterPreReviewInsert(insertResult)
+    await afterPreReviewInsert(preReview)
   } catch (error) {
     console.log('PreReview insert', error)
   }
@@ -34,9 +30,7 @@ async function getPreprintReviews (prePrint) {
     preprint_id: prePrint.id
   })
 
-  prePrint.prereviews = preReviews
-
-  await Promise.all(preReviews.filter(p => !p.is_hidden).map(getPreReviewComments))
+  prePrint.prereviews = await Promise.all(preReviews.filter(p => !p.is_hidden).map(getPreReviewComments))
 
   return prePrint
 }
@@ -49,9 +43,7 @@ async function getUserReviews (user) {
   let preReviews = await db('prereviews')
     .where({ author_id: user.user_id })
 
-  preReviews = preReviews.filter(p => !p.is_hidden).map(addPrePrintToPreReview)
-
-  user.prereviews = preReviews
+  user.prereviews = await Promise.all(preReviews.filter(p => !p.is_hidden).map(addPrePrintToPreReview))
 
   return user
 }
@@ -66,4 +58,11 @@ async function addPrePrintToPreReview (preReview) {
     .first()
 
   return preReview
+}
+
+module.exports = {
+  addPrereview,
+  getPrereview,
+  getPreprintReviews,
+  getUserReviews
 }

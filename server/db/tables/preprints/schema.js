@@ -1,7 +1,7 @@
 module.exports = createTable
 
-var db = require('../..')
-var preprints = require('./index')
+const db = require('../..')
+const preprints = require('./index')
 
 function createTable () {
   return db.schema.dropTableIfExists('preprints').then(function () {
