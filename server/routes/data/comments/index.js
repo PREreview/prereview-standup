@@ -1,7 +1,7 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
 
-var submit = require('./submit')
+const submit = require('./submit')
 
 router.use('/comments', [submit])
 

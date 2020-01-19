@@ -1,7 +1,7 @@
 module.exports = {
-  getPreprint: getPreprint,
-  indexNewPreprints: indexNewPreprints,
-  insertPreprint: insertPreprint,
+  getPreprint,
+  indexNewPreprints,
+  insertPreprint,
   searchPreprints: require('./search')
 }
 

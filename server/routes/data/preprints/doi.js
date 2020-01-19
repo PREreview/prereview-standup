@@ -1,14 +1,14 @@
-var isdoi = require('doi-regex')
-var preprints = require('../../../db/tables/preprints')
+const isDoi = require('doi-regex')
+const preprints = require('../../../db/tables/preprints')
 
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
 
 // Returns data about a preprint by DOi
 router.get('/doi/*', function (req, res, next) {
-  var doi = req.params[0]
+  const doi = req.params[0]
 
-  if (!isdoi({ exact: true }).test(doi)) {
+  if (!isDoi({ exact: true }).test(doi)) {
     res.status(500, 'Malformed DOI in requested URI')
   }
 
@@ -19,8 +19,8 @@ router.get('/doi/*', function (req, res, next) {
   preprints.getPreprint({
     id: `doi/${doi}`
   }).then(
-    returnedpreprint => {
-      res.json(returnedpreprint)
+    returnedPreprint => {
+      res.json(returnedPreprint)
     }
   ).catch(
     e => res.status(404, 'We do not have data for that preprint')

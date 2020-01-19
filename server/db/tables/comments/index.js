@@ -1,24 +1,24 @@
 module.exports = {
-  addComment, getPrereviewComments
+  addComment,
+  getPreReviewComments
 }
 
-var db = require('../..')
+const db = require('../..')
 
 function addComment (comment) {
   return db('comments').insert(comment)
 }
 
-function getPrereviewComments (prereview) {
-  if (prereview && prereview.prereview_id) {
-    return db('comments')
-      .where({ prereview_id: prereview.prereview_id })
-      .then(
-        comments => {
-          prereview.comments = comments
-          return Promise.resolve(prereview)
-        }
-      )
-  } else {
-    return Promise.resolve(null)
+async function getPreReviewComments (preReview) {
+  if (!preReview || !preReview.prereview_id) {
+    return preReview
   }
+
+  preReview.comments = await db('comments')
+    .where({
+      prereview_id: preReview.prereview_id
+    })
+    .join('users', {'comments.author_id': 'users.user_id'})
+
+  return preReview
 }
