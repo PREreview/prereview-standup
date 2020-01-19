@@ -37,7 +37,7 @@ passport.use(new OrcidStrategy({
   // and add it to their profile data
 
   const enrichedProfile = await updateFromOrcid(profile)
-  await users.getOrAddUser(enrichedProfile)
+  await users.upsertUser(enrichedProfile)
   done(null, enrichedProfile)
 }))
 

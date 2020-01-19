@@ -27,8 +27,24 @@ class EmailService {
     if(apiKey) {
       return await sgMail.send(emailOptions)
     } else {
-      console.error("No sendgrid configuration found | not sending email", emailOptions)
+      console.error('No sendgrid configuration found | not sending email', emailOptions)
     }
+  }
+
+  static async sendWelcomeEmail ({ email }) {
+    const { address } = email
+
+    const emailOptions = {
+      to: address,
+      from: supportAddress,
+      templateId: templateIds.WELCOME_EMAIL,
+    }
+
+    return EmailService.sendEmail(emailOptions).then(res => {
+      //
+    }).catch(error => {
+      console.log('WELCOME EMAIL RELATED ERROR:', error)
+    })
   }
 
   static async sendVerificationEmail ({ email, name }) {

@@ -1,14 +1,21 @@
-var db = require('../..')
+const db = require('../..')
 
-var { getUserReviews } = require('../prereviews')
+const { getUserReviews } = require('../prereviews')
+const { onUserInsert, onEmailVerification } = require('./hooks')
 
-function addUser (user) {
-  return db('users').insert({
+async function insertUser (user) {
+  const isInsertSuccessful = await db('users').insert({
     orcid: user.orcid,
     name: user.name,
     profile: JSON.stringify(user.profile),
     token: JSON.stringify(user.token)
   })
+
+  if (isInsertSuccessful) {
+    await onUserInsert(user)
+  }
+
+  return isInsertSuccessful
 }
 
 function updateUser (user) {
@@ -38,7 +45,7 @@ function getUserById (userid) {
     .then(getUserReviews)
 }
 
-async function getOrAddUser (user) {
+async function upsertUser (user) {
   const [existingUser] = await db('users').where({ orcid: user.orcid })
 
   if (existingUser) {
@@ -50,15 +57,9 @@ async function getOrAddUser (user) {
       ...existingUser.profile,
     }
 
-    return updateUser(user).then(user => {
-      user.firstvisit = false
-      return user
-    })
+    await updateUser(user);
   } else {
-    return addUser(user).then(user => {
-      user.firstvisit = true
-      return user
-    })
+    await insertUser(user);
   }
 }
 
@@ -112,13 +113,23 @@ function updateEmail (user, email) {
     })
 }
 
-function setEmailTokenAsVerified (token) {
-  return db('users')
+async function setEmailTokenAsVerified (token) {
+  const user = await db('users')
     .whereRaw(`profile->'email'->>'token' = ?`, token)
     .first()
-    .update({
-      profile: db.raw(`jsonb_set(??, '{email, verified}', ?)`, ['profile', true])
-    })
+
+  if (user) {
+    const isUpdateSuccessful = await db('users')
+      .where({ user_id: user.user_id })
+      .first()
+      .update({
+        profile: db.raw(`jsonb_set(??, '{email, verified}', ?)`, ['profile', true])
+      })
+
+    await onEmailVerification(user)
+
+    return isUpdateSuccessful
+  }
 }
 
 function updateEmailPreferences (user, preferences) {
@@ -134,10 +145,10 @@ function updateEmailPreferences (user, preferences) {
 }
 
 module.exports = {
-  addUser,
+  insertUser,
   getUser,
   getUserById,
-  getOrAddUser,
+  upsertUser,
   makeUserPrivate,
   makeUserPublic,
   acceptCoC,
