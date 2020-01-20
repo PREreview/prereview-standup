@@ -90,9 +90,9 @@ class EmailService {
 
     results.forEach(result => {
       const { profile } = result
-      const { isReceivingEmails = false, email: { address } = {} } = profile || {}
+      const { isReceivingEmails = false, email: { address, verified = false } = {} } = profile || {}
 
-      if (isReceivingEmails && address) {
+      if (isReceivingEmails && address && verified) {
         const emailOptions = {
           to: address,
           from: supportAddress,
