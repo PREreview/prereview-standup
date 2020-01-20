@@ -158,7 +158,7 @@ module.exports = function (state, emit, opts) {
         Code of Conduct
       </a>
 
-      <a href="https://content.prereview.org/resources" target="_blank" class="${buttonItem} ${navButton}">
+      <a href="https://content.prereview.org" target="_blank" class="${buttonItem} ${navButton}">
         Blog
       </a>
 
