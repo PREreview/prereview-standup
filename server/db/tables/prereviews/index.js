@@ -1,16 +1,18 @@
-module.exports = {
-  addPrereview, getPrereview, getPreprintReviews, getUserReviews
-}
-
 const db = require('../..')
 
-const { getPrereviewComments } = require('../comments')
+const { getPreReviewComments } = require('../comments')
 const { afterPreReviewInsert } = require('./hooks')
 
 async function addPrereview (preReview) {
-  const insertResult =  await db('prereviews').insert(preReview)
-  afterPreReviewInsert(insertResult);
-  return insertResult;
+  const insertResult = await db('prereviews').insert(preReview)
+
+  try {
+    await afterPreReviewInsert(preReview)
+  } catch (error) {
+    console.log('PreReview insert', error)
+  }
+
+  return insertResult
 }
 
 function getPrereview (prereview) {
@@ -19,56 +21,48 @@ function getPrereview (prereview) {
     .first()
 }
 
-function getPreprintReviews (preprint) {
-  if (preprint && preprint.id) {
-    return db('prereviews')
-      .where({ preprint_id: preprint.id })
-      .then(
-        prereviews => {
-          preprint.prereviews = prereviews
-          return Promise.all(
-            prereviews.filter(p => !p.is_hidden).map(getPrereviewComments)
-          ).then(
-            () => Promise.resolve(preprint)
-          )
-        }
-      )
-  } else {
-    return Promise.resolve(null)
+async function getPreprintReviews (prePrint) {
+  if (!prePrint || !prePrint.id) {
+    return prePrint
   }
+
+  const preReviews = await db('prereviews').where({
+    preprint_id: prePrint.id
+  })
+
+  prePrint.prereviews = await Promise.all(preReviews.filter(p => !p.is_hidden).map(getPreReviewComments))
+
+  return prePrint
 }
 
-function getUserReviews (user) {
-  if (user && user.user_id) {
-    return db('prereviews')
-      .where({ author_id: user.user_id })
-      .then(
-        prereviews => {
-          user.prereviews = prereviews
-          return Promise.all(
-            prereviews.filter(p => !p.is_hidden).map(addPreprintToPrereview)
-          ).then(
-            () => Promise.resolve(user)
-          )
-        }
-      )
-  } else {
-    return Promise.resolve(null)
+async function getUserReviews (user) {
+  if (!user || !user.user_id) {
+    return user
   }
+
+  let preReviews = await db('prereviews')
+    .where({ author_id: user.user_id })
+
+  user.prereviews = await Promise.all(preReviews.filter(p => !p.is_hidden).map(addPrePrintToPreReview))
+
+  return user
 }
 
-function addPreprintToPrereview (prereview) {
-  if (prereview && prereview.preprint_id) {
-    return db('preprints')
-      .where({ id: prereview.preprint_id })
-      .first()
-      .then(
-        preprint => {
-          prereview.preprint = preprint
-          return Promise.resolve(prereview)
-        }
-      )
-  } else {
-    return Promise.resolve(null)
+async function addPrePrintToPreReview (preReview) {
+  if (!preReview || !preReview.preprint_id) {
+    return preReview
   }
+
+  preReview.preprint = await db('preprints')
+    .where({ id: preReview.preprint_id })
+    .first()
+
+  return preReview
+}
+
+module.exports = {
+  addPrereview,
+  getPrereview,
+  getPreprintReviews,
+  getUserReviews
 }

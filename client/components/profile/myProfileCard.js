@@ -111,10 +111,6 @@ module.exports = class MyProfileCard extends Nanocomponent {
       this.emit('user:update-email-preferences', formData)
     }
 
-    const sendVerificationEmail = () => {
-
-    }
-
     const emailSubmitFunction = (e) => {
       e.preventDefault()
       const { emailAddress: emailInput } = e.currentTarget

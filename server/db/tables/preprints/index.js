@@ -1,17 +1,16 @@
-module.exports = {
-  getPreprint: getPreprint,
-  indexNewPreprints: indexNewPreprints,
-  insertPreprint: insertPreprint,
-  searchPreprints: require('./search')
+const db = require('../..')
+
+const fixPublisher = require('./fixPublisher')
+const { getPreprintReviews } = require('../prereviews')
+
+function insertPreprint (preprint) {
+  return db('preprints').insert(preprint)
 }
 
-var db = require('../..')
-var fixPublisher = require('./fixPublisher')
-
-var { getPreprintReviews } = require('../prereviews')
-
-function insertPreprint(preprint){
-  return db('preprints').insert(preprint)
+function getBarePreprintById (preprintId) {
+  return db('preprints')
+    .where({ id: preprintId })
+    .first()
 }
 
 function getPreprint (preprint) {
@@ -24,7 +23,7 @@ function getPreprint (preprint) {
 
 function indexNewPreprints () {
   console.log('indexing new preprints')
-  var tsvectorjoin = " || '  . ' || "
+  var tsvectorjoin = ' || \'  . \' || '
   var tsvectorfields = [
     'title',
     'abstract',
@@ -35,4 +34,12 @@ function indexNewPreprints () {
   var fulltextquery = `to_tsvector(${tsvectorinput}) WHERE document is NULL;`
 
   return db.raw(`UPDATE "preprints" SET document = ${fulltextquery}`)
+}
+
+module.exports = {
+  getPreprint,
+  indexNewPreprints,
+  insertPreprint,
+  getBarePreprintById,
+  searchPreprints: require('./search')
 }

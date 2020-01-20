@@ -1,8 +1,9 @@
+const db = require('../db')
 const sendgridConfig = (() => {
   try {
     return require('../../config/sendgrid')
   } catch (error) {
-    console.error("No sendgrid configuration found | not sending emails")
+    console.error('No sendgrid configuration found | not sending emails')
   }
 })()
 
@@ -24,11 +25,27 @@ sgMail.setApiKey(apiKey)
 
 class EmailService {
   static async sendEmail (emailOptions) {
-    if(apiKey) {
+    if (apiKey) {
       return await sgMail.send(emailOptions)
     } else {
-      console.error("No sendgrid configuration found | not sending email", emailOptions)
+      console.error('No sendgrid configuration found | not sending email', emailOptions)
     }
+  }
+
+  static async sendWelcomeEmail ({ email }) {
+    const { address } = email
+
+    const emailOptions = {
+      to: address,
+      from: supportAddress,
+      templateId: templateIds.WELCOME_EMAIL
+    }
+
+    return EmailService.sendEmail(emailOptions).then(res => {
+      //
+    }).catch(error => {
+      console.error('WELCOME EMAIL RELATED ERROR:', error)
+    })
   }
 
   static async sendVerificationEmail ({ email, name }) {
@@ -48,20 +65,51 @@ class EmailService {
     return EmailService.sendEmail(emailOptions).then(res => {
       //
     }).catch(error => {
-      console.log('VERIFICATION EMAIL RELATED ERROR:', error)
+      console.error('VERIFICATION EMAIL RELATED ERROR:', error)
     })
   }
 
-  static async sendNewPreReviewEmail ({ preprint_id }) {
+  static async sendNewPreReviewEmails ({ preprint_id, preReview }) {
     const results = await getReviewRequestsWithUsers({ preprint_id })
 
-    results.forEach(result => {
-      const { user_id, name, preprint_id, profile } = result
-      const { isReceivingEmails = false, emails } = profile || {}
-      const [personalEmail] = emails || []
+    const preReviewAuthor = await db('users')
+      .where({ user_id: preReview.author_id })
+      .first()
 
-      if (isReceivingEmails && personalEmail) {
-        // TODO send email ?
+    const preprint = await db('preprints')
+      .where({ id: preprint_id })
+      .first()
+
+    const {
+      name: preReviewAuthorName,
+      user_id: preReviewUserId
+    } = preReviewAuthor
+    const preReviewAuthorLink = `${process.env.APP_ROOT_URI}/users/${preReviewUserId}`
+    const { title: prePrintTitle } = preprint
+    const prePrintLink = `${process.env.APP_ROOT_URI}/preprints/${preprint_id}`
+
+    results.forEach(result => {
+      const { profile } = result
+      const { isReceivingEmails = false, email: { address, verified = false } = {} } = profile || {}
+
+      if (isReceivingEmails && address && verified) {
+        const emailOptions = {
+          to: address,
+          from: supportAddress,
+          templateId: templateIds.NEW_PRE_REVIEW_EMAIL,
+          dynamic_template_data: {
+            preReviewAuthorName,
+            preReviewAuthorLink,
+            prePrintTitle,
+            prePrintLink
+          }
+        }
+
+        return EmailService.sendEmail(emailOptions).then(res => {
+          //
+        }).catch(error => {
+          console.error('NEW PRE REVIEW EMAIL RELATED ERROR:', error)
+        })
       }
     })
   }

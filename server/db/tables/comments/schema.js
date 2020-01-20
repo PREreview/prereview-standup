@@ -1,6 +1,6 @@
 module.exports = createTable
 
-var db = require('../..')
+const db = require('../..')
 
 function createTable () {
   return db.schema.dropTableIfExists('comments').then(function () {

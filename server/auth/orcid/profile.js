@@ -75,7 +75,12 @@ async function fetchPersonFromOrcid (user) {
   if (data.emails && data.emails.email) {
     const emails = data.emails.email.map(e => e.email)
     const [emailAddress] = emails
-    Object.assign(parsedData, { email: { address: emailAddress, verified: true } })
+    Object.assign(parsedData, {
+      email: {
+        address: emailAddress,
+        verified: !!emailAddress
+      }
+    })
   }
 
   return parsedData

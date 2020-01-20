@@ -1,15 +1,15 @@
-var html = require('choo/html')
-var css = require('sheetify')
+const html = require('choo/html')
+const css = require('sheetify')
 
-var nav = require('../components/nav')
-var profile = require('../components/profile')
-var Setup = require('../components/profile/firstVisit')
-var MyProfileCard = require('../components/profile/myProfileCard')
-var GRID = require('../grid')
+const nav = require('../components/nav')
+const profile = require('../components/profile')
+const Setup = require('../components/profile/firstVisit')
+const MyProfileCard = require('../components/profile/myProfileCard')
+const GRID = require('../grid')
 
-var TITLE = 'PREreview2 | profile'
+const TITLE = 'PREreview2 | profile'
 
-var mainstyle = css`
+const mainstyle = css`
   :host {
     min-height: calc(100vh - 127px);
   }
@@ -19,9 +19,9 @@ module.exports = view
 
 function view (state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
-  var userId = state.href.split('/users/')[1]
-  var otherUserContainer = `flex flex-column ${mainstyle} justify-center items-center`
-  var profileContainer = `flex flex-column`
+  const userId = state.href.split('/users/')[1]
+  let otherUserContainer = `flex flex-column ${mainstyle} justify-center items-center`
+  let profileContainer = `flex flex-column`
 
   if (state.dimensions.width < GRID.LG) {
     otherUserContainer = `${otherUserContainer} w-90`
@@ -61,7 +61,7 @@ function view (state, emit) {
     `
   }
 
-  var firstVisit = html`
+  const firstVisit = html`
     <body class="flex flex-column w-100 justify-center items-center space-around">
       ${nav(state, emit)}
 

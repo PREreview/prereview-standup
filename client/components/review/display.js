@@ -1,31 +1,23 @@
-var html = require('choo/html')
-var raw = require('choo/html/raw')
-var css = require('sheetify')
+const html = require('choo/html')
+const raw = require('choo/html/raw')
 
-var composeComment = require('./comments/compose')
-var comment = require('./comments/comment')
-var commentsBtn = require('./comments/btn')
-var plaudit = require('../../lib/plaudit')
-
-var contentStyle = css`
-
-:host p {
-  margin-top: 0;
-}
-
-:host {
-  /* max-height: 200px; */
-  max-height: 200px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-`
+const composeComment = require('./comments/compose')
+const comment = require('./comments/comment')
+const commentsBtn = require('./comments/btn')
+const plaudit = require('../../lib/plaudit')
 
 module.exports = function view (state, emit, review) {
-  const comments = getComments(state, emit, review)
+  const comments = getComments(state, emit, review, (commentText) => {
+    comments.appendChild(
+      comment(state, emit, {
+        name: state.user.name,
+        date_created: new Date(),
+        content: commentText
+      })
+    )
+  })
+
   const expand = () => {
-    console.log('expanding comments')
     comments.classList.remove('dn')
     comments.classList.add('flex')
   }
@@ -35,9 +27,9 @@ module.exports = function view (state, emit, review) {
   const author = html`<div class="b dark-gray fw4"></div>`
 
   fetch(`/data/users/${review.author_id}`).then(res => res.json()).then(
-    authordata => {
-      var authorinner = html`<a href="/users/${authordata.user_id}">${authordata.name}</a>`
-      author.appendChild(authorinner)
+    authorData => {
+      const innerAuthor = html`<a href="/users/${authorData.user_id}">${authorData.name}</a>`
+      author.appendChild(innerAuthor)
     }
   )
 
@@ -72,12 +64,12 @@ module.exports = function view (state, emit, review) {
   `
 }
 
-function getComments (state, emit, review) {
+function getComments (state, emit, review, onCommentAdd) {
   if (!review.comments) review.comments = []
 
   return html`
     <div class="flex-column lh-copy w-100 justify-between dn">
-      ${state.user && composeComment(state, emit, review)}
+      ${state.user && composeComment(state, emit, review, onCommentAdd)}
       ${review.comments.map(c => comment(state, emit, c))}
     </div>
   `

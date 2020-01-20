@@ -1,12 +1,12 @@
-var html = require('choo/html')
-var css = require('sheetify')
+const html = require('choo/html')
+const css = require('sheetify')
 
-var Quill = require('quill')
+const Quill = require('quill')
 
 css('quill/dist/quill.core.css')
 css('quill/dist/quill.snow.css')
 
-var editorstyle = css`
+const editorStyle = css`
 
 :host > .ql-editor {
   height: 200px !important;
@@ -15,21 +15,18 @@ var editorstyle = css`
 
 `
 
-module.exports = function view (state, emit, prereview) {
-  var editorinner = html`<div class="flex ${editorstyle}"></div>`
+module.exports = function view (state, emit, preReview, onCommentAdd) {
+  const innerEditor = html`<div class="flex ${editorStyle}"></div>`
 
-  var btnstyle = state.style.classes.secondaryButton
-
-  var submit = html`
+  const submit = html`
     <div class="flex flex-row justify-center content-center items-center v-mid bn h2 f5 bg-red white link dim outline-0 pa2 pointer br2 dtc v-mid b f6 noselect">
       Add comment
     </div>
   `
 
-  var editorel = html`
-  
+  const editorElement = html`
   <div class="flex flex-column h-100 w-100 ph2 pb2 mb2">
-    ${editorinner}
+    ${innerEditor}
     <div class="flex flex-row justify-between pv2">
       <div class="i f5">
         Commenting as ${state.user.name}.
@@ -37,27 +34,25 @@ module.exports = function view (state, emit, prereview) {
       ${submit}
     </div>
   </div>
-  
   `
 
-  var quill = new Quill(editorinner, {
+  const quill = new Quill(innerEditor, {
     theme: 'snow',
-    bounds: editorel,
+    bounds: editorElement,
     modules: { toolbar: false },
     placeholder: 'Comment on this review...\n\n'
   })
 
-  var contents = null
+  submit.onclick = () => {
+    emit('comment:submit', {
+      prereview_id: preReview.prereview_id,
+      content: quill.getText()
+    })
 
-  quill.on('text-change', (oldDelta, newDelta) => {
-    contents = newDelta
-  })
+    onCommentAdd(quill.getText())
 
-  submit.onclick = () => emit('comment:submit', {
-    author_id: state.user.user_id,
-    prereview_id: prereview.prereview_id,
-    comment: contents
-  })
+    quill.setText('\n')
+  }
 
-  return editorel
+  return editorElement
 }

@@ -1,8 +1,9 @@
-var db = require('../../')
-var fixPublisher = require('./fixPublisher')
-var { getReviewRequests } = require('../reviewrequests')
-var { getOnlyUserById } = require('../users')
-var PAGESIZE = 20
+const db = require('../..')
+const fixPublisher = require('./fixPublisher')
+const { getReviewRequests } = require('../reviewrequests')
+const { getOnlyUserById } = require('../users')
+
+const PAGESIZE = 20
 module.exports = searchPreprints
 // if query is null, the result is the most recently
 // indexed preprints
