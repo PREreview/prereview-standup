@@ -46,6 +46,7 @@ router.post('/insert', async function(req, res, next) {
     preprints
       .insertPreprint(preprint)
       .then(data => res.json(data))
+      .then(() => preprints.indexNewPreprints())
       .catch(e => {
         console.error(
           'Error trying to create PREreview with data:',

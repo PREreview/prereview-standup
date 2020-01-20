@@ -91,7 +91,7 @@ const scrapeURL = (url, publicationId, type) =>
           date_created: highwirePress.date ? highwirePress.date : null,
           date_published: highwirePress.online_date ? highwirePress.online_date : highwirePress.date ? highwirePress.date : null,
           date_indexed: formatDate(new Date()),
-          authorstring: null,
+          authorstring: authors.join(),
           license: null,
           document: null,
           n_prereviews: 0
@@ -127,7 +127,7 @@ const searchCrossref = publicationId =>
             date_created: formatDate(crossrefData.created['date-time']),
             date_published: formatDate(crossrefData.deposited['date-time']),
             date_indexed: formatDate(crossrefData.indexed['date-time']),
-            authorstring: null,
+            authorstring: authors.join(),
             license: crossrefData.license ? crossrefData.license : null,
             document: null,
             n_prereviews: 0
