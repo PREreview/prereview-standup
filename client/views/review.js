@@ -11,8 +11,8 @@ var mainstyle = css`
 `
 
 var blockedpublishers = [
-  // 'biorxiv',
-  // 'medrxiv'
+  'biorxiv',
+  'medrxiv'
 ]
 
 var reviews = require('../fake/reviews')
