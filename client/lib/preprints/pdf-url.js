@@ -30,7 +30,6 @@ var prefixmap = {
 }
 
 async function preprintToPdfUrl (preprint) {
-  console.log(preprint);
   if (preprint.id.startsWith('doi')) {
     var doi = preprint.id.replace('doi/', '')
     var pdffn = doiToPdfMap(doi)
