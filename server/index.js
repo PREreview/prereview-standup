@@ -19,14 +19,15 @@ app.use(require('morgan')('combined'))
 // it's OK to ask if we're OK
 app.get('/health', (req, res) => res.sendStatus(200))
 
-app.get('/proxy/:proxyUrl*', (req, res) => {
+app.get('/proxy', (req, res) => {
   var request = require('request')
-  // Strip '/proxy' from the front of the URL, else the proxy won't work.
-  req.url = req.url.replace('/proxy/', '');
-  req.url = req.url.replace('/https:[\/]+/g', 'https://');
-  req.url = req.url.replace('/http:[\/]+/g', 'http://');
+  var url = req.query.url;
 
-  request(req.url).pipe(res);
+  if (!url) {
+    return res.sendStatus(404);
+  }
+
+  request(req.query.url).pipe(res);
 });
 
 // favicons
