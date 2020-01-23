@@ -54,7 +54,10 @@ module.exports = function(state, emitter) {
         sortBy: state.sort.by,
         page: 1
       }
-      getLatest()
+      getLatest().then(() => {
+        state.getLatestDone = true;
+        emitter.emit('render')
+      })
     })
 
     emitter.on('preprint-search:update-sort', updateAfterSort)
@@ -86,7 +89,7 @@ module.exports = function(state, emitter) {
   }
 
   function getLatest() {
-    fetch('/data/preprints/latest', {
+    return fetch('/data/preprints/latest', {
       headers: {
         Accept: 'application/json'
       }

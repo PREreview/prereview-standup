@@ -6,6 +6,7 @@ var filterbox = require('../components/home/filterbox')
 var preprintlist = require('../components/home/preprintlist')
 var addButton = require('../components/home/add/button')
 var addModal = require('../components/home/add/modal')
+var loading = require('../components/utils/loading')
 var GRID = require('../grid')
 
 var TITLE = 'PREreview2 | find'
@@ -30,12 +31,17 @@ function view (state, emit) {
           ${filterbox(state, emit)}
         </div>
 
-        <div class="flex flex-column w-100 ">
-          ${preprintlist(state, emit)}
-          ${getResultString(state, emit)}
-          ${pagingbuttons(state, emit)}
-        </div>
-
+        ${state.getLatestDone
+          ? html`<div class="flex flex-column w-100 ">
+              ${preprintlist(state, emit)}
+              ${getResultString(state, emit)}
+              ${pagingbuttons(state, emit)}
+            </div>`
+          : html`<div class="flex flex-column mt6 w-100 h-100 bg-white justify-center items-center">
+              <p>loading</p>
+              ${loading()}
+            </div>`
+        }
       </div>
       
       ${addModal(state, emit)}
