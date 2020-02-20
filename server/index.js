@@ -11,7 +11,7 @@ var app = express()
 app.use(require('helmet')())
 
 // parse JSON body to req.body
-app.use(express.json())
+app.use(express.json({ limit: '50mb' }))
 
 // let's keep notes
 app.use(require('morgan')('combined'))

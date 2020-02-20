@@ -90,8 +90,18 @@ module.exports = class Editor extends Nanocomponent {
       this.quill.root.removeEventListener('click', clearPlaceholder);
     }
 
+    const rewriteContents = (ev) => {
+      // Set the same content over the existing one. This will trigger the text-change event
+      setTimeout(() => {
+        this.quill.setContents(this.quill.getContents());
+      });
+    }
+
     // Add the click event
     this.quill.root.addEventListener('click', clearPlaceholder);
+
+    // Add the paste event
+    this.quill.root.addEventListener('paste', rewriteContents);
 
     // focus cursor inside editor
     this.quill.focus()
