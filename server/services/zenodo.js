@@ -36,7 +36,7 @@ const generateDOI = async prereviewData => {
       upload_type: 'publication',
       publication_type: 'article',
       title: prereviewData.title,
-      description: prereviewData.content,
+      description: prereviewData.content || "No content.",
       creators: [{
         name: prereviewData.authorName,
         orcid: prereviewData.authorOrcid
