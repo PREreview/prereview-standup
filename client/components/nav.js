@@ -154,16 +154,24 @@ module.exports = function (state, emit, opts) {
         About
       </a>
 
+      <a href="https://content.prereview.org/people" target="_blank" class="${buttonItem} ${navButton}">
+        People
+      </a>
+
+      <a href="https://content.prereview.org/programs" target="_blank" class="${buttonItem} ${navButton}">
+        Programs
+      </a>
+
+      <a href="https://content.prereview.org/resources" target="_blank" class="${buttonItem} ${navButton}">
+        Resources
+      </a>
+
       <a href="https://content.prereview.org/coc" target="_blank" class="${buttonItem} ${navButton}">
         Code of Conduct
       </a>
 
       <a href="https://content.prereview.org" target="_blank" class="${buttonItem} ${navButton}">
         Blog
-      </a>
-
-      <a href="https://content.prereview.org/resources" target="_blank" class="${buttonItem} ${navButton}">
-        Resources
       </a>
 
       ${userpart}
