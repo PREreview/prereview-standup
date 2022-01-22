@@ -56,7 +56,7 @@
     "nano": "^8.1.0",
     "nanocomponent": "^6.5.2",
     "ngrok": "^3.2.7",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "node-quill-converter": "^0.3.2",
     "nodemon": "^2.0.2",
     "orcid-utils": "^1.0.3",
